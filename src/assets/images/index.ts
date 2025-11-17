@@ -1,0 +1,6 @@
+export { default as telegramIcon }  from './telegram.svg'
+export { default as githubIcon }  from './github.svg'
+export { default as langIcon }  from './lang.svg'
+export { default as sunIcon }  from './sunIcon.svg'
+export { default as moonIcon }  from './moonIcon.svg'
+export { default as linkedinIcon }  from './linkedin.svg'

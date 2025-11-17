@@ -1,0 +1,174 @@
+@use "@/scss/index.scss"as *;
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    transition: all 1s ease;
+    border-bottom: 1px solid transparent;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+        transition: all 1s ease;
+        border-bottom: 1px solid transparent;
+    }
+
+    &:global(.scrolled)::before {
+        background: var(--header-background-scrolled);
+        border-bottom-color: var(--header-border-scrolled);
+        backdrop-filter: $filter-backdrop-blur;
+        -webkit-backdrop-filter: $filter-backdrop-blur;
+    }
+
+    @media (width < 576px) {
+        padding: $spacing-base !important;
+    }
+
+    &__option {
+        display: flex;
+        align-items: center;
+        gap: $spacing-large;
+        margin-left: $spacing-xlarge;
+
+        @media (width < 992px) {
+            position: fixed;
+            top: 48px;
+            right: 95px;
+            margin-left: 0;
+            z-index: 200;
+        }
+
+        @media (width < 576px) {
+            top: 26px;
+            right: 75px;
+        }
+    }
+
+    &__logo {
+        font-family: $font-family-logo;
+        font-weight: $typography-font-weight-semibold;
+        font-size: $typography-font-size-xlarge;
+        line-height: $typography-line-height-normal;
+        text-transform: uppercase;
+        color: var(--text-primary);
+
+        @media (width < 992px) {
+            z-index: 201;
+        }
+
+        @media (width < 576px) {
+            font-size: $typography-font-size-large;
+        }
+    }
+
+    &__menu {
+        display: flex;
+        align-items: center;
+        gap: $spacing-small;
+        margin-left: auto;
+
+        @media (width < 992px) {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            z-index: 200;
+            width: 100%;
+
+            flex-direction: column;
+            justify-content: center;
+            gap: $spacing-large;
+
+            margin-left: 0;
+            background-color: var(--menu-overlay);
+            backdrop-filter: $filter-backdrop-blur;
+            -webkit-backdrop-filter: $filter-backdrop-blur;
+
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+
+            li {
+                display: grid;
+                place-items: center;
+                width: 100%;
+            }
+
+            &>* {
+                opacity: 0;
+                transform: translateY(100px);
+                transition: opacity 0.3s ease, transform 0.3s ease;
+            }
+
+            &:global(.active) {
+                opacity: 1;
+                pointer-events: auto;
+
+                @for $i from 1 through 6 {
+                    &>*:nth-child(#{$i}) {
+                        opacity: 1;
+                        transform: translateY(0);
+                        transition-delay: #{$i * 0.1}s;
+                    }
+                }
+            }
+        }
+    }
+
+    &__menu_btn {
+        display: none;
+        z-index: 201;
+        position: relative;
+        background: none;
+        border: none;
+        padding: 0;
+        color: var(--text-primary);
+        width: $button-size;
+        height: $button-size;
+
+        @media (width < 992px) {
+            display: grid;
+            place-items: center;
+        }
+    }
+
+    &__link {
+        display: inline-block;
+        padding: $spacing-small;
+        font-size: $typography-font-size-medium;
+        transition: $transition-duration-base;
+
+        &:hover {
+            background: var(--background-interactive-hover);
+        }
+
+        @media (width < 992px) {
+            background: var(--background-interactive-hover);
+            max-width: 320px;
+            text-align: center;
+            display: block;
+            width: 100%;
+            font-size: $typography-font-size-xlarge;
+            padding: $spacing-medium $spacing-large;
+            border-radius: $border-radius-large;
+            border: 1px solid var(--border-primary);
+            color: var(--text-primary);
+
+            &:hover {
+                border-color: var(--border-interactive-hover);
+            }
+        }
+    }
+}

@@ -1,0 +1,219 @@
+@use "@/scss/index.scss"as *;
+
+.footer {
+    padding-top: $spacing-section; // 80px
+    position: relative;
+    overflow: hidden;
+    color: var(--text-primary);
+    background: var(--footer-gradient);
+    border-top: 1px solid var(--border-color);
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg,
+                transparent 0%,
+                var(--accent-color) 50%,
+                transparent 100%);
+        opacity: 0.3;
+    }
+
+    @media (max-width: 768px) {
+        padding-top: $spacing-title; // 60px
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: $spacing-medium; // 16px
+        padding-bottom: $spacing-section; // 80px
+
+        @media (max-width: 768px) {
+            padding-bottom: $spacing-title; // 60px
+        }
+    }
+
+    &__title {
+        font-family: $font-family-title;
+        font-weight: $typography-font-weight-black;
+        font-size: $typography-font-size-title; // 64px
+        text-align: center;
+
+        @media (max-width: 992px) {
+            font-size: 3.5rem; // 56px
+        }
+
+        @media (max-width: 768px) {
+            font-size: $typography-font-size-xxlarge; // 40px
+        }
+
+        @media (max-width: 576px) {
+            font-size: $typography-font-size-xlarge; // 32px
+        }
+    }
+
+    &__desc {
+        font-size: $typography-font-size-medium; // 18px
+        font-weight: $typography-font-weight-normal;
+        color: var(--text-secondary);
+        max-width: 550px;
+        text-align: center;
+        line-height: $typography-line-height-normal;
+        padding-top: $spacing-small;
+        padding-bottom: $spacing-large; // 24px
+
+        @media (max-width: 768px) {
+            font-size: $typography-font-size-base; // 16px
+            padding-bottom: $spacing-medium; // 16px
+        }
+
+        @media (max-width: 576px) {
+            max-width: 100%;
+        }
+    }
+
+    &__btn {
+        display: inline-block;
+        font-size: $typography-font-size-base;
+        padding: $spacing-base $spacing-xlarge; // 20px 32px
+        border-radius: $border-radius-large;
+        color: var(--button-text);
+        background: var(--button-background);
+        font-weight: $typography-font-weight-semibold;
+        transition: all $transition-duration-base $timing-function-ease-in-out-smooth;
+        box-shadow: var(--shadow-button);
+        border: none;
+
+        &:hover {
+            background: var(--button-background-hover);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(30, 30, 30, 0.6);
+        }
+
+        &:active {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+        }
+
+        @media (max-width: 576px) {
+            padding: $spacing-small $spacing-large; // 12px 24px
+        }
+    }
+
+    &__basement {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: $spacing-xlarge 0; // 32px 0
+
+        @media (max-width: 768px) {
+            flex-direction: column; // Складываем лого и контакты
+            gap: $spacing-large; // 24px
+            justify-content: center;
+        }
+
+        @media (max-width: 576px) {
+            padding: $spacing-large 0; // 24px 0
+        }
+    }
+
+    &__logo {
+        font-family: $font-family-logo;
+        font-weight: $typography-font-weight-semibold;
+        font-size: $typography-font-size-xlarge; // 32px
+        line-height: $typography-line-height-normal;
+        text-transform: uppercase;
+
+        @media (max-width: 576px) {
+            font-size: $typography-font-size-large; // 24px
+        }
+    }
+
+    &__contacts {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: $spacing-base; // 20px
+
+        @media (max-width: 576px) {
+            flex-wrap: wrap; // Разрешаем перенос
+            gap: $spacing-small; // 12px
+        }
+    }
+
+    &__email {
+        font-size: $typography-font-size-base;
+        color: var(--text-secondary);
+        transition: color $transition-duration-base ease;
+
+        &:hover {
+            color: var(--text-primary);
+            text-decoration: underline;
+        }
+
+        @media (max-width: 576px) {
+            font-size: $typography-font-size-small; // 13px
+        }
+    }
+
+    &__links {
+        background: var(--background-glass-alpha);
+        backdrop-filter: $filter-backdrop-blur;
+        padding: $spacing-xsmall; // 8px
+        border-radius: 100%;
+        display: grid;
+        place-items: center;
+        transition: all $transition-duration-base $timing-function-ease-in-out-smooth;
+        border: 1px solid var(--border-glass-alpha);
+        box-shadow: var(--shadow-default);
+
+        &:hover {
+            background: var(--background-glass-alpha-hover);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: var(--shadow-glass-hover);
+            border-color: var(--border-glass-alpha-hover);
+        }
+
+        &:active {
+            transform: translateY(-1px) scale(1.02);
+        }
+
+        img {
+            width: 25px;
+            height: 25px;
+            transition: transform 0.3s ease;
+            filter: var(--icon-filter);
+        }
+
+        &:hover img {
+            transform: rotate(5deg);
+        }
+
+        @media (max-width: 576px) {
+            padding: 6px; // $spacing-xsmall - 2px
+
+            img {
+                width: 22px;
+                height: 22px;
+            }
+        }
+    }
+
+    &__rights {
+        display: block;
+        text-align: center;
+        padding-bottom: $spacing-base; // 20px
+        font-size: $typography-font-size-small; // 13px
+        color: var(--text-secondary);
+        opacity: 0.7;
+
+        @media (max-width: 576px) {
+            padding-bottom: $spacing-medium; // 16px
+        }
+    }
+}

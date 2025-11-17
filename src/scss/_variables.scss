@@ -1,0 +1,125 @@
+// =============================================
+//               DESIGN TOKENS
+// =============================================
+
+
+// ---------------------------------------------
+// # TYPOGRAPHY
+// ---------------------------------------------
+
+// --- Font Family ---
+$font-family-base: 'Inter',
+sans-serif !default;
+
+$font-family-title: 'Exo2',
+sans-serif !default;
+
+$font-family-logo: 'Azonix',
+sans-serif !default;
+
+
+// --- Font Sizes ---
+$typography-font-size-small: 0.8125rem !default; // 13px
+$typography-font-size-base: 1rem !default; // 16px
+$typography-font-size-medium: 1.125rem !default; // 18px
+$typography-font-size-large: 1.5rem !default; // 24px
+$typography-font-size-xlarge: 2rem !default; // 32px
+$typography-font-size-xxlarge: 2.5rem !default; // 40px
+$typography-font-size-title: 4rem !default; // 64px
+$typography-font-size-hero-title: 5.5rem !default; // 88px
+
+// --- Font Weights ---
+$typography-font-weight-normal: 400 !default;
+$typography-font-weight-semibold: 600 !default;
+$typography-font-weight-bold: 700 !default;
+$typography-font-weight-black: 900 !default;
+
+// --- Line Heights ---
+$typography-line-height-ui: 1 !default;
+$typography-line-height-button: 1.2 !default;
+$typography-line-height-tight: 1.2 !default;
+$typography-line-height-normal: 1.6 !default;
+$typography-line-height-relaxed: 1.7 !default;
+
+// --- Letter Spacing ---
+$typography-letter-spacing-tight: -0.02em !default;
+$typography-letter-spacing-normal: 0 !default;
+$typography-letter-spacing-wide: 0.025em !default;
+$typography-letter-spacing-wider: 0.05em !default;
+
+// ---------------------------------------------
+// # SIZING & SPACING
+// ---------------------------------------------
+
+// --- Spacing Scale (Use for padding, margin, gap) ---
+$spacing-xxsmall: 0.25rem !default; // 4px
+$spacing-xsmall: 0.5rem !default; // 8px
+$spacing-small: 0.75rem !default; // 12px
+$spacing-medium: 1rem !default; // 16px
+$spacing-base: 1.25rem !default; // 20px
+$spacing-large: 1.5rem !default; // 24px
+$spacing-xlarge: 2rem !default; // 32px
+$spacing-xxlarge: 3rem !default; // 48px
+$spacing-title: 3.75rem !default; // 60px
+$spacing-section: 5rem !default; // 80px
+
+
+// --- Border Radius ---
+$border-radius-small: 8px !default;
+$border-radius-medium: 12px !default;
+$border-radius-large: 18px !default;
+$border-radius-input: 22px !default;
+$border-radius-xlarge: 28px !default;
+$border-radius-pill: 999px !default;
+$border-radius-circle: 50% !default;
+
+// --- Icon Sizes ---
+$icon-size-small: 1rem !default; // 16px
+$icon-size-medium: 1.25rem !default; // 20px
+$icon-size-large: 1.5rem !default; // 24px
+
+//  --- Button Sizes ---
+$button-size: 2.5rem !default; // 40px
+
+// --- Layouts ---
+$container-width: 1440px !default;
+$container-padding: 2.5rem !default;
+
+
+// ---------------------------------------------
+// # EFFECTS
+// ---------------------------------------------
+
+// --- Transition Durations ---
+$transition-duration-micro: 150ms !default;
+$transition-duration-fast: 200ms !default;
+$transition-duration-base: 280ms !default;
+$transition-duration-layout: 400ms !default;
+$transition-duration-smooth: 600ms !default;
+$transition-duration-reduced: 0.01ms !default;
+
+// --- Timing Functions ---
+$timing-function-ease-in-out-smooth: cubic-bezier(0.4, 0, 0.2, 1) !default;
+$timing-function-ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1) !default;
+$timing-function-ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1) !default;
+
+// --- Animation Durations ---
+$animation-duration-gradient: 4s !default;
+$animation-duration-pulse: 2.5s !default;
+$animation-duration-spin: 1s !default;
+$animation-play-state-reduced: paused !default;
+
+// --- Filters ---
+$filter-backdrop-blur: blur(10px) !default;
+$filter-backdrop-blur-small: blur(6px) !default;
+
+// --- Hover & Active States ---
+$hover-brightness: 1.1 !default;
+$hover-opacity: 0.9 !default;
+$hover-transform-lift: translateY(-3px) !default;
+
+// --- Transform Scales ---
+$transform-scale-down-small: 0.96 !default;
+$transform-scale-down-medium: 0.92 !default;
+$transform-scale-up-small: 1.04 !default;
+$transform-scale-up-medium: 1.08 !default;

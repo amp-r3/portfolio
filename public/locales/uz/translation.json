@@ -1,0 +1,43 @@
+{
+    "header": {
+        "nav": {
+            "skills": "Ko'nikmalar",
+            "projects": "Loyihalar",
+            "contact": "Aloqa"
+        },
+        "lang_switcher": "O'zbekcha"
+    },
+    "hero": {
+        "title": "Amir Ergashev",
+        "description": "Men frontend texnologiyalariga ixtisoslashgan kichik web-dasturchiman. Ijodiy g'oyalarni chiroyli va funksional kodga aylantirish menga juda yoqadi.",
+        "button": "Mening loyihalarim"
+    },
+    "skills": {
+        "title": "Ko'nikmalar"
+    },
+    "projects": {
+        "title": "Mening loyihalarim",
+        "weatherDescription": "React, Vite va Redux Toolkit yordamida yaratilgan dinamik ob-havo ilovasi. Bu to'liq moslashuvchan ilova foydalanuvchi joylashuvini brauzer geolokatsiyasi orqali avtomatik aniqlaydi (yoki IP orqali) va istalgan shaharni qidirish imkonini beradi. OpenWeatherMap va Geoapify API'larini birlashtirgan holda joriy sharoitlar, soatlik va 7 kunlik prognozlarni taqdim etadi. Asosiy xususiyatlar: Redux Thunk bilan kuchli asinxron holat boshqaruvi, API so'rovlarini optimallashtirish uchun localStorage keshi va doimiy qorong'u/yorug' rejim.",
+        "storeDescription": "React 19, Vite va Redux Toolkit bilan yaratilgan zamonaviy, moslashuvchan onlayn do'kon. Ilova dummyjson.com API asosida dinamik mahsulot katalogi, real vaqtda qidiruv, kengaytirilgan saralash va ishlaydigan xarid savatini o'z ichiga oladi. Loyiha mantiq uchun maxsus hooklardan, navigatsiya uchun React Router va dizayn-tokenlar asosidagi SASS/SCSS modullari bilan stilizatsiya tizimidan foydalanadigan toza arxitekturani namoyish etadi."
+    },
+    "contact": {
+        "title": "Bog'laning",
+        "description": "Loyihangiz bormi yoki shunchaki salomlashmoqchimisiz? Sizdan eshitishdan xursand bo'laman.",
+        "info": {
+            "title": "Email va joylashuv",
+            "location": "Olmaliq, O'zbekiston"
+        },
+        "phone": {
+            "title": "Telefon"
+        },
+        "social": {
+            "title": "Ijtimoiy tarmoqlar"
+        }
+    },
+    "footer": {
+        "title": "Keling, birga ishlaylik",
+        "description": "O'rganish, o'sish va hissa qo'shish imkoniyatlarini qidiryapman. Bemalol murojaat qiling!",
+        "button": "Men bilan bog'laning",
+        "rights": "© 2025 Amir Ergashev. Barcha huquqlar himoyalangan."
+    }
+}

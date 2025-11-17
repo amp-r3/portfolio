@@ -1,0 +1,74 @@
+@use "index"as *;
+@use 'theme';
+
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+body {
+    font-family: $font-family-base;
+    background-color: var(--body-background);
+    color: var(--text-primary);
+
+    transition: 1s ease;
+}
+
+.container {
+    max-width: $container-width;
+    width: 100%;
+    margin: 0 auto;
+    padding: $container-padding;
+}
+
+
+input,
+textarea,
+button {
+    border: none;
+    outline: none;
+    font-size: inherit;
+    font-family: inherit;
+    color: inherit;
+    background: transparent;
+}
+
+button {
+    cursor: pointer;
+}
+
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent-color) var(--body-background);
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+    width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+    background: var(--body-background);
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: var(--accent-color);
+    border-radius: 10px;
+    border: 2px solid var(--body-background);
+}
