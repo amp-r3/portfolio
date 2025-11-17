@@ -1,0 +1,37 @@
+@keyframes squeeze {
+    50% {
+        transform: translate(0px, 0px) scaleX(0.5) scaleY(1.5);
+    }
+}
+
+.menuIcon {
+    width: 100%;
+    height: 100%;
+    display: block;
+
+    line {
+        transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        transform-origin: center;
+    }
+}
+
+.lineTop {
+    &.active {
+        transform: translate(0px, 6px) rotate(45deg);
+        animation: squeeze 0.5s ease;
+    }
+}
+
+.lineMiddle {
+    &.active {
+        opacity: 0;
+        transform: scaleX(0) scaleY(3);
+    }
+}
+
+.lineBottom {
+    &.active {
+        transform: translate(0px, -6px) rotate(-45deg);
+        animation: squeeze 0.5s ease;
+    }
+}

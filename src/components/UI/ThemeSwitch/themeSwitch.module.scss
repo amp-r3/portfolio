@@ -1,0 +1,237 @@
+@use "@/scss/index.scss"as *;
+
+.wrapper {
+    display: flex;
+    align-items: center;
+    gap: $spacing-small;
+}
+
+.label {
+    font-size: $typography-font-size-small;
+    color: var(--text-secondary);
+    cursor: pointer;
+    user-select: none;
+    transition: all $transition-duration-base $timing-function-ease-in-out-smooth;
+    position: relative;
+
+    @media (width < 992px) {
+        display: none;
+    }
+
+    &:not(.active):hover {
+        color: var(--text-primary);
+        transform: $hover-transform-lift;
+    }
+
+    &.active::after {
+        content: '';
+        position: absolute;
+        bottom: -$spacing-xxsmall;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--text-primary);
+        border-radius: 2px;
+        animation: slideIn $transition-duration-layout $timing-function-ease-out-expo;
+    }
+}
+
+.active {
+    color: var(--text-primary);
+    font-weight: $typography-font-weight-semibold;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 90px;
+    height: 36px;
+
+    @media (width < 576px) {
+        width: 80px;
+        height: 28px;
+    }
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    border: 1.5px solid var(--switch-border);
+    background-color: var(--switch-background);
+    border-radius: $border-radius-pill;
+
+    transition: all $transition-duration-base $timing-function-ease-in-out-smooth;
+
+    &::after {
+        content: '';
+        position: absolute;
+        inset: 2px;
+        border-radius: $border-radius-pill;
+        background: radial-gradient(circle at 30% 30%,
+                var(--background-glass-alpha),
+                transparent 70%);
+        opacity: 0.3;
+        transition: opacity $transition-duration-base;
+    }
+
+    &:hover {
+        border-color: var(--switch-border-hover);
+        transform: $transform-scale-up-small;
+
+        &::after {
+            opacity: 0.5;
+        }
+    }
+
+    &:active {
+        transform: $transform-scale-down-small;
+    }
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 28px;
+    width: 28px;
+    border-radius: $border-radius-circle;
+    left: 3px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    background: var(--switch-handle-background);
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.15),
+        0 4px 16px rgba(0, 0, 0, 0.1),
+        var(--switch-handle-glow),
+        inset 0 1px 2px rgba(255, 255, 255, 0.1);
+
+    transition:
+        transform $transition-duration-layout $timing-function-ease-spring,
+        background-color $transition-duration-fast $timing-function-ease-in-out-smooth,
+        box-shadow $transition-duration-base $timing-function-ease-in-out-smooth,
+        width $transition-duration-base $timing-function-ease-out-expo,
+        border-radius $transition-duration-base $timing-function-ease-out-expo;
+
+    z-index: 2;
+
+    @media (width < 576px) {
+        width: 23px;
+        height: 23px;
+    }
+}
+
+
+input:checked+.slider:before {
+    transform: translateX(53px) translateY(-50%);
+    @media (width < 576px) {
+        transform: translateX(50px) translateY(-50%);
+    }
+}
+
+input:active+.slider:before {
+    width: 36px;
+    border-radius: $border-radius-input;
+}
+
+input:active:checked+.slider:before {
+    transform: translateX(36px) translateY(-50%);
+}
+
+
+.icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: $icon-size-small;
+    height: $icon-size-small;
+    pointer-events: none;
+    z-index: 1;
+
+    filter: var(--icon-filter);
+    opacity: 0.4;
+
+    transition:
+        filter $transition-duration-layout $timing-function-ease-in-out-smooth,
+        opacity $transition-duration-base $timing-function-ease-in-out-smooth,
+        transform $transition-duration-layout $timing-function-ease-spring;
+}
+
+.moonIcon {
+    right: $spacing-small;
+}
+
+.sunIcon {
+    left: $spacing-small;
+}
+
+
+input:not(:checked)~.moonIcon {
+    opacity: 1;
+    transform: translateY(-50%) rotate(0deg) scale(1);
+}
+
+input:checked~.sunIcon {
+    opacity: 1;
+    transform: translateY(-50%) rotate(180deg) scale(1);
+}
+
+input:not(:checked)~.sunIcon {
+    opacity: 0.3;
+    transform: translateY(-50%) rotate(-180deg) scale(0.7);
+}
+
+input:checked~.moonIcon {
+    opacity: 0.3;
+    transform: translateY(-50%) rotate(180deg) scale(0.7);
+}
+
+
+@keyframes slideIn {
+    from {
+        transform: scaleX(0);
+        opacity: 0;
+    }
+
+    to {
+        transform: scaleX(1);
+        opacity: 1;
+    }
+}
+
+
+
+.switch:hover input:not(:checked)~.moonIcon,
+.switch:hover input:checked~.sunIcon {
+    animation: none;
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+
+    .slider,
+    .slider:before,
+    .icon,
+    .label {
+        transition-duration: $transition-duration-reduced;
+    }
+
+    .switch:hover .icon {
+        animation: none;
+    }
+
+    .label.active::after {
+        animation: none;
+    }
+}

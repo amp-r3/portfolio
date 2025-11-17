@@ -1,0 +1,158 @@
+@use "@/scss/index.scss"as *;
+
+.hero {
+    position: relative;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding-top: 125px;
+    border-bottom: 1px solid var(--border-primary);
+
+    @media (max-width: 992px) {
+        padding-top: 100px;
+    }
+
+    @media (max-width: 768px) {
+        padding-top: $spacing-section; // 80px
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        gap: $spacing-medium; // 16px
+        align-items: center;
+
+        @media (max-width: 768px) {
+            gap: $spacing-small; // 12px
+        }
+    }
+
+    &__title {
+        font-family: $font-family-title;
+        font-weight: $typography-font-weight-semibold;
+        font-size: $typography-font-size-hero-title; // 88px
+        text-align: center; // Добавлено для корректного переноса строк
+
+        @media (max-width: 992px) {
+            font-size: $typography-font-size-title; // 64px
+        }
+
+        @media (max-width: 768px) {
+            font-size: 3.5rem; // 56px
+        }
+
+        @media (max-width: 576px) {
+            font-size: $typography-font-size-xxlarge; // 40px
+        }
+    }
+
+    &__desc {
+        font-size: $typography-font-size-medium; // 18px
+        font-weight: 300;
+        color: var(--text-secondary);
+        width: 50%;
+        text-align: center;
+        padding-top: $spacing-xsmall;
+        padding-bottom: $spacing-xlarge; // 32px
+
+        @media (max-width: 992px) {
+            width: 70%;
+        }
+
+        @media (max-width: 768px) {
+            width: 85%;
+            font-size: $typography-font-size-base; // 16px
+            padding-bottom: $spacing-large; // 24px
+        }
+
+        @media (max-width: 576px) {
+            width: 100%; // На мобильных занимает всю ширину
+        }
+    }
+
+    &__btn {
+        display: inline-block;
+        font-size: $typography-font-size-base;
+        padding: $spacing-base $spacing-xlarge; // 20px 32px
+        border-radius: $border-radius-pill;
+        color: var(--button-text);
+        background: var(--button-background);
+        font-weight: $typography-font-weight-semibold;
+        transition: all $transition-duration-base $timing-function-ease-in-out-smooth;
+        box-shadow: var(--shadow-button);
+        border: none;
+
+        &:hover {
+            background: var(--button-background-hover);
+            transform: $hover-transform-lift;
+            box-shadow: var(--shadow-glass-hover);
+        }
+
+        &:active {
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-default);
+        }
+
+        @media (max-width: 576px) {
+            // Уменьшаем отступы на маленьких экранах
+            padding: $spacing-small $spacing-large; // 12px 24px
+        }
+    }
+
+    &__contacts {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: $spacing-base; // 20px
+        padding: $spacing-large; // 24px
+
+        @media (max-width: 576px) {
+            gap: $spacing-medium; // 16px
+            padding-top: $spacing-medium; // 16px
+        }
+    }
+
+    &__links {
+        background: var(--background-glass-alpha);
+        backdrop-filter: $filter-backdrop-blur;
+        padding: $spacing-small; // 12px
+        border-radius: $border-radius-circle;
+        display: grid;
+        place-items: center;
+        cursor: pointer;
+        transition: all $transition-duration-base $timing-function-ease-in-out-smooth;
+        border: 1px solid var(--border-glass-alpha);
+        box-shadow: var(--shadow-default);
+
+        &:hover {
+            background: var(--background-glass-alpha-hover);
+            transform: $hover-transform-lift scale($transform-scale-up-small);
+            box-shadow: var(--shadow-glass-hover);
+            border-color: var(--border-glass-alpha-hover);
+        }
+
+        &:active {
+            transform: translateY(-1px) scale(1.02);
+        }
+
+        img {
+            width: $icon-size-large; // 24px
+            height: $icon-size-large;
+            transition: transform $transition-duration-base ease;
+            filter: var(--icon-filter);
+        }
+
+        &:hover img {
+            transform: rotate(5deg);
+        }
+
+        @media (max-width: 576px) {
+            padding: $spacing-xsmall; // 8px
+
+            img {
+                width: $icon-size-medium; // 20px
+                height: $icon-size-medium;
+            }
+        }
+    }
+}

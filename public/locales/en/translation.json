@@ -1,0 +1,43 @@
+{
+    "header": {
+        "nav": {
+            "skills": "Skills",
+            "projects": "Projects",
+            "contact": "Contact"
+        },
+        "lang_switcher": "English"
+    },
+    "hero": {
+        "title": "Amir Ergashev",
+        "description": "I'm a junior web developer specializing in front-end technologies, enthusiastic about turning creative ideas into beautiful and functional code.",
+        "button": "My projects"
+    },
+    "skills": {
+        "title": "Skills"
+    },
+    "projects": {
+        "title": "My Projects",
+        "weatherDescription": "A dynamic weather forecast application built with React, Vite, and Redux Toolkit. This fully responsive app automatically detects user location via browser geolocation (with an IP-based fallback) or allows users to search for any city. It integrates OpenWeatherMap and Geoapify APIs to provide current conditions, hourly, and 7-day forecasts. Key features include robust asynchronous state management with Redux Thunk, a client-side localStorage cache to optimize API calls, and a persistent dark/light mode theme toggle.",
+        "storeDescription": "A modern, responsive e-commerce storefront built with React 19, Vite, and Redux Toolkit. This application features a dynamic product catalog, real-time search, advanced sorting, and a functional shopping cart, all powered by the dummyjson.com API. The project showcases a clean architecture using custom hooks for logic, React Router for navigation, and a design-token-based styling system with SASS/SCSS Modules."
+    },
+    "contact": {
+        "title": "Get in touch",
+        "description": "Have a project in mind or just want to say hi? I’d love to hear from you.",
+        "info": {
+            "title": "Email & Location",
+            "location": "Based in Almalyk, Uzbekistan"
+        },
+        "phone": {
+            "title": "Phone"
+        },
+        "social": {
+            "title": "Socia Medial"
+        }
+    },
+    "footer": {
+        "title": "Lets work together",
+        "description": "Looking for opportunities to learn, grow, and contribute. Feel free to reach out!",
+        "button": "Сontact me",
+        "rights": "© 2025 Amir Ergashev. All rights reserved."
+    }
+}

@@ -1,0 +1,91 @@
+@use "@/scss/index.scss"as *;
+
+.Btn {
+    display: inline-flex;
+    align-items: center;
+    height: 46px;
+    position: relative;
+    transition: background-color $transition-duration-smooth $timing-function-ease-in-out-smooth,
+        border-color $transition-duration-smooth $timing-function-ease-in-out-smooth;
+    border-radius: 23px;
+    border: 1px solid var(--border-glass-alpha);
+    background-color: var(--background-glass-alpha);
+    box-shadow: var(--shadow-default);
+    padding: 0;
+
+    &:active {
+        transform: translate(2px, 2px);
+    }
+
+    &:hover {
+        background-color: var(--background-glass-alpha-hover);
+        border-color: var(--border-glass-alpha-hover);
+    }
+
+    &:hover .text {
+        max-width: 500px;
+        opacity: 1;
+        padding: 0 15px 0 10px;
+    }
+
+    @media (width < 992px) {
+        background: var(--background-interactive-hover);
+        max-width: 320px;
+        width: 100%;
+        height: 80px;
+        padding: $spacing-medium $spacing-large;
+        border-radius: $border-radius-large;
+        border: 1px solid var(--border-primary);
+        justify-content: center;
+        gap: $spacing-small;
+        transition: border-color $transition-duration-base;
+
+        opacity: 0;
+        transform: translateY(100px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+
+        &:hover {
+            border-color: var(--border-interactive-hover);
+            background: var(--background-interactive-hover);
+        }
+
+        & .text,
+        &:hover .text {
+            max-width: 100%;
+            opacity: 1;
+            padding: 0;
+            font-size: $typography-font-size-xlarge;
+        }
+    }
+}
+
+.sign {
+    width: 46px;
+    height: 46px;
+    flex-shrink: 0;
+    transition: all $transition-duration-base $timing-function-ease-in-out-smooth;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sign img {
+    width: 22px;
+    height: 22px;
+    transition: all $transition-duration-base $timing-function-ease-in-out-smooth;
+    filter: var(--icon-filter);
+}
+
+.text {
+    white-space: nowrap;
+    overflow: hidden;
+    opacity: 0;
+    max-width: 0;
+    padding: 0;
+    font-size: 1.2em;
+    font-weight: $typography-font-weight-semibold;
+    transition: max-width $transition-duration-layout $timing-function-ease-in-out-smooth,
+        opacity $transition-duration-layout $timing-function-ease-in-out-smooth,
+        padding $transition-duration-layout $timing-function-ease-in-out-smooth;
+    color: var(--text-primary);
+}

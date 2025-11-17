@@ -1,0 +1,149 @@
+@use "@/scss/index.scss"as *;
+
+.contact {
+    padding: $spacing-section 0; // 80px
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    gap: $spacing-section; // 80px
+
+    @media (max-width: 992px) {
+        grid-template-columns: 1fr; // Складываем в одну колонку
+        padding: $spacing-title 0; // 60px
+        gap: $spacing-xxlarge; // 48px (вертикальный отступ)
+    }
+
+    @media (max-width: 768px) {
+    }
+
+    @media (max-width: 576px) {
+        padding: $spacing-xxlarge 0; // 48px
+        gap: $spacing-xlarge; // 32px
+    }
+
+    &__left {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__title {
+        font-family: $font-family-title;
+        font-size: $typography-font-size-title; // 64px
+        font-weight: $typography-font-weight-bold;
+        margin-bottom: $spacing-base; // 20px
+
+        @media (max-width: 992px) {
+            font-size: 3.5rem; // 56px
+        }
+
+        @media (max-width: 768px) {
+            font-size: $typography-font-size-xxlarge; // 40px
+        }
+
+        @media (max-width: 576px) {
+            font-size: $typography-font-size-xlarge; // 32px
+            margin-bottom: $spacing-small; // 12px
+        }
+    }
+
+    &__desc {
+        font-size: $typography-font-size-medium; // 18px
+        font-weight: 300;
+        color: var(--text-secondary);
+        max-width: 350px;
+
+        @media (max-width: 768px) {
+            max-width: 500px; // На планшете даем тексту больше места
+        }
+
+        @media (max-width: 576px) {
+            max-width: 100%; // На мобильном - вся ширина
+            font-size: $typography-font-size-base; // 16px
+        }
+    }
+
+    &__content {
+        display: grid;
+        grid-template-columns: 1fr 1fr; // Сетка 2:2
+        gap: $spacing-large; // 24px
+        padding-top: $spacing-small;
+
+        @media (max-width: 576px) {
+            grid-template-columns: 1fr; // Складываем в одну колонку
+            gap: $spacing-xlarge; // 32px (увеличиваем верт. отступ)
+            padding-top: $spacing-medium; // 16px
+        }
+    }
+
+    &__info,
+    &__phone,
+    &__social {
+        display: flex;
+        flex-direction: column;
+        gap: $spacing-medium; // 16px
+
+        @media (max-width: 576px) {
+            gap: $spacing-small; // 12px
+        }
+    }
+
+    &__subtitle {
+        font-size: $typography-font-size-medium; // 18px
+        font-weight: $typography-font-weight-semibold;
+        margin-bottom: $spacing-xxsmall; // 4px
+
+        @media (max-width: 576px) {
+            font-size: $typography-font-size-base; // 16px
+        }
+    }
+
+    &__email,
+    &__number,
+    &__location {
+        font-size: $typography-font-size-base; // 16px
+        color: var(--text-secondary);
+        transition: color 0.3s ease;
+    }
+
+    &__email,
+    &__number {
+        &:hover {
+            color: var(--text-primary);
+            text-decoration: underline;
+        }
+    }
+
+    &__social_links {
+        display: flex;
+        align-items: center;
+        gap: $spacing-base; // 20px
+    }
+
+    &__links {
+        display: inline-block;
+        transition: transform 0.3s ease;
+
+        img {
+            width: 32px;
+            height: 32px;
+            filter: var(--icon-filter);
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+        }
+
+        &:hover {
+            transform: translateY(-3px);
+
+            img {
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 576px) {
+            img {
+                width: 28px;
+                height: 28px;
+            }
+        }
+    }
+}
