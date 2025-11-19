@@ -6,29 +6,11 @@ import type { Variants } from 'framer-motion'
 
 const containerVariants: Variants = {
     hidden: { opacity: 0 },
-    visible: {
-        opacity: 1,
-        transition: {
-            delayChildren: 0.2,
-            staggerChildren: 0.2
-        }
-    }
+    visible: { opacity: 1, transition: { delayChildren: 0.2, staggerChildren: 0.2 } }
 }
-
 const itemVariants: Variants = {
-    hidden: {
-        y: 30,
-        opacity: 0
-    },
-    visible: {
-        y: 0,
-        opacity: 1,
-        transition: {
-            type: "spring",
-            stiffness: 80,
-            damping: 13
-        }
-    }
+    hidden: { y: 30, opacity: 0 },
+    visible: { y: 0, opacity: 1, transition: { type: "spring", stiffness: 80, damping: 13 } }
 }
 
 const HeroSection = () => {
@@ -50,11 +32,7 @@ const HeroSection = () => {
                     {t('hero.description')}
                 </motion.p>
 
-                <motion.a
-                    variants={itemVariants}
-                    href="#projects"
-                    className={style.hero__btn}
-                >
+                <motion.a variants={itemVariants} href="#projects" className={style.hero__btn}>
                     {t('hero.button')}
                 </motion.a>
 
