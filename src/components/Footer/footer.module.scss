@@ -2,25 +2,7 @@
 
 .footer {
     padding-top: $spacing-section; // 80px
-    position: relative;
-    overflow: hidden;
     color: var(--text-primary);
-    background: var(--footer-gradient);
-    border-top: 1px solid var(--border-color);
-
-    &::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 1px;
-        background: linear-gradient(90deg,
-                transparent 0%,
-                var(--accent-color) 50%,
-                transparent 100%);
-        opacity: 0.3;
-    }
 
     @media (max-width: 768px) {
         padding-top: $spacing-title; // 60px

@@ -1,3 +1,4 @@
+import Background from "./components/Background/Background"
 import ContactSection from "./components/ContactSection/ContactSection"
 import Footer from "./components/Footer/Footer"
 import Header from "./components/Header/Header"
@@ -8,14 +9,17 @@ import { SmoothScroll } from "./components/SmoothScroll/SmoothScroll"
 
 const App = () => {
   return (
-    <SmoothScroll>
-      <Header />
-      <HeroSection />
-      <SkillsSection />
-      <ProjectsSection />
-      <ContactSection />
-      <Footer />
-    </SmoothScroll>
+    <main style={{ position: 'relative', minHeight: '100vh', overflow: 'hidden' }}>
+      <SmoothScroll>
+        <Background />
+        <Header />
+        <HeroSection />
+        <SkillsSection />
+        <ProjectsSection />
+        <ContactSection />
+        <Footer />
+      </SmoothScroll>
+    </main>
   )
 }
 

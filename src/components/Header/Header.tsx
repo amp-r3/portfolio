@@ -19,19 +19,21 @@ const Header = () => {
 
 
     return (
-        <div ref={navRef} className={style.header + ' container'}>
-            <a href="" className={style.header__logo}>amp3re</a>
-            <button onClick={handleMenu} className={style.header__menu_btn}>
-                <MenuIcon isOpen={isMenuOpen} />
-            </button>
-            <ul className={`${style.header__menu} ${isMenuOpen ? 'active' : ''}`}>
-                <li><a href="#skills" className={style.header__link}>{t('header.nav.skills')}</a></li>
-                <li><a href="#projects" className={style.header__link}>{t('header.nav.projects')}</a></li>
-                <li><a href="#contact" className={style.header__link}>{t('header.nav.contact')}</a></li>
-                <LangSwitch />
-            </ul>
-            <div className={`${style.header__option} ${isMenuOpen ? 'active' : ''}`}>
-                <ThemeSwitch />
+        <div ref={navRef} className={style.header}>
+            <div className={style.header__wrapper + ' container'}>
+                <a href="" className={style.header__logo}>amp3re</a>
+                <button onClick={handleMenu} className={style.header__menu_btn}>
+                    <MenuIcon isOpen={isMenuOpen} />
+                </button>
+                <ul className={`${style.header__menu} ${isMenuOpen ? 'active' : ''}`}>
+                    <li><a href="#skills" className={style.header__link}>{t('header.nav.skills')}</a></li>
+                    <li><a href="#projects" className={style.header__link}>{t('header.nav.projects')}</a></li>
+                    <li><a href="#contact" className={style.header__link}>{t('header.nav.contact')}</a></li>
+                    <LangSwitch />
+                </ul>
+                <div className={`${style.header__option} ${isMenuOpen ? 'active' : ''}`}>
+                    <ThemeSwitch />
+                </div>
             </div>
         </div>
     )

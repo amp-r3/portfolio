@@ -3,9 +3,6 @@ import type { ReactNode } from "react";
 import type { Theme } from "./themeDefinition";
 import { ThemeContext } from "./themeDefinition";
 
-
-
-
 const getInitialTheme = (): Theme => {
     if (typeof window !== 'undefined') {
         // Check if the theme is already set on the document (from index.html script)
@@ -41,11 +38,22 @@ export const ThemeProvider = ({ children }: IThemeProviderProps) => {
     useEffect(() => {
         document.documentElement.setAttribute('data-theme', theme)
 
+        // Pause gradient animations during theme transition
+        const layers = document.querySelectorAll('.gradientLayer');
+        layers.forEach(layer => layer.classList.add('transitioning'));
+
+        // Resume animations after transition completes
+        const timer = setTimeout(() => {
+            layers.forEach(layer => layer.classList.remove('transitioning'));
+        }, 1500); // Match the transition duration in CSS
+
         try {
             localStorage.setItem('theme', theme)
         } catch (e) {
             console.error('Could not save theme to localStorage', e);
         }
+
+        return () => clearTimeout(timer);
     }, [theme])
 
     const toggleTheme = () => {
