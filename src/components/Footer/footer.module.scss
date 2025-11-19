@@ -112,7 +112,7 @@
         padding: $spacing-xlarge 0; // 32px 0
 
         @media (max-width: 768px) {
-            flex-direction: column; // Складываем лого и контакты
+            flex-direction: column;
             gap: $spacing-large; // 24px
             justify-content: center;
         }
@@ -141,7 +141,7 @@
         gap: $spacing-base; // 20px
 
         @media (max-width: 576px) {
-            flex-wrap: wrap; // Разрешаем перенос
+            flex-wrap: wrap;
             gap: $spacing-small; // 12px
         }
     }
@@ -195,7 +195,7 @@
         }
 
         @media (max-width: 576px) {
-            padding: 6px; // $spacing-xsmall - 2px
+            padding: 6px;
 
             img {
                 width: 22px;
