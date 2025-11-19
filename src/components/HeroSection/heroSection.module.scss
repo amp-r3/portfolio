@@ -78,19 +78,14 @@
         color: var(--button-text);
         background: var(--button-background);
         font-weight: $typography-font-weight-semibold;
-        transition: all $transition-duration-base $timing-function-ease-in-out-smooth;
+        transition: 
+        background $transition-duration-base $timing-function-ease-in-out-smooth,
+        box-shadow $transition-duration-base $timing-function-ease-in-out-smooth;        
         box-shadow: var(--shadow-button);
-        border: none;
 
         &:hover {
             background: var(--button-background-hover);
-            transform: $hover-transform-lift;
             box-shadow: var(--shadow-glass-hover);
-        }
-
-        &:active {
-            transform: translateY(-1px);
-            box-shadow: var(--shadow-default);
         }
 
         @media (max-width: 576px) {

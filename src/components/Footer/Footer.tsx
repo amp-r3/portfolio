@@ -17,10 +17,14 @@ const Footer = () => {
             <div className={style.footer__basement + ' container'}>
                 <a href="" className={style.footer__logo}>amp3re</a>
                 <div className={style.footer__contacts}>
-                    <a href="mailto:ergashevamir06@gmail.com" className={style.footer__email}>ergashevamir06@gmail.com</a>
-                    <a href="https://t.me/amp_r3" target="_blank" className={style.footer__links}><img src={telegramIcon} alt="" /></a>
-                    <a href="https://github.com/amp-r3" target="_blank" className={style.footer__links}><img src={githubIcon} alt="" /></a>
-                    <a href="https://www.linkedin.com/in/amir-ergashev-96718a396" target="_blank" className={style.footer__links}><img src={linkedinIcon} alt="" /></a>
+                    <div>
+                        <a href="mailto:ergashevamir06@gmail.com" className={style.footer__email}>ergashevamir06@gmail.com</a>
+                    </div>
+                    <div className={style.footer__socials}>
+                        <a href="https://t.me/amp_r3" target="_blank" className={style.footer__links}><img src={telegramIcon} alt="" /></a>
+                        <a href="https://github.com/amp-r3" target="_blank" className={style.footer__links}><img src={githubIcon} alt="" /></a>
+                        <a href="https://www.linkedin.com/in/amir-ergashev-96718a396" target="_blank" className={style.footer__links}><img src={linkedinIcon} alt="" /></a>
+                    </div>
                 </div>
             </div>
             <span className={style.footer__rights}>{t('footer.rights')}</span>
