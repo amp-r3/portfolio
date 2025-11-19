@@ -1,3 +1,31 @@
 @use "index"as *;
 @import url(./base.scss);
 @import url(./fonts.scss);
+
+//  Lenis Scroll CSS
+
+html.lenis, html.lenis body {
+    height: auto;
+}
+
+
+
+.lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior:  contain;
+}
+
+.lenis.lenis-stopped {
+    overflow: hidden;
+}
+
+.lenis.lenis-scrolling {
+    pointer-events: none;
+}
+    
+
+
+

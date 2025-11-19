@@ -31,7 +31,7 @@
         font-family: $font-family-title;
         font-weight: $typography-font-weight-semibold;
         font-size: $typography-font-size-hero-title; // 88px
-        text-align: center; // Добавлено для корректного переноса строк
+        text-align: center;
 
         @media (max-width: 992px) {
             font-size: $typography-font-size-title; // 64px
@@ -66,7 +66,7 @@
         }
 
         @media (max-width: 576px) {
-            width: 100%; // На мобильных занимает всю ширину
+            width: 100%;
         }
     }
 
@@ -94,7 +94,6 @@
         }
 
         @media (max-width: 576px) {
-            // Уменьшаем отступы на маленьких экранах
             padding: $spacing-small $spacing-large; // 12px 24px
         }
     }

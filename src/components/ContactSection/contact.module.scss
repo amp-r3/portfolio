@@ -8,9 +8,9 @@
     gap: $spacing-section; // 80px
 
     @media (max-width: 992px) {
-        grid-template-columns: 1fr; // Складываем в одну колонку
+        grid-template-columns: 1fr;
         padding: $spacing-title 0; // 60px
-        gap: $spacing-xxlarge; // 48px (вертикальный отступ)
+        gap: $spacing-xxlarge; // 48px
     }
 
     @media (max-width: 768px) {
@@ -53,24 +53,24 @@
         max-width: 350px;
 
         @media (max-width: 768px) {
-            max-width: 500px; // На планшете даем тексту больше места
+            max-width: 500px;
         }
 
         @media (max-width: 576px) {
-            max-width: 100%; // На мобильном - вся ширина
+            max-width: 100%;
             font-size: $typography-font-size-base; // 16px
         }
     }
 
     &__content {
         display: grid;
-        grid-template-columns: 1fr 1fr; // Сетка 2:2
+        grid-template-columns: 1fr 1fr;
         gap: $spacing-large; // 24px
         padding-top: $spacing-small;
 
         @media (max-width: 576px) {
-            grid-template-columns: 1fr; // Складываем в одну колонку
-            gap: $spacing-xlarge; // 32px (увеличиваем верт. отступ)
+            grid-template-columns: 1fr;
+            gap: $spacing-xlarge; // 32px
             padding-top: $spacing-medium; // 16px
         }
     }
