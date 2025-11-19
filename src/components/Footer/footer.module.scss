@@ -1,4 +1,4 @@
-@use "@/scss/index.scss"as *;
+@use "@/scss/index.scss" as *;
 
 .footer {
     padding-top: $spacing-section; // 80px
@@ -109,17 +109,22 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: $spacing-xlarge 0; // 32px 0
+        gap: $spacing-small; // 12px
+        padding-top: $spacing-small !important;
+        padding-bottom: $spacing-small !important;
 
         @media (max-width: 768px) {
-            flex-direction: column;
             gap: $spacing-large; // 24px
-            justify-content: center;
+            padding-top: 0 !important;
+            padding-bottom: $spacing-base !important; // 20px
         }
 
         @media (max-width: 576px) {
-            padding: $spacing-large 0; // 24px 0
+            flex-direction: column;
+            gap: $spacing-base; // 20px
         }
+
+
     }
 
     &__logo {
@@ -130,19 +135,31 @@
         text-transform: uppercase;
 
         @media (max-width: 576px) {
-            font-size: $typography-font-size-large; // 24px
+            display: none;
         }
     }
 
-    &__contacts {
+
+    &__socials {
         display: flex;
         align-items: center;
         justify-content: center;
         gap: $spacing-base; // 20px
 
         @media (max-width: 576px) {
-            flex-wrap: wrap;
             gap: $spacing-small; // 12px
+        }
+
+    }
+
+    &__contacts {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        gap: $spacing-base;
+        
+        @media (max-width: 768px) {
+            flex-direction: column;
         }
     }
 
@@ -207,13 +224,9 @@
     &__rights {
         display: block;
         text-align: center;
-        padding-bottom: $spacing-base; // 20px
+        padding-bottom: $spacing-small; // 12px
         font-size: $typography-font-size-small; // 13px
         color: var(--text-secondary);
         opacity: 0.7;
-
-        @media (max-width: 576px) {
-            padding-bottom: $spacing-medium; // 16px
-        }
     }
 }

@@ -1,4 +1,4 @@
-import {  useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { ReactNode } from "react";
 import type { Theme } from "./themeDefinition";
 import { ThemeContext } from "./themeDefinition";
@@ -8,6 +8,12 @@ import { ThemeContext } from "./themeDefinition";
 
 const getInitialTheme = (): Theme => {
     if (typeof window !== 'undefined') {
+        // Check if the theme is already set on the document (from index.html script)
+        const currentTheme = document.documentElement.getAttribute('data-theme') as Theme;
+        if (currentTheme === 'light' || currentTheme === 'dark') {
+            return currentTheme;
+        }
+
         try {
             const storedPrefs = localStorage.getItem('theme')
             if (storedPrefs === 'light' || storedPrefs === 'dark') {
@@ -22,7 +28,7 @@ const getInitialTheme = (): Theme => {
             return 'dark'
         }
     }
-    return 'light'
+    return 'dark' // Default to dark
 };
 
 interface IThemeProviderProps {
