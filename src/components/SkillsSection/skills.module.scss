@@ -1,7 +1,7 @@
 @use "@/scss/index.scss" as *;
 
 .skills {
-    padding: $spacing-section 0;
+    // padding: $spacing-section 0;
 
     @media (max-width: 768px) {
         padding: $spacing-title 0; // 60px
