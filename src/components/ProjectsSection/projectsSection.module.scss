@@ -1,4 +1,4 @@
-@use "@/scss/index.scss"as *;
+@use "@/scss/index.scss" as *;
 
 .projects {
     padding: $spacing-section 0; // 80px
@@ -51,15 +51,21 @@
     &__cards {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+        grid-auto-rows: 1fr;
         gap: $spacing-xlarge; // 32px
 
         @media (max-width: 768px) {
             gap: $spacing-large; // 24px
         }
-        
+
         @media (max-width: 576px) {
             gap: $spacing-base; // 20px
         }
+    }
+
+    /* --- Card Wrapper (for motion.div) --- */
+    &__card_wrapper {
+        height: 100%;
     }
 
     /* --- Project Card Element --- */
@@ -70,6 +76,7 @@
         overflow: hidden;
         display: flex;
         flex-direction: column;
+        height: 100%;
         backdrop-filter: $filter-backdrop-blur;
         transition:
             transform $transition-duration-base $timing-function-ease-in-out-smooth,

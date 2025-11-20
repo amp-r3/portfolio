@@ -6,11 +6,53 @@ import type { Variants } from 'framer-motion'
 
 const containerVariants: Variants = {
     hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { delayChildren: 0.2, staggerChildren: 0.2 } }
+    visible: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.15,
+            delayChildren: 0.1
+        }
+    }
 }
+
+const titleVariants: Variants = {
+    hidden: {
+        opacity: 0,
+        y: 30,
+        filter: 'blur(12px)',
+        scale: 0.9
+    },
+    visible: {
+        opacity: 1,
+        y: 0,
+        filter: 'blur(0px)',
+        scale: 1,
+        transition: {
+            type: 'spring',
+            damping: 25,
+            stiffness: 100
+        }
+    }
+}
+
 const itemVariants: Variants = {
-    hidden: { y: 30, opacity: 0 },
-    visible: { y: 0, opacity: 1, transition: { type: "spring", stiffness: 80, damping: 13 } }
+    hidden: {
+        opacity: 0,
+        y: 20,
+        filter: 'blur(8px)',
+        scale: 0.95
+    },
+    visible: {
+        opacity: 1,
+        y: 0,
+        filter: 'blur(0px)',
+        scale: 1,
+        transition: {
+            type: 'spring',
+            damping: 20,
+            stiffness: 100
+        }
+    }
 }
 
 const HeroSection = () => {
@@ -24,7 +66,7 @@ const HeroSection = () => {
                 initial="hidden"
                 animate="visible"
             >
-                <motion.h1 variants={itemVariants} className={style.hero__title}>
+                <motion.h1 variants={titleVariants} className={style.hero__title}>
                     {t('hero.title')}
                 </motion.h1>
 
@@ -32,7 +74,13 @@ const HeroSection = () => {
                     {t('hero.description')}
                 </motion.p>
 
-                <motion.a variants={itemVariants} href="#projects" className={style.hero__btn}>
+                <motion.a
+                    variants={itemVariants}
+                    href="#projects"
+                    className={style.hero__btn}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                >
                     {t('hero.button')}
                 </motion.a>
 
@@ -47,7 +95,6 @@ const HeroSection = () => {
                         <img src={linkedinIcon} alt="LinkedIn" />
                     </a>
                 </motion.div>
-
             </motion.div>
         </section>
     )
