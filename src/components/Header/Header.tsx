@@ -29,9 +29,9 @@ const Header = () => {
                     <li><a href="#skills" className={style.header__link}>{t('header.nav.skills')}</a></li>
                     <li><a href="#projects" className={style.header__link}>{t('header.nav.projects')}</a></li>
                     <li><a href="#contact" className={style.header__link}>{t('header.nav.contact')}</a></li>
-                    <LangSwitch />
                 </ul>
                 <div className={`${style.header__option} ${isMenuOpen ? 'active' : ''}`}>
+                    <LangSwitch />
                     <ThemeSwitch />
                 </div>
             </div>
