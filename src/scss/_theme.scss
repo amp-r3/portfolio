@@ -7,14 +7,12 @@
   --theme-color: #000;
 
   // Background
-  --body-background: linear-gradient(
-        135deg,
-        #050505 0%,
-        #0a0a0f 25%,
-        #0d1117 50%,
-        #0a0e13 75%,
-        #050505 100%
-    );
+  --body-background: linear-gradient(135deg,
+      #050505 0%,
+      #0a0a0f 25%,
+      #0d1117 50%,
+      #0a0e13 75%,
+      #050505 100%);
 
   //  Menu Overlay
   --menu-overlay: #000000d5;
@@ -57,6 +55,12 @@
   --switch-border-hover: #4a505a;
   --switch-handle-background: var(--text-primary);
   --switch-handle-glow: 0 0 10px rgba(248, 249, 250, 0.25);
+
+  // Scrollbar
+  --scrollbar-track: transparent;
+  --scrollbar-thumb: rgba(255, 255, 255, 0.3);
+  --scrollbar-thumb-hover: rgba(255, 255, 255, 0.45);
+  --scrollbar-thumb-active: rgba(255, 255, 255, 0.6);
 }
 
 [data-theme="light"] {
@@ -68,15 +72,13 @@
   --theme-color: #fff;
 
   // Background
-  --body-background: linear-gradient(
-        135deg,
-        #ffffff 0%,
-        #f0f9ff 20%,
-        #e0f2fe 40%,
-        #dbeafe 60%,
-        #eff6ff 80%,
-        #ffffff 100%
-    );
+  --body-background: linear-gradient(135deg,
+      #ffffff 0%,
+      #f0f9ff 20%,
+      #e0f2fe 40%,
+      #dbeafe 60%,
+      #eff6ff 80%,
+      #ffffff 100%);
 
   //  Menu Overlay
   --menu-overlay: rgba(175, 175, 175, 0.8);
@@ -119,4 +121,10 @@
   --switch-border-hover: #b9c0c8;
   --switch-handle-background: var(--text-primary);
   --switch-handle-glow: 0 0 10px rgba(26, 29, 35, 0.2);
+
+  // Scrollbar
+  --scrollbar-track: transparent;
+  --scrollbar-thumb: rgba(0, 0, 0, 0.75);
+  --scrollbar-thumb-hover: rgba(0, 0, 0, 0.3);
+  --scrollbar-thumb-active: rgba(0, 0, 0, 0.6);
 }
