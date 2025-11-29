@@ -5,36 +5,33 @@ export function useHeaderScroll<T extends HTMLElement>(
     heroId: string = 'hero'
 ) {
     useEffect(() => {
-        let ticking = false;
+        if (!navRef.current) return;
 
-        const handleScroll = () => {
-            if (!ticking) {
-                window.requestAnimationFrame(() => {
-                    if (!navRef.current) {
-                        ticking = false;
-                        return;
-                    }
+        const heroSection = document.getElementById(heroId);
+        if (!heroSection) return;
 
-                    const heroSection = document.getElementById(heroId);
-                    const threshold = heroSection ? heroSection.offsetHeight : 600;
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (!navRef.current) return;
 
-                    if (window.scrollY > threshold) {
-                        navRef.current.classList.add('scrolled');
-                    } else {
-                        navRef.current.classList.remove('scrolled');
-                    }
-
-                    ticking = false;
-                });
-
-                ticking = true;
+                // When hero NOT visible (user scrolled down)
+                if (!entry.isIntersecting) {
+                    navRef.current.classList.add('scrolled');
+                } else {
+                    navRef.current.classList.remove('scrolled');
+                }
+            },
+            {
+                threshold: 0,
+                rootMargin: '-1px 0px 0px 0px'
             }
+        );
+
+        observer.observe(heroSection);
+
+        return () => {
+            observer.disconnect();
         };
-
-        window.addEventListener('scroll', handleScroll, { passive: true });
-        handleScroll();
-
-        return () => window.removeEventListener('scroll', handleScroll);
 
     }, [navRef, heroId]);
 }
