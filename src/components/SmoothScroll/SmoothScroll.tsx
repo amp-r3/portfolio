@@ -1,24 +1,44 @@
-import { useEffect } from 'react';
-import Lenis from 'lenis';
+import { useEffect, useRef } from 'react';
+import LocomotiveScroll from 'locomotive-scroll';
+import 'locomotive-scroll/dist/locomotive-scroll.css';
 
-export const SmoothScroll = ({ children }: { children: React.ReactNode }) => {
+const SmoothScroll = ({ children }: { children: React.ReactNode }) => {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const locomotiveScrollRef = useRef<LocomotiveScroll | null>(null);
+
   useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), 
-    });
-    
-    function raf(time: number) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
+    if (!scrollRef.current) return;
 
-    requestAnimationFrame(raf);
+    locomotiveScrollRef.current = new LocomotiveScroll({
+      el: scrollRef.current,
+      smooth: true,
+      lerp: 0.1,
+      multiplier: 1,
+      smartphone: {
+        smooth: true,
+      },
+      resetNativeScroll: true,
+    });
+
+    // Обновление скролла после загрузки контента
+    const timer = setTimeout(() => {
+      locomotiveScrollRef.current?.update();
+    }, 1000);
 
     return () => {
-      lenis.destroy();
+      clearTimeout(timer);
+      if (locomotiveScrollRef.current) {
+        locomotiveScrollRef.current.destroy();
+        locomotiveScrollRef.current = null;
+      }
     };
   }, []);
 
-  return <>{children}</>;
+  return (
+    <div ref={scrollRef} data-scroll-container>
+      {children}
+    </div>
+  );
 };
+
+export default SmoothScroll;
