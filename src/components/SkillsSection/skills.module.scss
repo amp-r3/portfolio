@@ -1,7 +1,18 @@
-@use "@/scss/index.scss" as *;
+@use "@/scss/index.scss"as *;
 
 .skills {
-    // padding: $spacing-section 0;
+    position: relative;
+    z-index: 2;
+    -webkit-mask-image: linear-gradient(to top,
+            transparent 0%,
+            #000 5%,
+            #000 95%,
+            transparent 100%);
+    mask-image: linear-gradient(to top,
+            transparent 0%,
+            #000 5%,
+            #000 95%,
+            transparent 100%);
 
     @media (max-width: 768px) {
         padding: $spacing-title 0; // 60px
@@ -57,10 +68,10 @@
         width: 200px;
         box-sizing: border-box;
 
-        transition: 
-        transform 0.3s ease-out, 
-        border-color 0.3s ease-out,
-        background 1.5s ease-out;
+        transition:
+            transform 0.3s ease-out,
+            border-color 0.3s ease-out,
+            background 1.5s ease-out;
 
         &:hover {
             border-color: #333;
