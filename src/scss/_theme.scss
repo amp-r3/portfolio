@@ -1,130 +1,113 @@
 :root {
   // Text
-  --text-primary: #f8f9fa;
-  --text-secondary: #9ca3af;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
 
-  //  Color
-  --theme-color: #000;
+  // Color
+  --theme-color: #0f172a;
 
-  // Background
-  --body-background: linear-gradient(135deg,
-      #050505 0%,
-      #0a0a0f 25%,
-      #0d1117 50%,
-      #0a0e13 75%,
-      #050505 100%);
-
-  //  Menu Overlay
-  --menu-overlay: #000000d5;
+  // Menu Overlay
+  --menu-overlay: rgba(2, 6, 23, 0.85);
 
   // Footer
-  --footer-gradient: linear-gradient(to bottom, #0d0f12 0%, #030405 100%);
+  --footer-gradient: linear-gradient(to bottom, #0f172a 0%, #020617 100%);
   --border-color: rgba(255, 255, 255, 0.08);
-  --accent-color: rgba(255, 255, 255, 0.12);
+  --accent-color: rgba(56, 189, 248, 0.1);
 
   // Header Scrolled State
-  --header-background-scrolled: rgba(13, 15, 18, 0.2);
+  --header-background-scrolled: rgba(15, 23, 42, 0.4);
   --header-border-scrolled: rgba(255, 255, 255, 0.08);
 
   // Components
-  --background-secondary: rgba(10, 10, 15, 0.6);
-  --border-primary: rgba(255, 255, 255, 0.08);
-  --border-primary-hover: rgba(255, 255, 255, 0.14);
-  --background-interactive-hover: rgba(255, 255, 255, 0.05);
+  --background-secondary: rgba(30, 41, 59, 0.4);
+  --border-primary: rgba(148, 163, 184, 0.1);
+  --border-primary-hover: rgba(56, 189, 248, 0.2);
+  --background-interactive-hover: rgba(56, 189, 248, 0.08);
 
-  // Glass Elements (Hero Links)
-  --background-glass-alpha: rgba(255, 255, 255, 0.06);
-  --border-glass-alpha: rgba(255, 255, 255, 0.12);
-  --background-glass-alpha-hover: rgba(255, 255, 255, 0.12);
-  --border-glass-alpha-hover: rgba(255, 255, 255, 0.25);
-  --shadow-glass-hover: 0 8px 32px rgba(0, 0, 0, 0.5);
+  // Glass Elements
+  --background-glass-alpha: rgba(255, 255, 255, 0.03);
+  --border-glass-alpha: rgba(255, 255, 255, 0.08);
+  --background-glass-alpha-hover: rgba(255, 255, 255, 0.08);
+  --border-glass-alpha-hover: rgba(56, 189, 248, 0.3);
+  --shadow-glass-hover: 0 8px 32px rgba(2, 6, 23, 0.5);
   --icon-filter: brightness(0) invert(1);
 
   // Buttons
-  --button-background: #f8f9fa;
-  --button-text: #0d0f12;
-  --button-background-hover: #e5e7eb;
+  --button-background: #f1f5f9;
+  --button-text: #0f172a;
+  --button-background-hover: #e2e8f0;
 
   // Shadows
-  --shadow-default: 0 4px 20px rgba(0, 0, 0, 0.3);
-  --shadow-button: 0 4px 24px rgba(0, 0, 0, 0.4);
+  --shadow-default: 0 4px 20px rgba(2, 6, 23, 0.3);
+  --shadow-button: 0 4px 24px rgba(2, 6, 23, 0.4);
 
   // Switch
-  --switch-background: var(--body-background);
-  --switch-border: #333942;
-  --switch-border-hover: #4a505a;
+  --switch-background: var(--theme-color);
+  --switch-border: #334155;
+  --switch-border-hover: #475569;
   --switch-handle-background: var(--text-primary);
-  --switch-handle-glow: 0 0 10px rgba(248, 249, 250, 0.25);
+  --switch-handle-glow: 0 0 10px rgba(56, 189, 248, 0.25);
 
   // Scrollbar
   --scrollbar-track: transparent;
-  --scrollbar-thumb: rgba(255, 255, 255, 0.3);
-  --scrollbar-thumb-hover: rgba(255, 255, 255, 0.45);
-  --scrollbar-thumb-active: rgba(255, 255, 255, 0.6);
+  --scrollbar-thumb: rgba(148, 163, 184, 0.3);
+  --scrollbar-thumb-hover: rgba(148, 163, 184, 0.45);
+  --scrollbar-thumb-active: rgba(241, 245, 249, 0.6);
 }
 
 [data-theme="light"] {
   // Text
-  --text-primary: #121317;
-  --text-secondary: #45474d;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
 
   // Color
-  --theme-color: #fff;
+  --theme-color: #e0f2fe;
 
-  // Background
-  --body-background: linear-gradient(135deg,
-      #ffffff 0%,
-      #f0f9ff 20%,
-      #e0f2fe 40%,
-      #dbeafe 60%,
-      #eff6ff 80%,
-      #ffffff 100%);
+  // Menu Overlay
+  --menu-overlay: rgba(255, 255, 255, 0.85);
 
-  //  Menu Overlay
-  --menu-overlay: rgba(175, 175, 175, 0.8);
-
-  // Footer
-  --footer-gradient: linear-gradient(to bottom, #fafbfc 0%, #f0f2f5 100%);
-  --border-color: rgba(0, 0, 0, 0.08);
-  --accent-color: rgba(0, 0, 0, 0.12);
+  // Footer (Sky 100 to Sky 200)
+  --footer-gradient: linear-gradient(to bottom, #e0f2fe 0%, #bae6fd 100%);
+  --border-color: rgba(14, 165, 233, 0.1);
+  --accent-color: rgba(14, 165, 233, 0.15);
 
   // Header Scrolled State
-  --header-background-scrolled: rgba(250, 251, 252, 0.2);
-  --header-border-scrolled: rgba(0, 0, 0, 0.08);
+  --header-background-scrolled: rgba(224, 242, 254, 0.4);
+  --header-border-scrolled: rgba(14, 165, 233, 0.1);
 
   // Components
-  --background-secondary: rgba(255, 255, 255, 0.85);
-  --border-primary: rgba(224, 242, 254, 0.6);
-  --border-primary-hover: rgba(191, 219, 254, 0.7);
-  --background-interactive-hover: rgba(147, 197, 253, 0.08);
+  --background-secondary: rgba(255, 255, 255, 0.6);
+  --border-primary: rgba(186, 230, 253, 0.6);
+  --border-primary-hover: rgba(125, 211, 252, 0.8);
+  --background-interactive-hover: rgba(14, 165, 233, 0.08);
 
-  // Glass Elements (Hero Links)
-  --background-glass-alpha: rgba(255, 255, 255, 0.5);
+  // Glass Elements
+  --background-glass-alpha: rgba(255, 255, 255, 0.4);
   --border-glass-alpha: rgba(255, 255, 255, 0.6);
   --background-glass-alpha-hover: rgba(255, 255, 255, 0.75);
-  --border-glass-alpha-hover: rgba(255, 255, 255, 0.95);
-  --shadow-glass-hover: 0 8px 32px rgba(0, 0, 0, 0.12);
+  --border-glass-alpha-hover: rgba(14, 165, 233, 0.6);
+  --shadow-glass-hover: 0 8px 32px rgba(14, 165, 233, 0.15);
   --icon-filter: brightness(0) invert(0);
 
   // Buttons
-  --button-background: #1a1d23;
+  --button-background: #0f172a;
   --button-text: #ffffff;
-  --button-background-hover: #2d3139;
+  --button-background-hover: #1e293b;
 
   // Shadows
-  --shadow-default: 0 4px 20px rgba(0, 0, 0, 0.08);
-  --shadow-button: 0 4px 24px rgba(26, 29, 35, 0.2);
+  --shadow-default: 0 4px 20px rgba(14, 165, 233, 0.1);
+  --shadow-button: 0 4px 24px rgba(15, 23, 42, 0.15);
 
   // Switch
-  --switch-background: var(--body-background);
-  --switch-border: #cdd3da;
-  --switch-border-hover: #b9c0c8;
+  --switch-background: var(--theme-color);
+  --switch-border: #94a3b8;
+  --switch-border-hover: #64748b;
   --switch-handle-background: var(--text-primary);
-  --switch-handle-glow: 0 0 10px rgba(26, 29, 35, 0.2);
+  --switch-handle-glow: 0 0 10px rgba(14, 165, 233, 0.2);
 
   // Scrollbar
   --scrollbar-track: transparent;
-  --scrollbar-thumb: rgba(0, 0, 0, 0.75);
-  --scrollbar-thumb-hover: rgba(0, 0, 0, 0.3);
-  --scrollbar-thumb-active: rgba(0, 0, 0, 0.6);
+  --scrollbar-thumb: rgba(15, 23, 42, 0.2);
+  --scrollbar-thumb-hover: rgba(15, 23, 42, 0.4);
+  --scrollbar-thumb-active: rgba(15, 23, 42, 0.6);
 }

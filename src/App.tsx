@@ -1,4 +1,3 @@
-import Background from "./components/Background/Background"
 import ContactSection from "./components/ContactSection/ContactSection"
 import Footer from "./components/Footer/Footer"
 import Header from "./components/Header/Header"
@@ -12,7 +11,6 @@ const App = () => {
     <main style={{ position: 'relative', minHeight: '100vh', overflow: 'hidden' }}>
       <Header />
       <SmoothScroll>
-        <Background />
         <HeroSection />
         <SkillsSection />
         <ProjectsSection />
