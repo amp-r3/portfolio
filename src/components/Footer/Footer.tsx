@@ -3,24 +3,25 @@ import style from './footer.module.scss'
 import { useTranslation } from 'react-i18next'
 import { motion } from 'framer-motion'
 import type { Variants } from 'framer-motion'
+import FooterBackground from './FooterBackground'
 
 const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
         opacity: 1,
         transition: {
-            staggerChildren: 0.1,
+            staggerChildren: 0.1, 
             delayChildren: 0.1
         }
     }
 }
 
-const itemVariants: Variants = {
+const smoothRevealVariants: Variants = {
     hidden: {
         opacity: 0,
-        y: 20,
-        filter: 'blur(5px)',
-        scale: 0.95
+        y: 30,
+        filter: 'blur(10px)', 
+        scale: 0.98
     },
     visible: {
         opacity: 1,
@@ -28,9 +29,25 @@ const itemVariants: Variants = {
         filter: 'blur(0px)',
         scale: 1,
         transition: {
-            type: 'spring',
-            damping: 20,
-            stiffness: 100
+            duration: 1.2,
+            ease: [0.22, 1, 0.36, 1]
+        }
+    }
+}
+
+const itemRevealVariants: Variants = {
+    hidden: {
+        opacity: 0,
+        y: 20,
+        filter: 'blur(5px)'
+    },
+    visible: {
+        opacity: 1,
+        y: 0,
+        filter: 'blur(0px)',
+        transition: {
+            duration: 0.8,
+            ease: [0.22, 1, 0.36, 1]
         }
     }
 }
@@ -40,28 +57,36 @@ const Footer = () => {
 
     return (
         <footer className={style.footer}>
-            {/* Основной контент (CTA) */}
+            {/* Main content (CTA) */}
             <motion.div
                 className={`${style.footer__content} container`}
                 variants={containerVariants}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true, amount: 0.3 }}
+                viewport={{ once: true, amount: 0.3, margin: "0px 0px -100px 0px" }}
             >
-                <motion.h1 variants={itemVariants} className={style.footer__title}>
+                <motion.h1
+                    variants={smoothRevealVariants}
+                    className={style.footer__title}
+                >
                     {t('footer.title')}
                 </motion.h1>
-                <motion.p variants={itemVariants} className={style.footer__desc}>
+                <motion.p
+                    variants={smoothRevealVariants}
+                    className={style.footer__desc}
+                >
                     {t('footer.description')}
                 </motion.p>
-                <motion.div variants={itemVariants}>
-                    <a href="#contact" className={style.footer__btn}>
-                        {t('footer.button')}
-                    </a>
-                </motion.div>
+                <motion.a
+                    href="#contact"
+                    className={style.footer__btn}
+                    variants={itemRevealVariants}
+                >
+                    {t('footer.button')}
+                </motion.a>
             </motion.div>
 
-            {/* Нижняя панель с контактами */}
+            {/* Contacts */}
             <motion.div
                 className={`${style.footer__basement} container`}
                 variants={containerVariants}
@@ -69,40 +94,67 @@ const Footer = () => {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.5 }}
             >
-                <motion.a variants={itemVariants} href="" className={style.footer__logo}>
+                <motion.a
+                    variants={itemRevealVariants}
+                    href=""
+                    className={style.footer__logo}
+                >
                     amp3re
                 </motion.a>
-                
+
                 <div className={style.footer__contacts}>
-                    <motion.div variants={itemVariants}>
-                        <a href="mailto:ergashevamir06@gmail.com" className={style.footer__email}>
+                    <motion.div variants={itemRevealVariants}>
+                        <motion.a
+                            href="mailto:ergashevamir06@gmail.com"
+                            className={style.footer__email}
+                        >
                             ergashevamir06@gmail.com
-                        </a>
+                        </motion.a>
                     </motion.div>
-                    
+
                     <div className={style.footer__socials}>
-                        <motion.a variants={itemVariants} href="https://t.me/amp_r3" target="_blank" className={style.footer__links}>
+                        <motion.a
+                            variants={itemRevealVariants}
+                            href="https://t.me/amp_r3"
+                            target="_blank"
+                            className={style.footer__links}
+                        >
                             <img src={telegramIcon} alt="Telegram" />
                         </motion.a>
-                        <motion.a variants={itemVariants} href="https://github.com/amp-r3" target="_blank" className={style.footer__links}>
+                        <motion.a
+                            variants={itemRevealVariants}
+                            href="https://github.com/amp-r3"
+                            target="_blank"
+                            className={style.footer__links}
+                        >
                             <img src={githubIcon} alt="GitHub" />
                         </motion.a>
-                        <motion.a variants={itemVariants} href="https://www.linkedin.com/in/amir-ergashev-96718a396" target="_blank" className={style.footer__links}>
+                        <motion.a
+                            variants={itemRevealVariants}
+                            href="https://www.linkedin.com/in/amir-ergashev-96718a396"
+                            target="_blank"
+                            className={style.footer__links}
+                        >
                             <img src={linkedinIcon} alt="LinkedIn" />
                         </motion.a>
                     </div>
                 </div>
             </motion.div>
 
-            <motion.span 
+            <motion.span
                 className={style.footer__rights}
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 0.7 }}
                 viewport={{ once: true }}
-                transition={{ duration: 1, delay: 0.5 }}
+                transition={{
+                    duration: 1.5,
+                    delay: 0.5,
+                    ease: "easeOut"
+                }}
             >
                 {t('footer.rights')}
             </motion.span>
+            <FooterBackground />
         </footer>
     )
 }

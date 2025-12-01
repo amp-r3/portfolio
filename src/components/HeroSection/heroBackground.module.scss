@@ -1,3 +1,5 @@
+@use "@/scss/index.scss" as *;
+
 .backgroundContainer {
     position: absolute;
     inset: 0;
@@ -5,7 +7,7 @@
     height: 100%;
     z-index: -1;
     overflow: hidden;
-    background-color: #000000; 
+    background-color: #000; 
 }
 
 .gradientLayer {
@@ -20,7 +22,8 @@
 .darkBase {
     background: linear-gradient(180deg,
             #000000 0%,
-            #02040a 100%);
+            #02040a 70%, 
+            #000000 100%);
 }
 
 .darkAccent1 {
@@ -39,12 +42,20 @@
             transparent 50%);
 }
 
+.darkOverlay {
+    background: linear-gradient(to top, 
+            #000000 0%, 
+            rgba(0,0,0,0) 25%);
+    z-index: 2; 
+}
+
 /* --- Light theme: "Soft Daylight" --- */
 
 .lightBase {
     background: linear-gradient(180deg,
             #ffffff 0%,
-            #f8fafc 100%);
+            #f8fafc 70%,
+            #ffffff 100%);
 }
 
 .lightAccent1 {
@@ -62,4 +73,11 @@
             rgba(167, 139, 250, 0.08) 0%,
             rgba(96, 165, 250, 0.08) 40%,
             transparent 60%);
+}
+
+.lightOverlay {
+    background: linear-gradient(to top, 
+            #ffffff 0%, 
+            rgba(255,255,255,0) 25%);
+    z-index: 2; 
 }
