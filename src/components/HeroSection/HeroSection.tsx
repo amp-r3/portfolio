@@ -4,32 +4,35 @@ import style from './heroSection.module.scss'
 import { useTranslation } from 'react-i18next'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import type { Variants } from 'framer-motion'
-import Background from './Background'
+import HeroBackground from './HeroBackground'
 
 const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
         opacity: 1,
         transition: {
-            staggerChildren: 0.15,
-            delayChildren: 0.1
+            staggerChildren: 0.12,
+            delayChildren: 0.2
         }
     }
 }
 
-const titleVariants: Variants = {
-    hidden: { opacity: 0, y: 30, filter: 'blur(12px)', scale: 0.9 },
+const heroRevealVariants: Variants = {
+    hidden: {
+        opacity: 0,
+        y: 40,
+        filter: 'blur(12px)',
+        scale: 0.96
+    },
     visible: {
-        opacity: 1, y: 0, filter: 'blur(0px)', scale: 1,
-        transition: { type: 'spring', damping: 25, stiffness: 100 }
-    }
-}
-
-const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 20, filter: 'blur(8px)', scale: 0.95 },
-    visible: {
-        opacity: 1, y: 0, filter: 'blur(0px)', scale: 1,
-        transition: { type: 'spring', damping: 20, stiffness: 100 }
+        opacity: 1,
+        y: 0,
+        filter: 'blur(0px)',
+        scale: 1,
+        transition: {
+            duration: 1.4, 
+            ease: [0.22, 1, 0.36, 1] 
+        }
     }
 }
 
@@ -42,15 +45,9 @@ const HeroSection = () => {
         offset: ["start start", "end start"]
     })
 
-    // 1. Усиливаем Scale: уменьшаем до 0.8 (было 0.9) для явного эффекта глубины
-    const scale = useTransform(scrollYProgress, [0, 1], [1, 0.65])
-
-    // 2. Усиливаем Opacity: исчезаем полностью к концу скролла
-    const opacity = useTransform(scrollYProgress, [0, 0.9], [1, 0])
-
-    // 3. Добавляем Parallax по Y: контент уезжает вниз на 50% от высоты при скролле
-    // Это создает ощущение, что секция "тяжелая" и стоит на месте, пока низ наезжает
-    const y = useTransform(scrollYProgress, [0, 1], ["0%", "95%"])
+    const scale = useTransform(scrollYProgress, [0, 1], [1, 0.9])
+    const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"])
+    const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0])
 
     return (
         <section ref={targetRef} id='hero' className={style.hero}>
@@ -61,25 +58,24 @@ const HeroSection = () => {
                 animate="visible"
                 style={{ scale, opacity, y }}
             >
-                <motion.h1 variants={titleVariants} className={style.hero__title}>
+                <motion.h1 variants={heroRevealVariants} className={style.hero__title}>
                     {t('hero.title')}
                 </motion.h1>
 
-                <motion.p variants={itemVariants} className={style.hero__desc}>
+                <motion.p variants={heroRevealVariants} className={style.hero__desc}>
                     {t('hero.description')}
                 </motion.p>
 
-                <motion.a
-                    variants={itemVariants}
-                    href="#projects"
-                    className={style.hero__btn}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                >
-                    {t('hero.button')}
-                </motion.a>
+                <motion.div variants={heroRevealVariants}>
+                    <a
+                        href="#projects"
+                        className={style.hero__btn}
+                    >
+                        {t('hero.button')}
+                    </a>
+                </motion.div>
 
-                <motion.div variants={itemVariants} className={style.hero__contacts}>
+                <motion.div variants={heroRevealVariants} className={style.hero__contacts}>
                     <a href="https://t.me/amp_r3" target="_blank" rel="noreferrer" className={style.hero__links}>
                         <img src={telegramIcon} alt="Telegram" />
                     </a>
@@ -91,7 +87,8 @@ const HeroSection = () => {
                     </a>
                 </motion.div>
             </motion.div>
-            <Background />
+
+            <HeroBackground />
         </section>
     )
 }

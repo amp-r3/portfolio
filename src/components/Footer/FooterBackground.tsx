@@ -1,7 +1,7 @@
 import { useTheme } from '@/hooks/useTheme';
-import style from './background.module.scss';
+import style from './footerBackground.module.scss';
 
-const Background = () => {
+const FooterBackground = () => {
     const { theme } = useTheme();
 
     return (
@@ -12,11 +12,7 @@ const Background = () => {
                 style={{ opacity: theme === 'dark' ? 1 : 0 }}
             />
             <div
-                className={`${style.gradientLayer} ${style.darkAccent1}`}
-                style={{ opacity: theme === 'dark' ? 1 : 0 }}
-            />
-            <div
-                className={`${style.gradientLayer} ${style.darkAccent2}`}
+                className={`${style.gradientLayer} ${style.darkAccent}`}
                 style={{ opacity: theme === 'dark' ? 1 : 0 }}
             />
 
@@ -26,15 +22,11 @@ const Background = () => {
                 style={{ opacity: theme === 'light' ? 1 : 0 }}
             />
             <div
-                className={`${style.gradientLayer} ${style.lightAccent1}`}
-                style={{ opacity: theme === 'light' ? 1 : 0 }}
-            />
-            <div
-                className={`${style.gradientLayer} ${style.lightAccent2}`}
+                className={`${style.gradientLayer} ${style.lightAccent}`}
                 style={{ opacity: theme === 'light' ? 1 : 0 }}
             />
         </div>
     );
 };
 
-export default Background;
+export default FooterBackground;
