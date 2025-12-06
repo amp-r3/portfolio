@@ -1,0 +1,40 @@
+@use "@/scss/index.scss"as *;
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+
+  padding: $spacing-xxsmall $spacing-small;
+
+  border-radius: $border-radius-pill;
+
+  font-family: $font-family-base;
+  font-size: $typography-font-size-small;
+  font-weight: $typography-font-weight-normal;
+  line-height: $typography-line-height-ui;
+
+
+  color: var(--text-primary);
+
+  background-color: var(--background-glass-alpha);
+
+  border: 1px solid var(--border-glass-alpha);
+
+  backdrop-filter: $filter-backdrop-blur-small;
+  -webkit-backdrop-filter: $filter-backdrop-blur-small;
+
+  transition: all $transition-duration-base $timing-function-ease-in-out-smooth;
+
+  &:hover {
+    background-color: var(--background-glass-alpha-hover);
+    border-color: var(--border-glass-alpha-hover);
+
+    box-shadow: var(--shadow-glass-hover);
+
+    transform: $hover-transform-lift;
+
+    cursor: default;
+  }
+}

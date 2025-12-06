@@ -1,12 +1,12 @@
 import type { FC } from 'react'
-import style from './projectsSection.module.scss'
+import style from './projectsList.module.scss'
 
 interface IProjectCardProps {
+    id: string,
     title: string,
     image: string,
     description: string,
     link: string
-
 }
 
 
