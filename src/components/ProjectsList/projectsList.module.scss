@@ -1,4 +1,4 @@
-@use "@/scss/index.scss" as *;
+@use "@/scss/index.scss"as *;
 
 .projects {
     padding: $spacing-section 0; // 80px
@@ -88,6 +88,17 @@
             box-shadow: var(--shadow-glass-hover);
             border-color: var(--border-glass-alpha-hover);
         }
+
+        &:active {
+            transform: scale(0.98) translateY(-4px);
+            transition-duration: 100ms;
+        }
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
     }
 
     /* --- Image Wrapper Element --- */
@@ -95,6 +106,27 @@
         width: 100%;
         aspect-ratio: 16 / 9;
         overflow: hidden;
+        position: relative;
+
+        &::after {
+            content: attr(data-label);
+            position: absolute;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.3);
+            backdrop-filter: $filter-backdrop-blur-small;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: $typography-font-weight-semibold;
+            opacity: 0;
+            transition: opacity $transition-duration-base ease;
+        }
+
+        .projects__card:hover &::after {
+            opacity: 1;
+        }
     }
 
     /* --- Image Element --- */
@@ -106,7 +138,7 @@
         transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
         .projects__card:hover & {
-            transform: scale(1.05);
+            transform: scale(1.06);
         }
     }
 
@@ -130,7 +162,7 @@
 
     /* --- Description Element --- */
     &__description_wrapper {
-        padding: 0 $spacing-large $spacing-large $spacing-large; // 0 24px 24px 24px
+        padding: 0 $spacing-large $spacing-base $spacing-large; // 0 24px 24px 24px
         margin: 0;
         flex-grow: 1;
 
@@ -153,6 +185,64 @@
             -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
             overflow: hidden;
+        }
+    }
+
+    &__footer {
+        padding: 0 $spacing-large $spacing-large $spacing-large;
+        margin-top: auto;
+        display: flex;
+        align-items: center;
+        gap: $spacing-xsmall;
+        color: var(--text-secondary);
+        font-weight: $typography-font-weight-semibold;
+        font-size: $typography-font-size-small;
+        transition: color $transition-duration-base ease;
+
+        .projects__card:hover & {
+            color: var(--text-primary);
+        }
+    }
+
+    &__arrow {
+        display: flex;
+        align-items: center;
+        transition: transform $transition-duration-base $timing-function-ease-in-out-smooth;
+
+        .projects__card:hover & {
+            transform: translate(3px, -6px) scale(1.1);
+        }
+
+        img {
+            width: $icon-size-medium;
+            height: $icon-size-medium;
+            filter: var(--icon-filter);
+            transition: transform $transition-duration-fast;
+            transform: rotate(130deg);
+        }
+    }
+
+    &__more {
+        transition: color $transition-duration-base ease;
+        position: relative;
+
+        &::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--card-border-hover);
+            transition: width $transition-duration-base ease;
+        }
+
+        .projects__card:hover & {
+            color: var(--card-border-hover);
+
+            &::after {
+                width: 100%;
+            }
         }
     }
 }
