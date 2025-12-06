@@ -10,6 +10,7 @@ interface IProjectDetailsProps {
     desc: string;
     img: string;
     tools: string[];
+    link: string;
 }
 
 const ProjectDetails: FC<IProjectDetailsProps> = ({ title, desc, img, tools }) => {

@@ -47,18 +47,6 @@
         }
     }
 
-    &__category {
-        font-family: $font-family-base;
-        font-size: $typography-font-size-small;
-        font-weight: $typography-font-weight-semibold;
-        color: var(--text-secondary);
-        padding: $spacing-xxsmall $spacing-medium;
-        background: var(--background-glass-alpha);
-        border: 1px solid var(--border-glass-alpha);
-        border-radius: $border-radius-pill;
-        backdrop-filter: $filter-backdrop-blur-small;
-    }
-
     &__content {
         display: flex;
         flex-direction: column;
@@ -101,12 +89,6 @@
         background: var(--card-bg);
         box-shadow: var(--card-shadow);
         transition: border-color $transition-duration-base;
-
-        @media (min-width: 1024px) {
-            margin-top: 0;
-            position: sticky;
-            top: $spacing-large;
-        }
 
         &:hover {
             border-color: var(--card-border-hover);

@@ -5,10 +5,12 @@ import LangSwitch from '../UI/LangSwitch/LangSwitch'
 import { useEffect, useRef, useState } from 'react'
 import { useHeaderScroll } from '@/hooks/useHeaderScroll'
 import MenuIcon from '../UI/MenuIcon/MenuIcon'
+import { useLocation } from 'react-router'
 const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const navRef = useRef<HTMLDivElement>(null)
-    useHeaderScroll(navRef)
+    const { pathname } = useLocation()
+    useHeaderScroll(navRef, pathname)
 
     useEffect(() => {
         if (!isMenuOpen) return;
