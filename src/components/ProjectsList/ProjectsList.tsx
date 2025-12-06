@@ -3,9 +3,12 @@ import style from './projectsList.module.scss'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router'
 import { projectsData } from '@/data/projectsData'
+import { useTheme } from '@/hooks/useTheme'
 
 const ProjectsSection = () => {
     const { t } = useTranslation()
+    const { theme } = useTheme()
+
 
 
     return (
@@ -19,12 +22,16 @@ const ProjectsSection = () => {
                 <div className={style.projects__cards}>
                     {projectsData.map((elem) => {
                         const description = t(elem.descKey)
+                        let themeImage = elem.image;
+                        if (elem.darkImage && theme === 'dark') {
+                            themeImage = elem.darkImage
+                        }
                         return (
                             <Link to={`project/${elem.id}`} key={elem.title} className={style.projects__card_wrapper}>
                                 <ProjectCard
                                     id={elem.id}
                                     title={elem.title}
-                                    image={elem.image}
+                                    image={themeImage}
                                     description={description}
                                     link={elem.link}
                                 />

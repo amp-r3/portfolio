@@ -9,10 +9,9 @@ interface IProjectCardProps {
     link: string
 }
 
-
 const ProjectCard: FC<IProjectCardProps> = ({ title, image, description, link }) => {
     return (
-        <a href={link} target="_blank" rel="noreferrer" className={style.projects__card}>
+        <div className={style.projects__card}>
             <div className={style.projects__wrapper}>
                 <img src={image} alt="" className={style.projects__img} />
             </div>
@@ -20,7 +19,7 @@ const ProjectCard: FC<IProjectCardProps> = ({ title, image, description, link })
             <div className={style.projects__description_wrapper}>
                 <p className={style.projects__description}>{description}</p>
             </div>
-        </a>
+        </div>
     )
 }
 
