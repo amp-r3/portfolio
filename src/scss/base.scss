@@ -3,7 +3,7 @@
 
 html {
     scroll-behavior: smooth;
-    background-color: var(--theme-color); 
+    background-color: var(--theme-color);
     transition: background-color 1.5s ease-in-out;
 }
 
@@ -34,9 +34,18 @@ body {
     max-width: $container-width;
     width: 100%;
     margin: 0 auto;
-    padding: $container-padding;
+    padding-left: $container-padding;
+    padding-right: $container-padding;
 }
 
+.page-content {
+    padding-top: 96px;
+    padding-bottom: $spacing-section;
+
+    @media (width < 768px) {
+        padding-top: $spacing-section;
+    }
+}
 
 input,
 textarea,
@@ -74,7 +83,7 @@ button {
     border: 3px solid transparent;
     background-clip: padding-box;
     border-radius: 10px;
-    
+
     transition: background-color 0.3s ease;
 }
 
