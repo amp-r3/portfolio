@@ -27,13 +27,12 @@ const ProjectsSection = () => {
                             themeImage = elem.darkImage
                         }
                         return (
-                            <Link to={`project/${elem.id}`} key={elem.title} className={style.projects__card_wrapper}>
+                            <Link to={`project/${elem.id}`} key={elem.id} className={style.projects__card_wrapper}>
                                 <ProjectCard
                                     id={elem.id}
                                     title={elem.title}
                                     image={themeImage}
                                     description={description}
-                                    link={elem.link}
                                 />
                             </Link>
                         )
