@@ -2,9 +2,13 @@
 @use 'theme';
 
 html {
-    scroll-behavior: smooth;
     background-color: var(--theme-color);
     transition: background-color 1.5s ease-in-out;
+}
+
+html,
+body {
+    scroll-behavior: auto !important;
 }
 
 * {

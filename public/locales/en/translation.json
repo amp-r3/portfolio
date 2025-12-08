@@ -18,7 +18,8 @@
     "projects": {
         "title": "My Projects",
         "weatherDescription": "A dynamic weather forecast application built with React, Vite, and Redux Toolkit. This fully responsive app automatically detects user location via browser geolocation (with an IP-based fallback) or allows users to search for any city. It integrates OpenWeatherMap and Geoapify APIs to provide current conditions, hourly, and 7-day forecasts. Key features include robust asynchronous state management with Redux Thunk, a client-side localStorage cache to optimize API calls, and a persistent dark/light mode theme toggle.",
-        "storeDescription": "A modern, responsive e-commerce storefront built with React 19, Vite, and Redux Toolkit. This application features a dynamic product catalog, real-time search, advanced sorting, and a functional shopping cart, all powered by the dummyjson.com API. The project showcases a clean architecture using custom hooks for logic, React Router for navigation, and a design-token-based styling system with SASS/SCSS Modules."
+        "storeDescription": "A modern, responsive e-commerce storefront built with React 19, Vite, and Redux Toolkit. This application features a dynamic product catalog, real-time search, advanced sorting, and a functional shopping cart, all powered by the dummyjson.com API. The project showcases a clean architecture using custom hooks for logic, React Router for navigation, and a design-token-based styling system with SASS/SCSS Modules.",
+        "details": "See Details"
     },
     "contact": {
         "title": "Get in touch",

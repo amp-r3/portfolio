@@ -23,7 +23,8 @@ const ProjectPage = () => {
         desc={description}
         img={themeImage}
         tools={project.tools}
-        link={project.link}
+        demoLink={project.demoLink}
+        githubLink={project.githubLink}
       />
     </>
   )

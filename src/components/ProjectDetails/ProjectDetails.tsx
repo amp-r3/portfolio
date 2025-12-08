@@ -1,6 +1,6 @@
 import type { FC } from "react";
 import style from './projectDetails.module.scss';
-import { backIcon } from "@/assets/images";
+import { backIcon, externalLinkIcon, githubIcon } from "@/assets/images";
 import { Paths } from "@/Routes/paths";
 import { Link } from "react-router";
 import Badge from "../UI/Badge/Badge";
@@ -10,10 +10,11 @@ interface IProjectDetailsProps {
     desc: string;
     img: string;
     tools: string[];
-    link: string;
+    demoLink: string;
+    githubLink: string;
 }
 
-const ProjectDetails: FC<IProjectDetailsProps> = ({ title, desc, img, tools }) => {
+const ProjectDetails: FC<IProjectDetailsProps> = ({ title, desc, img, tools, demoLink, githubLink }) => {
     return (
         <article className={`${style['project-details']} container page-content`}>
 
@@ -32,6 +33,27 @@ const ProjectDetails: FC<IProjectDetailsProps> = ({ title, desc, img, tools }) =
                     {tools.map((label) => (
                         <Badge key={label} label={label} />
                     ))}
+                </div>
+
+                <div className={style['project-details__actions']}>
+                    <a
+                        href={demoLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`${style['project-details__action']} ${style['project-details__action--primary']}`}
+                    >
+                        <img src={externalLinkIcon} alt="" aria-hidden="true" />
+                        <span>Live Demo</span>
+                    </a>
+                    <a
+                        href={githubLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`${style['project-details__action']} ${style['project-details__action--secondary']}`}
+                    >
+                        <img src={githubIcon} alt="" aria-hidden="true" />
+                        <span>GitHub Repo</span>
+                    </a>
                 </div>
             </div>
 
