@@ -1,6 +1,6 @@
 import Header from "./components/Header/Header"
 import SmoothScroll from "./components/SmoothScroll/SmoothScroll"
-import { Outlet } from "react-router";
+import { Outlet, ScrollRestoration } from "react-router";
 import '@/scss/base.scss'
 
 const App = () => {
@@ -10,6 +10,11 @@ const App = () => {
       <SmoothScroll>
         <main className="main-content">
           <Outlet />
+          <ScrollRestoration
+            getKey={(location) => {
+              return location.pathname;
+            }}
+          />
         </main>
       </SmoothScroll>
     </main>
