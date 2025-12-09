@@ -1,5 +1,4 @@
-import { useEffect, useLayoutEffect, useRef } from 'react';
-import { useLocation } from 'react-router'; 
+import { useEffect, useRef } from 'react';
 import LocomotiveScroll from 'locomotive-scroll';
 import 'locomotive-scroll/dist/locomotive-scroll.css';
 
@@ -8,7 +7,6 @@ interface SmoothScrollProps {
 }
 
 const SmoothScroll = ({ children }: SmoothScrollProps) => {
-  const location = useLocation();
   const scrollRef = useRef<LocomotiveScroll | null>(null);
 
   useEffect(() => {
@@ -30,27 +28,9 @@ const SmoothScroll = ({ children }: SmoothScrollProps) => {
       locomotiveScroll.destroy();
       scrollRef.current = null;
     };
-  }, []); 
+  }, []);
 
-  useLayoutEffect(() => {
 
-    const body = document.body;
-
-    body.style.opacity = '0';
-    body.style.pointerEvents = 'none'; 
-
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        body.style.transition = 'opacity 0.3s ease';
-        body.style.opacity = '1';
-        body.style.pointerEvents = '';
-
-        setTimeout(() => {
-          body.style.transition = '';
-        }, 300);
-      });
-    });
-  }, [location.pathname]);
 
   return <>{children}</>;
 };
