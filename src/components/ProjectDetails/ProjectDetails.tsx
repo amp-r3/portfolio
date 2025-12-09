@@ -1,8 +1,7 @@
 import type { FC } from "react";
 import style from './projectDetails.module.scss';
 import { backIcon, externalLinkIcon, githubIcon } from "@/assets/images";
-import { Paths } from "@/Routes/paths";
-import { Link } from "react-router";
+import { useNavigate } from "react-router";
 import Badge from "../UI/Badge/Badge";
 
 interface IProjectDetailsProps {
@@ -15,13 +14,14 @@ interface IProjectDetailsProps {
 }
 
 const ProjectDetails: FC<IProjectDetailsProps> = ({ title, desc, img, tools, demoLink, githubLink }) => {
+    const navigate = useNavigate()
     return (
         <article className={`${style['project-details']} container page-content`}>
 
             <header className={style['project-details__header']}>
-                <Link to={Paths.home} className={style['project-details__back-link']} aria-label="Go back">
+                <button onClick={()=> navigate(-1)} className={style['project-details__back-link']} aria-label="Go back">
                     <img src={backIcon} alt="" aria-hidden="true" />
-                </Link>
+                </button>
                 <span className={style['project-details__category']}>Web App</span>
             </header>
 
