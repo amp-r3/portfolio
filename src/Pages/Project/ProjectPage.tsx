@@ -30,6 +30,7 @@ const ProjectPage = () => {
         tools={project.tools}
         demoLink={project.demoLink}
         githubLink={project.githubLink}
+        benefits={project.benefits}
       />
     </>
   )
