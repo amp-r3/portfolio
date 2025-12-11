@@ -1,0 +1,156 @@
+@use "@/scss/index.scss" as *;
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-medium;
+    padding: $spacing-large;
+    height: 100%;
+    
+    min-width: 240px;
+
+    background: var(--card-bg);
+    backdrop-filter: blur(var(--card-backdrop-blur, 12px));
+    border: 1px solid var(--card-border);
+    border-radius: $border-radius-large;
+    box-shadow: var(--card-shadow);
+
+    isolation: isolate;
+    overflow: hidden;
+    transition: all $transition-duration-base $timing-function-ease-out-expo;
+
+    @media (width < 992px) {
+        padding: $spacing-base; // 20px
+    }
+
+    @media (width < 576px) {
+        padding: $spacing-medium; // 16px
+        gap: $spacing-small;      // 12px
+        border-radius: $border-radius-medium;
+    }
+
+    @media (width < 380px) {
+        padding: $spacing-small;  // 12px
+        gap: $spacing-xsmall;     // 8px
+    }
+
+    @media (hover: hover) {
+        &:hover {
+            transform: translateY(-5px);
+            border-color: var(--card-border-hover);
+            box-shadow: var(--shadow-glass-hover);
+
+            .card__glow {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            .card__iconWrapper {
+                background: var(--background-interactive-hover);
+                border-color: var(--border-primary-hover);
+                transform: scale(1.05);
+
+                img {
+                    transform: scale(1.1);
+                }
+            }
+        }
+    }
+
+    &__header {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: $spacing-small;
+
+        @media (width < 380px) {
+            margin-bottom: $spacing-xsmall;
+        }
+    }
+
+    &__iconWrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 3.5rem;
+        height: 3.5rem;
+
+        background: var(--surface-glass);
+        border: 1px solid var(--border-primary);
+        border-radius: $border-radius-medium;
+        transition: all $transition-duration-base $timing-function-ease-spring;
+        
+        @media (width < 576px) {
+            width: 3rem;
+            height: 3rem;
+        }
+
+        @media (width < 380px) {
+            width: $button-size; // 40px
+            height: $button-size;
+            border-radius: $border-radius-small;
+        }
+
+        img {
+            width: $icon-size-large;
+            height: $icon-size-large;
+            object-fit: contain;
+            filter: var(--icon-filter);
+            transition: transform $transition-duration-fast;
+
+            @media (width < 380px) {
+                width: $icon-size-medium;
+                height: $icon-size-medium;
+            }
+        }
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        gap: $spacing-xsmall;
+        z-index: 1;
+    }
+
+    &__title {
+        font-family: $font-family-title;
+        font-size: $typography-font-size-medium;
+        font-weight: $typography-font-weight-bold;
+        color: var(--text-primary);
+        line-height: $typography-line-height-tight;
+        letter-spacing: $typography-letter-spacing-wide;
+
+        @media (width < 380px) {
+            font-size: $typography-font-size-base; // 16px
+        }
+    }
+
+    &__description {
+        font-family: $font-family-base;
+        font-size: $typography-font-size-base;
+        color: var(--text-secondary);
+        line-height: $typography-line-height-relaxed;
+        font-weight: $typography-font-weight-normal;
+
+        @media (width < 380px) {
+            font-size: $typography-font-size-small; // 13px
+            line-height: $typography-line-height-normal;
+        }
+    }
+
+    &__glow {
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at center, var(--accent-glow) 0%, transparent 60%);
+        border-radius: 50%;
+        opacity: 0;
+        transform: scale(0.8);
+        pointer-events: none;
+        z-index: -1;
+        transition: opacity $transition-duration-layout, transform $transition-duration-layout;
+        filter: blur(40px);
+    }
+}

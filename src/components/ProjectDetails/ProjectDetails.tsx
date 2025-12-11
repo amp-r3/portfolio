@@ -3,6 +3,9 @@ import style from './projectDetails.module.scss';
 import { backIcon, externalLinkIcon, githubIcon } from "@/assets/images";
 import { useNavigate } from "react-router";
 import Badge from "../UI/Badge/Badge";
+import { useTranslation } from "react-i18next";
+import BenefitCard from "../UI/BenefitCard/BenefitCard";
+import type { ProjectBenefit } from "@/data/projectsData";
 
 interface IProjectDetailsProps {
     title: string;
@@ -11,15 +14,18 @@ interface IProjectDetailsProps {
     tools: string[];
     demoLink: string;
     githubLink: string;
+    benefits: ProjectBenefit[];
 }
 
-const ProjectDetails: FC<IProjectDetailsProps> = ({ title, desc, img, tools, demoLink, githubLink }) => {
+const ProjectDetails: FC<IProjectDetailsProps> = ({ title, desc, img, tools, demoLink, githubLink, benefits }) => {
     const navigate = useNavigate()
+
+    const { t } = useTranslation()
     return (
         <article className={`${style['project-details']} container page-content`}>
 
             <header className={style['project-details__header']}>
-                <button onClick={()=> navigate(-1)} className={style['project-details__back-link']} aria-label="Go back">
+                <button onClick={() => navigate(-1)} className={style['project-details__back-link']} aria-label="Go back">
                     <img src={backIcon} alt="" aria-hidden="true" />
                 </button>
                 <span className={style['project-details__category']}>Web App</span>
@@ -64,6 +70,19 @@ const ProjectDetails: FC<IProjectDetailsProps> = ({ title, desc, img, tools, dem
                     className={style['project-details__image']}
                 />
             </div>
+
+            <section className={style['project-details__benefits']}>
+                <div className={style['project-details__grid']}>
+                    {benefits && benefits.map((item, index) => (
+                        <BenefitCard
+                            key={index}
+                            title={t(item.titleKey)}
+                            description={t(item.descKey)}
+                            iconSrc={item.icon}
+                        />
+                    ))}
+                </div>
+            </section>
 
         </article>
     );
