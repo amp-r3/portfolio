@@ -11,13 +11,14 @@ interface IProjectDetailsProps {
     title: string;
     desc: string;
     img: string;
+    mobileImg: string;
     tools: string[];
     demoLink: string;
     githubLink: string;
     benefits: ProjectBenefit[];
 }
 
-const ProjectDetails: FC<IProjectDetailsProps> = ({ title, desc, img, tools, demoLink, githubLink, benefits }) => {
+const ProjectDetails: FC<IProjectDetailsProps> = ({ title, desc, img, tools, demoLink, githubLink, benefits, mobileImg }) => {
     const navigate = useNavigate()
 
     const { t } = useTranslation()
@@ -33,7 +34,9 @@ const ProjectDetails: FC<IProjectDetailsProps> = ({ title, desc, img, tools, dem
 
             <div className={style['project-details__content']}>
                 <h1 className={style['project-details__title']}>{title}</h1>
-                <p className={style['project-details__description']}>{desc}</p>
+                <div className={style['project-details__description-wrapper']}>
+                    <p className={style['project-details__description']}>{desc}</p>
+                </div>
 
                 <div className={style['project-details__tools']}>
                     {tools.map((label) => (
@@ -64,11 +67,19 @@ const ProjectDetails: FC<IProjectDetailsProps> = ({ title, desc, img, tools, dem
             </div>
 
             <div className={style['project-details__media']}>
-                <img
-                    src={img}
-                    alt={`Screenshot of the ${title} project`}
-                    className={style['project-details__image']}
-                />
+                <picture>
+
+                    <source
+                        media="(max-width: 576px)"
+                        srcSet={mobileImg}
+                    />
+
+                    <img
+                        src={img}
+                        alt={`Screenshot of the ${title} project`}
+                        className={style['project-details__image']}
+                    />
+                </picture>
             </div>
 
             <section className={style['project-details__benefits']}>

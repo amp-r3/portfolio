@@ -1,9 +1,9 @@
-import { githubIcon, linkedinIcon, telegramIcon } from '@/assets/images'
 import style from './footer.module.scss'
 import { useTranslation } from 'react-i18next'
 import { motion } from 'framer-motion'
 import type { Variants } from 'framer-motion'
 import FooterBackground from './FooterBackground'
+import { socialsData } from '@/data/socialsData'
 
 const containerVariants: Variants = {
     hidden: { opacity: 0 },
@@ -105,37 +105,37 @@ const Footer = () => {
                 <div className={style.footer__contacts}>
                     <motion.div variants={itemRevealVariants}>
                         <motion.a
-                            href="mailto:ergashevamir06@gmail.com"
+                            href={`mailto:${socialsData.email.link}`}
                             className={style.footer__email}
                         >
-                            ergashevamir06@gmail.com
+                            {socialsData.email.link}
                         </motion.a>
                     </motion.div>
 
                     <div className={style.footer__socials}>
                         <motion.a
                             variants={itemRevealVariants}
-                            href="https://t.me/amp_r3"
+                            href={socialsData.telegram.link}
                             target="_blank"
                             className={style.footer__links}
                         >
-                            <img src={telegramIcon} alt="Telegram" />
+                            <img src={socialsData.telegram.icon} alt="Telegram" />
                         </motion.a>
                         <motion.a
                             variants={itemRevealVariants}
-                            href="https://github.com/amp-r3"
+                            href={socialsData.github.link}
                             target="_blank"
                             className={style.footer__links}
                         >
-                            <img src={githubIcon} alt="GitHub" />
+                            <img src={socialsData.github.icon} alt="GitHub" />
                         </motion.a>
                         <motion.a
                             variants={itemRevealVariants}
-                            href="https://www.linkedin.com/in/amir-ergashev-96718a396"
+                            href={socialsData.linkedin.link}
                             target="_blank"
                             className={style.footer__links}
                         >
-                            <img src={linkedinIcon} alt="LinkedIn" />
+                            <img src={socialsData.linkedin.icon} alt="LinkedIn" />
                         </motion.a>
                     </div>
                 </div>

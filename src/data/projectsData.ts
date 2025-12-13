@@ -1,5 +1,5 @@
 import { adaptiveIcon, geoIcon, linkIcon, performanceIcon, puzzleIcon, serverIcon } from "@/assets/images";
-import { store, weatherDark, weatherLight } from "@/assets/images/ProjectImages";
+import { store, storeMobile, weatherDark, weatherDarkMobile, weatherLight, weatherLightMobile } from "@/assets/images/ProjectImages";
 
 export interface ProjectBenefit {
     titleKey: string;
@@ -12,6 +12,8 @@ export interface Project {
     title: string;
     image: string;
     darkImage?: string;
+    mobileImage?: string;
+    mobileDarkImage?: string;
     descKey: string;
     tools: string[];
     demoLink: string;
@@ -25,6 +27,8 @@ export const projectsData: Project[] = [
         title: 'My Weather App',
         image: weatherLight,
         darkImage: weatherDark,
+        mobileImage: weatherLightMobile,
+        mobileDarkImage: weatherDarkMobile,
         descKey: 'projects.weatherDescription',
         tools: [
             'React',
@@ -63,6 +67,7 @@ export const projectsData: Project[] = [
         id: 'store',
         title: 'Store App',
         image: store,
+        mobileImage: storeMobile,
         descKey: 'projects.storeDescription',
         tools: [
             'React',

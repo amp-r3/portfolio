@@ -1,7 +1,15 @@
-import { githubIcon, linkedinIcon, telegramIcon } from "@/assets/images";
+import { emailIcon, githubIcon, linkedinIcon, telegramIcon } from "@/assets/images";
 
-export const socialsData = {
+interface Social {
+    link: string;
+    icon?: string;
+}
+
+export const socialsData: {[key: string]: Social} = {
     github: {link: 'https://github.com/amp-r3', icon: githubIcon},
     telegram: {link: 'https://t.me/amp_r3', icon: telegramIcon},
-    linkedIn: {link: 'https://www.linkedin.com/in/amir-ergashev-96718a396', icon: linkedinIcon}
+    linkedin: {link: 'https://www.linkedin.com/in/amir-ergashev-96718a396', icon: linkedinIcon},
+    email: {link: 'amp_r3@proton.me', icon: emailIcon},
+    email_secondary: {link: 'ergashevamir06@gmail.com', icon: emailIcon},
+    phone: {link: '+998200005369'}
 }

@@ -35,9 +35,10 @@
 
     &__title {
         font-family: $font-family-title;
-        font-weight: $typography-font-weight-semibold;
+        font-weight: $typography-font-weight-bold;
         font-size: $typography-font-size-hero-title;
         text-align: center;
+        white-space: nowrap;
 
         @media (max-width: 992px) {
             font-size: $typography-font-size-title;
@@ -47,8 +48,12 @@
             font-size: 3.5rem;
         }
 
-        @media (max-width: 576px) {
-            font-size: $typography-font-size-xxlarge;
+        @media (width < 576px) {
+            font-size: 3rem;
+        }
+
+        @media (width < 400px) {
+            font-size: 12vw;
         }
     }
 
@@ -73,6 +78,10 @@
 
         @media (max-width: 576px) {
             width: 100%;
+        }
+
+        @media (width < 400px) {
+            font-size: 4.25vw;
         }
     }
 
