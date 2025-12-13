@@ -17,16 +17,25 @@ const ProjectPage = () => {
   const project = projectsData.find(p => p.id === id)
   if (!project) return <div>Project not found</div>
   const description = t(project.descKey)
-  let themeImage = project.image;
-  if (project.darkImage && theme === 'dark') {
-    themeImage = project.darkImage
-  }
+
+  const { image, darkImage, mobileImage, mobileDarkImage } = project;
+
+  const themeImage = theme === 'dark'
+    ? (darkImage ?? image ?? null)
+    : (image ?? null);
+
+  const mobileThemeImage = theme === 'dark'
+    ? (mobileDarkImage ?? mobileImage ?? darkImage ?? image ?? null)
+    : (mobileImage ?? image ?? null);
+
+    
   return (
     <>
       <ProjectDetails
         title={project.title}
         desc={description}
         img={themeImage}
+        mobileImg={mobileThemeImage}
         tools={project.tools}
         demoLink={project.demoLink}
         githubLink={project.githubLink}

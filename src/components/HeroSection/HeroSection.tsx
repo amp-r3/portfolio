@@ -1,10 +1,10 @@
 import { useRef } from 'react'
-import { githubIcon, linkedinIcon, telegramIcon } from '@/assets/images'
 import style from './heroSection.module.scss'
 import { useTranslation } from 'react-i18next'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import type { Variants } from 'framer-motion'
 import HeroBackground from './HeroBackground'
+import { socialsData } from '@/data/socialsData'
 
 const containerVariants: Variants = {
     hidden: { opacity: 0 },
@@ -76,14 +76,17 @@ const HeroSection = () => {
                 </motion.div>
 
                 <motion.div variants={heroRevealVariants} className={style.hero__contacts}>
-                    <a href="https://t.me/amp_r3" target="_blank" rel="noreferrer" className={style.hero__links}>
-                        <img src={telegramIcon} alt="Telegram" />
+                    <a href={socialsData.telegram.link} target="_blank" rel="noreferrer" className={style.hero__links}>
+                        <img src={socialsData.telegram.icon} alt="Telegram" />
                     </a>
-                    <a href="https://github.com/amp-r3" target="_blank" rel="noreferrer" className={style.hero__links}>
-                        <img src={githubIcon} alt="GitHub" />
+                    <a href={socialsData.github.link} target="_blank" rel="noreferrer" className={style.hero__links}>
+                        <img src={socialsData.github.icon} alt="GitHub" />
                     </a>
-                    <a href="https://www.linkedin.com/in/amir-ergashev-96718a396" target="_blank" rel="noreferrer" className={style.hero__links}>
-                        <img src={linkedinIcon} alt="LinkedIn" />
+                    <a href={socialsData.linkedin.link} target="_blank" rel="noreferrer" className={style.hero__links}>
+                        <img src={socialsData.linkedin.icon} alt="LinkedIn" />
+                    </a>
+                    <a href={`mailto:${socialsData.email.link}`} className={style.hero__links}>
+                        <img src={socialsData.email.icon} alt="Email" />
                     </a>
                 </motion.div>
             </motion.div>

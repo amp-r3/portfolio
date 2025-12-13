@@ -1,3 +1,6 @@
 export {default as weatherLight } from './weatherLight.png'
 export {default as weatherDark } from './weatherDark.png'
+export {default as weatherLightMobile } from './weatherMobileLight.png'
+export {default as weatherDarkMobile } from './weatherMobileDark.png'
 export {default as store} from './store.png'
+export {default as storeMobile} from './storeMobile.png'

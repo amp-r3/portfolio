@@ -3,13 +3,13 @@
         "nav": {
             "skills": "Ko'nikmalar",
             "projects": "Loyihalar",
-            "contact": "Aloqa"
+            "contact": "Bog'lanish"
         },
         "lang_switcher": "UZ"
     },
     "hero": {
         "title": "Amir Ergashev",
-        "description": "Men frontend texnologiyalariga ixtisoslashgan kichik web-dasturchiman. Ijodiy g'oyalarni chiroyli va funksional kodga aylantirish menga juda yoqadi.",
+        "description": "Men frontend-texnologiyalariga ixtisoslashgan boshlovchi veb-dasturchiman. Kreativ g'oyalarni chiroyli va funksional kodga katta ishtiyoq bilan aylantiraman.",
         "button": "Mening loyihalarim"
     },
     "skills": {
@@ -17,46 +17,46 @@
     },
     "projects": {
         "title": "Mening loyihalarim",
-        "weatherDescription": "React, Vite va Redux Toolkit yordamida yaratilgan dinamik ob-havo ilovasi. Bu to'liq moslashuvchan ilova foydalanuvchi joylashuvini brauzer geolokatsiyasi orqali avtomatik aniqlaydi (yoki IP orqali) va istalgan shaharni qidirish imkonini beradi. OpenWeatherMap va Geoapify API'larini birlashtirgan holda joriy sharoitlar, soatlik va 7 kunlik prognozlarni taqdim etadi. Asosiy xususiyatlar: Redux Thunk bilan kuchli asinxron holat boshqaruvi, API so'rovlarini optimallashtirish uchun localStorage keshi va doimiy qorong'u/yorug' rejim.",
-        "storeDescription": "React 19, Vite va Redux Toolkit bilan yaratilgan zamonaviy, moslashuvchan onlayn do'kon. Ilova dummyjson.com API asosida dinamik mahsulot katalogi, real vaqtda qidiruv, kengaytirilgan saralash va ishlaydigan xarid savatini o'z ichiga oladi. Loyiha mantiq uchun maxsus hooklardan, navigatsiya uchun React Router va dizayn-tokenlar asosidagi SASS/SCSS modullari bilan stilizatsiya tizimidan foydalanadigan toza arxitekturani namoyish etadi.",
+        "weatherDescription": "React, Vite va Redux Toolkit yordamida yaratilgan dinamik ob-havo ilovasi. Bu to'liq moslashuvchan (adaptiv) ilova foydalanuvchi joylashuvini brauzer geolokatsiyasi orqali avtomatik aniqlaydi (IP orqali zaxira varianti bilan) yoki istalgan shaharni qidirish imkonini beradi. Joriy sharoitlar, soatlik va 7 kunlik prognozni taqdim etish uchun OpenWeatherMap va Geoapify API-larini integratsiya qiladi. Asosiy xususiyatlarga Redux Thunk bilan ishonchli asinxron holat boshqaruvi, API so'rovlarini optimallashtirish uchun localStorage mijoz keshi va tungi/yorug' mavzularni doimiy o'zgartirish kiradi.",
+        "storeDescription": "React 19, Vite va Redux Toolkit yordamida yaratilgan zamonaviy moslashuvchan internet-do'kon vitrinasi. Ilova dinamik mahsulotlar katalogi, real vaqt rejimidagi qidiruv, kengaytirilgan saralash va dummyjson.com API asosida ishlaydigan funksional savatni o'z ichiga oladi. Loyiha mantiq uchun maxsus xuklar (custom hooks), navigatsiya uchun React Router va SASS/SCSS modullari bilan dizayn-tokenlarga asoslangan uslublash tizimidan foydalangan holda toza arxitekturani namoyish etadi.",
         "details": "Batafsil",
         "benefits": {
             "weather": {
                 "geo": {
                     "title": "Avtomatik geolokatsiya",
-                    "description": "Ilova foydalanuvchining joylashuvini avtomatik aniqlaydi va real vaqtda aniq ob-havo prognozini yuklaydi."
+                    "description": "Ilova foydalanuvchi joylashuvini mustaqil aniqlaydi va real vaqt rejimida aniq ob-havo prognozini yuklaydi."
                 },
                 "adaptive": {
-                    "title": "Moslashuvchanlik va temalash",
-                    "description": "Interfeys mobil va desktop qurilmalar uchun to'liq moslashtirilgan. Mavzularni almashtirish (yorug'/qorong'i) qo'llab-quvvatlanadi."
+                    "title": "Moslashuvchanlik va mavzular",
+                    "description": "Interfeys mobil va desktop qurilmalar uchun to'liq moslashtirilgan. Mavzularni (yorug'/tungi) o'zgartirish qo'llab-quvvatlanadi."
                 },
                 "performance": {
                     "title": "Yuqori unumdorlik",
-                    "description": "Loyiha zamonaviy React va Redux stackida qurilgan. Bu sahifani qayta yuklamasdan interfeys tezkor javob berishini va internet zaif bo'lganda ham ilovaning barqaror ishlashini ta'minlaydi."
+                    "description": "Loyiha zamonaviy React va Redux stekida qurilgan. Bu sahifani qayta yuklamasdan interfeysning lahzali reaksiyasini va hatto internet sekin bo'lganda ham ilovaning barqaror ishlashini ta'minlaydi."
                 }
             },
             "store": {
                 "api": {
-                    "title": "Server tomonidan Sahifalash va Saralash",
-                    "description": "DummyJSON API bilan o'zaro aloqa amalga oshirildi: sahifalash, saralash va qidiruv server tomonida so'rov parametrlari (limit, skip, sortBy) orqali bajariladi."
+                    "title": "Server-Side Paginatsiya va Saralash",
+                    "description": "DummyJSON API bilan o'zaro aloqa yo'lga qo'yilgan: paginatsiya, saralash va qidiruv server tomonida so'rov parametrlari (limit, skip, sortBy) orqali amalga oshiriladi."
                 },
                 "url": {
-                    "title": "URL Sinxronizatsiyasi",
-                    "description": "Katalog holati brauzerning manzil qatori bilan chambarchas bog'langan. Sahifalash sahifalarini o'zgartirganda, URL parametri yangilanadi. Bu foydalanuvchilarga ma'lum bir mahsulot sahifasiga havolani ulashish yoki kontekstni yo'qotmasdan xatcho'plarga qo'shish imkonini beradi."
+                    "title": "URL sinxronizatsiyasi",
+                    "description": "Katalog holati brauzerning manzil satri bilan chambarchas bog'liq. Paginatsiya sahifasi o'zgarganda URL parametri yangilanadi. Bu foydalanuvchilarga mahsulotlarning aniq sahifasiga havolani ulashish yoki uni kontekstni yo'qotmasdan xatcho'plarga saqlash imkonini beradi."
                 },
                 "architecture": {
-                    "title": "Ajratilgan Biznes Logika",
-                    "description": "UI komponentlari faqat render uchun javobgar, barcha mantiq esa maxsus hooklarga (useProductCatalog, useProduct) va asinxron Redux Thunk funksiyalariga ajratilgan. Bu kodni toza, bashorat qilinadigan va test qilish uchun oson qiladi."
+                    "title": "Izolyatsiya qilingan biznes-mantiq",
+                    "description": "UI-komponentlar faqat render uchun javob beradi, butun mantiq esa maxsus xuklar (useProductCatalog, useProduct) va Redux asinxron Thunk-funksiyalariga chiqarilgan. Bu kodni toza, oldindan aytib bo'ladigan va testlash uchun qulay qiladi."
                 }
             }
         }
     },
     "contact": {
-        "title": "Bog'laning",
-        "description": "Loyihangiz bormi yoki shunchaki salomlashmoqchimisiz? Sizdan eshitishdan xursand bo'laman.",
+        "title": "Men bilan bog'laning",
+        "description": "Rejangizda biror loyiha bormi yoki shunchaki salomlashmoqchimisiz? Sizdan xabar olishdan xursand bo'laman.",
         "info": {
             "title": "Email va joylashuv",
-            "location": "O'zbekiston"
+            "location": "O'zbekistondaman"
         },
         "phone": {
             "title": "Telefon"
@@ -66,9 +66,9 @@
         }
     },
     "footer": {
-        "title": "Keling, birga ishlaylik",
-        "description": "O'rganish, o'sish va hissa qo'shish imkoniyatlarini qidiryapman. Bemalol murojaat qiling!",
-        "button": "Men bilan bog'laning",
+        "title": "Keling, birga ishlaymiz",
+        "description": "O'rganish, o'sish va hissa qo'shish imkoniyatlarini qidirmoqdaman. Bog'lanishdan tortinmang!",
+        "button": "Men bilan bog'lanish",
         "rights": "© 2025 Amir Ergashev. Barcha huquqlar himoyalangan."
     }
 }

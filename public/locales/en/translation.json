@@ -9,8 +9,8 @@
     },
     "hero": {
         "title": "Amir Ergashev",
-        "description": "I'm a junior web developer specializing in front-end technologies, enthusiastic about turning creative ideas into beautiful and functional code.",
-        "button": "My projects"
+        "description": "I'm a Junior Web Developer specializing in Front-End technologies, enthusiastic about turning creative ideas into beautiful and functional code.",
+        "button": "My Projects"
     },
     "skills": {
         "title": "Skills"
@@ -27,8 +27,8 @@
                     "description": "The application automatically detects the user's location and loads an accurate weather forecast in real time."
                 },
                 "adaptive": {
-                    "title": "Adaptivity and Theming",
-                    "description": "The interface is fully adapted for mobile and desktop devices. Theme switching support (light/dark) is implemented."
+                    "title": "Responsiveness and Theming",
+                    "description": "The interface is fully responsive for mobile and desktop devices. Theme switching support (light/dark) is implemented."
                 },
                 "performance": {
                     "title": "High Performance",
@@ -62,13 +62,13 @@
             "title": "Phone"
         },
         "social": {
-            "title": "Socia Medial"
+            "title": "Social Media"
         }
     },
     "footer": {
-        "title": "Lets work together",
+        "title": "Let's work together",
         "description": "Looking for opportunities to learn, grow, and contribute. Feel free to reach out!",
-        "button": "Сontact me",
+        "button": "Contact Me",
         "rights": "© 2025 Amir Ergashev. All rights reserved."
     }
 }
