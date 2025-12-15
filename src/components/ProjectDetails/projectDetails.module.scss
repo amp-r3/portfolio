@@ -1,4 +1,4 @@
-@use "@/scss/index.scss"as *;
+@use "@/styles/index.scss"as *;
 
 .project-details {
     position: relative;
@@ -42,38 +42,6 @@
 
         @media (min-width: 1024px) {
             margin-bottom: $spacing-large;
-        }
-    }
-
-    &__back-link {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 3rem;
-        height: 3rem;
-        border-radius: $border-radius-circle;
-        background: transparent;
-        border: 1px solid var(--border-primary);
-        backdrop-filter: blur(4px);
-        transition: all $transition-duration-base $timing-function-ease-in-out-smooth;
-
-        img {
-            width: $icon-size-medium;
-            height: $icon-size-medium;
-            filter: var(--icon-filter);
-            opacity: 0.7;
-            transition: transform $transition-duration-fast, opacity $transition-duration-base;
-        }
-
-        &:hover {
-            background: var(--background-interactive-hover);
-            border-color: var(--border-primary-hover);
-            transform: translateX(-4px);
-            box-shadow: var(--shadow-glass-hover);
-
-            img {
-                opacity: 1;
-            }
         }
     }
 

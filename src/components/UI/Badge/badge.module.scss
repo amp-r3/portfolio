@@ -1,10 +1,11 @@
-@use "@/scss/index.scss"as *;
+@use "@/styles/index.scss"as *;
 
 .badge {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   white-space: nowrap;
+  user-select: none;
 
   padding: $spacing-xxsmall $spacing-small;
 

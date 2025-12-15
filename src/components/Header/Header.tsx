@@ -4,7 +4,7 @@ import style from './header.module.scss'
 import LangSwitch from '../UI/LangSwitch/LangSwitch'
 import { useEffect, useRef, useState } from 'react'
 import { useHeaderScroll } from '@/hooks/useHeaderScroll'
-import MenuIcon from '../UI/MenuIcon/MenuIcon'
+import MenuButton from '../UI/MenuButton/MenuButton'
 import { useLocation } from 'react-router'
 const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -76,9 +76,7 @@ const Header = () => {
         <div ref={navRef} className={style.header}>
             <div className={style.header__wrapper + ' container'}>
                 <a href="" className={style.header__logo}>amp3re</a>
-                <button onClick={handleMenu} className={style.header__menu_btn}>
-                    <MenuIcon isOpen={isMenuOpen} />
-                </button>
+                <MenuButton isOpen={isMenuOpen} onClick={handleMenu} className={style.header__menu_btn} />
                 <ul className={`${style.header__menu} ${isMenuOpen ? 'active' : ''}`}>
                     <li><a onClick={(e) => { onLinkClick(e, 'skills') }} href="#skills" className={style.header__link}>{t('header.nav.skills')}</a></li>
                     <li><a onClick={(e) => { onLinkClick(e, 'projects') }} href="#projects" className={style.header__link}>{t('header.nav.projects')}</a></li>

@@ -2,7 +2,6 @@ import { Suspense } from 'react'
 import { createRoot } from 'react-dom/client'
 import { ThemeProvider } from '@/context/ThemeContext'
 
-import './scss/main.scss'
 
 import './i18n.ts';
 import Loader from './components/UI/Loader/Loader.tsx'

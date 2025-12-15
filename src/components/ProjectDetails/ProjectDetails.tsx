@@ -1,41 +1,45 @@
 import type { FC } from "react";
 import style from './projectDetails.module.scss';
-import { backIcon, externalLinkIcon, githubIcon } from "@/assets/images";
+import { externalLinkIcon, githubIcon } from "@/assets/images";
 import { useNavigate } from "react-router";
 import Badge from "../UI/Badge/Badge";
 import { useTranslation } from "react-i18next";
 import BenefitCard from "../UI/BenefitCard/BenefitCard";
-import type { ProjectBenefit } from "@/data/projectsData";
+import type { Project } from "@/data/projectsData";
+import { useTheme } from "@/hooks/useTheme";
+import BackButton from "../UI/BackButton/BackButton";
 
 interface IProjectDetailsProps {
-    title: string;
-    desc: string;
-    img: string;
-    mobileImg: string;
-    tools: string[];
-    demoLink: string;
-    githubLink: string;
-    benefits: ProjectBenefit[];
+    project: Project;
 }
 
-const ProjectDetails: FC<IProjectDetailsProps> = ({ title, desc, img, tools, demoLink, githubLink, benefits, mobileImg }) => {
+const ProjectDetails: FC<IProjectDetailsProps> = ({ project }) => {
     const navigate = useNavigate()
-
     const { t } = useTranslation()
+    const { theme } = useTheme()
+
+    const { title, descKey, tools, githubLink, demoLink, image, darkImage, mobileImage, mobileDarkImage, benefits } = project
+
+    const themeImage = theme === 'dark'
+        ? (darkImage ?? image ?? null)
+        : (image ?? null);
+
+    const mobileThemeImage = theme === 'dark'
+        ? (mobileDarkImage ?? mobileImage ?? darkImage ?? image ?? null)
+        : (mobileImage ?? image ?? null);
+
     return (
         <article className={`${style['project-details']} container page-content`}>
 
             <header className={style['project-details__header']}>
-                <button onClick={() => navigate(-1)} className={style['project-details__back-link']} aria-label="Go back">
-                    <img src={backIcon} alt="" aria-hidden="true" />
-                </button>
+                <BackButton onClick={() => navigate(-1)} ariaLabel="Go back" />
                 <span className={style['project-details__category']}>Web App</span>
             </header>
 
             <div className={style['project-details__content']}>
                 <h1 className={style['project-details__title']}>{title}</h1>
                 <div className={style['project-details__description-wrapper']}>
-                    <p className={style['project-details__description']}>{desc}</p>
+                    <p className={style['project-details__description']}>{t(descKey)}</p>
                 </div>
 
                 <div className={style['project-details__tools']}>
@@ -71,11 +75,11 @@ const ProjectDetails: FC<IProjectDetailsProps> = ({ title, desc, img, tools, dem
 
                     <source
                         media="(max-width: 576px)"
-                        srcSet={mobileImg}
+                        srcSet={mobileThemeImage}
                     />
 
                     <img
-                        src={img}
+                        src={themeImage}
                         alt={`Screenshot of the ${title} project`}
                         className={style['project-details__image']}
                     />
