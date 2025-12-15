@@ -1,7 +1,7 @@
 import Header from "./components/Header/Header"
 import SmoothScroll from "./components/SmoothScroll/SmoothScroll"
 import { Outlet } from "react-router";
-import '@/scss/base.scss'
+import '@/styles/main.scss'
 
 const App = () => {
   return (

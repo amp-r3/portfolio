@@ -1,0 +1,76 @@
+@use "@/styles/index.scss"as *;
+
+.backButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0;
+
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: $border-radius-circle;
+    color: var(--text-secondary);
+    cursor: pointer;
+
+    transition:
+        color $transition-duration-base $timing-function-ease-out-expo,
+        background-color $transition-duration-base $timing-function-ease-out-expo,
+        border-color $transition-duration-base $timing-function-ease-out-expo,
+        transform $transition-duration-fast $timing-function-ease-out-expo,
+        box-shadow $transition-duration-base $timing-function-ease-out-expo;
+
+    svg {
+        width: $icon-size-large;
+        height: $icon-size-large;
+        display: block;
+    }
+
+    .arrowHead,
+    .arrowShaft {
+        transform-origin: center;
+        transition: transform $transition-duration-base $timing-function-ease-out-expo;
+        will-change: transform; 
+    }
+
+    .arrowShaft {
+        transform-origin: right center;
+    }
+
+    &:hover {
+        background: var(--background-interactive-hover);
+        color: var(--text-primary);
+        border-color: var(--border-primary);
+        transform: translateX(-2px); 
+        box-shadow: 0 0 15px var(--accent-glow);
+
+        .arrowHead {
+            transform: translateX(-4px);
+        }
+
+        .arrowShaft {
+            transform: translateX(-1px) scaleX(1.15);
+            opacity: 0.9;
+        }
+    }
+
+    &:active {
+        transform: translateX(-4px) scale(0.95);
+        background: var(--border-primary-hover);
+
+        .arrowHead {
+            transform: translateX(-6px);
+        }
+
+        .arrowShaft {
+            transform: translateX(-2px) scaleX(1);
+        }
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--accent-glow);
+        outline-offset: 2px;
+    }
+}
