@@ -1,18 +1,18 @@
 @use "@/styles/index.scss"as *;
 
 .projects {
-    padding: $spacing-section 0; // 80px
+    padding-top: $spacing-section;// 80px
 
     display: flex;
     flex-direction: column;
     gap: $spacing-xxlarge; // 48px
 
     @media (max-width: 768px) {
-        padding: $spacing-title 0; // 60px
+        padding-top: $spacing-title; // 60px
     }
 
     @media (max-width: 576px) {
-        padding: $spacing-xxlarge 0; // 48px
+        padding-top: $spacing-xxlarge; // 48px
         gap: $spacing-xlarge; // 32px
     }
 
