@@ -1,7 +1,9 @@
 @use "@/styles/index.scss"as *;
 
 .contact {
-    padding: $spacing-section 0; // 80px
+    // margin: $spacing-section initial; // 80px
+    padding-top: $spacing-section;
+    padding-bottom: $spacing-section;
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: start;
@@ -9,15 +11,12 @@
 
     @media (max-width: 992px) {
         grid-template-columns: 1fr;
-        padding: $spacing-title 0; // 60px
+        // padding: $spacing-title 0; // 60px
         gap: $spacing-xxlarge; // 48px
     }
 
-    @media (max-width: 768px) {
-    }
-
     @media (max-width: 576px) {
-        padding: $spacing-xxlarge 0; // 48px
+        // padding: $spacing-xxlarge 0; // 48px
         gap: $spacing-xlarge; // 32px
     }
 

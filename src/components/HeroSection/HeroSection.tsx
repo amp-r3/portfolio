@@ -1,8 +1,8 @@
 import { useRef } from 'react'
 import style from './heroSection.module.scss'
 import { useTranslation } from 'react-i18next'
-import { motion, useScroll, useTransform } from 'framer-motion'
-import type { Variants } from 'framer-motion'
+import { motion, useScroll, useTransform } from 'motion/react'
+import type { Variants } from 'motion'
 import HeroBackground from './HeroBackground'
 import { socialsData } from '@/data/socialsData'
 

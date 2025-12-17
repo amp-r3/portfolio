@@ -8,9 +8,6 @@ importers:
 
   .:
     dependencies:
-      framer-motion:
-        specifier: ^12.23.25
-        version: 12.23.25(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       i18next:
         specifier: ^25.7.1
         version: 25.7.1(typescript@5.9.3)

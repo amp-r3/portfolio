@@ -1,7 +1,7 @@
 import style from './contact.module.scss'
 import { useTranslation } from 'react-i18next'
-import { motion } from 'framer-motion'
-import type { Variants } from 'framer-motion'
+import { motion } from 'motion/react'
+import type { Variants } from 'motion/react'
 import { socialsData } from '@/data/socialsData'
 
 const containerVariants: Variants = {

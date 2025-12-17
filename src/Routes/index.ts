@@ -1,8 +1,7 @@
 import { createBrowserRouter } from "react-router";
 import { Paths } from "./paths";
-import Home from "@/Pages/Home/Home";
-import ProjectPage from "@/Pages/Project/ProjectPage";
 import App from "@/App";
+import Home from "@/Pages/Home/Home";
 
 export const router = createBrowserRouter([
     {
@@ -15,7 +14,10 @@ export const router = createBrowserRouter([
             },
             {
                 path: Paths.projectPage,
-                Component: ProjectPage
+                lazy: async () => {
+                    const module = await import ("@/Pages/Project/ProjectPage");
+                    return { Component: module.default }
+                }
             }
         ]
     }
