@@ -1,9 +1,8 @@
 # Portfolio | Amir Ergashev
 
 ![React](https://img.shields.io/badge/React-19-blue?logo=react)
-![Vite](https://img.shields.io/badge/Vite-6.0-646CFF?logo=vite)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?logo=typescript)
-![Redux Toolkit](https://img.shields.io/badge/Redux_Toolkit-2.0-764ABC?logo=redux)
+![Vite](https://img.shields.io/badge/Vite-7.0-646CFF?logo=vite)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.9+-3178C6?logo=typescript)
 
 A modern, responsive portfolio website built to showcase my skills and projects as a Junior Web Developer. The application features a clean architecture, dynamic themes, internationalization, and smooth animations.
 
