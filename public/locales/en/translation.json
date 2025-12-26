@@ -70,5 +70,11 @@
         "description": "Looking for opportunities to learn, grow, and contribute. Feel free to reach out!",
         "button": "Contact Me",
         "rights": "© 2025 Amir Ergashev. All rights reserved."
+    },
+    "error": {
+        "title": "404",
+        "description": "It looks like you've ventured into <0>undefined</0> territory. This route hasn't been committed yet.",
+        "goBack": "Go Back",
+        "home": "Return to Homepage"
     }
 }

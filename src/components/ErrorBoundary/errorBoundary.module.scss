@@ -1,0 +1,271 @@
+@use "@/styles/index.scss"as *;
+
+.error-boundary {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: $spacing-medium;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+
+    @media (min-width: 768px) {
+        padding: $container-padding;
+    }
+
+    &::before {
+        content: '';
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        background: var(--accent-glow);
+        filter: blur(60px);
+        opacity: 0.3;
+        border-radius: $border-radius-circle;
+        z-index: -1;
+        pointer-events: none;
+
+        @media (min-width: 768px) {
+            width: 600px;
+            height: 600px;
+            filter: blur(100px);
+            opacity: 0.4;
+        }
+    }
+
+    &__code {
+        font-family: $font-family-title;
+        font-size: clamp(5rem, 20vw, 12.5rem);
+        font-weight: $typography-font-weight-bold;
+        line-height: $typography-line-height-ui;
+        color: var(--text-primary);
+        margin-bottom: $spacing-small;
+
+        -webkit-text-fill-color: transparent;
+        -webkit-text-stroke: 1px var(--text-primary);
+        opacity: 0.5;
+
+        position: relative;
+        display: inline-block;
+        animation: glitch-skew 4s infinite linear alternate-reverse;
+
+        @media (min-width: 768px) {
+            -webkit-text-stroke: 2px var(--text-primary);
+            margin-bottom: $spacing-medium;
+        }
+
+        &::before {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+
+            -webkit-text-fill-color: transparent;
+            -webkit-text-stroke: 1px var(--text-secondary); 
+
+            clip-path: inset(50% 0 0 0);
+
+            animation: glitch-anim-1 3s infinite linear alternate-reverse;
+
+            z-index: -1;
+            opacity: 0.7;
+        }
+
+        &::after {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+
+            -webkit-text-fill-color: transparent;
+            -webkit-text-stroke: 1px var(--text-primary);
+
+            clip-path: inset(0 0 50% 0);
+
+            animation: glitch-anim-2 2.5s infinite linear alternate-reverse;
+            z-index: -2;
+            opacity: 0.5;
+        }
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: $spacing-large;
+        max-width: 90%;
+
+        @media (min-width: 768px) {
+            max-width: 480px;
+        }
+    }
+
+    &__description {
+        font-family: $font-family-base;
+        font-size: $typography-font-size-base;
+        color: var(--text-secondary);
+        line-height: $typography-line-height-relaxed;
+
+        @media (min-width: 768px) {
+            font-size: $typography-font-size-medium;
+        }
+    }
+
+    &__highlight {
+        font-family: monospace;
+        color: var(--text-primary);
+        background: var(--background-interactive-hover);
+        padding: 0.2em 0.4em;
+        border-radius: 4px;
+        border: 1px solid var(--border-primary);
+        font-size: 0.9em;
+    }
+
+    &__link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: $button-size;
+        padding: 0 $spacing-large;
+
+        font-family: $font-family-base;
+        font-size: $typography-font-size-small;
+        font-weight: $typography-font-weight-semibold;
+        text-transform: uppercase;
+        letter-spacing: $typography-letter-spacing-wide;
+        text-decoration: none;
+
+        background: var(--button-background);
+        color: var(--button-text);
+        border-radius: $border-radius-pill;
+
+        transition: all $transition-duration-base $timing-function-ease-out-expo;
+        box-shadow: var(--shadow-button);
+
+        @media (max-width: 767px) {
+            width: 100%;
+            max-width: 280px;
+        }
+
+        &:hover {
+            background: var(--button-background-hover);
+            transform: $hover-transform-lift;
+            box-shadow: var(--shadow-glass-hover);
+        }
+
+        &:active {
+            transform: scale($transform-scale-down-small);
+        }
+
+        &--secondary {
+            background: transparent;
+            border: 1px solid var(--border-primary);
+            color: var(--text-secondary);
+            box-shadow: none;
+
+            &:hover {
+                background: var(--background-interactive-hover);
+                border-color: var(--text-primary);
+                color: var(--text-primary);
+                transform: $hover-transform-lift;
+            }
+        }
+    }
+}
+
+@keyframes glitch-skew {
+    0% {
+        transform: skew(0deg);
+    }
+
+    20% {
+        transform: skew(-2deg);
+    }
+
+    40% {
+        transform: skew(2deg);
+    }
+
+    60% {
+        transform: skew(-1deg);
+    }
+
+    80% {
+        transform: skew(1deg);
+    }
+
+    100% {
+        transform: skew(0deg);
+    }
+}
+
+@keyframes glitch-anim-1 {
+    0% {
+        clip-path: inset(80% 0 0 0);
+        transform: translate(-2px, 1px);
+    }
+
+    20% {
+        clip-path: inset(10% 0 60% 0);
+        transform: translate(2px, -1px);
+    }
+
+    40% {
+        clip-path: inset(50% 0 30% 0);
+        transform: translate(-2px, 2px);
+    }
+
+    60% {
+        clip-path: inset(10% 0 80% 0);
+        transform: translate(2px, -2px);
+    }
+
+    80% {
+        clip-path: inset(40% 0 20% 0);
+        transform: translate(-1px, 1px);
+    }
+
+    100% {
+        clip-path: inset(80% 0 0 0);
+        transform: translate(0);
+    }
+}
+
+@keyframes glitch-anim-2 {
+    0% {
+        clip-path: inset(10% 0 80% 0);
+        transform: translate(2px, -1px);
+    }
+
+    20% {
+        clip-path: inset(80% 0 0 0);
+        transform: translate(-2px, 1px);
+    }
+
+    40% {
+        clip-path: inset(30% 0 50% 0);
+        transform: translate(2px, -2px);
+    }
+
+    60% {
+        clip-path: inset(60% 0 10% 0);
+        transform: translate(-2px, 2px);
+    }
+
+    80% {
+        clip-path: inset(20% 0 40% 0);
+        transform: translate(1px, -1px);
+    }
+
+    100% {
+        clip-path: inset(10% 0 80% 0);
+        transform: translate(0);
+    }
+}

@@ -70,5 +70,11 @@
         "description": "O'rganish, o'sish va hissa qo'shish imkoniyatlarini qidirmoqdaman. Bog'lanishdan tortinmang!",
         "button": "Men bilan bog'lanish",
         "rights": "© 2025 Amir Ergashev. Barcha huquqlar himoyalangan."
+    },
+    "error": {
+        "title": "404",
+        "description": "Aftidan, siz <0>undefined</0> hududga kirib qoldingiz. Bu yo'nalish hali commit qilinmagan.",
+        "goBack": "Orqaga",
+        "home": "Bosh sahifaga qaytish"
     }
 }
