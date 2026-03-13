@@ -1,8 +1,12 @@
-@use "@/styles/index.scss"as *;
+@use "@/styles/index.scss" as *;
 
 .skills {
     position: relative;
     z-index: 2;
+    
+    :global(.rfm-marquee) {
+        min-width: auto !important;
+    }
 
     @media (max-width: 768px) {
         padding: $spacing-title 0;
@@ -15,17 +19,13 @@
         text-align: center;
         margin-bottom: $spacing-title;
         color: var(--text-primary);
-        text-shadow: 0 2px 10px rgba(0,0,0, 0.3);
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 
         @media (max-width: 992px) {
             font-size: 3.5rem;
             margin-bottom: $spacing-xxlarge;
         }
-
-        @media (max-width: 768px) {
-            font-size: $typography-font-size-xxlarge;
-        }
-
+        @media (max-width: 768px) { font-size: $typography-font-size-xxlarge; }
         @media (max-width: 576px) {
             font-size: $typography-font-size-xlarge;
             margin-bottom: $spacing-xlarge;
@@ -36,99 +36,156 @@
         display: flex;
         flex-direction: column;
         gap: $spacing-large;
-        
-        -webkit-mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent);
-        mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent);
+        padding: 35px 0;
+        overflow: visible;
+        -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+        mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
 
-        @media (max-width: 576px) {
-            gap: $spacing-medium;
+        @media (max-width: 576px) { gap: $spacing-medium; }
+    }
+
+    // ─── Row wrapper ─────────────────────────────────────────────
+    &__row {
+        padding: 6px 0;
+        :global(.rfm-marquee-container) {
+            overflow: visible !important;
         }
     }
 
+    &__item {
+        padding: 0 10px;
+    }
 
+    // ─── Card: horizontal pill ────────────────────────────────────
     &__card {
+        position: relative;
+        overflow: hidden;
         background: var(--card-bg);
         border: 1px solid var(--card-border);
         box-shadow: var(--card-shadow);
-        
         backdrop-filter: blur(var(--card-backdrop-blur));
         -webkit-backdrop-filter: blur(var(--card-backdrop-blur));
 
-        border-radius: $border-radius-medium;
-        padding: $spacing-xlarge $spacing-base;
+        border-radius: $border-radius-pill;
+        padding: $spacing-base $spacing-large $spacing-base $spacing-large;
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
-        justify-content: center; 
-
-        gap: $spacing-base;
-        width: 200px;
+        gap: $spacing-small;
+        width: max-content;
         box-sizing: border-box;
+        cursor: default;
+
+        --glow-color: rgba(56, 189, 248, 0.5);
 
         transition:
-            transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-            border-color 0.5s ease,
-            box-shadow 0.5s ease,
-            background 0.5s ease;
+            transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+            border-color 0.35s ease,
+            box-shadow 0.35s ease;
 
         &:hover {
-            border-color: var(--card-border-hover);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            
-            background: linear-gradient(
-                to bottom right, 
-                var(--card-bg), 
-                var(--background-interactive-hover)
-            );
+            transform: scale(1.06);
+            border-color: var(--glow-color);
+            box-shadow:
+                0 0 0 1px var(--glow-color),
+                0 4px 28px var(--glow-color),
+                0 12px 36px rgba(0, 0, 0, 0.2);
+
+            .skills__shimmer {
+                opacity: 1;
+                transform: translateX(220%);
+            }
+
+            .skills__iconWrap::after {
+                opacity: 1;
+                transform: scale(1);
+            }
 
             .skills__img {
-                transform: rotate(3deg);
+                transform: rotate(-8deg) scale(1.1);
             }
-            
+
             .skills__label {
                 color: var(--text-primary);
             }
         }
 
-        @media (max-width: 768px) {
-            width: 180px;
-            padding: $spacing-large $spacing-base;
-        }
-
         @media (max-width: 576px) {
-            width: 150px;
-            padding: $spacing-large $spacing-small;
-            gap: $spacing-small;
+            padding: $spacing-xsmall $spacing-base $spacing-xsmall $spacing-small;
+            gap: $spacing-xsmall;
+        }
+    }
+
+    // ─── Shimmer ─────────────────────────────────────────────────
+    &__shimmer {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+            100deg,
+            transparent 15%,
+            rgba(255, 255, 255, 0.1) 50%,
+            transparent 85%
+        );
+        transform: translateX(-100%);
+        opacity: 0;
+        pointer-events: none;
+        transition:
+            transform 0.5s cubic-bezier(0.19, 1, 0.22, 1),
+            opacity 0.1s ease;
+        border-radius: inherit;
+    }
+
+    // ─── Icon wrapper ─────────────────────────────────────────────
+    &__iconWrap {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+
+        &::after {
+            content: '';
+            position: absolute;
+            inset: -6px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--glow-color) 0%, transparent 70%);
+            opacity: 0;
+            transform: scale(0.5);
+            transition:
+                opacity 0.35s ease,
+                transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            pointer-events: none;
         }
     }
 
     &__img {
-        width: 80px;
-        height: 80px;
+        width: 36px;
+        height: 36px;
         object-fit: contain;
-        transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease;
-
-        @media (max-width: 768px) {
-            width: 70px;
-            height: 70px;
-        }
+        position: relative;
+        z-index: 1;
+        transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        filter: drop-shadow(0 0 0 rgb(0, 0, 0)); 
+        // transform: translateX(-px); 
 
         @media (max-width: 576px) {
-            width: 60px;
-            height: 60px;
+            width: 28px;
+            height: 28px;
         }
     }
 
     &__label {
-        font-size: $typography-font-size-medium;
-        font-weight: $typography-font-weight-semibold;
-        line-height: $typography-line-height-normal;
+        text-transform: uppercase;
+        font-size: $typography-font-size-big;
+        font-weight: $typography-font-weight-bold;
+        letter-spacing: $typography-letter-spacing-wide;
+        line-height: $typography-line-height-ui;
         color: var(--text-secondary);
-        text-align: center;
+        white-space: nowrap;
         transition: color 0.3s ease;
+        
+        @media (max-width: 768px) { font-size: $typography-font-size-medium; }
 
-        @media (max-width: 576px) {
-            font-size: $typography-font-size-base;
-        }
+        @media (max-width: 576px) { font-size: $typography-font-size-small; }
     }
 }
