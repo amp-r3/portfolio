@@ -37,16 +37,16 @@
             },
             "store": {
                 "api": {
-                    "title": "Server-Side Pagination and Sorting",
-                    "description": "Implemented interaction with DummyJSON API: pagination, sorting, and search are performed server-side through request parameters (limit, skip, sortBy)."
+                    "title": "Server-Side Filtering via RTK Query",
+                    "description": "Interaction with the DummyJSON API is built using RTK Query: pagination, sorting, search, and category filtering are performed on the server side. Responses are normalized in transformResponse into a { ids, items } format for O(1) access to elements and efficient re-renders."
                 },
                 "url": {
-                    "title": "URL Synchronization",
-                    "description": "The catalog state is tightly coupled with the browser's address bar. When changing pagination pages, the URL parameter updates. This allows users to share links to specific product pages or bookmark them without losing context."
+                    "title": "URL as the Single Source of Truth",
+                    "description": "The entire catalog state lives in the address bar: search (?q=), sorting (?sortBy=, ?order=), category (?category=), and page (?page=). Any set of filters can be bookmarked or shared via a link — back/forward navigation works correctly out of the box."
                 },
                 "architecture": {
-                    "title": "Isolated Business Logic",
-                    "description": "UI components are only responsible for rendering, while all logic is extracted into custom hooks (useProductCatalog, useProduct) and asynchronous Redux Thunk functions. This makes the code clean, predictable, and easy to test."
+                    "title": "Isolated Business Logic in Hooks",
+                    "description": "UI components are responsible only for rendering. All logic is extracted into custom hooks: useProductCatalog orchestrates requests and pagination, useFilters manages URL parameters, and useTheme synchronizes the theme with the DOM. Memoized selectors via Reselect eliminate redundant calculations."
                 }
             }
         }
@@ -69,7 +69,7 @@
         "title": "Let's work together",
         "description": "Looking for opportunities to learn, grow, and contribute. Feel free to reach out!",
         "button": "Contact Me",
-        "rights": "© 2025 Amir Ergashev. All rights reserved."
+        "rights": "Amir Ergashev. All rights reserved."
     },
     "error": {
         "title": "404",

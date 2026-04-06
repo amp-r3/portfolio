@@ -37,16 +37,16 @@
             },
             "store": {
                 "api": {
-                    "title": "Server-Side Paginatsiya va Saralash",
-                    "description": "DummyJSON API bilan o'zaro aloqa yo'lga qo'yilgan: paginatsiya, saralash va qidiruv server tomonida so'rov parametrlari (limit, skip, sortBy) orqali amalga oshiriladi."
+                    "title": "RTK Query orqali Server-Side filtratsiyalash",
+                    "description": "DummyJSON API bilan o'zaro aloqa RTK Query asosida qurilgan: paginatsiya, saralash, qidiruv va toifalar bo'yicha filtratsiya server tomonida amalga oshiriladi. Javoblar transformResponse'da elementlarga O(1) kirish va samarali qayta renderlar (re-renders) uchun { ids, items } formatiga normallashtiriladi."
                 },
                 "url": {
-                    "title": "URL sinxronizatsiyasi",
-                    "description": "Katalog holati brauzerning manzil satri bilan chambarchas bog'liq. Paginatsiya sahifasi o'zgarganda URL parametri yangilanadi. Bu foydalanuvchilarga mahsulotlarning aniq sahifasiga havolani ulashish yoki uni kontekstni yo'qotmasdan xatcho'plarga saqlash imkonini beradi."
+                    "title": "URL yagona haqiqat manbai sifatida",
+                    "description": "Katalogning barcha holati manzil satrida saqlanadi: qidiruv (?q=), saralash (?sortBy=, ?order=), toifa (?category=) va sahifa (?page=). Har qanday filtrlar to'plamini xatcho'plarga saqlash yoki havola orqali yuborish mumkin — orqaga/oldinga navigatsiyasi o'z-o'zidan (out of the box) to'g'ri ishlaydi."
                 },
                 "architecture": {
-                    "title": "Izolyatsiya qilingan biznes-mantiq",
-                    "description": "UI-komponentlar faqat render uchun javob beradi, butun mantiq esa maxsus xuklar (useProductCatalog, useProduct) va Redux asinxron Thunk-funksiyalariga chiqarilgan. Bu kodni toza, oldindan aytib bo'ladigan va testlash uchun qulay qiladi."
+                    "title": "Hook-larda izolyatsiya qilingan biznes-mantiq",
+                    "description": "UI-komponentlar faqat render uchun javobgar. Barcha mantiq maxsus (custom) hook-larga chiqarilgan: useProductCatalog so'rovlar va paginatsiyani boshqaradi, useFilters URL-parametrlarni boshqaradi, useTheme esa mavzuni DOM bilan sinxronlashtiradi. Reselect orqali memoizatsiya qilingan selektorlar ortiqcha hisob-kitoblarni bartaraf etadi."
                 }
             }
         }
@@ -69,7 +69,7 @@
         "title": "Keling, birga ishlaymiz",
         "description": "O'rganish, o'sish va hissa qo'shish imkoniyatlarini qidirmoqdaman. Bog'lanishdan tortinmang!",
         "button": "Men bilan bog'lanish",
-        "rights": "© 2025 Amir Ergashev. Barcha huquqlar himoyalangan."
+        "rights": "Amir Ergashev. Barcha huquqlar himoyalangan."
     },
     "error": {
         "title": "404",

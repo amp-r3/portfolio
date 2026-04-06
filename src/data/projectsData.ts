@@ -1,5 +1,5 @@
 import { adaptiveIcon, geoIcon, linkIcon, performanceIcon, puzzleIcon, serverIcon } from "@/assets/images";
-import { store, storeMobile, weatherDark, weatherDarkMobile, weatherLight, weatherLightMobile } from "@/assets/images/ProjectImages";
+import { storeLight, storeDark, storeMobileDark, storeMobileLight, weatherDark, weatherDarkMobile, weatherLight, weatherLightMobile } from "@/assets/images/ProjectImages";
 
 export interface ProjectBenefit {
     titleKey: string;
@@ -66,19 +66,23 @@ export const projectsData: Project[] = [
     {
         id: 'store',
         title: 'Store App',
-        image: store,
-        mobileImage: storeMobile,
+        image: storeLight,
+        darkImage: storeDark,
+        mobileImage: storeMobileLight,
+        mobileDarkImage: storeMobileDark,
         descKey: 'projects.storeDescription',
         tools: [
             'React',
-            'JavaScript',
+            'TypeScript',
             'Redux Toolkit',
+            'RTK Query',
+            'redux-persist',
             'React Router',
-            'Axios',
             'Vite',
-            'Sass',
+            'SCSS Modules',
             'React Icons',
             'Reselect',
+            'Vaul',
             'DummyJSON API'
         ],
         demoLink: 'https://amp-r3-store.netlify.app/',

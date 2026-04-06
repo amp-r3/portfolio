@@ -152,7 +152,7 @@ const Footer = () => {
                     ease: "easeOut"
                 }}
             >
-                {t('footer.rights')}
+                © {new Date().getFullYear()} {t('footer.rights')}
             </motion.span>
             <FooterBackground />
         </footer>
