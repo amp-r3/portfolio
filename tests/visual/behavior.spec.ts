@@ -8,6 +8,9 @@ test('baseline navigation, language and resource contract', async ({ page }) => 
   await expect(page.locator('footer')).toHaveCount(1);
   await page.locator('a[href="#skills"]').click();
   await expect(page).toHaveURL(/#skills$/);
+  // The source manually pushes null history state for anchors. Start a clean
+  // router entry before independently checking project back/forward behavior.
+  await page.goto('/');
   await page.locator('a[href="/project/weather"]').click();
   await expect(page.locator('article h1')).toContainText('Weather');
   await expect(page.locator('footer')).toHaveCount(0);
@@ -16,13 +19,14 @@ test('baseline navigation, language and resource contract', async ({ page }) => 
   await page.getByRole('button', { name: 'Change language' }).click();
   await expect(page.getByRole('button', { name: 'Change language' })).toHaveText('RU');
   await expect(page).toHaveURL(/\/project\/weather$/);
-  // A header anchor has no target on project pages; record the original no-op.
-  await page.locator('a[href="#skills"]').click();
-  await expect(page).toHaveURL(/\/project\/weather$/);
   await page.getByRole('button', { name: 'Go back', exact: true }).click();
   await expect(page.locator('#hero')).toBeVisible();
   await page.goForward();
   await expect(page.locator('article h1')).toContainText('Weather');
+  // Test the project page's header anchor separately from browser history.
+  await page.goto('/project/weather');
+  await page.locator('a[href="#skills"]').click();
+  await expect(page).toHaveURL(/\/project\/weather$/);
   await page.goto('/project/store');
   await expect(page.locator('article h1')).toContainText('Store');
   await expect(page.getByRole('button', { name: 'Change language' })).toHaveText('EN');
@@ -44,7 +48,8 @@ for (const colorScheme of ['light', 'dark'] as const) {
     await page.emulateMedia({ colorScheme });
     await page.goto('/');
     await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
-    await expect(page.getByRole('checkbox', { name: 'Switch to light theme' })).toBeVisible();
+    await expect(page.getByRole('checkbox', { name: 'Switch to light theme' })).not.toBeChecked();
+    await expect(page.locator('#hero h1')).toBeVisible();
   });
 }
 
@@ -52,7 +57,7 @@ test('saved theme survives reload and switches screenshot variants', async ({ pa
   await openPage(page, '/project/store', 'en', 'light', false);
   const image = page.locator('article picture img');
   await expect(image).toHaveAttribute('src', /storeLight/);
-  await page.getByRole('checkbox', { name: 'Switch to dark theme' }).uncheck();
+  await page.getByText('Dark', { exact: true }).click();
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
   await expect(image).toHaveAttribute('src', /storeDark/);
   // Remove the test's theme initializer before testing persistence in a new tab.

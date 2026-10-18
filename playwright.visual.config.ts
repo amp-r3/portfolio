@@ -11,7 +11,7 @@ export default defineConfig({
   timeout: 90_000,
   expect: { timeout: 10_000, toMatchSnapshot: { threshold: 0, maxDiffPixels: 0 } },
   fullyParallel: true,
-  workers: 3,
+  workers: 1,
   retries: 0,
   reporter: [['list'], ['html', { outputFolder: 'artifacts/visual-report', open: 'never' }]],
   use: {
