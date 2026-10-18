@@ -1,0 +1,18 @@
+{
+  "sourceCommit": "1ba5927996ee783577c6d6c38ad69796f6afea4c",
+  "lockfileSha256": "33aad98b9a5f244939393820781801c0ffe0eb8458cc8aacaaf72999420b047d",
+  "node": "24.15.0",
+  "pnpm": "10.33.3",
+  "os": "Ubuntu 24.04.4 LTS (Linux x64)",
+  "playwright": "1.64.1",
+  "browser": "chromium",
+  "deviceScaleFactor": 1,
+  "timezoneId": "Asia/Tashkent",
+  "locale": "en-US",
+  "fixedDate": "2026-10-18T07:00:00.000Z",
+  "viewports": [
+    { "width": 375, "height": 812 },
+    { "width": 768, "height": 1024 },
+    { "width": 1440, "height": 900 }
+  ]
+}
