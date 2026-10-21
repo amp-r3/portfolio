@@ -1,8 +1,1 @@
-@use "index"as *;
-@import url(./base.scss);
-@import url(./fonts.scss);
-
-    
-
-
-
+@forward '@/shared/styles/main';

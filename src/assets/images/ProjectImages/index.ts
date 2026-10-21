@@ -1,8 +1,1 @@
-export {default as weatherLight } from './weatherLight.png'
-export {default as weatherDark } from './weatherDark.png'
-export {default as weatherLightMobile } from './weatherMobileLight.png'
-export {default as weatherDarkMobile } from './weatherMobileDark.png'
-export {default as storeLight} from './storeLight.png'
-export {default as storeDark} from './storeDark.png'
-export {default as storeMobileLight} from './storeMobileLight.png'
-export {default as storeMobileDark} from './storeMobileDark.png'
+export * from '@/shared/assets/images/ProjectImages';

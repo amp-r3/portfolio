@@ -1,8 +1,8 @@
-# Проверка этапов 0–1
+# Проверка этапов 0–2
 
 Окружение: Ubuntu 24.04.4 LTS x64, Node.js 24.15.0, pnpm 10.33.3. Исходник: `1ba5927996ee783577c6d6c38ad69796f6afea4c`.
 
-## Выполненные проверки
+## Выполненные проверки этапов 0–1
 
 - Исходные `pnpm build` и `pnpm lint` проходят в detached worktree с оригинальным frozen lockfile. Существующее предупреждение Vite: JS-чанк больше 500 kB.
 - `pnpm install --frozen-lockfile` нового приложения проходит без изменения lockfile.
@@ -14,6 +14,23 @@
 - `pnpm baseline:record`: два видео, mobile 375×812 и desktop 1440×900, завершились успешно; сохранены переходы, прокрутка, переключение темы и мобильное меню.
 - Sass Module временной пробной страницы попал в CSS production-сборки Next.js. Пробная страница удалена; после этого повторная чистая сборка показала только `/`, `/_not-found` и `/project/[id]`.
 - Финальные `pnpm typecheck`, `pnpm lint`, `pnpm test:architecture` и Chromium smoke проходят. ESLint оставляет информационное уведомление об устаревшей таблице `baseline-browser-mapping`.
+
+## Выполненные проверки этапа 2 (Стили, ресурсы и тема)
+
+- Стили перенесены в FSD: `src/shared/styles` (`_variables.scss`, `_theme.scss`, `base.scss`, `fonts.scss`, `index.scss`, `main.scss`). Сохранён порядок следования правил и селекторов.
+- Подключение глобальных стилей выполнено в `src/_app/ui/root-layout.tsx`. Контейнерные классы `.container`, `.page-content` и свойства `<main>` (`position: relative; min-height: 100vh; overflow: hidden`) сохранены.
+- Шрифты Inter, Exo2 и Azonix перенесены в `src/shared/assets/fonts/`. Загрузка шрифтов проверена через CSS Font Loading API (`document.fonts.load` / `document.fonts.check`) в Chromium и Firefox.
+- Растровые и векторные ресурсы перенесены в `src/shared/assets/` с адаптацией экспортов для Next.js (доступ к строковым URL для стандартных `<img>` и `<picture>`).
+- Тема: реализован `ThemeScript` для ранней установки `data-theme` на `<html>` до рендера, `ThemeProvider` на базе `useSyncExternalStore` без рассинхронизации гидратации и каскадных ререндеров, а также фича `src/features/switch-theme` (`ThemeSwitch`).
+- Автоматизированные тесты `tests/smoke/styles-and-theme.spec.ts` проверили:
+  - Применение CSS-переменных темы и контейнерных классов.
+  - Загрузку всех трёх шрифтов.
+  - Загрузку SVG-иконок переключателя темы.
+  - Выбор темной темы по умолчанию при обеих системных темах (light / dark).
+  - Холодное открытие с сохраненной темой `light` в `localStorage` без ошибок гидратации.
+  - Интерактивное переключение темы и сохранение ключа `theme` в `localStorage`.
+  - Поведение при недоступном `localStorage` (`SecurityError`) — страница доступна, тема dark, ошибок нет.
+- `pnpm build`, `pnpm typecheck`, `pnpm lint` (0 ошибок), `pnpm test:architecture` (12 тестов) и полный набор smoke-тестов на Chromium и Firefox (26 проверок) успешно пройдены.
 
 ## Особенности окружения проверки
 
