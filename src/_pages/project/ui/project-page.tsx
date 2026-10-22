@@ -1,13 +1,23 @@
 import { notFound } from 'next/navigation';
-import { isProjectId, projectsData } from '@/entities/project';
+import { getProject } from '@/entities/project/index.server';
+import { isProjectId } from '@/entities/project';
 import { ProjectDetails } from './project-details';
 
-export function ProjectPage({ id }: { id: string }) {
-  if (!isProjectId(id)) notFound();
+interface ProjectPageProps {
+  id: string;
+  locale: string;
+}
 
-  const project = projectsData.find((item) => item.id === id);
+export async function ProjectPage({ id, locale }: ProjectPageProps) {
+  if (!isProjectId(id)) {
+    notFound();
+  }
 
-  if (!project) notFound();
+  const project = await getProject(id, locale);
+
+  if (!project) {
+    notFound();
+  }
 
   return <ProjectDetails project={project} />;
 }

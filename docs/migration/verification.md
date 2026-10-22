@@ -42,6 +42,31 @@
 - Chromium 156.0.8078.4 и Firefox 157.0: по 16 smoke-проверок, 32/32 пройдены. WebKit 27.2 в этой среде после локальной установки библиотек проходит отдельный тест, но полный прогон зависает на `page.reload()` в сценарии истории. Это ограничение окружения, а не приложения; полная проверка WebKit остаётся для CI или машины со штатными зависимостями.
 - `pnpm typecheck`, `pnpm lint` (0 ошибок), `pnpm test:architecture` (12), `pnpm test:messages` (7) и `pnpm build` проходят. Build: SSG `/en`, `/ru`, `/uz` и шесть страниц проектов, динамический catch-all и Proxy middleware.
 
+## Выполненные проверки этапа 4 (Серверный доступ к данным проектов)
+
+- Модель сущности проекта формализована в `src/entities/project/model/types.ts`: `Project`, `ProjectBenefit`, `ProjectLinks`, `ProjectImages` и `ProjectId`.
+- Исходный массив проектов отделён от серверной логики в `src/entities/project/model/raw-projects.ts`.
+- Серверный API доступа к проектам (`getProjects(locale)` и `getProject(id, locale)`) реализован в `src/entities/project/api/get-projects.ts` с защитой `import 'server-only'`.
+- Ошибки источника и валидации локали типизированы через класс `ProjectSourceError`. Неизвестный id проекта возвращает `null`, что обрабатывается вызовом `notFound()`, а ошибки источника и неподдерживаемые локали вызывают исключение и направляются в обработчик `error.tsx`.
+- Публичный API сущности разделен:
+  - Клиентский barrel `src/entities/project/index.ts` экспортирует только типы, утилиты id и UI-компоненты (`ProjectCard`, `BenefitCard`).
+  - Серверный barrel `src/entities/project/index.server.ts` экспортирует `getProjects`, `getProject` и `ProjectSourceError` и защищен `import 'server-only'`.
+- Получение данных проектов переведено на Server Components:
+  - `HomePage` получает список проектов на сервере через `getProjects(locale)` и передает готовые сериализуемые данные в клиентский виджет `ProjectsSection`.
+  - `ProjectPage` получает проект на сервере через `getProject(id, locale)` и передает его в `ProjectDetails`.
+  - Клиентские компоненты не делают дополнительных запросов к серверу после монтирования.
+- `pnpm test:architecture`: добавлены 2 новые проверки (всего 14/14), подтверждающие доступ к `index.server.ts` для страниц и запрет импорта серверных API из слоя `shared`.
+- `pnpm test:projects`: добавлены 6 автоматических тестов логики проектов (изоляция серверного кода от клиентского barrel, защита `server-only`, порядок и структура проектов, корректная локализация ICU и литеральных `{ ids, items }` для всех 3 локалей).
+- Полный прогон тестов:
+  - `pnpm typecheck` — успешно.
+  - `pnpm lint` — 0 ошибок.
+  - `pnpm test:architecture` — 14/14 пройдено.
+  - `pnpm test:messages` — 7/7 пройдено.
+  - `pnpm test:projects` — 6/6 пройдено.
+  - `pnpm build` — успешная генерация SSG для всех локалей и страниц проектов.
+  - Smoke-тесты Chromium (17 проверок) и Firefox (17 проверок) — 34/34 пройдено.
+  - Проверки visual regression candidate подтверждают отсутствие визуальных отклонений.
+
 ## Особенности окружения проверки
 
 Для серверов, браузеров и дочерних процессов сборки использовался запуск вне ограниченной песочницы. Внутри неё build не смог прочитать вывод дочернего TypeScript, а browser preview не запустился; это ограничения среды, а не исключения из проверок приложения.

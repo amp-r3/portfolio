@@ -71,6 +71,19 @@ test('all locales serve the localized home page and html lang', async ({ page })
     await expect(page.locator('html')).toHaveAttribute('lang', locale);
     await expect(page.locator('#hero h1')).not.toBeEmpty();
     await expect(page.locator('footer')).toHaveCount(1);
+    await expect(page.locator(`a[href="/${locale}/project/weather"]`)).toBeVisible();
+    await expect(page.locator(`a[href="/${locale}/project/store"]`)).toBeVisible();
+  }
+});
+
+test('project details renders server-localized content, benefits, and literal braces', async ({ page }) => {
+  for (const locale of ['en', 'ru', 'uz']) {
+    await page.goto(`/${locale}/project/store`);
+    await expect(page.locator('article h1')).toHaveText(projectTitles.store);
+    await expect(page.locator('article p').first()).not.toBeEmpty();
+    await expect(page.locator('article section')).toContainText('{ ids, items }');
+    await expect(page.locator('a[href="https://amp-r3-store.netlify.app/"]')).toBeVisible();
+    await expect(page.locator('a[href="https://github.com/amp-r3/store"]')).toBeVisible();
   }
 });
 

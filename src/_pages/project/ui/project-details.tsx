@@ -1,7 +1,6 @@
 'use client';
 
 import type { FC } from 'react';
-import { useTranslations } from 'next-intl';
 import { BenefitCard, type Project } from '@/entities/project';
 import { externalLinkIcon, githubIcon } from '@/shared/assets';
 import { useRouter } from '@/shared/i18n';
@@ -15,10 +14,9 @@ interface IProjectDetailsProps {
 
 export const ProjectDetails: FC<IProjectDetailsProps> = ({ project }) => {
   const router = useRouter();
-  const t = useTranslations();
   const { theme } = useTheme();
 
-  const { title, descKey, tools, githubLink, demoLink, image, darkImage, mobileImage, mobileDarkImage, benefits } =
+  const { title, description, tools, githubLink, demoLink, image, darkImage, mobileImage, mobileDarkImage, benefits } =
     project;
 
   const themeImage = theme === 'dark' ? (darkImage ?? image ?? null) : (image ?? null);
@@ -38,7 +36,7 @@ export const ProjectDetails: FC<IProjectDetailsProps> = ({ project }) => {
       <div className={style['project-details__content']}>
         <h1 className={style['project-details__title']}>{title}</h1>
         <div className={style['project-details__description-wrapper']}>
-          <p className={style['project-details__description']}>{t(descKey)}</p>
+          <p className={style['project-details__description']}>{description}</p>
         </div>
 
         <div className={style['project-details__tools']}>
@@ -87,8 +85,8 @@ export const ProjectDetails: FC<IProjectDetailsProps> = ({ project }) => {
             benefits.map((item, index) => (
               <BenefitCard
                 key={index}
-                title={t(item.titleKey)}
-                description={t(item.descKey)}
+                title={item.title}
+                description={item.description}
                 iconSrc={item.icon}
               />
             ))}

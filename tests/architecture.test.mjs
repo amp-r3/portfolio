@@ -12,7 +12,7 @@ after(() => rm(root, { recursive: true, force: true }));
 const files = [
   'app/page.ts', 'src/_app/index.ts', 'src/_pages/home/index.ts',
   'src/widgets/header/index.ts', 'src/features/theme/index.ts',
-  'src/entities/a/index.ts', 'src/entities/a/model/inner.ts',
+  'src/entities/a/index.ts', 'src/entities/a/index.server.ts', 'src/entities/a/model/inner.ts',
   'src/entities/b/index.ts', 'src/shared/lib/index.ts', 'src/shared/config/index.ts',
   'src/components/legacy.ts',
 ];
@@ -35,6 +35,8 @@ for (const [name, filename, source, allowed] of [
   ['same layer relative imports cannot bypass boundary', 'src/entities/a/check.ts', '../b', false],
   ['page cannot deep import entity by alias', 'src/_pages/home/check.ts', '@/entities/a/model/inner', false],
   ['page cannot deep import entity relatively', 'src/_pages/home/check.ts', '../../entities/a/model/inner', false],
+  ['page uses lower entity server public API', 'src/_pages/home/check.ts', '@/entities/a/index.server', true],
+  ['shared cannot import entity server public API', 'src/shared/lib/check.ts', '@/entities/a/index.server', false],
   ['new code cannot import legacy', 'src/_pages/home/check.ts', '@/components/legacy', false],
   ['shared cannot import app', 'src/shared/lib/check.ts', '@/_app', false],
 ]) {

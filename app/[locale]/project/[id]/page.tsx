@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   return {};
 }
 
-export default async function Page({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = await params;
-  return <ProjectPage id={id} />;
+export default async function Page({ params }: { params: Promise<{ id: string; locale: string }> }) {
+  const { id, locale } = await params;
+  return <ProjectPage id={id} locale={locale} />;
 }
