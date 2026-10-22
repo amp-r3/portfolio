@@ -8,7 +8,7 @@ test.describe('Stage 2: Styles, Fonts, Assets, and Theme', () => {
     await expect(main).toHaveCSS('position', 'relative');
     await expect(main).toHaveCSS('overflow', 'hidden');
 
-    const container = page.locator('.container');
+    const container = page.locator('.container').first();
     await expect(container).toHaveCSS('max-width', '1440px');
 
     const html = page.locator('html');

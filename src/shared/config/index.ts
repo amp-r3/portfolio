@@ -1,0 +1,1 @@
+export { socialsData } from './socials';

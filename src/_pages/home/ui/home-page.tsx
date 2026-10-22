@@ -1,25 +1,17 @@
-import Link from 'next/link';
-import { projectIds } from '@/entities/project';
-import { ThemeSwitch } from '@/features/switch-theme';
+import { HeroSection } from '@/widgets/hero';
+import { SkillsSection } from '@/widgets/skills';
+import { ProjectsSection } from '@/widgets/projects';
+import { ContactSection } from '@/widgets/contact';
+import { Footer } from '@/widgets/footer';
 
 export function HomePage() {
   return (
-    <div className="container page-content">
-      <header>
-        <ThemeSwitch />
-      </header>
-      <section id="hero">
-        <h1>Amir Ergashev</h1>
-        <h2>Portfolio</h2>
-      </section>
-      <p>The Next.js foundation is ready. The existing interface will be migrated in the next stages.</p>
-      <ul>
-        {projectIds.map((id) => (
-          <li key={id}>
-            <Link href={`/project/${id}`}>{id}</Link>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <>
+      <HeroSection />
+      <SkillsSection />
+      <ProjectsSection />
+      <ContactSection />
+      <Footer />
+    </>
   );
 }

@@ -1,0 +1,70 @@
+@use "@/shared/styles/index.scss" as *;
+
+.projects {
+    padding-top: $spacing-section; // 80px
+
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xxlarge; // 48px
+
+    @media (max-width: 768px) {
+        padding-top: $spacing-title; // 60px
+    }
+
+    @media (max-width: 576px) {
+        padding-top: $spacing-xxlarge; // 48px
+        gap: $spacing-xlarge; // 32px
+    }
+
+    &__header {
+        text-align: center;
+        margin-bottom: $spacing-large; // 24px
+
+        @media (max-width: 768px) {
+            margin-bottom: $spacing-medium; // 16px
+        }
+    }
+
+    &__main_title {
+        font-family: $font-family-title;
+        font-size: $typography-font-size-title; // 64px
+        font-weight: $typography-font-weight-bold;
+        text-align: center;
+        margin-bottom: $spacing-title; // 60px
+        color: var(--text-primary);
+
+        @media (max-width: 992px) {
+            font-size: 3.5rem; // 56px
+            margin-bottom: $spacing-xxlarge; // 48px
+        }
+
+        @media (max-width: 768px) {
+            font-size: $typography-font-size-xxlarge; // 40px
+            margin-bottom: $spacing-xlarge; // 32px
+        }
+
+        @media (max-width: 576px) {
+            font-size: $typography-font-size-xlarge; // 32px
+        }
+    }
+
+    &__cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+        grid-auto-rows: 1fr;
+        gap: $spacing-xlarge; // 32px
+
+        @media (max-width: 768px) {
+            gap: $spacing-large; // 24px
+        }
+
+        @media (max-width: 576px) {
+            gap: $spacing-base; // 20px
+        }
+    }
+
+    /* --- Card Wrapper (for motion.div) --- */
+    &__card_wrapper {
+        height: 100%;
+    }
+}

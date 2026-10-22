@@ -1,0 +1,80 @@
+{
+    "header": {
+        "nav": {
+            "skills": "Ko'nikmalar",
+            "projects": "Loyihalar",
+            "contact": "Bog'lanish"
+        },
+        "lang_switcher": "UZ"
+    },
+    "hero": {
+        "title": "Amir Ergashev",
+        "description": "Men frontend-texnologiyalariga ixtisoslashgan boshlovchi veb-dasturchiman. Kreativ g'oyalarni chiroyli va funksional kodga katta ishtiyoq bilan aylantiraman.",
+        "button": "Mening loyihalarim"
+    },
+    "skills": {
+        "title": "Ko'nikmalar"
+    },
+    "projects": {
+        "title": "Mening loyihalarim",
+        "weatherDescription": "React, Vite va Redux Toolkit yordamida yaratilgan dinamik ob-havo ilovasi. Bu to'liq moslashuvchan (adaptiv) ilova foydalanuvchi joylashuvini brauzer geolokatsiyasi orqali avtomatik aniqlaydi (IP orqali zaxira varianti bilan) yoki istalgan shaharni qidirish imkonini beradi. Joriy sharoitlar, soatlik va 7 kunlik prognozni taqdim etish uchun OpenWeatherMap va Geoapify API-larini integratsiya qiladi. Asosiy xususiyatlarga Redux Thunk bilan ishonchli asinxron holat boshqaruvi, API so'rovlarini optimallashtirish uchun localStorage mijoz keshi va tungi/yorug' mavzularni doimiy o'zgartirish kiradi.",
+        "storeDescription": "React 19, Vite va Redux Toolkit yordamida yaratilgan zamonaviy moslashuvchan internet-do'kon vitrinasi. Ilova dinamik mahsulotlar katalogi, real vaqt rejimidagi qidiruv, kengaytirilgan saralash va dummyjson.com API asosida ishlaydigan funksional savatni o'z ichiga oladi. Loyiha mantiq uchun maxsus xuklar (custom hooks), navigatsiya uchun React Router va SASS/SCSS modullari bilan dizayn-tokenlarga asoslangan uslublash tizimidan foydalangan holda toza arxitekturani namoyish etadi.",
+        "details": "Batafsil",
+        "benefits": {
+            "weather": {
+                "geo": {
+                    "title": "Avtomatik geolokatsiya",
+                    "description": "Ilova foydalanuvchi joylashuvini mustaqil aniqlaydi va real vaqt rejimida aniq ob-havo prognozini yuklaydi."
+                },
+                "adaptive": {
+                    "title": "Moslashuvchanlik va mavzular",
+                    "description": "Interfeys mobil va desktop qurilmalar uchun to'liq moslashtirilgan. Mavzularni (yorug'/tungi) o'zgartirish qo'llab-quvvatlanadi."
+                },
+                "performance": {
+                    "title": "Yuqori unumdorlik",
+                    "description": "Loyiha zamonaviy React va Redux stekida qurilgan. Bu sahifani qayta yuklamasdan interfeysning lahzali reaksiyasini va hatto internet sekin bo'lganda ham ilovaning barqaror ishlashini ta'minlaydi."
+                }
+            },
+            "store": {
+                "api": {
+                    "title": "RTK Query orqali Server-Side filtratsiyalash",
+                    "description": "DummyJSON API bilan o'zaro aloqa RTK Query asosida qurilgan: paginatsiya, saralash, qidiruv va toifalar bo'yicha filtratsiya server tomonida amalga oshiriladi. Javoblar transformResponse'da elementlarga O(1) kirish va samarali qayta renderlar (re-renders) uchun '{ ids, items }' formatiga normallashtiriladi."
+                },
+                "url": {
+                    "title": "URL yagona haqiqat manbai sifatida",
+                    "description": "Katalogning barcha holati manzil satrida saqlanadi: qidiruv (?q=), saralash (?sortBy=, ?order=), toifa (?category=) va sahifa (?page=). Har qanday filtrlar to'plamini xatcho'plarga saqlash yoki havola orqali yuborish mumkin — orqaga/oldinga navigatsiyasi o'z-o'zidan (out of the box) to'g'ri ishlaydi."
+                },
+                "architecture": {
+                    "title": "Hook-larda izolyatsiya qilingan biznes-mantiq",
+                    "description": "UI-komponentlar faqat render uchun javobgar. Barcha mantiq maxsus (custom) hook-larga chiqarilgan: useProductCatalog so'rovlar va paginatsiyani boshqaradi, useFilters URL-parametrlarni boshqaradi, useTheme esa mavzuni DOM bilan sinxronlashtiradi. Reselect orqali memoizatsiya qilingan selektorlar ortiqcha hisob-kitoblarni bartaraf etadi."
+                }
+            }
+        }
+    },
+    "contact": {
+        "title": "Men bilan bog'laning",
+        "description": "Rejangizda biror loyiha bormi yoki shunchaki salomlashmoqchimisiz? Sizdan xabar olishdan xursand bo'laman.",
+        "info": {
+            "title": "Email va joylashuv",
+            "location": "O'zbekistondaman"
+        },
+        "phone": {
+            "title": "Telefon"
+        },
+        "social": {
+            "title": "Ijtimoiy tarmoqlar"
+        }
+    },
+    "footer": {
+        "title": "Keling, birga ishlaymiz",
+        "description": "O'rganish, o'sish va hissa qo'shish imkoniyatlarini qidirmoqdaman. Bog'lanishdan tortinmang!",
+        "button": "Men bilan bog'lanish",
+        "rights": "Amir Ergashev. Barcha huquqlar himoyalangan."
+    },
+    "error": {
+        "title": "404",
+        "description": "Aftidan, siz <code>undefined</code> hududga kirib qoldingiz. Bu yo'nalish hali commit qilinmagan.",
+        "goBack": "Orqaga",
+        "home": "Bosh sahifaga qaytish"
+    }
+}

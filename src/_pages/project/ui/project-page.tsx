@@ -1,11 +1,13 @@
-import Link from 'next/link';
-import type { ProjectId } from '@/entities/project';
+import { notFound } from 'next/navigation';
+import { isProjectId, projectsData } from '@/entities/project';
+import { ProjectDetails } from './project-details';
 
-export function ProjectPage({ id }: { id: ProjectId }) {
-  return (
-    <div className="container page-content">
-      <h1>Project: {id}</h1>
-      <Link href="/">Home</Link>
-    </div>
-  );
+export function ProjectPage({ id }: { id: string }) {
+  if (!isProjectId(id)) notFound();
+
+  const project = projectsData.find((item) => item.id === id);
+
+  if (!project) notFound();
+
+  return <ProjectDetails project={project} />;
 }

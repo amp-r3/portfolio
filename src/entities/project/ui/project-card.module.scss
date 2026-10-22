@@ -1,0 +1,179 @@
+@use "@/shared/styles/index.scss" as *;
+
+/* --- Project Card Element --- */
+.projects__card {
+    background-color: var(--background-glass-alpha);
+    border: 1px solid var(--border-glass-alpha);
+    border-radius: $border-radius-large;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    backdrop-filter: $filter-backdrop-blur;
+    transition:
+        transform $transition-duration-base $timing-function-ease-in-out-smooth,
+        box-shadow $transition-duration-base $timing-function-ease-in-out-smooth,
+        border-color $transition-duration-base $timing-function-ease-in-out-smooth;
+
+    &:hover {
+        transform: translateY(-6px);
+        box-shadow: var(--shadow-glass-hover);
+        border-color: var(--border-glass-alpha-hover);
+    }
+
+    &:active {
+        transform: scale(0.98) translateY(-4px);
+        transition-duration: 100ms;
+    }
+}
+
+.projects__content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+/* --- Image Wrapper Element --- */
+.projects__wrapper {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    position: relative;
+
+    &::after {
+        content: attr(data-label);
+        position: absolute;
+        inset: 0;
+        background-color: rgba(0, 0, 0, 0.3);
+        backdrop-filter: $filter-backdrop-blur-small;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: $typography-font-weight-semibold;
+        opacity: 0;
+        transition: opacity $transition-duration-base ease;
+    }
+
+    .projects__card:hover &::after {
+        opacity: 1;
+    }
+}
+
+/* --- Image Element --- */
+.projects__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(13%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+    .projects__card:hover & {
+        transform: scale(1.06);
+    }
+}
+
+/* --- Title Element --- */
+.projects__title {
+    font-size: $typography-font-size-large; // 24px
+    font-weight: $typography-font-weight-semibold;
+    padding: $spacing-large $spacing-large $spacing-small $spacing-large;
+    margin: 0;
+    color: var(--text-primary);
+
+    @media (max-width: 768px) {
+        font-size: $typography-font-size-medium; // 18px
+        padding: $spacing-base $spacing-base $spacing-xsmall $spacing-base; // 20px 20px 8px 20px
+    }
+
+    @media (max-width: 576px) {
+        padding: $spacing-medium $spacing-medium $spacing-xsmall $spacing-medium; // 16px 16px 8px 16px
+    }
+}
+
+/* --- Description Element --- */
+.projects__description_wrapper {
+    padding: 0 $spacing-large $spacing-base $spacing-large; // 0 24px 24px 24px
+    margin: 0;
+    flex-grow: 1;
+
+    @media (max-width: 768px) {
+        padding: 0 $spacing-base $spacing-base $spacing-base; // 0 20px 20px 20px
+    }
+
+    @media (max-width: 576px) {
+        padding: 0 $spacing-medium $spacing-medium $spacing-medium; // 0 16px 16px 16px
+    }
+}
+
+.projects__description {
+    font-size: $typography-font-size-base; // 16px
+    color: var(--text-secondary);
+    line-height: $typography-line-height-normal; // 1.6
+
+    @media (max-width: 768px) {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+}
+
+.projects__footer {
+    padding: 0 $spacing-large $spacing-large $spacing-large;
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    gap: $spacing-xsmall;
+    color: var(--text-secondary);
+    font-weight: $typography-font-weight-semibold;
+    font-size: $typography-font-size-small;
+    transition: color $transition-duration-base ease;
+
+    .projects__card:hover & {
+        color: var(--text-primary);
+    }
+}
+
+.projects__arrow {
+    display: flex;
+    align-items: center;
+    transition: transform $transition-duration-base $timing-function-ease-in-out-smooth;
+
+    .projects__card:hover & {
+        transform: translate(3px, -6px) scale(1.1);
+    }
+
+    img {
+        width: $icon-size-medium;
+        height: $icon-size-medium;
+        filter: var(--icon-filter);
+        transition: transform $transition-duration-fast;
+        transform: rotate(130deg);
+    }
+}
+
+.projects__more {
+    transition: color $transition-duration-base ease;
+    position: relative;
+
+    &::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 1px;
+        bottom: -2px;
+        left: 0;
+        background-color: var(--card-border-hover);
+        transition: width $transition-duration-base ease;
+    }
+
+    .projects__card:hover & {
+        color: var(--card-border-hover);
+
+        &::after {
+            width: 100%;
+        }
+    }
+}

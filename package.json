@@ -20,7 +20,8 @@
     "start": "next start",
     "typecheck": "next typegen && tsc --noEmit",
     "test:smoke": "playwright test",
-    "test:architecture": "node tests/architecture.test.mjs"
+    "test:architecture": "node tests/architecture.test.mjs",
+    "test:messages": "node tests/messages.test.mjs"
   },
   "dependencies": {
     "i18next": "25.7.1",
