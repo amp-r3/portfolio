@@ -21,7 +21,9 @@ export async function RootLayout({ children, locale }: RootLayoutProps) {
       <head>
         <ThemeScript />
       </head>
-      <body>
+      <body suppressHydrationWarning>
+        {/* Browser extensions (for example ColorZilla's cz-shortcut-listen)
+            can add attributes before hydration. They are not part of the app. */}
         <NextIntlClientProvider locale={locale} messages={messages}>
           <ThemeProvider>
             <div id="root">
