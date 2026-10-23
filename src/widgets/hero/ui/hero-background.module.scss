@@ -97,6 +97,24 @@
     z-index: 2;
 }
 
+:global([data-theme='dark']) {
+    .darkBase, .darkAccent1, .darkAccent2, .darkAccent3, .darkOverlay {
+        opacity: 1;
+    }
+    .lightBase, .lightAccent1, .lightAccent2, .lightAccent3, .lightOverlay {
+        opacity: 0;
+    }
+}
+
+:global([data-theme='light']) {
+    .darkBase, .darkAccent1, .darkAccent2, .darkAccent3, .darkOverlay {
+        opacity: 0;
+    }
+    .lightBase, .lightAccent1, .lightAccent2, .lightAccent3, .lightOverlay {
+        opacity: 1;
+    }
+}
+
 /* --- Animations --- */
 
 @keyframes float-slow {

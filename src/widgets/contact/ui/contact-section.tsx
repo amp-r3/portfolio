@@ -61,7 +61,7 @@ export function ContactSection() {
         <div className={style.contact__content}>
           <motion.div variants={itemVariants} className={style.contact__info}>
             <h4 className={style.contact__subtitle}>{t('contact.info.title')}</h4>
-            <a href={`mailto:${socialsData.email.link}}`} className={style.contact__email}>
+            <a href={`mailto:${socialsData.email.link}`} className={style.contact__email}>
               {socialsData.email.link}
             </a>
             <span className={style.contact__location}>{t('contact.info.location')}</span>

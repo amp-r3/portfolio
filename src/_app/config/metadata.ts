@@ -6,11 +6,21 @@ const url = 'https://amp3re.netlify.app/';
 const image = `${url}og-image.png`;
 
 export const metadata: Metadata = {
-  title,
+  title: {
+    default: title,
+    template: '%s | Amir Ergashev',
+  },
   description,
-  keywords: 'Frontend, React, Vite, Redux Toolkit, Web Development, Portfolio, Amir Ergashev, Junior Developer, Uzbekistan',
+  keywords: 'Frontend, React, Next.js, TypeScript, Redux Toolkit, Web Development, Portfolio, Amir Ergashev, Uzbekistan',
   authors: [{ name: 'Amir Ergashev' }],
-  alternates: { canonical: url },
+  alternates: {
+    canonical: url,
+    languages: {
+      en: '/en',
+      ru: '/ru',
+      uz: '/uz',
+    },
+  },
   manifest: '/site.webmanifest',
   icons: {
     icon: [

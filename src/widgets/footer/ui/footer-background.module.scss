@@ -48,3 +48,21 @@
             rgba(167, 139, 250, 0.2) 30%,
             rgba(255, 255, 255, 0) 70%);
 }
+
+:global([data-theme='dark']) {
+    .darkBase, .darkAccent {
+        opacity: 1;
+    }
+    .lightBase, .lightAccent {
+        opacity: 0;
+    }
+}
+
+:global([data-theme='light']) {
+    .darkBase, .darkAccent {
+        opacity: 0;
+    }
+    .lightBase, .lightAccent {
+        opacity: 1;
+    }
+}

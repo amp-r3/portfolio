@@ -86,8 +86,8 @@ export function Footer() {
         whileInView="visible"
         viewport={{ once: true, amount: 0.5 }}
       >
-        <motion.a variants={itemRevealVariants} href="" className={style.footer__logo}>
-          amp3re
+        <motion.a variants={itemRevealVariants} href="#" className={style.footer__logo}>
+          amp-r3
         </motion.a>
 
         <div className={style.footer__contacts}>

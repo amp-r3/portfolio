@@ -12,7 +12,7 @@ export default defineConfig([
   ...nextTypescript,
   {
     rules: {
-      '@next/next/no-img-element': 'off',
+      '@next/next/no-img-element': 'warn',
     },
   },
   { files: ['scripts/**/*.mjs', 'tests/**/*.mjs'], languageOptions: { globals: globals.node } },

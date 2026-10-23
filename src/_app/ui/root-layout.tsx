@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import type { AbstractIntlMessages } from 'next-intl';
-import '@/shared/styles';
+import { fontInter, fontExo2, fontAzonix } from '@/shared/styles';
 import { I18nProvider, type Locale } from '@/shared/i18n';
 import { ThemeScript } from '@/shared/theme';
 import { Header } from '@/widgets/header';
@@ -30,7 +30,12 @@ export async function RootLayout({ children, locale }: RootLayoutProps) {
   const allMessages = await loadAllMessages();
 
   return (
-    <html lang={locale} data-theme="dark" suppressHydrationWarning>
+    <html
+      lang={locale}
+      data-theme="dark"
+      className={`${fontInter.variable} ${fontExo2.variable} ${fontAzonix.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         <ThemeScript />
       </head>

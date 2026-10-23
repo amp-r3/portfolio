@@ -1,7 +1,13 @@
 'use client';
 
-import { NotFoundPage } from '@/_pages/not-found';
+import { ErrorPage } from '@/_pages/error';
 
-export default function ErrorPage() {
-  return <NotFoundPage />;
+export default function RouteError({
+  error,
+  reset,
+}: {
+  error: Error & { digest?: string };
+  reset: () => void;
+}) {
+  return <ErrorPage error={error} reset={reset} />;
 }

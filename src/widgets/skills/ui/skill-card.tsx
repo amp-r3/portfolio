@@ -1,4 +1,5 @@
 import type { FC } from 'react';
+import Image from 'next/image';
 import style from './skills.module.scss';
 
 interface ISkillCardProps {
@@ -12,7 +13,7 @@ export const SkillCard: FC<ISkillCardProps> = ({ label, icon, glowColor = 'rgba(
     <div className={style.skills__card} style={{ '--glow-color': glowColor } as React.CSSProperties}>
       <div className={style.skills__shimmer} />
       <div className={style.skills__iconWrap}>
-        <img src={icon} alt="" className={style.skills__img} />
+        <Image src={icon} alt="" width={40} height={40} unoptimized className={style.skills__img} />
       </div>
       <span className={style.skills__label}>{label}</span>
     </div>

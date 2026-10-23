@@ -1,3 +1,3 @@
 import './main.scss';
 
-export {};
+export { fontInter, fontExo2, fontAzonix } from './fonts';

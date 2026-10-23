@@ -75,6 +75,9 @@
         "title": "404",
         "description": "It looks like you've ventured into <code>undefined</code> territory. This route hasn't been committed yet.",
         "goBack": "Go Back",
-        "home": "Return to Homepage"
+        "home": "Return to Homepage",
+        "runtimeErrorTitle": "Something went wrong",
+        "runtimeErrorDescription": "An unexpected error occurred while processing this request.",
+        "tryAgain": "Try Again"
     }
 }

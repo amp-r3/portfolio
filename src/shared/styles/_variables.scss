@@ -8,13 +8,13 @@
 // ---------------------------------------------
 
 // --- Font Family ---
-$font-family-base: 'Inter',
+$font-family-base: var(--font-inter), 'Inter',
 sans-serif !default;
 
-$font-family-title: 'Exo2',
+$font-family-title: var(--font-exo2), 'Exo2',
 sans-serif !default;
 
-$font-family-logo: 'Azonix',
+$font-family-logo: var(--font-azonix), 'Azonix',
 sans-serif !default;
 
 

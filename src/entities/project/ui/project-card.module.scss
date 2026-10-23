@@ -74,6 +74,24 @@
     }
 }
 
+:global([data-theme='dark']) {
+    .projects__img--light {
+        display: none;
+    }
+    .projects__img--dark {
+        display: block;
+    }
+}
+
+:global([data-theme='light']) {
+    .projects__img--light {
+        display: block;
+    }
+    .projects__img--dark {
+        display: none;
+    }
+}
+
 /* --- Title Element --- */
 .projects__title {
     font-size: $typography-font-size-large; // 24px

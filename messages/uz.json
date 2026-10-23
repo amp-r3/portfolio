@@ -75,6 +75,9 @@
         "title": "404",
         "description": "Aftidan, siz <code>undefined</code> hududga kirib qoldingiz. Bu yo'nalish hali commit qilinmagan.",
         "goBack": "Orqaga",
-        "home": "Bosh sahifaga qaytish"
+        "home": "Bosh sahifaga qaytish",
+        "runtimeErrorTitle": "Nimadir noto'g'ri ketdi",
+        "runtimeErrorDescription": "So'rovni qayta ishlashda kutilmagan xatolik yuz berdi.",
+        "tryAgain": "Qayta urinish"
     }
 }

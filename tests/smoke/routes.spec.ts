@@ -82,7 +82,7 @@ test('project details renders server-localized content, benefits, and literal br
     await expect(page.locator('article h1')).toHaveText(projectTitles.store);
     await expect(page.locator('article p').first()).not.toBeEmpty();
     await expect(page.locator('article section')).toContainText('{ ids, items }');
-    await expect(page.locator('a[href="https://amp-r3-store.netlify.app/"]')).toBeVisible();
+    await expect(page.locator('a[href="https://store-mauve-nine.vercel.app/"]')).toBeVisible();
     await expect(page.locator('a[href="https://github.com/amp-r3/store"]')).toBeVisible();
   }
 });
@@ -204,7 +204,7 @@ test('language switch on 404 updates locale and content without failed-to-fetch 
 
 test('loader appears during an artificially slowed project navigation', async ({ page }) => {
   await page.route('**/*?_rsc=*', async (route) => {
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    await new Promise((resolve) => setTimeout(resolve, 2500));
     await route.continue();
   });
 

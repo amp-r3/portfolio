@@ -271,4 +271,35 @@
         gap: $spacing-large;
         width: 100%;
     }
+
+    &__picture {
+        width: 100%;
+        display: block;
+
+        &--light {
+            display: block;
+        }
+
+        &--dark {
+            display: none;
+        }
+    }
+}
+
+:global([data-theme='dark']) {
+    .project-details__picture--light {
+        display: none !important;
+    }
+    .project-details__picture--dark {
+        display: block !important;
+    }
+}
+
+:global([data-theme='light']) {
+    .project-details__picture--light {
+        display: block !important;
+    }
+    .project-details__picture--dark {
+        display: none !important;
+    }
 }

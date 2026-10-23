@@ -1,4 +1,5 @@
 import type { FC } from 'react';
+import Image from 'next/image';
 import styles from './benefit-card.module.scss';
 
 interface IBenefitCardProps {
@@ -13,7 +14,7 @@ export const BenefitCard: FC<IBenefitCardProps> = ({ title, description, iconSrc
     <article className={`${styles.card} ${className}`}>
       <div className={styles.card__header}>
         <div className={styles.card__iconWrapper}>
-          <img src={iconSrc} alt="" aria-hidden="true" className={styles.card__icon} />
+          <Image src={iconSrc} alt="" width={24} height={24} unoptimized aria-hidden="true" className={styles.card__icon} />
         </div>
       </div>
 

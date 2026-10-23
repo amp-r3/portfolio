@@ -1,14 +1,20 @@
+'use client';
+
 import type { FC } from 'react';
+import { useRouter } from '@/shared/i18n';
 import styles from './back-button.module.scss';
 
 interface IBackButtonProps {
-  onClick: () => void;
+  onClick?: () => void;
   ariaLabel?: string;
 }
 
 export const BackButton: FC<IBackButtonProps> = ({ onClick, ariaLabel = 'Go back' }) => {
+  const router = useRouter();
+  const handleClick = onClick ?? (() => router.back());
+
   return (
-    <button className={styles.backButton} onClick={onClick} aria-label={ariaLabel} type="button">
+    <button className={styles.backButton} onClick={handleClick} aria-label={ariaLabel} type="button">
       <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <path
           className={styles.arrowShaft}

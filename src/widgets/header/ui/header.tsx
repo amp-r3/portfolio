@@ -75,8 +75,8 @@ export function Header() {
   return (
     <div ref={navRef} className={style.header}>
       <div className={style.header__wrapper + ' container'}>
-        <a href="" className={style.header__logo}>
-          amp3re
+        <a href="#" className={style.header__logo}>
+          amp-r3
         </a>
         <MenuButton isOpen={isMenuOpen} onClick={handleMenu} className={style.header__menu_btn} />
         <ul className={`${style.header__menu} ${isMenuOpen ? 'active' : ''}`}>
