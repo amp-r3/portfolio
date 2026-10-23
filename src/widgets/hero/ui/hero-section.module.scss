@@ -289,3 +289,19 @@
         }
     }
 }
+
+@media (prefers-reduced-motion: reduce) {
+    .hero {
+        &__content,
+        &__greeting,
+        &__title,
+        &__desc,
+        &__actions,
+        &__bottom,
+        &__links {
+            filter: none !important;
+            transform: none !important;
+            transition: none !important;
+        }
+    }
+}

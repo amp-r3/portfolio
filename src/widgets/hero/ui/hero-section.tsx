@@ -3,37 +3,22 @@
 import { useRef } from 'react';
 import { useTranslations } from 'next-intl';
 import { motion, useScroll, useTransform } from 'motion/react';
-import type { Variants } from 'motion';
-import { socialsData } from '@/shared/config';
+import type { Variants } from 'motion/react';
+import {
+  containerStaggerVariants,
+  socialsData,
+  textRevealVariants,
+  usePrefersReducedMotion,
+} from '@/shared/config';
 import style from './hero-section.module.scss';
 import { HeroBackground } from './hero-background';
 
-const containerVariants: Variants = {
-  hidden: { opacity: 0 },
+const contactsContainerVariants: Variants = {
+  hidden: {},
   visible: {
-    opacity: 1,
     transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.2,
-    },
-  },
-};
-
-const heroRevealVariants: Variants = {
-  hidden: {
-    opacity: 0,
-    y: 40,
-    filter: 'blur(12px)',
-    scale: 0.96,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    filter: 'blur(0px)',
-    scale: 1,
-    transition: {
-      duration: 1.4,
-      ease: [0.22, 1, 0.36, 1],
+      staggerChildren: 0.1,
+      delayChildren: 0.15,
     },
   },
 };
@@ -41,6 +26,7 @@ const heroRevealVariants: Variants = {
 export function HeroSection() {
   const t = useTranslations();
   const targetRef = useRef<HTMLElement>(null);
+  const prefersReduced = usePrefersReducedMotion();
 
   const { scrollYProgress } = useScroll({
     target: targetRef,
@@ -51,31 +37,33 @@ export function HeroSection() {
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
   const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
 
+  const scrollStyle = prefersReduced ? undefined : { scale, opacity, y };
+
   return (
     <section ref={targetRef} id="hero" className={style.hero}>
       <motion.div
         className={`${style.hero__content} container`}
-        variants={containerVariants}
+        variants={containerStaggerVariants}
         initial="hidden"
         animate="visible"
-        style={{ scale, opacity, y }}
+        style={scrollStyle}
       >
-        <div className={style.hero__center}>
-          <motion.p variants={heroRevealVariants} className={style.hero__greeting}>
+        <motion.div variants={containerStaggerVariants} className={style.hero__center}>
+          <motion.p variants={textRevealVariants} className={style.hero__greeting}>
             {t('hero.greeting')}
           </motion.p>
 
-          <motion.h1 variants={heroRevealVariants} className={style.hero__title}>
+          <motion.h1 variants={textRevealVariants} className={style.hero__title}>
             <span className={style.hero__titlePrimary}>{t('hero.titleRole')}</span>
             {' '}
             <span className={style.hero__titleSecondary}>{t('hero.titleTagline')}</span>
           </motion.h1>
 
-          <motion.p variants={heroRevealVariants} className={style.hero__desc}>
+          <motion.p variants={textRevealVariants} className={style.hero__desc}>
             {t('hero.description')}
           </motion.p>
 
-          <motion.div variants={heroRevealVariants} className={style.hero__actions}>
+          <motion.div variants={textRevealVariants} className={style.hero__actions}>
             <a href="#projects" className={style.hero__primaryBtn}>
               {t('hero.primaryButton')}
             </a>
@@ -83,24 +71,51 @@ export function HeroSection() {
               {t('hero.secondaryButton')}
             </a>
           </motion.div>
-        </div>
-
-        <motion.div variants={heroRevealVariants} className={style.hero__bottom}>
-          <div className={style.hero__contacts}>
-            <a href={socialsData.telegram.link} target="_blank" rel="noreferrer" className={style.hero__links}>
-              <img src={socialsData.telegram.icon} alt="Telegram" />
-            </a>
-            <a href={socialsData.github.link} target="_blank" rel="noreferrer" className={style.hero__links}>
-              <img src={socialsData.github.icon} alt="GitHub" />
-            </a>
-            <a href={socialsData.linkedin.link} target="_blank" rel="noreferrer" className={style.hero__links}>
-              <img src={socialsData.linkedin.icon} alt="LinkedIn" />
-            </a>
-            <a href={`mailto:${socialsData.email.link}`} className={style.hero__links}>
-              <img src={socialsData.email.icon} alt="Email" />
-            </a>
-          </div>
         </motion.div>
+
+        <div className={style.hero__bottom}>
+          <motion.div
+            variants={contactsContainerVariants}
+            initial="hidden"
+            animate="visible"
+            className={style.hero__contacts}
+          >
+            <motion.a
+              variants={textRevealVariants}
+              href={socialsData.telegram.link}
+              target="_blank"
+              rel="noreferrer"
+              className={style.hero__links}
+            >
+              <img src={socialsData.telegram.icon} alt="Telegram" />
+            </motion.a>
+            <motion.a
+              variants={textRevealVariants}
+              href={socialsData.github.link}
+              target="_blank"
+              rel="noreferrer"
+              className={style.hero__links}
+            >
+              <img src={socialsData.github.icon} alt="GitHub" />
+            </motion.a>
+            <motion.a
+              variants={textRevealVariants}
+              href={socialsData.linkedin.link}
+              target="_blank"
+              rel="noreferrer"
+              className={style.hero__links}
+            >
+              <img src={socialsData.linkedin.icon} alt="LinkedIn" />
+            </motion.a>
+            <motion.a
+              variants={textRevealVariants}
+              href={`mailto:${socialsData.email.link}`}
+              className={style.hero__links}
+            >
+              <img src={socialsData.email.icon} alt="Email" />
+            </motion.a>
+          </motion.div>
+        </div>
       </motion.div>
 
       <HeroBackground />

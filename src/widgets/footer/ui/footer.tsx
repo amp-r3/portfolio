@@ -3,54 +3,44 @@
 import { useTranslations } from 'next-intl';
 import { motion } from 'motion/react';
 import type { Variants } from 'motion/react';
-import { socialsData } from '@/shared/config';
+import {
+  containerStaggerVariants,
+  socialsData,
+  textRevealVariants,
+  transitionSmooth,
+} from '@/shared/config';
 import style from './footer.module.scss';
 import { FooterBackground } from './footer-background';
 
-const containerVariants: Variants = {
-  hidden: { opacity: 0 },
+const basementContainerVariants: Variants = {
+  hidden: {},
   visible: {
-    opacity: 1,
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.05,
+    },
+  },
+};
+
+const socialsStaggerVariants: Variants = {
+  hidden: {},
+  visible: {
     transition: {
       staggerChildren: 0.1,
-      delayChildren: 0.1,
+      delayChildren: 0.05,
     },
   },
 };
 
-const smoothRevealVariants: Variants = {
+const rightsRevealVariants: Variants = {
   hidden: {
     opacity: 0,
-    y: 30,
-    filter: 'blur(10px)',
-    scale: 0.98,
+    y: 12,
   },
   visible: {
-    opacity: 1,
+    opacity: 0.7,
     y: 0,
-    filter: 'blur(0px)',
-    scale: 1,
-    transition: {
-      duration: 1.2,
-      ease: [0.22, 1, 0.36, 1],
-    },
-  },
-};
-
-const itemRevealVariants: Variants = {
-  hidden: {
-    opacity: 0,
-    y: 20,
-    filter: 'blur(5px)',
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    filter: 'blur(0px)',
-    transition: {
-      duration: 0.8,
-      ease: [0.22, 1, 0.36, 1],
-    },
+    transition: transitionSmooth,
   },
 };
 
@@ -62,18 +52,18 @@ export function Footer() {
       {/* Main content (CTA) */}
       <motion.div
         className={`${style.footer__content} container`}
-        variants={containerVariants}
+        variants={containerStaggerVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.3, margin: '0px 0px -100px 0px' }}
+        viewport={{ once: true, amount: 0.2, margin: '0px 0px -40px 0px' }}
       >
-        <motion.h1 variants={smoothRevealVariants} className={style.footer__title}>
+        <motion.h1 variants={textRevealVariants} className={style.footer__title}>
           {t('footer.title')}
         </motion.h1>
-        <motion.p variants={smoothRevealVariants} className={style.footer__desc}>
+        <motion.p variants={textRevealVariants} className={style.footer__desc}>
           {t('footer.description')}
         </motion.p>
-        <motion.a href="#contact" className={style.footer__btn} variants={itemRevealVariants}>
+        <motion.a href="#contact" className={style.footer__btn} variants={textRevealVariants}>
           {t('footer.button')}
         </motion.a>
       </motion.div>
@@ -81,61 +71,62 @@ export function Footer() {
       {/* Contacts */}
       <motion.div
         className={`${style.footer__basement} container`}
-        variants={containerVariants}
+        variants={basementContainerVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.5 }}
+        viewport={{ once: true, amount: 0.2, margin: '0px 0px -20px 0px' }}
       >
-        <motion.a variants={itemRevealVariants} href="#" className={style.footer__logo}>
+        <motion.a variants={textRevealVariants} href="#" className={style.footer__logo}>
           amp-r3
         </motion.a>
 
         <div className={style.footer__contacts}>
-          <motion.div variants={itemRevealVariants}>
-            <motion.a href={`mailto:${socialsData.email.link}`} className={style.footer__email}>
-              {socialsData.email.link}
-            </motion.a>
-          </motion.div>
+          <motion.a
+            variants={textRevealVariants}
+            href={`mailto:${socialsData.email.link}`}
+            className={style.footer__email}
+          >
+            {socialsData.email.link}
+          </motion.a>
 
-          <div className={style.footer__socials}>
+          <motion.div variants={socialsStaggerVariants} className={style.footer__socials}>
             <motion.a
-              variants={itemRevealVariants}
+              variants={textRevealVariants}
               href={socialsData.telegram.link}
               target="_blank"
+              rel="noreferrer"
               className={style.footer__links}
             >
               <img src={socialsData.telegram.icon} alt="Telegram" />
             </motion.a>
             <motion.a
-              variants={itemRevealVariants}
+              variants={textRevealVariants}
               href={socialsData.github.link}
               target="_blank"
+              rel="noreferrer"
               className={style.footer__links}
             >
               <img src={socialsData.github.icon} alt="GitHub" />
             </motion.a>
             <motion.a
-              variants={itemRevealVariants}
+              variants={textRevealVariants}
               href={socialsData.linkedin.link}
               target="_blank"
+              rel="noreferrer"
               className={style.footer__links}
             >
               <img src={socialsData.linkedin.icon} alt="LinkedIn" />
             </motion.a>
-          </div>
+          </motion.div>
         </div>
       </motion.div>
 
       <motion.span
         className={style.footer__rights}
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 0.7 }}
-        viewport={{ once: true }}
-        transition={{
-          duration: 1.5,
-          delay: 0.5,
-          ease: 'easeOut',
-        }}
+        variants={rightsRevealVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
       >
         © {new Date().getFullYear()} {t('footer.rights')}
       </motion.span>
