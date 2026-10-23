@@ -60,33 +60,46 @@ export function HeroSection() {
         animate="visible"
         style={{ scale, opacity, y }}
       >
-        <motion.h1 variants={heroRevealVariants} className={style.hero__title}>
-          {t('hero.title')}
-        </motion.h1>
+        <div className={style.hero__center}>
+          <motion.p variants={heroRevealVariants} className={style.hero__greeting}>
+            {t('hero.greeting')}
+          </motion.p>
 
-        <motion.p variants={heroRevealVariants} className={style.hero__desc}>
-          {t('hero.description')}
-        </motion.p>
+          <motion.h1 variants={heroRevealVariants} className={style.hero__title}>
+            <span className={style.hero__titlePrimary}>{t('hero.titleRole')}</span>
+            {' '}
+            <span className={style.hero__titleSecondary}>{t('hero.titleTagline')}</span>
+          </motion.h1>
 
-        <motion.div variants={heroRevealVariants}>
-          <a href="#projects" className={style.hero__btn}>
-            {t('hero.button')}
-          </a>
-        </motion.div>
+          <motion.p variants={heroRevealVariants} className={style.hero__desc}>
+            {t('hero.description')}
+          </motion.p>
 
-        <motion.div variants={heroRevealVariants} className={style.hero__contacts}>
-          <a href={socialsData.telegram.link} target="_blank" rel="noreferrer" className={style.hero__links}>
-            <img src={socialsData.telegram.icon} alt="Telegram" />
-          </a>
-          <a href={socialsData.github.link} target="_blank" rel="noreferrer" className={style.hero__links}>
-            <img src={socialsData.github.icon} alt="GitHub" />
-          </a>
-          <a href={socialsData.linkedin.link} target="_blank" rel="noreferrer" className={style.hero__links}>
-            <img src={socialsData.linkedin.icon} alt="LinkedIn" />
-          </a>
-          <a href={`mailto:${socialsData.email.link}`} className={style.hero__links}>
-            <img src={socialsData.email.icon} alt="Email" />
-          </a>
+          <motion.div variants={heroRevealVariants} className={style.hero__actions}>
+            <a href="#projects" className={style.hero__primaryBtn}>
+              {t('hero.primaryButton')}
+            </a>
+            <a href="#contact" className={style.hero__secondaryBtn}>
+              {t('hero.secondaryButton')}
+            </a>
+          </motion.div>
+        </div>
+
+        <motion.div variants={heroRevealVariants} className={style.hero__bottom}>
+          <div className={style.hero__contacts}>
+            <a href={socialsData.telegram.link} target="_blank" rel="noreferrer" className={style.hero__links}>
+              <img src={socialsData.telegram.icon} alt="Telegram" />
+            </a>
+            <a href={socialsData.github.link} target="_blank" rel="noreferrer" className={style.hero__links}>
+              <img src={socialsData.github.icon} alt="GitHub" />
+            </a>
+            <a href={socialsData.linkedin.link} target="_blank" rel="noreferrer" className={style.hero__links}>
+              <img src={socialsData.linkedin.icon} alt="LinkedIn" />
+            </a>
+            <a href={`mailto:${socialsData.email.link}`} className={style.hero__links}>
+              <img src={socialsData.email.icon} alt="Email" />
+            </a>
+          </div>
         </motion.div>
       </motion.div>
 

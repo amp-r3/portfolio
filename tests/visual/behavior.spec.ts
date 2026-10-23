@@ -57,7 +57,7 @@ test('saved theme survives reload and switches screenshot variants', async ({ pa
   await openPage(page, '/project/store', 'en', 'light', false);
   const image = page.locator('article picture img');
   await expect(image).toHaveAttribute('src', /storeLight/);
-  await page.getByText('Dark', { exact: true }).click();
+  await page.getByRole('checkbox', { name: 'Switch to dark theme' }).click({ force: true });
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
   await expect(image).toHaveAttribute('src', /storeDark/);
   // Remove the test's theme initializer before testing persistence in a new tab.
@@ -74,7 +74,7 @@ test('denied localStorage keeps content visible and defaults to dark', async ({ 
     Object.defineProperty(window, 'localStorage', { get() { throw new DOMException('Storage denied', 'SecurityError'); } });
   });
   await page.goto('/');
-  await expect(page.locator('#hero h1')).toHaveText('Amir Ergashev');
+  await expect(page.locator('#hero h1')).toContainText('Software Engineer');
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
   expect(errors).toEqual([]);
 });

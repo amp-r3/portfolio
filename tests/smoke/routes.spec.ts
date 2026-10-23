@@ -34,7 +34,7 @@ test('direct entry, refresh, project navigation and browser history', async ({ p
     // Firefox revalidates the cached static document on repeat visits and may
     // report 304 even though the cached page is then rendered normally.
     expect([200, 304]).toContain(response?.status());
-    await expect(page.locator('#hero h1')).toHaveText('Amir Ergashev');
+    await expect(page.locator('#hero h1')).toContainText('Software Engineer');
     await expect(page.locator('footer')).toHaveCount(1);
 
     await page.locator(`a[href="/en/project/${id}"]`).click();
@@ -44,7 +44,7 @@ test('direct entry, refresh, project navigation and browser history', async ({ p
 
     await page.getByRole('button', { name: 'Go back' }).click();
     await expect(page).toHaveURL(/\/en$/);
-    await expect(page.locator('#hero h1')).toHaveText('Amir Ergashev');
+    await expect(page.locator('#hero h1')).toContainText('Software Engineer');
     await expect(page.locator('footer')).toHaveCount(1);
 
     await page.goto(`/en/project/${id}`);

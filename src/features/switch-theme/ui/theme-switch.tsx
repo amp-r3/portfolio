@@ -8,28 +8,16 @@ export function ThemeSwitch() {
   const { theme, toggleTheme } = useTheme();
   const isLight = theme === 'light';
 
-  const handleLabelClick = (mode: 'light' | 'dark') => {
-    if (theme !== mode) {
-      toggleTheme();
-    }
-  };
-
   return (
     <div className={style.wrapper}>
-      <span
-        className={`${style.label} ${!isLight ? style.active : ''}`}
-        onClick={() => handleLabelClick('dark')}
-      >
-        Dark
-      </span>
-      <label className={style.switch}>
+      <label className={style.switch} title={isLight ? 'Switch to dark theme' : 'Switch to light theme'}>
         <input
           type="checkbox"
           checked={isLight}
           onChange={toggleTheme}
           aria-label={isLight ? 'Switch to dark theme' : 'Switch to light theme'}
         />
-        <span className={style.slider}></span>
+        <span className={style.slider} />
         <img
           src={sunIcon}
           alt="Sun"
@@ -41,12 +29,6 @@ export function ThemeSwitch() {
           className={`${style.icon} ${style.moonIcon}`}
         />
       </label>
-      <span
-        className={`${style.label} ${isLight ? style.active : ''}`}
-        onClick={() => handleLabelClick('light')}
-      >
-        Light
-      </span>
     </div>
   );
 }

@@ -8,9 +8,12 @@
         "lang_switcher": "EN"
     },
     "hero": {
-        "title": "Amir Ergashev",
-        "description": "I'm a Junior Web Developer specializing in Front-End technologies, enthusiastic about turning creative ideas into beautiful and functional code.",
-        "button": "My Projects"
+        "greeting": "Hi, I'm Amir",
+        "titleRole": "Software Engineer",
+        "titleTagline": "building modern web products.",
+        "description": "From clean, interactive UIs to reliable backend architecture.",
+        "primaryButton": "View Projects",
+        "secondaryButton": "Contact Me"
     },
     "skills": {
         "title": "Skills"

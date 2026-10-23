@@ -8,9 +8,12 @@
         "lang_switcher": "UZ"
     },
     "hero": {
-        "title": "Amir Ergashev",
-        "description": "Men frontend-texnologiyalariga ixtisoslashgan boshlovchi veb-dasturchiman. Kreativ g'oyalarni chiroyli va funksional kodga katta ishtiyoq bilan aylantiraman.",
-        "button": "Mening loyihalarim"
+        "greeting": "Salom, men Amirman",
+        "titleRole": "Dasturchi-muhandis",
+        "titleTagline": "ishonchli veb-yechimlar yarataman.",
+        "description": "Toza va qulay interfeyslardan tortib, ishonchli bek-end arxitekturasigacha.",
+        "primaryButton": "Loyihalar",
+        "secondaryButton": "Bog'lanish"
     },
     "skills": {
         "title": "Ko'nikmalar"

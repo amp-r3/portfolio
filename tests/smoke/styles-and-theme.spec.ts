@@ -72,7 +72,7 @@ test.describe('Stage 2: Styles, Fonts, Assets, and Theme', () => {
 
       await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
       await expect(page.getByRole('checkbox', { name: 'Switch to light theme' })).not.toBeChecked();
-      await expect(page.locator('#hero h1')).toHaveText('Amir Ergashev');
+      await expect(page.locator('#hero h1')).toContainText('Software Engineer');
       expect(consoleErrors).toEqual([]);
     });
   }
@@ -90,7 +90,7 @@ test.describe('Stage 2: Styles, Fonts, Assets, and Theme', () => {
     await page.goto('/');
     await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
     await expect(page.getByRole('checkbox', { name: 'Switch to dark theme' })).toBeChecked();
-    await expect(page.locator('#hero h1')).toHaveText('Amir Ergashev');
+    await expect(page.locator('#hero h1')).toContainText('Software Engineer');
     expect(consoleErrors).toEqual([]);
   });
 
@@ -103,16 +103,17 @@ test.describe('Stage 2: Styles, Fonts, Assets, and Theme', () => {
     const checkbox = page.getByRole('checkbox', { name: 'Switch to light theme' });
     await expect(checkbox).not.toBeChecked();
 
-    // Click Light label to switch to light theme
-    await page.getByText('Light', { exact: true }).click();
+    // Toggle switch to light theme
+    await checkbox.click({ force: true });
     await expect(html).toHaveAttribute('data-theme', 'light');
-    await expect(page.getByRole('checkbox', { name: 'Switch to dark theme' })).toBeChecked();
+    const darkCheckbox = page.getByRole('checkbox', { name: 'Switch to dark theme' });
+    await expect(darkCheckbox).toBeChecked();
 
     const storedTheme1 = await page.evaluate(() => localStorage.getItem('theme'));
     expect(storedTheme1).toBe('light');
 
-    // Click Dark label to switch back to dark theme
-    await page.getByText('Dark', { exact: true }).click();
+    // Toggle switch back to dark theme
+    await darkCheckbox.click({ force: true });
     await expect(html).toHaveAttribute('data-theme', 'dark');
     await expect(page.getByRole('checkbox', { name: 'Switch to light theme' })).not.toBeChecked();
 
@@ -133,7 +134,7 @@ test.describe('Stage 2: Styles, Fonts, Assets, and Theme', () => {
     });
 
     await page.goto('/');
-    await expect(page.locator('#hero h1')).toHaveText('Amir Ergashev');
+    await expect(page.locator('#hero h1')).toContainText('Software Engineer');
     await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
     expect(pageErrors).toEqual([]);
   });

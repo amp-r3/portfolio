@@ -1,44 +1,8 @@
 @use "@/shared/styles/index.scss" as *;
 
 .wrapper {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: $spacing-small;
-}
-
-.label {
-    font-size: $typography-font-size-small;
-    color: var(--text-secondary);
-    cursor: pointer;
-    user-select: none;
-    transition: all $transition-duration-base $timing-function-ease-in-out-smooth;
-    position: relative;
-
-    @media (width < 992px) {
-        display: none;
-    }
-
-    &:not(.active):hover {
-        color: var(--text-primary);
-        transform: $hover-transform-lift;
-    }
-
-    &.active::after {
-        content: '';
-        position: absolute;
-        bottom: -$spacing-xxsmall;
-        left: 0;
-        right: 0;
-        height: 2px;
-        background: var(--text-primary);
-        border-radius: 2px;
-        animation: slideIn $transition-duration-layout $timing-function-ease-out-expo;
-    }
-}
-
-.active {
-    color: var(--text-primary);
-    font-weight: $typography-font-weight-semibold;
 }
 
 .switch {
@@ -58,9 +22,14 @@
 }
 
 .switch input {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
     opacity: 0;
-    width: 0;
-    height: 0;
+    cursor: pointer;
+    z-index: 3;
+    margin: 0;
 }
 
 .slider {
@@ -136,7 +105,6 @@
     }
 }
 
-
 input:checked+.slider:before {
     transform: translateX(53px) translateY(-50%);
 
@@ -157,7 +125,6 @@ input:active+.slider:before {
 input:active:checked+.slider:before {
     transform: translateX(36px) translateY(-50%);
 }
-
 
 .icon {
     position: absolute;
@@ -185,7 +152,6 @@ input:active:checked+.slider:before {
     left: $spacing-small;
 }
 
-
 input:not(:checked)~.moonIcon {
     opacity: 1;
     transform: translateY(-50%) rotate(0deg) scale(1);
@@ -206,41 +172,19 @@ input:checked~.moonIcon {
     transform: translateY(-50%) rotate(180deg) scale(0.7);
 }
 
-
-@keyframes slideIn {
-    from {
-        transform: scaleX(0);
-        opacity: 0;
-    }
-
-    to {
-        transform: scaleX(1);
-        opacity: 1;
-    }
-}
-
-
-
 .switch:hover input:not(:checked)~.moonIcon,
 .switch:hover input:checked~.sunIcon {
     animation: none;
 }
 
-
 @media (prefers-reduced-motion: reduce) {
-
     .slider,
     .slider:before,
-    .icon,
-    .label {
+    .icon {
         transition-duration: $transition-duration-reduced;
     }
 
     .switch:hover .icon {
-        animation: none;
-    }
-
-    .label.active::after {
         animation: none;
     }
 }
