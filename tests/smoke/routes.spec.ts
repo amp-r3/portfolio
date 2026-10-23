@@ -162,6 +162,46 @@ test('localized 404 pages return HTTP 404 and preserve the design', async ({ pag
   await expect(page.getByRole('heading', { name: '404' })).toBeVisible();
 });
 
+test('language switch on 404 updates locale and content without failed-to-fetch or theme reset', async ({ page }) => {
+  const consoleErrors: string[] = [];
+  page.on('console', (msg) => {
+    if (msg.type() === 'error' && !msg.text().includes('the server responded with a status of 404')) {
+      consoleErrors.push(msg.text());
+    }
+  });
+  page.on('pageerror', (err) => consoleErrors.push(err.message));
+
+  await page.goto('/en/project/unknown');
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+  await expect(page.getByRole('link', { name: 'Return to Homepage' })).toBeVisible();
+
+  const switcher = page.getByRole('button', { name: 'Change language' });
+  await expect(switcher).toHaveText('EN');
+
+  // Switch to RU
+  await switcher.click();
+  await expect(page).toHaveURL(/\/ru\/project\/unknown$/);
+  await expect(switcher).toHaveText('RU');
+  await expect(page.getByRole('link', { name: 'На главную' })).toBeVisible();
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+
+  // Switch to UZ
+  await switcher.click();
+  await expect(page).toHaveURL(/\/uz\/project\/unknown$/);
+  await expect(switcher).toHaveText('UZ');
+  await expect(page.getByRole('link', { name: 'Bosh sahifaga qaytish' })).toBeVisible();
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+
+  // Switch back to EN
+  await switcher.click();
+  await expect(page).toHaveURL(/\/en\/project\/unknown$/);
+  await expect(switcher).toHaveText('EN');
+  await expect(page.getByRole('link', { name: 'Return to Homepage' })).toBeVisible();
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+
+  expect(consoleErrors).toEqual([]);
+});
+
 test('loader appears during an artificially slowed project navigation', async ({ page }) => {
   await page.route('**/*?_rsc=*', async (route) => {
     await new Promise((resolve) => setTimeout(resolve, 1500));

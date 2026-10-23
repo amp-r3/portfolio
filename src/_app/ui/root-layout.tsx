@@ -1,8 +1,7 @@
 import type { ReactNode } from 'react';
-import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
+import type { AbstractIntlMessages } from 'next-intl';
 import '@/shared/styles';
-import type { Locale } from '@/shared/i18n';
+import { I18nProvider, type Locale } from '@/shared/i18n';
 import { ThemeScript } from '@/shared/theme';
 import { Header } from '@/widgets/header';
 import { ThemeProvider } from '../providers';
@@ -13,8 +12,22 @@ interface RootLayoutProps {
   locale: Locale;
 }
 
+async function loadAllMessages(): Promise<Record<Locale, AbstractIntlMessages>> {
+  const [en, ru, uz] = await Promise.all([
+    import(`../../../messages/${'en'}.json`),
+    import(`../../../messages/${'ru'}.json`),
+    import(`../../../messages/${'uz'}.json`),
+  ]);
+
+  return {
+    en: en.default,
+    ru: ru.default,
+    uz: uz.default,
+  };
+}
+
 export async function RootLayout({ children, locale }: RootLayoutProps) {
-  const messages = await getMessages();
+  const allMessages = await loadAllMessages();
 
   return (
     <html lang={locale} data-theme="dark" suppressHydrationWarning>
@@ -24,7 +37,7 @@ export async function RootLayout({ children, locale }: RootLayoutProps) {
       <body suppressHydrationWarning>
         {/* Browser extensions (for example ColorZilla's cz-shortcut-listen)
             can add attributes before hydration. They are not part of the app. */}
-        <NextIntlClientProvider locale={locale} messages={messages}>
+        <I18nProvider initialLocale={locale} messages={allMessages}>
           <ThemeProvider>
             <div id="root">
               <Header />
@@ -33,7 +46,7 @@ export async function RootLayout({ children, locale }: RootLayoutProps) {
               </SmoothScroll>
             </div>
           </ThemeProvider>
-        </NextIntlClientProvider>
+        </I18nProvider>
       </body>
     </html>
   );

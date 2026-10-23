@@ -2,11 +2,13 @@
 
 import { AnimatePresence, motion } from 'motion/react';
 import { useLocale } from 'next-intl';
-import { routing, usePathname, useRouter } from '@/shared/i18n';
+import { routing, useI18n, usePathname, useRouter } from '@/shared/i18n';
 import style from './language-switch.module.scss';
 
 export function LanguageSwitch() {
-  const locale = useLocale();
+  const intlLocale = useLocale();
+  const i18n = useI18n();
+  const locale = i18n?.locale ?? intlLocale;
   const pathname = usePathname();
   const router = useRouter();
   const currentLang = routing.locales.includes(locale as (typeof routing.locales)[number]) ? locale : 'en';
@@ -16,6 +18,22 @@ export function LanguageSwitch() {
     const nextIndex = (currentIndex + 1) % routing.locales.length;
     const newLang = routing.locales[nextIndex];
     const suffix = `${window.location.search}${window.location.hash}`;
+
+    const is404 = i18n?.isNotFound || (typeof document !== 'undefined' && Boolean(document.querySelector('[data-text="404"]')));
+
+    if (is404) {
+      i18n?.setLocale(newLang);
+      const currentPath = window.location.pathname;
+      const segments = currentPath.split('/');
+      if (routing.locales.includes(segments[1] as (typeof routing.locales)[number])) {
+        segments[1] = newLang;
+      } else {
+        segments.splice(1, 0, newLang);
+      }
+      const newPath = segments.join('/') + suffix;
+      window.history.replaceState(null, '', newPath);
+      return;
+    }
 
     router.replace(`${pathname}${suffix}`, { locale: newLang, scroll: false });
   };

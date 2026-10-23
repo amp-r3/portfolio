@@ -1,12 +1,13 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { Link, useRouter } from '@/shared/i18n';
+import { Link, useRouter, useSetNotFound } from '@/shared/i18n';
 import styles from './not-found-page.module.scss';
 
 export function NotFoundPage() {
   const router = useRouter();
   const t = useTranslations('error');
+  useSetNotFound();
 
   return (
     <main className={styles['error-boundary']}>
