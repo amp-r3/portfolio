@@ -1,0 +1,79 @@
+{
+  "id": "store",
+  "order": 2,
+  "title": {
+    "en": "Store App",
+    "ru": "Store App",
+    "uz": "Store App"
+  },
+  "description": {
+    "en": "A modern full-stack e-commerce platform built with Next.js 16, React 19, TypeScript, and Redux Toolkit. Powered by Supabase for PostgreSQL and authentication, it features a glassmorphism design, URL-synchronized catalog state, optimistic cart updates, ISR caching, haptic feedback, and a fully responsive mobile-first interface.",
+    "ru": "Современная платформа электронной коммерции на стеке Next.js 16, React 19, TypeScript и Redux Toolkit с бэкендом на Supabase (PostgreSQL и Auth). Приложение включает адаптивный Glassmorphism-интерфейс, синхронизацию каталога с URL, оптимистичные обновления корзины, серверное ISR-кэширование, тактильный отклик и поддержку мобильных устройств.",
+    "uz": "Next.js 16, React 19, TypeScript va Redux Toolkit asosida yaratilgan zamonaviy internet-do'kon platformasi. Supabase (PostgreSQL va Auth) bilan integratsiya qilingan ilova moslashuvchan Glassmorphism dizayni, URL bilan sinxronlashgan katalog, savatning optimistik yangilanishi, ISR keshlanishi, taktil aloqa va mobil moslashuvni ta'minlaydi."
+  },
+  "technologies": [
+    "Next.js 16",
+    "React 19",
+    "TypeScript",
+    "Redux Toolkit",
+    "RTK Query",
+    "Supabase",
+    "PostgreSQL",
+    "SCSS Modules",
+    "React Hook Form",
+    "Zod",
+    "redux-persist",
+    "Playwright"
+  ],
+  "links": {
+    "live": "https://store-mauve-nine.vercel.app/",
+    "github": "https://github.com/amp-r3/store"
+  },
+  "images": {
+    "light": "storeLight",
+    "dark": "storeDark",
+    "mobileLight": "storeMobileLight",
+    "mobileDark": "storeMobileDark"
+  },
+  "benefits": [
+    {
+      "icon": "server",
+      "title": {
+        "en": "Server-Side Filtering via RTK Query",
+        "ru": "Server-Side фильтрация через RTK Query",
+        "uz": "RTK Query orqali Server-Side filtratsiyalash"
+      },
+      "description": {
+        "en": "Product data fetching and catalog operations are built using RTK Query and Supabase. Responses are transformed into a normalized { ids, items } structure for O(1) lookups and efficient re-renders. Pagination, search, and category filtering are processed on the server.",
+        "ru": "Получение данных товаров и работа каталога построены на связке RTK Query и Supabase. Ответы нормализуются в структуру { ids, items } для O(1) доступа к элементам и снижения нагрузки на рендеринг. Пагинация, поиск и фильтрация по категориям выполняются на стороне сервера.",
+        "uz": "Mahsulot ma'lumotlarini yuklash va katalog amallari RTK Query hamda Supabase asosida tashkil etilgan. Javoblar elementlarga O(1) tezlikda kirish va samarali qayta render uchun { ids, items } ko'rinishida normallashtiriladi. Paginatsiya, qidiruv va toifalar bo'yicha saralash server tomonida amalga oshiriladi."
+      }
+    },
+    {
+      "icon": "link",
+      "title": {
+        "en": "URL as Catalog State Source",
+        "ru": "URL как источник состояния каталога",
+        "uz": "URL katalog holati manbai sifatida"
+      },
+      "description": {
+        "en": "The entire catalog state is synchronized with query parameters: search (?q=), sorting (?sortBy=), and categories (?category=). This allows users to bookmark or share filtered views while preserving native browser back and forward navigation. The App Router handles search params seamlessly across client and server.",
+        "ru": "Полное состояние каталога синхронизируется с query-параметрами: поиском (?q=), сортировкой (?sortBy=) и категориями (?category=). Это позволяет сохранять фильтры в закладки и делиться ссылками с сохранением корректной навигации браузера. Next.js App Router обеспечивает бесшовную работу с параметрами на клиенте и сервере.",
+        "uz": "Katalogning to'liq holati URL query-parametrlari bilan sinxronlashtiriladi: qidiruv (?q=), saralash (?sortBy=) va toifalar (?category=). Bu foydalanuvchiga filtrlangan havolalarni xatcho'plarga saqlash va brauzer navigatsiyasini to'g'ri saqlab qolish imkonini beradi. Next.js App Router parametrlarni mijoz va server o'rtasida uzluksiz boshqaradi."
+      }
+    },
+    {
+      "icon": "puzzle",
+      "title": {
+        "en": "Feature-Sliced Design Modular Architecture",
+        "ru": "Чистая модульная архитектура FSD",
+        "uz": "FSD toza modulli arxitekturasi"
+      },
+      "description": {
+        "en": "The codebase strictly follows Feature-Sliced Design (FSD) methodology with unidirectional layer dependencies enforced by ESLint. UI components remain declarative and thin, delegating all domain logic and router events to dedicated custom hooks and models. Memoized selectors via Reselect prevent unnecessary component re-renders.",
+        "ru": "Кодовая база строго следует методологии Feature-Sliced Design (FSD) с однонаправленными зависимостями, контролируемыми через ESLint. UI-компоненты остаются декларативными и тонкими, делегируя бизнес-логику и роутинг кастомным хукам и моделям слайсов. Мемоизированные селекторы на базе Reselect предотвращают лишние повторные рендеры.",
+        "uz": "Loyiha kodi ESLint orqali tekshiriladigan bir tomonlama bog'liqliklarga ega Feature-Sliced Design (FSD) metodologiyasiga qat'iy asoslangan. UI-komponentlar deklarativ bo'lib, barcha biznes-mantiq va yo'naltirishlarni maxsus hooklar hamda modellarga yuklaydi. Reselect orqali memoizatsiya qilingan selektorlar ortiqcha qayta renderlarning oldini oladi."
+      }
+    }
+  ]
+}

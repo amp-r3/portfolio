@@ -1,0 +1,78 @@
+{
+  "id": "weather",
+  "order": 1,
+  "title": {
+    "en": "My Weather App",
+    "ru": "My Weather App",
+    "uz": "My Weather App"
+  },
+  "description": {
+    "en": "A dynamic weather forecast application built with React, Vite, and Redux Toolkit. This fully responsive app automatically detects user location via browser geolocation (with an IP-based fallback) or allows users to search for any city. It integrates OpenWeatherMap and Geoapify APIs to provide current conditions, hourly, and 7-day forecasts. Key features include robust asynchronous state management with Redux Thunk, a client-side localStorage cache to optimize API calls, and a persistent dark/light mode theme toggle.",
+    "ru": "Динамическое приложение прогноза погоды, созданное с использованием React, Vite и Redux Toolkit. Это полностью адаптивное приложение автоматически определяет местоположение пользователя через геолокацию браузера (с резервным определением по IP) или позволяет найти любой город через поиск. Интегрирует API OpenWeatherMap и Geoapify для предоставления текущих условий, почасового и 7-дневного прогноза. Ключевые особенности включают надежное управление асинхронным состоянием с Redux Thunk, клиентское кеширование в localStorage для оптимизации запросов и переключение темной/светлой темы.",
+    "uz": "React, Vite va Redux Toolkit yordamida yaratilgan dinamik ob-havo ilovasi. Bu to'liq moslashuvchan (adaptiv) ilova foydalanuvchi joylashuvini brauzer geolokatsiyasi orqali avtomatik aniqlaydi (IP orqali zaxira varianti bilan) yoki istalgan shaharni qidirish imkonini beradi. Joriy sharoitlar, soatlik va 7 kunlik prognozni taqdim etish uchun OpenWeatherMap va Geoapify API-larini integratsiya qiladi. Asosiy xususiyatlarga Redux Thunk bilan ishonchli asinxron holat boshqaruvi, API so'rovlarini optimallashtirish uchun localStorage mijoz keshi va tungi/yorug' mavzularni doimiy o'zgartirish kiradi."
+  },
+  "technologies": [
+    "React",
+    "Redux Toolkit",
+    "Axios",
+    "React Router",
+    "Vite (SWC)",
+    "Sass",
+    "OpenWeatherMap API",
+    "Geoapify API",
+    "ipapi.co",
+    "Geolocation API",
+    "LocalStorage API"
+  ],
+  "links": {
+    "live": "https://my-pogoda.netlify.app/",
+    "github": "https://github.com/amp-r3/weather"
+  },
+  "images": {
+    "light": "weatherLight",
+    "dark": "weatherDark",
+    "mobileLight": "weatherLightMobile",
+    "mobileDark": "weatherDarkMobile"
+  },
+  "benefits": [
+    {
+      "icon": "geo",
+      "title": {
+        "en": "Automatic Geolocation",
+        "ru": "Автоматическая геолокация",
+        "uz": "Avtomatik geolokatsiya"
+      },
+      "description": {
+        "en": "The application automatically detects the user's location and loads an accurate weather forecast in real time.",
+        "ru": "Приложение самостоятельно определяет локацию пользователя и подгружает точный прогноз погоды в реальном времени.",
+        "uz": "Ilova foydalanuvchi joylashuvini mustaqil aniqlaydi va real vaqt rejimida aniq ob-havo prognozini yuklaydi."
+      }
+    },
+    {
+      "icon": "adaptive",
+      "title": {
+        "en": "Responsiveness and Theming",
+        "ru": "Адаптивность и темы",
+        "uz": "Moslashuvchanlik va mavzular"
+      },
+      "description": {
+        "en": "The interface is fully responsive for mobile and desktop devices. Theme switching support (light/dark) is implemented.",
+        "ru": "Интерфейс полностью адаптирован под мобильные и десктопные устройства. Реализована поддержка переключения тем (светлая/темная).",
+        "uz": "Interfeys mobil va desktop qurilmalar uchun to'liq moslashtirilgan. Mavzularni (yorug'/tungi) o'zgartirish qo'llab-quvvatlanadi."
+      }
+    },
+    {
+      "icon": "performance",
+      "title": {
+        "en": "High Performance",
+        "ru": "Высокая производительность",
+        "uz": "Yuqori unumdorlik"
+      },
+      "description": {
+        "en": "The project is built on a modern React and Redux stack. This ensures instant interface response without page reloads and stable application performance even with a weak internet connection.",
+        "ru": "Проект построен на современном стеке React и Redux. Это обеспечивает мгновенный отклик интерфейса без перезагрузок страницы и стабильную работу приложения даже при слабом интернете.",
+        "uz": "Loyiha zamonaviy React va Redux stekida qurilgan. Bu sahifani qayta yuklamasdan interfeysning lahzali reaksiyasini va hatto internet sekin bo'lganda ham ilovaning barqaror ishlashini ta'minlaydi."
+      }
+    }
+  ]
+}

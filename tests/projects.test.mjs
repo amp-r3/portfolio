@@ -2,18 +2,12 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
-import { createTranslator } from 'next-intl';
 
 const locales = ['en', 'ru', 'uz'];
 
-const messagesByLocale = Object.fromEntries(
-  await Promise.all(
-    locales.map(async (locale) => {
-      const source = await readFile(resolve('messages', `${locale}.json`), 'utf8');
-      return [locale, JSON.parse(source)];
-    })
-  )
-);
+const weatherContent = JSON.parse(await readFile(resolve('content/projects/weather.json'), 'utf8'));
+const storeContent = JSON.parse(await readFile(resolve('content/projects/store.json'), 'utf8'));
+const projects = [weatherContent, storeContent].sort((a, b) => a.order - b.order);
 
 test('client barrel index.ts does not export server-only data functions', async () => {
   const content = await readFile(resolve('src/entities/project/index.ts'), 'utf8');
@@ -38,53 +32,55 @@ test('server modules declare server-only protection', async () => {
   assert.match(apiModule, /import ['"]server-only['"];/, 'get-projects.ts must declare server-only');
 });
 
-test('raw projects data preserves required order and fields', async () => {
-  const rawProjectsFile = await readFile(resolve('src/entities/project/model/raw-projects.ts'), 'utf8');
-  assert.match(rawProjectsFile, /id:\s*'weather'[\s\S]*id:\s*'store'/, 'Order must be weather first, then store');
-  assert.match(rawProjectsFile, /title:\s*'My Weather App'/);
-  assert.match(rawProjectsFile, /title:\s*'Store App'/);
-  assert.match(rawProjectsFile, /demoLink:\s*'https:\/\/my-pogoda\.netlify\.app\/'/);
-  assert.match(rawProjectsFile, /demoLink:\s*'https:\/\/amp-r3-store\.netlify\.app\/'/);
-  assert.match(rawProjectsFile, /githubLink:\s*'https:\/\/github\.com\/amp-r3\/weather'/);
-  assert.match(rawProjectsFile, /githubLink:\s*'https:\/\/github\.com\/amp-r3\/store'/);
+test('legacy raw-projects.ts file is deleted', async () => {
+  await assert.rejects(
+    () => readFile(resolve('src/entities/project/model/raw-projects.ts'), 'utf8'),
+    { code: 'ENOENT' },
+    'raw-projects.ts should no longer exist'
+  );
+});
+
+test('project content preserves required order and fields', () => {
+  assert.equal(projects[0].id, 'weather', 'Order must be weather first');
+  assert.equal(projects[1].id, 'store', 'Order must be store second');
+  assert.equal(projects[0].order, 1);
+  assert.equal(projects[1].order, 2);
+
+  const weatherTitle = typeof weatherContent.title === 'string' ? weatherContent.title : weatherContent.title.en;
+  const storeTitle = typeof storeContent.title === 'string' ? storeContent.title : storeContent.title.en;
+  assert.equal(weatherTitle, 'My Weather App');
+  assert.equal(storeTitle, 'Store App');
+
+  assert.equal(weatherContent.links.live, 'https://my-pogoda.netlify.app/');
+  assert.equal(storeContent.links.live, 'https://store-mauve-nine.vercel.app/');
+  assert.equal(weatherContent.links.github, 'https://github.com/amp-r3/weather');
+  assert.equal(storeContent.links.github, 'https://github.com/amp-r3/store');
+
+  assert.ok(Array.isArray(weatherContent.technologies) && weatherContent.technologies.length > 5);
+  assert.ok(Array.isArray(storeContent.technologies) && storeContent.technologies.length > 5);
+
+  assert.ok(weatherContent.images.light && weatherContent.images.dark);
+  assert.ok(storeContent.images.light && storeContent.images.dark);
 });
 
 for (const locale of locales) {
   test(`translations for locale "${locale}" resolve project descriptions and benefits`, () => {
-    const messages = messagesByLocale[locale];
-    const t = createTranslator({
-      locale,
-      messages,
-      onError(error) {
-        throw error;
-      },
-    });
+    const weatherDesc = weatherContent.description[locale];
+    assert.ok(typeof weatherDesc === 'string' && weatherDesc.length > 50, `Weather description missing for ${locale}`);
 
-    const weatherDesc = t('projects.weatherDescription');
-    assert.ok(typeof weatherDesc === 'string' && weatherDesc.length > 50);
+    const storeDesc = storeContent.description[locale];
+    assert.ok(typeof storeDesc === 'string' && storeDesc.length > 50, `Store description missing for ${locale}`);
 
-    const storeDesc = t('projects.storeDescription');
-    assert.ok(typeof storeDesc === 'string' && storeDesc.length > 50);
-
-    const storeApiDesc = t('projects.benefits.store.api.description');
+    const storeApiDesc = storeContent.benefits[0].description[locale];
     assert.match(storeApiDesc, /\{ ids, items \}/, 'Literal store benefit braces must be preserved');
 
-    for (const key of [
-      'projects.benefits.weather.geo.title',
-      'projects.benefits.weather.geo.description',
-      'projects.benefits.weather.adaptive.title',
-      'projects.benefits.weather.adaptive.description',
-      'projects.benefits.weather.performance.title',
-      'projects.benefits.weather.performance.description',
-      'projects.benefits.store.api.title',
-      'projects.benefits.store.api.description',
-      'projects.benefits.store.url.title',
-      'projects.benefits.store.url.description',
-      'projects.benefits.store.architecture.title',
-      'projects.benefits.store.architecture.description',
-    ]) {
-      const value = t(key);
-      assert.ok(typeof value === 'string' && value.length > 0, `Missing translation for ${key}`);
+    for (const project of projects) {
+      assert.ok(Array.isArray(project.benefits) && project.benefits.length === 3);
+      for (const benefit of project.benefits) {
+        assert.ok(typeof benefit.icon === 'string' && benefit.icon.length > 0);
+        assert.ok(typeof benefit.title[locale] === 'string' && benefit.title[locale].length > 0);
+        assert.ok(typeof benefit.description[locale] === 'string' && benefit.description[locale].length > 0);
+      }
     }
   });
 }
