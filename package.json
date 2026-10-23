@@ -36,6 +36,7 @@
     "zod": "^4.6.7"
   },
   "devDependencies": {
+    "@netlify/plugin-nextjs": "^5.16.4",
     "@playwright/test": "1.64.1",
     "@types/locomotive-scroll": "4.1.4",
     "@types/node": "24.10.1",
