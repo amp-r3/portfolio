@@ -1,0 +1,5 @@
+#!/bin/sh
+set -e
+
+# Enforce AGENTS.md line/column limits
+node scripts/check-agents-md.mjs

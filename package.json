@@ -19,10 +19,12 @@
     "test:visual": "playwright test --config playwright.visual.config.ts --grep-invert @record",
     "start": "next start",
     "typecheck": "next typegen && tsc --noEmit",
+    "check:agents": "node scripts/check-agents-md.mjs",
     "test:smoke": "playwright test",
     "test:architecture": "node tests/architecture.test.mjs",
     "test:messages": "node tests/messages.test.mjs",
-    "test:projects": "node tests/projects.test.mjs"
+    "test:projects": "node tests/projects.test.mjs",
+    "prepare": "git config core.hooksPath .githooks 2>/dev/null || true"
   },
   "dependencies": {
     "locomotive-scroll": "5.0.0-beta.21",
