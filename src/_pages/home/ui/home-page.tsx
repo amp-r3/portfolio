@@ -1,5 +1,5 @@
 import { HeroSection } from '@/widgets/hero';
-import { SkillsSection } from '@/widgets/skills';
+import { ServicesSection } from '@/widgets/services';
 import { ProjectsSection } from '@/widgets/projects';
 import { ContactSection } from '@/widgets/contact';
 import { Footer } from '@/widgets/footer';
@@ -11,7 +11,7 @@ export async function HomePage({ locale = 'en' }: { locale?: string } = {}) {
   return (
     <>
       <HeroSection />
-      <SkillsSection />
+      <ServicesSection />
       <ProjectsSection projects={projects} />
       <ContactSection />
       <Footer />

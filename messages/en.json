@@ -1,7 +1,7 @@
 {
     "header": {
         "nav": {
-            "skills": "Skills",
+            "services": "Services",
             "projects": "Projects",
             "contact": "Contact"
         },
@@ -15,8 +15,54 @@
         "primaryButton": "View Projects",
         "secondaryButton": "Contact Me"
     },
-    "skills": {
-        "title": "Skills"
+    "services": {
+        "tag": "01 / WHAT I DO",
+        "title": "Services & Expertise",
+        "description": "Building reliable, high-performance web products from idea to production — with a strong focus on scalable architecture and business impact.",
+        "deliverablesTitle": "Key Deliverables:",
+        "stackTitle": "Tech Stack & Tools:",
+        "items": {
+            "fullstack": {
+                "number": "01",
+                "title": "Full-Cycle Web Apps & SaaS",
+                "shortDesc": "End-to-end development of modern web applications: from intuitive UI flows to reliable, scalable production systems.",
+                "deliverables": {
+                    "first": "Rapid MVP or scalable full-cycle web service",
+                    "second": "Flawless responsiveness across mobile, tablet, and desktop",
+                    "third": "Production-ready, maintainable architecture"
+                }
+            },
+            "architecture": {
+                "number": "02",
+                "title": "Scalable Architecture (FSD)",
+                "shortDesc": "Clean modular codebase built on Feature-Sliced Design to prevent tech debt and spaghetti code.",
+                "deliverables": {
+                    "first": "Strict module boundaries and unidirectional dependency flow",
+                    "second": "Fast developer onboarding with predictable structure",
+                    "third": "Safe refactoring with zero unintended side effects"
+                }
+            },
+            "backend": {
+                "number": "03",
+                "title": "API Integration, Backend & Databases",
+                "shortDesc": "Connecting responsive frontends with databases, authentication, third-party APIs, and cloud services.",
+                "deliverables": {
+                    "first": "End-to-end type validation and schemas with Zod",
+                    "second": "Optimistic updates and normalized caching via RTK Query",
+                    "third": "Secure auth and database modeling with PostgreSQL & Supabase"
+                }
+            },
+            "performance": {
+                "number": "04",
+                "title": "Performance, Testing & Web Vitals",
+                "shortDesc": "Optimizing speed and UI stability to green Lighthouse scores, backed by automated testing suites.",
+                "deliverables": {
+                    "first": "Instant page loads and zero cumulative layout shifts (CLS = 0)",
+                    "second": "Smooth 60 FPS motion with prefers-reduced-motion support",
+                    "third": "Automated Playwright smoke and end-to-end regression tests"
+                }
+            }
+        }
     },
     "projects": {
         "title": "My Projects",

@@ -41,7 +41,7 @@ pnpm start
 - `messages/` — словари переводов ICU (`en.json`, `ru.json`, `uz.json`).
 - `src/_app/` — провайдеры темы, корневой layout, i18n request handler и метаданные.
 - `src/_pages/` — композиция страниц (`home`, `project`, `not-found`).
-- `src/widgets/` — самостоятельные блоки страниц (`header`, `hero`, `skills`, `projects`, `contact`, `footer`).
+- `src/widgets/` — самостоятельные блоки страниц (`header`, `hero`, `services`, `projects`, `contact`, `footer`).
 - `src/features/` — интерактивные пользовательские сценарии (`switch-language`, `switch-theme`).
 - `src/entities/project/` — сущность проекта: типы, исходные данные, изолированный серверный API (`index.server.ts`) и клиентские UI-компоненты.
 - `src/shared/` — переиспользуемые модули: UI-элементы, SCSS Modules и глобальные токены, шрифты, ассеты, адаптеры навигации i18n и тема.

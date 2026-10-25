@@ -1,7 +1,7 @@
 {
     "header": {
         "nav": {
-            "skills": "Ko'nikmalar",
+            "services": "Xizmatlar",
             "projects": "Loyihalar",
             "contact": "Bog'lanish"
         },
@@ -15,8 +15,54 @@
         "primaryButton": "Loyihalar",
         "secondaryButton": "Bog'lanish"
     },
-    "skills": {
-        "title": "Ko'nikmalar"
+    "services": {
+        "tag": "01 / QANDAY YORDAM BERA OLAMAN",
+        "title": "Xizmatlar va ekspertiza",
+        "description": "G'oyadan to ishlab chiqarishgacha ishonchli va yuqori unumdor raqamli mahsulotlarni yaratish — kengaytiriladigan arxitektura va biznes natijalariga yo'naltirilgan.",
+        "deliverablesTitle": "Asosiy natijalar:",
+        "stackTitle": "Texnologiyalar va vositalar:",
+        "items": {
+            "fullstack": {
+                "number": "01",
+                "title": "Noldan veb-ilovalar va SaaS yaratish",
+                "shortDesc": "Zamonaviy veb-xizmatlarni noldan ishlab chiqish: foydalanuvchi yo'lini loyihalashdan to bulutda ishga tushirishgacha.",
+                "deliverables": {
+                    "first": "Tezkor MVP yoki kengaytiriluvchi to'liq servis",
+                    "second": "Mobil, planshet va desktop uchun to'liq moslashuvchanlik",
+                    "third": "Ishlab chiqarishga tayyor (production-ready) infratuzilma"
+                }
+            },
+            "architecture": {
+                "number": "02",
+                "title": "Kengaytiriladigan arxitektura (FSD)",
+                "shortDesc": "Spagetti-kod va texnik qarzlarsiz Feature-Sliced Design metodologiyasi asosida tushunarli modulli tuzilma.",
+                "deliverables": {
+                    "first": "Izolatsiyalangan modullar va aniq mas'uliyat chegaralari",
+                    "second": "Jamoaga yangi dasturchilarning tez moslashishi",
+                    "third": "Yondosh funksiyalarni buzmasdan xavfsiz refaktoring"
+                }
+            },
+            "backend": {
+                "number": "03",
+                "title": "API integratsiyasi, backend va ma'lumotlar bazasi",
+                "shortDesc": "Frontendni ma'lumotlar bazalari, autentifikatsiya, tashqi xizmatlar va mustahkam API bilan bog'lash.",
+                "deliverables": {
+                    "first": "Zod orqali qat'iy ma'lumotlar sxemalari va tekshiruvi",
+                    "second": "RTK Query orqali optimistik yangilanishlar va kesh boshqaruvi",
+                    "third": "PostgreSQL va Supabase bilan xavfsiz autentifikatsiya va tuzilma"
+                }
+            },
+            "performance": {
+                "number": "04",
+                "title": "Unumdorlik, testlar va Web Vitals",
+                "shortDesc": "Interfeys tezligi va barqarorligini yashil Lighthouse ko'rsatkichlariga yetkazish va avtotestlar bilan ta'minlash.",
+                "deliverables": {
+                    "first": "Tezkor yuklanish va tartibsiz siljishlarsiz interfeys (CLS = 0)",
+                    "second": "60 FPS silliq harakat va prefers-reduced-motion qo'llab-quvvatlash",
+                    "third": "Xatolardan himoya qiluvchi Playwright Smoke va E2E testlari"
+                }
+            }
+        }
     },
     "projects": {
         "title": "Mening loyihalarim",

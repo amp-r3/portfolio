@@ -83,12 +83,12 @@ export function Header() {
           <li>
             <a
               onClick={(e) => {
-                onLinkClick(e, 'skills');
+                onLinkClick(e, 'services');
               }}
-              href="#skills"
+              href="#services"
               className={style.header__link}
             >
-              {t('header.nav.skills')}
+              {t('header.nav.services')}
             </a>
           </li>
           <li>

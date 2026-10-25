@@ -29,7 +29,7 @@ app/                              # Маршруты и страницы Next.js
 src/
   _app/                           # Провайдеры, инициализация темы, i18n, метаданные
   _pages/                         # Композиция страниц (home, project, not-found)
-  widgets/                        # Крупные блоки (header, hero, skills, projects, contact, footer)
+  widgets/                        # Крупные блоки (header, hero, services, projects, contact, footer)
   features/                       # Сценарии пользователя (switch-language, switch-theme)
   entities/                       # Сущность project (модель, UI и серверный index.server.ts)
   shared/                         # UI-компоненты, SCSS-стили, ассеты, адаптеры навигации i18n
