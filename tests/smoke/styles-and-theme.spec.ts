@@ -121,6 +121,49 @@ test.describe('Stage 2: Styles, Fonts, Assets, and Theme', () => {
     expect(storedTheme2).toBe('dark');
   });
 
+  test('reload with saved light theme preserves light theme without flashing dark', async ({ page }) => {
+    await page.addInitScript(() => {
+      window.localStorage.setItem('theme', 'light');
+    });
+
+    await page.goto('/');
+    const html = page.locator('html');
+    await expect(html).toHaveAttribute('data-theme', 'light');
+
+    await page.reload();
+    await expect(html).toHaveAttribute('data-theme', 'light');
+    await expect(page.getByRole('checkbox', { name: 'Switch to dark theme' })).toBeChecked();
+  });
+
+  test('language switch with light theme preserves light theme without resetting to dark', async ({ page }) => {
+    await page.goto('/');
+    const html = page.locator('html');
+
+    // Switch to light theme
+    await page.getByRole('checkbox', { name: 'Switch to light theme' }).click({ force: true });
+    await expect(html).toHaveAttribute('data-theme', 'light');
+
+    const switcher = page.getByRole('button', { name: 'Change language' });
+
+    // Switch to RU
+    await switcher.click();
+    await expect(page).toHaveURL(/\/ru$/);
+    await expect(html).toHaveAttribute('data-theme', 'light');
+    await expect(page.getByRole('checkbox', { name: 'Switch to dark theme' })).toBeChecked();
+
+    // Switch to UZ
+    await switcher.click();
+    await expect(page).toHaveURL(/\/uz$/);
+    await expect(html).toHaveAttribute('data-theme', 'light');
+    await expect(page.getByRole('checkbox', { name: 'Switch to dark theme' })).toBeChecked();
+
+    // Switch to EN
+    await switcher.click();
+    await expect(page).toHaveURL(/\/en$/);
+    await expect(html).toHaveAttribute('data-theme', 'light');
+    await expect(page.getByRole('checkbox', { name: 'Switch to dark theme' })).toBeChecked();
+  });
+
   test('denied localStorage keeps content visible and defaults to dark', async ({ page }) => {
     const pageErrors: string[] = [];
     page.on('pageerror', (error) => pageErrors.push(error.message));

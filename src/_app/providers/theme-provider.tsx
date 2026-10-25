@@ -1,9 +1,20 @@
 'use client';
 
-import { useCallback, useEffect, useMemo, useSyncExternalStore, type ReactNode } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useSyncExternalStore, type ReactNode } from 'react';
 import { ThemeContext, type Theme } from '@/shared/theme';
 
-let currentTheme: Theme = 'dark';
+function getStoredClientTheme(): Theme {
+  if (typeof window === 'undefined') return 'dark';
+  try {
+    const stored = window.localStorage.getItem('theme');
+    if (stored === 'light' || stored === 'dark') return stored;
+  } catch {}
+  const attr = document.documentElement.getAttribute('data-theme');
+  if (attr === 'light' || attr === 'dark') return attr;
+  return 'dark';
+}
+
+let currentTheme: Theme = typeof window !== 'undefined' ? getStoredClientTheme() : 'dark';
 const listeners = new Set<() => void>();
 
 function emitChange() {
@@ -30,17 +41,6 @@ function subscribeTheme(listener: () => void) {
   };
 }
 
-function getStoredClientTheme(): Theme {
-  if (typeof window === 'undefined') return 'dark';
-  try {
-    const stored = window.localStorage.getItem('theme');
-    if (stored === 'light' || stored === 'dark') return stored;
-  } catch {}
-  const attr = document.documentElement.getAttribute('data-theme');
-  if (attr === 'light' || attr === 'dark') return attr;
-  return 'dark';
-}
-
 function getSnapshot(): Theme {
   return currentTheme;
 }
@@ -65,25 +65,33 @@ function setThemeExternal(newTheme: Theme) {
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const theme = useSyncExternalStore(subscribeTheme, getSnapshot, getServerSnapshot);
+  const isMountedRef = useRef(false);
+  const prevThemeRef = useRef<Theme>(currentTheme);
 
   useEffect(() => {
-    const stored = getStoredClientTheme();
-    if (stored !== currentTheme) {
-      setThemeExternal(stored);
+    if (!isMountedRef.current) {
+      isMountedRef.current = true;
+
+      const currentAttr = document.documentElement.getAttribute('data-theme');
+      if (currentAttr !== currentTheme) {
+        document.documentElement.setAttribute('data-theme', currentTheme);
+      }
+      return;
     }
-  }, []);
 
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
+    if (prevThemeRef.current !== theme) {
+      prevThemeRef.current = theme;
+      document.documentElement.setAttribute('data-theme', theme);
 
-    const layers = document.querySelectorAll('.gradientLayer');
-    layers.forEach((layer) => layer.classList.add('transitioning'));
+      const layers = document.querySelectorAll('.gradientLayer');
+      layers.forEach((layer) => layer.classList.add('transitioning'));
 
-    const timer = setTimeout(() => {
-      layers.forEach((layer) => layer.classList.remove('transitioning'));
-    }, 1500);
+      const timer = setTimeout(() => {
+        layers.forEach((layer) => layer.classList.remove('transitioning'));
+      }, 1500);
 
-    return () => clearTimeout(timer);
+      return () => clearTimeout(timer);
+    }
   }, [theme]);
 
   const toggleTheme = useCallback(() => {

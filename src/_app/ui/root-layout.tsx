@@ -32,7 +32,6 @@ export async function RootLayout({ children, locale }: RootLayoutProps) {
   return (
     <html
       lang={locale}
-      data-theme="dark"
       className={`${fontInter.variable} ${fontExo2.variable} ${fontAzonix.variable}`}
       suppressHydrationWarning
     >
