@@ -20,11 +20,10 @@ Locomotive Scroll, Zod. Node 24.x, pnpm 10.33.3.
 - `pnpm dev` / `pnpm build` / `pnpm start`
 - `pnpm lint` / `pnpm typecheck`
 - `pnpm check:agents` (validates line/column limits in this file)
+- `pnpm test` / `pnpm test:unit` (Vitest unit and component tests)
 - `pnpm test:architecture` (FSD boundary checks via eslint-plugin-boundaries)
 - `pnpm test:messages` (ICU syntax & 3-locale key parity)
 - `pnpm test:projects` (server-only data isolation and types)
-- `pnpm test:smoke` (Playwright across Chromium, Firefox, WebKit)
-- `pnpm test:visual` (Playwright visual regression vs baseline)
 
 ## Architecture — Feature-Sliced Design (FSD)
 
@@ -79,4 +78,4 @@ Strict hierarchy under `src/` (highest → lowest):
 3. `pnpm test:architecture`
 4. `pnpm test:messages`
 5. `pnpm test:projects`
-6. `pnpm test:smoke` (if routes/navigation changed)
+6. `pnpm test`

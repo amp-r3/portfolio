@@ -22,6 +22,7 @@ pnpm dev
 ```bash
 pnpm lint
 pnpm typecheck
+pnpm test
 pnpm test:architecture
 pnpm test:messages
 pnpm test:projects
@@ -30,6 +31,8 @@ pnpm start
 ```
 
 - `build` и `start` используют серверный runtime Next.js; статический экспорт намеренно не используется, обеспечивая серверный доступ к данным проектов и динамическую обработку маршрутов.
+- `pnpm test` (или `pnpm test:unit`) запускает модульные и компонентные тесты в среде jsdom на базе Vitest.
+- `pnpm test:watch` запускает Vitest в интерактивном режиме разработки.
 - `pnpm test:architecture` проверяет соблюдение правил зависимостей FSD и изоляцию серверных модулей.
 - `pnpm test:messages` валидирует синтаксис ICU и ключи переводов `en`, `ru`, `uz`.
 - `pnpm test:projects` проверяет целостность и типизацию серверной модели данных и серверного API.
@@ -46,33 +49,22 @@ pnpm start
 - `src/entities/project/` — сущность проекта: типы, исходные данные, изолированный серверный API (`index.server.ts`) и клиентские UI-компоненты.
 - `src/shared/` — переиспользуемые модули: UI-элементы, SCSS Modules и глобальные токены, шрифты, ассеты, адаптеры навигации i18n и тема.
 - `public/` — публичные статические файлы: favicon, webmanifest, OG-изображение.
-- `tests/` — архитектурные, модульные, функциональные smoke и визуальные тесты.
+- `tests/` — архитектурные, модульные и компонентные тесты на Vitest.
 - `docs/migration/` — спецификация эталона, журнал проверок и отчеты миграции.
 
-## Проверки в браузерах
+## Модульное тестирование (Vitest)
+
+Вместо ресурсоёмких и нестабильных E2E-тестов браузеров проект использует быстрый набор модульных и компонентных тестов на базе **Vitest** и **Testing Library**:
 
 ```bash
-pnpm exec playwright install --with-deps chromium firefox webkit
-pnpm build
-pnpm test:smoke
+pnpm test          # разовый прогон всех тестов
+pnpm test:watch    # watch-режим для разработки
 ```
 
-Smoke-проверки выполняются на production server в Chromium, Firefox и WebKit, тестируя прямые переходы, историю браузера, переключение языков и тем, сохранение прокрутки и отсутствие ошибок гидратации/консоли.
-
-## Визуальное регрессионное тестирование
-
-Для сравнения с эталоном используется матрица скриншотов baseline (Chromium, DPR 1, 90 базовых сочетаний темы/языка/viewport + пограничные брейкпоинты и интерактивные состояния):
-
-```bash
-pnpm build
-VISUAL_TARGET=candidate pnpm test:visual
-```
-
-При необходимости пересборки или записи эталона исходной версии:
-```bash
-pnpm baseline:prepare
-pnpm test:visual
-pnpm baseline:record
-```
-
-Эталонные PNG сохраняются в Git (`tests/visual/baseline`), артефакты отчетов и видео — в игнорируемом каталоге `artifacts/`.
+Набор тестов покрывает:
+- Управление темой (`ThemeProvider`, `useTheme`, `ThemeScript`, `ThemeSwitch`, обработка исключений `localStorage`);
+- Интернационализацию (`LanguageSwitch`, конфигурацию `routing`, строгую валидацию синтаксиса ICU);
+- Серверную изоляцию данных и валидацию моделей проектов (`getProjects`, `getProject`, Zod-схемы);
+- UI-компоненты (`BackButton`, `Badge`, `Loader`, `BenefitCard`, `ProjectCard`);
+- Секции и страницы (`Header`, `Hero`, `Services`, `Projects`, `Contact`, `Footer`, `NotFoundPage`, `ErrorPage`);
+- Архитектурные границы Feature-Sliced Design (FSD).
