@@ -66,6 +66,10 @@ Strict hierarchy under `src/` (highest → lowest):
 
 - Strict BEM, one colocated SCSS module per component (`ui/Name/Name.module.scss`).
 - Two themes (`light` / `dark`) driven by `data-theme` attribute on `<html>`. Zero FOUC.
+- Theme switch duration is 1.5s (`$transition-duration-theme`, `$timing-function-theme`); all
+  elements across the site synchronize color, background, and border transitions with it.
+- Components with theme color transitions must use non-color hover effects (`transform`,
+  `box-shadow`, `opacity`) to prevent 1.5s hover lag and theme transition color collisions.
 - Animations and scroll handlers must respect `prefers-reduced-motion` and avoid breaking hydration.
 
 ## Verification Checklist Before Completion

@@ -78,13 +78,13 @@
         --glow-color: rgba(56, 189, 248, 0.5);
 
         transition:
+            background-color $transition-duration-theme $timing-function-theme,
+            border-color $transition-duration-theme $timing-function-theme,
             transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
-            border-color 0.35s ease,
             box-shadow 0.35s ease;
 
         &:hover {
             transform: scale(1.06);
-            border-color: var(--glow-color);
             box-shadow:
                 0 0 0 1px var(--glow-color),
                 0 4px 28px var(--glow-color),
@@ -181,7 +181,7 @@
         line-height: $typography-line-height-ui;
         color: var(--text-secondary);
         white-space: nowrap;
-        transition: color 0.3s ease;
+        transition: color $transition-duration-theme $timing-function-theme;
         
         @media (max-width: 768px) { font-size: $typography-font-size-medium; }
 

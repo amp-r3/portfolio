@@ -22,14 +22,12 @@
     
     
     transition: 
-        border-color $transition-duration-base $timing-function-ease-out-expo,
-        background-color 1s ease,
+        border-color $transition-duration-theme $timing-function-theme,
+        background-color $transition-duration-theme $timing-function-theme,
         transform $transition-duration-micro ease,
         box-shadow $transition-duration-base ease;
 
     &:hover {
-        border-color: var(--border-primary-hover);
-        background: var(--background-interactive-hover);
         transform: translateY(-2px);
         box-shadow: 
             0 4px 16px rgba(0, 0, 0, 0.1),

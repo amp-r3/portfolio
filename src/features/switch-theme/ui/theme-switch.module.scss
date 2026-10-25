@@ -44,7 +44,10 @@
     background-color: var(--switch-background);
     border-radius: $border-radius-pill;
 
-    transition: all $transition-duration-base $timing-function-ease-in-out-smooth;
+    transition:
+        border-color $transition-duration-theme $timing-function-theme,
+        background-color $transition-duration-theme $timing-function-theme,
+        transform $transition-duration-fast $timing-function-ease-in-out-smooth;
 
     &::after {
         content: '';
@@ -59,7 +62,6 @@
     }
 
     &:hover {
-        border-color: var(--switch-border-hover);
         transform: $transform-scale-up-small;
 
         &::after {
@@ -92,7 +94,7 @@
 
     transition:
         transform $transition-duration-layout $timing-function-ease-spring,
-        background-color $transition-duration-fast $timing-function-ease-in-out-smooth,
+        background-color $transition-duration-theme $timing-function-theme,
         box-shadow $transition-duration-base $timing-function-ease-in-out-smooth,
         width $transition-duration-base $timing-function-ease-out-expo,
         border-radius $transition-duration-base $timing-function-ease-out-expo;

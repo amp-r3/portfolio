@@ -72,15 +72,14 @@
         background: var(--button-background);
         font-weight: $typography-font-weight-semibold;
         transition:
-            background $transition-duration-base $timing-function-ease-in-out-smooth,
-            color $transition-duration-base $timing-function-ease-in-out-smooth,
+            background $transition-duration-theme $timing-function-theme,
+            color $transition-duration-theme $timing-function-theme,
             box-shadow $transition-duration-base $timing-function-ease-in-out-smooth,
             transform $transition-duration-base $timing-function-ease-in-out-smooth;
         box-shadow: var(--shadow-button);
         border: none;
 
         &:hover {
-            background: var(--button-background-hover);
             transform: translateY(-4px);
             box-shadow: 0 8px 30px rgba(30, 30, 30, 0.6);
         }
@@ -156,10 +155,9 @@
     &__email {
         font-size: $typography-font-size-base;
         color: var(--text-secondary);
-        transition: color $transition-duration-base ease;
+        transition: color $transition-duration-theme $timing-function-theme;
 
         &:hover {
-            color: var(--text-primary);
             text-decoration: underline;
         }
 
@@ -176,18 +174,16 @@
         display: grid;
         place-items: center;
         transition:
-            background $transition-duration-base $timing-function-ease-in-out-smooth,
-            border-color $transition-duration-base $timing-function-ease-in-out-smooth,
+            background $transition-duration-theme $timing-function-theme,
+            border-color $transition-duration-theme $timing-function-theme,
             box-shadow $transition-duration-base $timing-function-ease-in-out-smooth,
             transform $transition-duration-base $timing-function-ease-in-out-smooth;
         border: 1px solid var(--border-glass-alpha);
         box-shadow: var(--shadow-default);
 
         &:hover {
-            background: var(--background-glass-alpha-hover);
             transform: translateY(-3px) scale(1.05);
             box-shadow: var(--shadow-glass-hover);
-            border-color: var(--border-glass-alpha-hover);
         }
 
         &:active {

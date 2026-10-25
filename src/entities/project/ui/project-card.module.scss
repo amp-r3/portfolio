@@ -11,14 +11,14 @@
     height: 100%;
     backdrop-filter: $filter-backdrop-blur;
     transition:
+        background-color $transition-duration-theme $timing-function-theme,
+        border-color $transition-duration-theme $timing-function-theme,
         transform $transition-duration-base $timing-function-ease-in-out-smooth,
-        box-shadow $transition-duration-base $timing-function-ease-in-out-smooth,
-        border-color $transition-duration-base $timing-function-ease-in-out-smooth;
+        box-shadow $transition-duration-base $timing-function-ease-in-out-smooth;
 
     &:hover {
         transform: translateY(-6px);
         box-shadow: var(--shadow-glass-hover);
-        border-color: var(--border-glass-alpha-hover);
     }
 
     &:active {
@@ -147,7 +147,7 @@
     color: var(--text-secondary);
     font-weight: $typography-font-weight-semibold;
     font-size: $typography-font-size-small;
-    transition: color $transition-duration-base ease;
+    transition: color $transition-duration-theme $timing-function-theme;
 
     .projects__card:hover & {
         color: var(--text-primary);
@@ -173,7 +173,7 @@
 }
 
 .projects__more {
-    transition: color $transition-duration-base ease;
+    transition: color $transition-duration-theme $timing-function-theme;
     position: relative;
 
     &::after {

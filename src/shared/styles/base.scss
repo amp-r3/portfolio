@@ -3,7 +3,7 @@
 
 html {
     background-color: var(--theme-color);
-    transition: background-color 1.5s ease-in-out;
+    transition: background-color $transition-duration-theme $timing-function-theme;
 }
 
 @media (width < 768px) {
@@ -32,7 +32,7 @@ body {
     background-color: transparent;
     color: var(--text-primary);
 
-    transition: 1s color ease;
+    transition: color $transition-duration-theme $timing-function-theme;
 }
 
 .container {

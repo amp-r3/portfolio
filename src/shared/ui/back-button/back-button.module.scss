@@ -16,9 +16,9 @@
     cursor: pointer;
 
     transition:
-        color $transition-duration-base $timing-function-ease-out-expo,
-        background-color $transition-duration-base $timing-function-ease-out-expo,
-        border-color $transition-duration-base $timing-function-ease-out-expo,
+        color $transition-duration-theme $timing-function-theme,
+        background-color $transition-duration-theme $timing-function-theme,
+        border-color $transition-duration-theme $timing-function-theme,
         transform $transition-duration-fast $timing-function-ease-out-expo,
         box-shadow $transition-duration-base $timing-function-ease-out-expo;
 
@@ -40,9 +40,6 @@
     }
 
     &:hover {
-        background: var(--background-interactive-hover);
-        color: var(--text-primary);
-        border-color: var(--border-primary);
         transform: translateX(-2px); 
         box-shadow: 0 0 15px var(--accent-glow);
 

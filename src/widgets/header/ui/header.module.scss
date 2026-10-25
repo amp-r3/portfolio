@@ -7,8 +7,8 @@
     right: 0;
     z-index: 100;
     transition: 
-    background 1s ease,
-    border-bottom 1s ease;
+        background $transition-duration-theme $timing-function-theme,
+        border-bottom $transition-duration-theme $timing-function-theme;
     border-bottom: 1px solid transparent;
 
 
@@ -21,10 +21,10 @@
         bottom: 0;
         z-index: -1;
         transition: 
-        background 2s ease,
-        backdrop-filter 2s ease,
-        border-bottom-color 2s ease,
-        -webkit-backdrop-filter 2s ease;
+            background $transition-duration-theme $timing-function-theme,
+            backdrop-filter $transition-duration-theme $timing-function-theme,
+            border-bottom-color $transition-duration-theme $timing-function-theme,
+            -webkit-backdrop-filter $transition-duration-theme $timing-function-theme;
         border-bottom: 1px solid transparent;
     }
 
@@ -79,6 +79,7 @@
         line-height: $typography-line-height-tight;
         text-transform: uppercase;
         color: var(--text-primary);
+        transition: color $transition-duration-theme $timing-function-theme;
 
         @media (width < 992px) {
             z-index: 201;
@@ -178,7 +179,9 @@
         display: inline-block;
         padding: $spacing-small;
         font-size: $typography-font-size-medium;
-        transition: $transition-duration-base;
+        transition: 
+            color $transition-duration-theme $timing-function-theme,
+            background-color $transition-duration-base ease;
 
         &:hover {
             background: var(--background-interactive-hover);

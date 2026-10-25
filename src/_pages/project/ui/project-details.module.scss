@@ -156,7 +156,12 @@
         font-weight: $typography-font-weight-semibold;
         text-decoration: none;
         overflow: hidden;
-        transition: all $transition-duration-base $timing-function-ease-out-expo;
+        transition:
+            background-color $transition-duration-theme $timing-function-theme,
+            border-color $transition-duration-theme $timing-function-theme,
+            color $transition-duration-theme $timing-function-theme,
+            transform $transition-duration-base $timing-function-ease-out-expo,
+            box-shadow $transition-duration-base $timing-function-ease-out-expo;
 
         img {
             width: $icon-size-medium;
@@ -190,8 +195,7 @@
 
             &:hover {
                 transform: translateY(-2px);
-                background: var(--background-interactive-hover);
-                border-color: var(--border-primary-hover);
+                box-shadow: 0 8px 25px -5px var(--accent-glow);
             }
         }
     }

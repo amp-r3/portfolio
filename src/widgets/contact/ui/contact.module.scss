@@ -101,13 +101,12 @@
     &__location {
         font-size: $typography-font-size-base; // 16px
         color: var(--text-secondary);
-        transition: color 0.3s ease;
+        transition: color $transition-duration-theme $timing-function-theme;
     }
 
     &__email,
     &__number {
         &:hover {
-            color: var(--text-primary);
             text-decoration: underline;
         }
     }

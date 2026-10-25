@@ -154,13 +154,12 @@
         user-select: none;
         white-space: nowrap;
         transition:
-            background $transition-duration-base $timing-function-ease-in-out-smooth,
-            color $transition-duration-base $timing-function-ease-in-out-smooth,
+            background $transition-duration-theme $timing-function-theme,
+            color $transition-duration-theme $timing-function-theme,
             box-shadow $transition-duration-base $timing-function-ease-in-out-smooth,
             transform $transition-duration-base $timing-function-ease-in-out-smooth;
 
         &:hover {
-            background: var(--button-background-hover);
             box-shadow: var(--shadow-glass-hover);
             transform: $hover-transform-lift;
         }
@@ -196,16 +195,14 @@
         white-space: nowrap;
         backdrop-filter: $filter-backdrop-blur;
         transition:
-            background $transition-duration-base $timing-function-ease-in-out-smooth,
-            border-color $transition-duration-base $timing-function-ease-in-out-smooth,
-            color $transition-duration-base $timing-function-ease-in-out-smooth,
+            background $transition-duration-theme $timing-function-theme,
+            border-color $transition-duration-theme $timing-function-theme,
+            color $transition-duration-theme $timing-function-theme,
             box-shadow $transition-duration-base $timing-function-ease-in-out-smooth,
             transform $transition-duration-base $timing-function-ease-in-out-smooth;
 
         &:hover {
-            background: var(--button-secondary-hover-background);
-            border-color: var(--button-secondary-hover-border);
-            color: var(--text-primary);
+            box-shadow: var(--shadow-glass-hover);
             transform: $hover-transform-lift;
         }
 
@@ -255,13 +252,13 @@
         cursor: pointer;
         box-shadow: none;
         transition:
-            background $transition-duration-base $timing-function-ease-in-out-smooth,
-            border-color $transition-duration-base $timing-function-ease-in-out-smooth,
+            background $transition-duration-theme $timing-function-theme,
+            border-color $transition-duration-theme $timing-function-theme,
+            box-shadow $transition-duration-base $timing-function-ease-in-out-smooth,
             transform $transition-duration-base $timing-function-ease-in-out-smooth;
 
         &:hover {
-            background: var(--social-link-hover-bg);
-            border-color: var(--social-link-hover-border);
+            box-shadow: var(--shadow-glass-hover);
             transform: $hover-transform-lift scale($transform-scale-up-small);
         }
 
