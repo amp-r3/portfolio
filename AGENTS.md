@@ -13,7 +13,7 @@ architecture decisions in `docs/migration/decisions.md`.
 
 ## Stack & Commands
 
-Next.js 16 (App Router, Turbopack), React 19, TypeScript 5.9, next-intl 4 (`[locale]` routing:
+Next.js 16 (App Router, Turbopack), React 19, TypeScript 6.0, next-intl 4 (`[locale]` routing:
 `en`, `ru`, `uz`), SCSS Modules + CSS custom properties (light/dark themes), Motion,
 Locomotive Scroll, Zod. Node 24.x, pnpm 10.33.3.
 
