@@ -5,6 +5,7 @@ import { I18nProvider, type Locale } from '@/shared/i18n';
 import { ThemeScript } from '@/shared/theme';
 import { Header } from '@/widgets/header';
 import { ThemeProvider } from '../providers';
+import { ReloadHashScript } from './reload-hash-script';
 import { SmoothScroll } from './smooth-scroll';
 import style from './root-layout.module.scss';
 
@@ -45,6 +46,7 @@ export async function RootLayout({ children, locale }: RootLayoutProps) {
               'html{background-color:#000;color-scheme:dark;color:#f8fafc}html[data-theme="light"]{background-color:#fff;color-scheme:light;color:#020617}',
           }}
         />
+        <ReloadHashScript />
         <ThemeScript />
       </head>
       <body suppressHydrationWarning>

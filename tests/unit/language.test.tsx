@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { routing, isLocale } from '@/shared/i18n';
@@ -25,6 +25,10 @@ vi.mock('@/shared/i18n/navigation', () => ({
 describe('Language & Routing', () => {
   beforeEach(() => {
     vi.clearAllMocks();
+  });
+
+  afterEach(() => {
+    window.history.replaceState(null, '', '/');
   });
 
   describe('routing config & isLocale', () => {
@@ -73,6 +77,25 @@ describe('Language & Routing', () => {
       await user.click(button);
 
       expect(mockReplace).toHaveBeenCalledWith('/project/weather', {
+        locale: 'ru',
+        scroll: false,
+      });
+    });
+
+    it('keeps search params but drops the hash on locale change', async () => {
+      window.history.replaceState(null, '', '/en/project/weather?source=legacy#services');
+
+      const user = userEvent.setup();
+      render(
+        <I18nProvider initialLocale="en" messages={dummyMessages}>
+          <LanguageSwitch />
+        </I18nProvider>
+      );
+
+      const button = screen.getByRole('button', { name: 'Change language' });
+      await user.click(button);
+
+      expect(mockReplace).toHaveBeenCalledWith('/project/weather?source=legacy', {
         locale: 'ru',
         scroll: false,
       });

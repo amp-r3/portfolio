@@ -17,7 +17,8 @@ export function LanguageSwitch() {
     const currentIndex = routing.locales.indexOf(currentLang as (typeof routing.locales)[number]);
     const nextIndex = (currentIndex + 1) % routing.locales.length;
     const newLang = routing.locales[nextIndex];
-    const suffix = `${window.location.search}${window.location.hash}`;
+    // Hash не переносим: иначе после смены локали якорь сработает повторно.
+    const query = window.location.search;
 
     const is404 = i18n?.isNotFound || (typeof document !== 'undefined' && Boolean(document.querySelector('[data-text="404"]')));
 
@@ -30,12 +31,12 @@ export function LanguageSwitch() {
       } else {
         segments.splice(1, 0, newLang);
       }
-      const newPath = segments.join('/') + suffix;
+      const newPath = segments.join('/') + query;
       window.history.replaceState(null, '', newPath);
       return;
     }
 
-    router.replace(`${pathname}${suffix}`, { locale: newLang, scroll: false });
+    router.replace(`${pathname}${query}`, { locale: newLang, scroll: false });
   };
 
   const variants = {
