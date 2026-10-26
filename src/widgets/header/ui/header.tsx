@@ -1,8 +1,8 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { useTranslations } from 'next-intl';
-import { usePathname } from '@/shared/i18n';
+import { useLocale, useTranslations } from 'next-intl';
+import { getPathname, usePathname, useRouter } from '@/shared/i18n';
 import { LanguageSwitch } from '@/features/switch-language';
 import { ThemeSwitch } from '@/features/switch-theme';
 import { pauseSmoothScroll, resumeSmoothScroll, scrollToSection } from '@/shared/lib';
@@ -15,6 +15,9 @@ export function Header() {
   const navRef = useRef<HTMLDivElement>(null);
   const pendingTargetRef = useRef<string | null>(null);
   const pathname = usePathname();
+  const router = useRouter();
+  const locale = useLocale();
+  const isHome = pathname === '/';
   useHeaderScroll(navRef, pathname);
   const t = useTranslations();
 
@@ -22,6 +25,21 @@ export function Header() {
     scrollToSection(targetId);
     window.history.pushState(null, '', `#${targetId}`);
   }, []);
+
+  const navigateToTarget = useCallback(
+    (targetId: string) => {
+      if (isHome) {
+        scrollToTarget(targetId);
+        return;
+      }
+
+      router.push(`/#${targetId}`);
+    },
+    [isHome, router, scrollToTarget]
+  );
+
+  const getHref = (targetId: string) =>
+    isHome ? `#${targetId}` : getPathname({ href: `/#${targetId}`, locale });
 
   useEffect(() => {
     if (!isMenuOpen) return;
@@ -62,20 +80,24 @@ export function Header() {
 
       if (targetId) {
         pendingTargetRef.current = null;
-        requestAnimationFrame(() => scrollToTarget(targetId));
+        requestAnimationFrame(() => navigateToTarget(targetId));
       }
     };
-  }, [isMenuOpen, scrollToTarget]);
+  }, [isMenuOpen, navigateToTarget]);
 
   const handleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
   const onLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) {
+      return;
+    }
+
     e.preventDefault();
 
     if (!isMenuOpen) {
-      scrollToTarget(targetId);
+      navigateToTarget(targetId);
       return;
     }
 
@@ -96,7 +118,7 @@ export function Header() {
               onClick={(e) => {
                 onLinkClick(e, 'services');
               }}
-              href="#services"
+              href={getHref('services')}
               className={style.header__link}
             >
               {t('header.nav.services')}
@@ -107,7 +129,7 @@ export function Header() {
               onClick={(e) => {
                 onLinkClick(e, 'projects');
               }}
-              href="#projects"
+              href={getHref('projects')}
               className={style.header__link}
             >
               {t('header.nav.projects')}
@@ -118,7 +140,7 @@ export function Header() {
               onClick={(e) => {
                 onLinkClick(e, 'contact');
               }}
-              href="#contact"
+              href={getHref('contact')}
               className={style.header__link}
             >
               {t('header.nav.contact')}

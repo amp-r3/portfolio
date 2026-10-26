@@ -8,12 +8,16 @@ import { NotFoundPage } from '@/_pages/not-found';
 import { ErrorPage } from '@/_pages/error';
 
 const mockBack = vi.fn();
+const mockPush = vi.fn();
+let mockPathname = '/';
 
 vi.mock('@/shared/i18n', () => ({
-  usePathname: () => '/',
+  getPathname: ({ href, locale }: { href: string; locale: string }) =>
+    `/${locale}${href === '/' ? '' : href}`,
+  usePathname: () => mockPathname,
   useRouter: () => ({
     back: mockBack,
-    push: vi.fn(),
+    push: mockPush,
     replace: vi.fn(),
   }),
   useLocale: () => 'en',
@@ -42,6 +46,7 @@ function renderWithProviders(component: React.ReactNode) {
 describe('Widgets and Pages', () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    mockPathname = '/';
   });
 
   describe('Header widget', () => {
@@ -53,6 +58,19 @@ describe('Widgets and Pages', () => {
       expect(screen.getByRole('link', { name: 'Contact' })).toBeInTheDocument();
       expect(screen.getByRole('checkbox', { name: /Switch to (light|dark) theme/i })).toBeInTheDocument();
       expect(screen.getByRole('button', { name: 'Change language' })).toBeInTheDocument();
+    });
+
+    it('links to home anchors from project pages', async () => {
+      mockPathname = '/project/weather';
+      const user = userEvent.setup();
+      renderWithProviders(<Header />);
+
+      const servicesLink = screen.getByRole('link', { name: 'Services' });
+      expect(servicesLink).toHaveAttribute('href', '/en/#services');
+
+      await user.click(servicesLink);
+
+      expect(mockPush).toHaveBeenCalledWith('/#services');
     });
 
     it('toggles mobile menu on button click', async () => {
