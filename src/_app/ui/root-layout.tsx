@@ -6,6 +6,7 @@ import { ThemeScript } from '@/shared/theme';
 import { Header } from '@/widgets/header';
 import { ThemeProvider } from '../providers';
 import { SmoothScroll } from './smooth-scroll';
+import style from './root-layout.module.scss';
 
 interface RootLayoutProps {
   children: ReactNode;
@@ -54,7 +55,7 @@ export async function RootLayout({ children, locale }: RootLayoutProps) {
             <div id="root">
               <Header />
               <SmoothScroll>
-                <main style={{ position: 'relative', minHeight: '100vh', overflow: 'hidden' }}>{children}</main>
+                <main className={style.main}>{children}</main>
               </SmoothScroll>
             </div>
           </ThemeProvider>

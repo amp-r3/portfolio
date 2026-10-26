@@ -70,6 +70,10 @@ Strict hierarchy under `src/` (highest → lowest):
 - Components with theme color transitions must use non-color hover effects (`transform`,
   `box-shadow`, `opacity`) to prevent 1.5s hover lag and theme transition color collisions.
 - Animations and scroll handlers must respect `prefers-reduced-motion` and avoid breaking hydration.
+- Hero dissolve: `.hero` scrolls away (`position: relative`) and clips with `overflow: clip`.
+  Never restore `position: sticky` or `main { overflow: hidden }` — it rewrites the transition.
+- `HERO_SCROLL` (`shared/config/motion.ts`) is the source of truth; at `minScale 0.75`,
+  keep `offsetEnd ≤ 12.5%`.
 
 ## Verification Checklist Before Completion
 

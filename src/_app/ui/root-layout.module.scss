@@ -1,0 +1,7 @@
+.main {
+    position: relative;
+    min-height: 100vh;
+    // clip, not hidden: hidden turns main into a scroll container and silently
+    // disables sticky descendants (services preview) and changes hero choreography.
+    overflow-x: clip;
+}

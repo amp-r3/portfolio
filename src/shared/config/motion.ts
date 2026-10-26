@@ -4,6 +4,8 @@ import type { Transition, Variants } from 'motion/react';
 export const MOTION_EASING = [0.22, 1, 0.36, 1] as const;
 export const MOTION_DURATION = 0.8;
 
+// Hero dissolve contract: content scales 1 → minScale and shifts by offsetEnd.
+// .hero clips it with overflow: clip; at minScale 0.75 the safe offsetEnd limit is 12.5%.
 export const HERO_SCROLL = {
   minScale: 0.75,
   offsetEnd: '12%',

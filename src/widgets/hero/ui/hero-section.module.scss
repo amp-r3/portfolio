@@ -1,13 +1,16 @@
 @use "@/shared/styles/index.scss" as *;
 
 .hero {
-    position: sticky;
-    top: 0;
+    // Hero scrolls away with the page. Do not restore position: sticky:
+    // it would pin the hero and rewrite the whole dissolve choreography.
+    position: relative;
     z-index: 0;
     width: 100%;
     height: 100vh;
     height: 100svh;
-    overflow: hidden;
+    // Load-bearing: clips the 140% blurred layers (inset: -20%) and the 12% content parallax.
+    // At scale 0.75 / offsetEnd 12% the bottom margin is ~0.5% — keep the clip.
+    overflow: clip;
     will-change: transform;
     display: flex;
     flex-direction: column;

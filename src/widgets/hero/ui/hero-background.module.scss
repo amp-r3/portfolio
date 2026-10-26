@@ -6,7 +6,9 @@
     width: 100%;
     height: 100%;
     z-index: -1;
-    overflow: hidden;
+    // Local clip for the oversized blurred layers (inset: -20%, blur 80px).
+    // Second line of defense together with .hero's clip.
+    overflow: clip;
     background-color: var(--theme-color, #02040a);
 }
 
