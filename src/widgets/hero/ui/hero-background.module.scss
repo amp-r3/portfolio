@@ -3,164 +3,168 @@
 .backgroundContainer {
     position: absolute;
     inset: 0;
-    width: 100%;
-    height: 100%;
     z-index: -1;
-    // Local clip for the oversized blurred layers (inset: -20%, blur 80px).
-    // Second line of defense together with .hero's clip.
+    // Load-bearing: clips the oversized glow layer and its drift animation.
+    // tests/unit/hero-choreography.test.ts asserts this declaration stays.
     overflow: clip;
+    contain: paint;
     background-color: var(--theme-color, #02040a);
+
+    // Grain sits above both stacks: it dithers the gradient rings in both
+    // themes and adds a little depth without a blur filter.
+    @include grain-dither(0.03);
 }
 
-.gradientLayer {
+:global([data-theme='light']) .backgroundContainer::after {
+    opacity: 0.012;
+}
+
+// A theme is a single stack with three paint layers:
+// base (element background) -> glow (::before) -> vignette (::after).
+// Only the light stack animates: crossfading it over the static dark stack
+// gives the same light*α + dark*(1-α) result as fading two stacks, but with
+// one animated surface instead of ten.
+.stack {
     position: absolute;
-    inset: -20%;
-    width: 140%;
-    height: 140%;
-    filter: blur(80px);
-    transition: opacity $transition-duration-theme $timing-function-theme;
-    will-change: transform, opacity;
-}
+    inset: 0;
 
-/* Dark is the default so the server-rendered HTML is correct without JS. */
-.darkBase, .darkAccent1, .darkAccent2, .darkAccent3, .darkOverlay {
-    opacity: 1;
-}
+    &::before,
+    &::after {
+        content: '';
+        position: absolute;
+        pointer-events: none;
+    }
 
-.lightBase, .lightAccent1, .lightAccent2, .lightAccent3, .lightOverlay {
-    opacity: 0;
+    &::before {
+        // Slightly oversized so the drift never exposes a hard edge.
+        inset: -8%;
+        will-change: transform;
+    }
+
+    &::after {
+        inset: 0;
+    }
 }
 
 /* =========================================
-   DARK THEME
+   DARK THEME (default for SSR / no JS)
    ========================================= */
 
-.darkBase {
+.stackDark {
     background: linear-gradient(180deg, #02040a 0%, #000000 100%);
-    z-index: 0;
-    filter: none;
+    visibility: visible;
+    transition: visibility 0s linear 0s;
+
+    // Blur is replaced by softened multi-stop falloffs: same softness, no
+    // filter surface. Stops are 0% / 0.35e / 0.75e / 1.1e so the tail keeps
+    // the ~10% spread that blur(80px) used to add.
+    &::before {
+        background:
+            radial-gradient(circle at 20% 30%,
+                rgba(29, 78, 216, 0.15) 0%,
+                rgba(29, 78, 216, 0.09) 21%,
+                rgba(29, 78, 216, 0.03) 45%,
+                transparent 66%),
+            radial-gradient(circle at 80% 60%,
+                rgba(109, 40, 217, 0.12) 0%,
+                rgba(109, 40, 217, 0.072) 21%,
+                rgba(109, 40, 217, 0.024) 45%,
+                transparent 66%),
+            radial-gradient(circle at 50% 40%,
+                rgba(6, 182, 212, 0.1) 0%,
+                rgba(6, 182, 212, 0.06) 18%,
+                rgba(6, 182, 212, 0.02) 38%,
+                transparent 55%);
+        animation: glow-drift 28s $timing-function-theme infinite alternate;
+    }
+
+    &::after {
+        background: linear-gradient(to bottom,
+                transparent 0%,
+                rgba(0, 0, 0, 0.2) 50%,
+                rgba(0, 0, 0, 0.8) 85%,
+                #000000 100%);
+    }
 }
-
-.darkAccent1 {
-    background: radial-gradient(circle at 20% 30%, rgba(29, 78, 216, 0.15) 0%, transparent 60%);
-    animation: float-slow 20s infinite ease-in-out alternate;
-}
-
-.darkAccent2 {
-    background: radial-gradient(circle at 80% 60%, rgba(109, 40, 217, 0.12) 0%, transparent 60%);
-    animation: float-mid 25s infinite ease-in-out alternate-reverse;
-}
-
-.darkAccent3 {
-    background: radial-gradient(circle at 50% 40%, rgba(6, 182, 212, 0.1) 0%, transparent 50%);
-    animation: float-fast 18s infinite ease-in-out alternate;
-}
-
-.darkOverlay {
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    filter: none;
-
-    background: linear-gradient(to bottom,
-            transparent 0%,
-            rgba(0, 0, 0, 0.2) 50%,
-            rgba(0, 0, 0, 0.8) 85%,
-            #000000 100%);
-    z-index: 2;
-}
-
 
 /* =========================================
-   LIGHT THEME (Clean Minimal Base & Localized Glows)
+   LIGHT THEME
    ========================================= */
 
-.lightBase {
+.stackLight {
     background: #ffffff;
-    z-index: 0;
-    filter: none;
-}
+    opacity: 0;
+    visibility: hidden;
+    will-change: opacity;
+    transition:
+        opacity $transition-duration-theme $timing-function-theme,
+        visibility 0s linear $transition-duration-theme;
 
-.lightAccent1 {
-    background: radial-gradient(circle at 12% 15%, rgba(14, 165, 233, 0.08) 0%, transparent 45%);
-    animation: float-slow 22s infinite ease-in-out alternate;
-}
+    &::before {
+        background:
+            radial-gradient(circle at 12% 15%,
+                rgba(14, 165, 233, 0.08) 0%,
+                rgba(14, 165, 233, 0.048) 16%,
+                rgba(14, 165, 233, 0.016) 34%,
+                rgba(255, 255, 255, 0) 50%),
+            radial-gradient(circle at 88% 18%,
+                rgba(139, 92, 246, 0.07) 0%,
+                rgba(139, 92, 246, 0.042) 16%,
+                rgba(139, 92, 246, 0.014) 34%,
+                rgba(255, 255, 255, 0) 50%);
+        animation: glow-drift 32s $timing-function-theme infinite alternate-reverse;
+        animation-play-state: paused;
+    }
 
-.lightAccent2 {
-    background: radial-gradient(circle at 88% 18%, rgba(139, 92, 246, 0.07) 0%, transparent 45%);
-    animation: float-mid 28s infinite ease-in-out alternate-reverse;
-}
-
-.lightAccent3 {
-    background: transparent;
-}
-
-.lightOverlay {
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    filter: none;
-
-    background: linear-gradient(to bottom,
-            rgba(255, 255, 255, 0) 0%,
-            rgba(255, 255, 255, 0) 60%,
-            rgba(255, 255, 255, 0.8) 85%,
-            #ffffff 100%);
-    z-index: 2;
+    // The rgba white stops stay explicit: `transparent` would interpolate
+    // through rgba(0, 0, 0, 0) and bring the gray banding back.
+    &::after {
+        background: linear-gradient(to bottom,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0) 60%,
+                rgba(255, 255, 255, 0.8) 85%,
+                #ffffff 100%);
+    }
 }
 
 :global([data-theme='light']) {
-    .darkBase, .darkAccent1, .darkAccent2, .darkAccent3, .darkOverlay {
-        opacity: 0;
-    }
-    .lightBase, .lightAccent1, .lightAccent2, .lightAccent3, .lightOverlay {
+    .stackLight {
         opacity: 1;
+        visibility: visible;
+        transition:
+            opacity $transition-duration-theme $timing-function-theme,
+            visibility 0s linear 0s;
+
+        &::before {
+            animation-play-state: running;
+        }
+    }
+
+    // Stays visible for the whole fade, then releases its layers.
+    .stackDark {
+        visibility: hidden;
+        transition: visibility 0s linear $transition-duration-theme;
+
+        &::before {
+            animation-play-state: paused;
+        }
     }
 }
 
 /* --- Animations --- */
 
-@keyframes float-slow {
-    0% {
-        transform: translate(0, 0) scale(1);
+@keyframes glow-drift {
+    from {
+        transform: translate3d(0, 0, 0) scale(1);
     }
 
-    100% {
-        transform: translate(10%, 5%) scale(1.1);
-    }
-}
-
-@keyframes float-mid {
-    0% {
-        transform: translate(0, 0) scale(1);
-    }
-
-    100% {
-        transform: translate(-8%, 8%) scale(1.05);
-    }
-}
-
-@keyframes float-fast {
-    0% {
-        transform: translate(0, 0) scale(1);
-    }
-
-    50% {
-        transform: translate(5%, -5%) scale(1.15);
-    }
-
-    100% {
-        transform: translate(0, 0) scale(1);
+    to {
+        transform: translate3d(5%, 4%, 0) scale(1.06);
     }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .darkAccent1,
-    .darkAccent2,
-    .darkAccent3,
-    .lightAccent1,
-    .lightAccent2,
-    .lightAccent3 {
+    .stack::before {
         animation: none;
     }
 }

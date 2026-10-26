@@ -3,19 +3,11 @@ import style from './hero-background.module.scss';
 export function HeroBackground() {
   return (
     <div className={style.backgroundContainer}>
-      {/* --- Dark Theme Layers --- */}
-      <div className={`${style.gradientLayer} ${style.darkBase}`} />
-      <div className={`${style.gradientLayer} ${style.darkAccent1}`} />
-      <div className={`${style.gradientLayer} ${style.darkAccent2}`} />
-      <div className={`${style.gradientLayer} ${style.darkAccent3}`} />
-      <div className={`${style.gradientLayer} ${style.darkOverlay}`} />
+      {/* --- Dark Theme (default for SSR / no JS) --- */}
+      <div className={`${style.stack} ${style.stackDark}`} />
 
-      {/* --- Light Theme Layers --- */}
-      <div className={`${style.gradientLayer} ${style.lightBase}`} />
-      <div className={`${style.gradientLayer} ${style.lightAccent1}`} />
-      <div className={`${style.gradientLayer} ${style.lightAccent2}`} />
-      <div className={`${style.gradientLayer} ${style.lightAccent3}`} />
-      <div className={`${style.gradientLayer} ${style.lightOverlay}`} />
+      {/* --- Light Theme (crossfaded over the dark stack) --- */}
+      <div className={`${style.stack} ${style.stackLight}`} />
     </div>
   );
 }
