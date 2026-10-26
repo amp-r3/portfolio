@@ -28,14 +28,27 @@ export function HeroSection() {
   const targetRef = useRef<HTMLElement>(null);
   const prefersReduced = usePrefersReducedMotion();
 
-  const { scrollYProgress } = useScroll({
-    target: targetRef,
-    offset: ['start start', 'end start'],
+  const { scrollY } = useScroll();
+
+  const scale = useTransform(scrollY, (value) => {
+    const h = typeof window !== 'undefined' ? window.innerHeight : 900;
+    const progress = Math.min(Math.max(value / h, 0), 1);
+    return 1 - progress * 0.25;
   });
 
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.9]);
-  const y = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
-  const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
+  const y = useTransform(scrollY, (value) => {
+    const h = typeof window !== 'undefined' ? window.innerHeight : 900;
+    const progress = Math.min(Math.max(value / h, 0), 1);
+    return `${progress * 35}%`;
+  });
+
+  const opacity = useTransform(scrollY, (value) => {
+    const h = typeof window !== 'undefined' ? window.innerHeight : 900;
+    const progress = Math.min(Math.max(value / h, 0), 1);
+    if (progress <= 0.25) return 1;
+    if (progress >= 0.85) return 0;
+    return 1 - (progress - 0.25) / (0.85 - 0.25);
+  });
 
   const scrollStyle = prefersReduced ? undefined : { scale, opacity, y };
 

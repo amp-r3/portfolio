@@ -17,6 +17,26 @@ function getStoredClientTheme(): Theme {
 let currentTheme: Theme = typeof window !== 'undefined' ? getStoredClientTheme() : 'dark';
 const listeners = new Set<() => void>();
 
+if (typeof window !== 'undefined' && typeof Element !== 'undefined' && !(window as unknown as { __themeGuarded?: boolean }).__themeGuarded) {
+  (window as unknown as { __themeGuarded?: boolean }).__themeGuarded = true;
+  const origSet = Element.prototype.setAttribute;
+  Element.prototype.setAttribute = function(name, value) {
+    const res = origSet.call(this, name, value);
+    if (this === document.documentElement && (name === 'lang' || name === 'class')) {
+      const saved = currentTheme;
+      if (this.getAttribute('data-theme') !== saved) {
+        origSet.call(this, 'data-theme', saved);
+      }
+    }
+    return res;
+  };
+  const origRem = Element.prototype.removeAttribute;
+  Element.prototype.removeAttribute = function(name) {
+    if (this === document.documentElement && name === 'data-theme') return;
+    return origRem.call(this, name);
+  };
+}
+
 function emitChange() {
   for (const listener of listeners) {
     listener();
