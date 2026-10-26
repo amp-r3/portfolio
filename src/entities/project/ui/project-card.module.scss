@@ -74,13 +74,13 @@
     }
 }
 
-:global([data-theme='dark']) {
-    .projects__img--light {
-        display: none;
-    }
-    .projects__img--dark {
-        display: block;
-    }
+/* Dark is the default so the server-rendered HTML is correct without JS. */
+.projects__img--light {
+    display: none;
+}
+
+.projects__img--dark {
+    display: block;
 }
 
 :global([data-theme='light']) {

@@ -6,6 +6,13 @@ html {
     transition: background-color $transition-duration-theme $timing-function-theme;
 }
 
+html:not(.theme-ready),
+html:not(.theme-ready) *,
+html:not(.theme-ready) *::before,
+html:not(.theme-ready) *::after {
+    transition: none !important;
+}
+
 @media (width < 768px) {
     html {
         scroll-behavior: smooth;

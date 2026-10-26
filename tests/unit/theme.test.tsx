@@ -18,7 +18,9 @@ function TestConsumer() {
 describe('Theme management', () => {
   beforeEach(() => {
     localStorage.clear();
+    document.cookie = 'theme=; Path=/; Max-Age=0';
     document.documentElement.removeAttribute('data-theme');
+    document.documentElement.removeAttribute('style');
     vi.restoreAllMocks();
   });
 
@@ -49,12 +51,40 @@ describe('Theme management', () => {
       expect(screen.getByTestId('theme-value')).toHaveTextContent('light');
       expect(document.documentElement.getAttribute('data-theme')).toBe('light');
       expect(localStorage.getItem('theme')).toBe('light');
+      expect(document.cookie).toContain('theme=light');
 
       // Second toggle: light -> dark
       await user.click(button);
       expect(screen.getByTestId('theme-value')).toHaveTextContent('dark');
       expect(document.documentElement.getAttribute('data-theme')).toBe('dark');
       expect(localStorage.getItem('theme')).toBe('dark');
+      expect(document.cookie).toContain('theme=dark');
+    });
+
+    it('adopts a theme applied by ThemeScript before hydration', () => {
+      document.documentElement.setAttribute('data-theme', 'light');
+
+      render(
+        <ThemeProvider>
+          <TestConsumer />
+        </ThemeProvider>
+      );
+
+      expect(screen.getByTestId('theme-value')).toHaveTextContent('light');
+      expect(document.documentElement.getAttribute('data-theme')).toBe('light');
+    });
+
+    it('restores the persisted theme if React replaced <html> without data-theme', () => {
+      localStorage.setItem('theme', 'light');
+
+      render(
+        <ThemeProvider>
+          <TestConsumer />
+        </ThemeProvider>
+      );
+
+      expect(screen.getByTestId('theme-value')).toHaveTextContent('light');
+      expect(document.documentElement.getAttribute('data-theme')).toBe('light');
     });
 
     it('handles localStorage throwing SecurityError gracefully and defaults to dark', () => {
@@ -105,7 +135,9 @@ describe('Theme management', () => {
       const script = container.querySelector('script');
       expect(script).toBeInTheDocument();
       expect(script?.innerHTML).toContain("localStorage.getItem('theme')");
-      expect(script?.innerHTML).toContain("document.documentElement.setAttribute('data-theme'");
+      expect(script?.innerHTML).toContain("root.setAttribute('data-theme'");
+      expect(script?.innerHTML).toContain('document.cookie');
+      expect(script?.innerHTML).not.toContain('Element.prototype');
     });
   });
 

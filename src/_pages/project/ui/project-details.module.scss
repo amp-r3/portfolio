@@ -281,24 +281,16 @@
         display: block;
 
         &--light {
-            display: block;
+            display: none;
         }
 
         &--dark {
-            display: none;
+            display: block;
         }
     }
 }
 
-:global([data-theme='dark']) {
-    .project-details__picture--light {
-        display: none !important;
-    }
-    .project-details__picture--dark {
-        display: block !important;
-    }
-}
-
+/* Dark is the default so the server-rendered HTML is correct without JS. */
 :global([data-theme='light']) {
     .project-details__picture--light {
         display: block !important;

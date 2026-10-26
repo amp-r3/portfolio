@@ -107,25 +107,27 @@
     }
 }
 
-input:checked+.slider:before {
-    transform: translateX(53px) translateY(-50%);
+:global(html[data-theme='light']) {
+    .slider:before {
+        transform: translateX(53px) translateY(-50%);
 
-    @media (width < 576px) {
-        transform: translateX(50px) translateY(-50%);
+        @media (width < 576px) {
+            transform: translateX(50px) translateY(-50%);
+        }
+
+        @media (width < 380px) {
+            transform: translateX(30px) translateY(-50%);
+        }
     }
 
-    @media (width < 380px) {
-        transform: translateX(30px) translateY(-50%);
+    input:active+.slider:before {
+        transform: translateX(36px) translateY(-50%);
     }
 }
 
 input:active+.slider:before {
     width: 36px;
     border-radius: $border-radius-input;
-}
-
-input:active:checked+.slider:before {
-    transform: translateX(36px) translateY(-50%);
 }
 
 .icon {
@@ -148,35 +150,26 @@ input:active:checked+.slider:before {
 
 .moonIcon {
     right: $spacing-small;
-}
-
-.sunIcon {
-    left: $spacing-small;
-}
-
-input:not(:checked)~.moonIcon {
     opacity: 1;
     transform: translateY(-50%) rotate(0deg) scale(1);
 }
 
-input:checked~.sunIcon {
-    opacity: 1;
-    transform: translateY(-50%) rotate(180deg) scale(1);
-}
-
-input:not(:checked)~.sunIcon {
+.sunIcon {
+    left: $spacing-small;
     opacity: 0.3;
     transform: translateY(-50%) rotate(-180deg) scale(0.7);
 }
 
-input:checked~.moonIcon {
-    opacity: 0.3;
-    transform: translateY(-50%) rotate(180deg) scale(0.7);
-}
+:global(html[data-theme='light']) {
+    .sunIcon {
+        opacity: 1;
+        transform: translateY(-50%) rotate(180deg) scale(1);
+    }
 
-.switch:hover input:not(:checked)~.moonIcon,
-.switch:hover input:checked~.sunIcon {
-    animation: none;
+    .moonIcon {
+        opacity: 0.3;
+        transform: translateY(-50%) rotate(180deg) scale(0.7);
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {

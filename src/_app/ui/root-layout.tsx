@@ -36,6 +36,14 @@ export async function RootLayout({ children, locale }: RootLayoutProps) {
       suppressHydrationWarning
     >
       <head>
+        <style
+          // Establish the default dark canvas before the external stylesheet
+          // arrives. The script below switches it to light when needed.
+          dangerouslySetInnerHTML={{
+            __html:
+              'html{background-color:#000;color-scheme:dark;color:#f8fafc}html[data-theme="light"]{background-color:#fff;color-scheme:light;color:#020617}',
+          }}
+        />
         <ThemeScript />
       </head>
       <body suppressHydrationWarning>

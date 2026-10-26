@@ -20,6 +20,15 @@
     will-change: transform, opacity;
 }
 
+/* Dark is the default so the server-rendered HTML is correct without JS. */
+.darkBase, .darkAccent1, .darkAccent2, .darkAccent3, .darkOverlay {
+    opacity: 1;
+}
+
+.lightBase, .lightAccent1, .lightAccent2, .lightAccent3, .lightOverlay {
+    opacity: 0;
+}
+
 /* =========================================
    DARK THEME
    ========================================= */
@@ -96,15 +105,6 @@
             rgba(255, 255, 255, 0.8) 85%,
             #ffffff 100%);
     z-index: 2;
-}
-
-:global([data-theme='dark']) {
-    .darkBase, .darkAccent1, .darkAccent2, .darkAccent3, .darkOverlay {
-        opacity: 1;
-    }
-    .lightBase, .lightAccent1, .lightAccent2, .lightAccent3, .lightOverlay {
-        opacity: 0;
-    }
 }
 
 :global([data-theme='light']) {

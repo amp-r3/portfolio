@@ -1,4 +1,6 @@
 :root {
+  color-scheme: dark;
+
   // Text
   --text-primary: #f8fafc;
   --text-secondary: #94a3b8;
@@ -74,6 +76,8 @@
 }
 
 [data-theme="light"] {
+  color-scheme: light;
+
   // Text
   --text-primary: #020617;
   --text-secondary: #475569;
