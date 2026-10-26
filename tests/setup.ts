@@ -33,4 +33,13 @@ if (typeof window !== 'undefined') {
 
   window.IntersectionObserver = MockIntersectionObserver;
   global.IntersectionObserver = MockIntersectionObserver;
+
+  class MockResizeObserver implements ResizeObserver {
+    observe() {}
+    unobserve() {}
+    disconnect() {}
+  }
+
+  window.ResizeObserver = MockResizeObserver;
+  global.ResizeObserver = MockResizeObserver;
 }

@@ -4,6 +4,13 @@ import type { Transition, Variants } from 'motion/react';
 export const MOTION_EASING = [0.22, 1, 0.36, 1] as const;
 export const MOTION_DURATION = 0.8;
 
+export const HERO_SCROLL = {
+  minScale: 0.75,
+  offsetEnd: '12%',
+  fadeStart: 0.2,
+  fadeEnd: 0.85,
+} as const;
+
 export const transitionSmooth: Transition = {
   duration: MOTION_DURATION,
   ease: MOTION_EASING,

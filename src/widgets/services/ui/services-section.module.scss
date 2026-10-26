@@ -119,7 +119,7 @@
         box-sizing: border-box;
 
         @media (max-width: 992px) {
-            scroll-margin-top: 85px;
+            scroll-margin-top: var(--header-height);
         }
 
         // Theme synchronization transitions (1.5s) combined with quick spatial hover transitions

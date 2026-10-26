@@ -28,7 +28,7 @@ export const ProjectDetails: FC<IProjectDetailsProps> = ({ project }) => {
       <div className={style['project-details__content']}>
         <h1 className={style['project-details__title']}>{title}</h1>
         <div className={style['project-details__description-wrapper']}>
-          <p className={style['project-details__description']}>{description}</p>
+          <p className={style['project-details__description']} data-lenis-prevent>{description}</p>
         </div>
 
         <div className={style['project-details__tools']}>

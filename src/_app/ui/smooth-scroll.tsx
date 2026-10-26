@@ -1,64 +1,138 @@
 'use client';
 
 import { useEffect, useRef, type ReactNode } from 'react';
-import type LocomotiveScroll from 'locomotive-scroll';
+import type Lenis from 'lenis';
 import { usePathname } from '@/shared/i18n';
-import 'locomotive-scroll/dist/locomotive-scroll.css';
+import { usePrefersReducedMotion } from '@/shared/config';
+import { registerSmoothScroll, scrollToSection, scrollToTop } from '@/shared/lib';
+import 'lenis/dist/lenis.css';
 
 interface SmoothScrollProps {
   children: ReactNode;
 }
 
-let previousPathname: string | undefined;
+const LENIS_OPTIONS = {
+  lerp: 0.1,
+  smoothWheel: true,
+  syncTouch: false,
+  autoRaf: true,
+};
 
 export function SmoothScroll({ children }: SmoothScrollProps) {
-  const scrollRef = useRef<LocomotiveScroll | null>(null);
   const pathname = usePathname();
+  const prefersReduced = usePrefersReducedMotion();
+  const previousPathname = useRef<string>(pathname);
 
   useEffect(() => {
-    if (window.innerWidth <= 768) return;
+    if (prefersReduced) {
+      return;
+    }
 
     let cancelled = false;
+    let instance: Lenis | null = null;
 
     void (async () => {
-      const { default: LocomotiveScrollConstructor } = await import('locomotive-scroll');
+      const { default: LenisConstructor } = await import('lenis');
 
-      if (cancelled) return;
+      if (cancelled) {
+        return;
+      }
 
-      scrollRef.current = new LocomotiveScrollConstructor({
-        lenisOptions: {
-          lerp: 0.1,
-          duration: 1.5,
-          syncTouch: false,
-          smoothWheel: true,
-          wheelMultiplier: 1,
-        },
-      });
+      instance = new LenisConstructor(LENIS_OPTIONS);
+      registerSmoothScroll(instance);
     })();
 
     return () => {
       cancelled = true;
-      scrollRef.current?.destroy();
-      scrollRef.current = null;
+      registerSmoothScroll(null);
+      instance?.destroy();
+      instance = null;
     };
+  }, [prefersReduced]);
+
+  // Один обработчик на все внутренние якоря: hero, header, footer, legacy #skills.
+  // Header перехватывает свои ссылки сам (defaultPrevented), остальные попадают сюда.
+  useEffect(() => {
+    const onClick = (event: MouseEvent) => {
+      if (
+        event.defaultPrevented ||
+        event.button !== 0 ||
+        event.metaKey ||
+        event.ctrlKey ||
+        event.shiftKey ||
+        event.altKey
+      ) {
+        return;
+      }
+
+      const target = event.target;
+      if (!(target instanceof Element)) {
+        return;
+      }
+
+      const anchor = target.closest<HTMLAnchorElement>('a[href^="#"]');
+      if (!anchor || anchor.target === '_blank') {
+        return;
+      }
+
+      const href = anchor.getAttribute('href');
+      if (!href) {
+        return;
+      }
+
+      const id = decodeURIComponent(href.slice(1));
+
+      if (!id) {
+        event.preventDefault();
+        scrollToTop();
+        window.history.pushState(null, '', `${window.location.pathname}${window.location.search}`);
+        return;
+      }
+
+      if (!document.getElementById(id)) {
+        return;
+      }
+
+      event.preventDefault();
+      scrollToSection(id);
+      window.history.pushState(null, '', href);
+    };
+
+    document.addEventListener('click', onClick);
+    return () => document.removeEventListener('click', onClick);
   }, []);
 
-  // Скролл наверх при изменении маршрута
+  // Скролл наверх при смене маршрута. Hash сохраняем, если цель есть на новой странице.
   useEffect(() => {
-    if (previousPathname !== undefined && previousPathname !== pathname) {
-      if (scrollRef.current) {
-        // Для Locomotive Scroll используем scrollTo
-        scrollRef.current.scrollTo(0, {
-          duration: 1, // Мгновенный переход
-        });
-      } else {
-        // Fallback для мобильных устройств
-        window.scrollTo(0, 0);
-      }
+    if (previousPathname.current === pathname) {
+      return;
     }
 
-    previousPathname = pathname;
+    previousPathname.current = pathname;
+
+    requestAnimationFrame(() => {
+      const hash = decodeURIComponent(window.location.hash.slice(1));
+
+      if (hash && document.getElementById(hash)) {
+        scrollToSection(hash);
+        return;
+      }
+
+      scrollToTop(true);
+    });
   }, [pathname]);
+
+  // Прямой переход по ссылке с hash: учитываем offset шапки, а не позицию браузера.
+  useEffect(() => {
+    if (!window.location.hash) {
+      return;
+    }
+
+    const hash = decodeURIComponent(window.location.hash.slice(1));
+    const frame = requestAnimationFrame(() => scrollToSection(hash));
+
+    return () => cancelAnimationFrame(frame);
+  }, []);
 
   return <>{children}</>;
 }

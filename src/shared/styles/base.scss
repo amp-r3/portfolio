@@ -1,8 +1,32 @@
 @use "index"as *;
 @use 'theme';
 
+:root {
+    --header-height: 97px;
+}
+
+/* Высота шапки зависит от размера контролов, а не только от шрифта логотипа. */
+@media (width < 992px) {
+    :root {
+        --header-height: 89px;
+    }
+}
+
+@media (width < 576px) {
+    :root {
+        --header-height: 81px;
+    }
+}
+
+@media (width < 380px) {
+    :root {
+        --header-height: 73px;
+    }
+}
+
 html {
     background-color: var(--theme-color);
+    scrollbar-gutter: stable;
     transition: background-color $transition-duration-theme $timing-function-theme;
 }
 
@@ -13,10 +37,9 @@ html:not(.theme-ready) *::after {
     transition: none !important;
 }
 
-@media (width < 768px) {
-    html {
-        scroll-behavior: smooth;
-    }
+/* Единый отступ для якорей: его читает и Lenis, и нативный scrollIntoView. */
+:where(main [id]) {
+    scroll-margin-top: var(--header-height);
 }
 
 * {

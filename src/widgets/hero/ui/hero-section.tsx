@@ -1,10 +1,11 @@
 'use client';
 
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { motion, useScroll, useTransform } from 'motion/react';
 import type { Variants } from 'motion/react';
 import {
+  HERO_SCROLL,
   containerStaggerVariants,
   socialsData,
   textRevealVariants,
@@ -26,29 +27,47 @@ const contactsContainerVariants: Variants = {
 export function HeroSection() {
   const t = useTranslations();
   const targetRef = useRef<HTMLElement>(null);
+  const [heroHeight, setHeroHeight] = useState(0);
   const prefersReduced = usePrefersReducedMotion();
 
   const { scrollY } = useScroll();
 
-  const scale = useTransform(scrollY, (value) => {
-    const h = typeof window !== 'undefined' ? window.innerHeight : 900;
-    const progress = Math.min(Math.max(value / h, 0), 1);
-    return 1 - progress * 0.25;
+  // Высота hero стабильна (100svh), поэтому progress не зависит от адресной строки.
+  useEffect(() => {
+    const element = targetRef.current;
+
+    if (!element) {
+      return;
+    }
+
+    setHeroHeight(element.offsetHeight);
+
+    const observer = new ResizeObserver(([entry]) => {
+      if (entry) {
+        setHeroHeight(entry.contentRect.height);
+      }
+    });
+
+    observer.observe(element);
+
+    return () => observer.disconnect();
+  }, []);
+
+  const progress = useTransform(scrollY, (value) => {
+    if (!heroHeight) {
+      return 0;
+    }
+
+    return Math.min(Math.max(value / heroHeight, 0), 1);
   });
 
-  const y = useTransform(scrollY, (value) => {
-    const h = typeof window !== 'undefined' ? window.innerHeight : 900;
-    const progress = Math.min(Math.max(value / h, 0), 1);
-    return `${progress * 35}%`;
-  });
-
-  const opacity = useTransform(scrollY, (value) => {
-    const h = typeof window !== 'undefined' ? window.innerHeight : 900;
-    const progress = Math.min(Math.max(value / h, 0), 1);
-    if (progress <= 0.25) return 1;
-    if (progress >= 0.85) return 0;
-    return 1 - (progress - 0.25) / (0.85 - 0.25);
-  });
+  const scale = useTransform(progress, [0, 1], [1, HERO_SCROLL.minScale]);
+  const y = useTransform(progress, [0, 1], ['0%', HERO_SCROLL.offsetEnd]);
+  const opacity = useTransform(
+    progress,
+    [0, HERO_SCROLL.fadeStart, HERO_SCROLL.fadeEnd, 1],
+    [1, 1, 0, 0],
+  );
 
   const scrollStyle = prefersReduced ? undefined : { scale, opacity, y };
 

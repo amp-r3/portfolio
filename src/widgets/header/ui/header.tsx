@@ -1,10 +1,11 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { usePathname } from '@/shared/i18n';
 import { LanguageSwitch } from '@/features/switch-language';
 import { ThemeSwitch } from '@/features/switch-theme';
+import { pauseSmoothScroll, resumeSmoothScroll, scrollToSection } from '@/shared/lib';
 import style from './header.module.scss';
 import { MenuButton } from './menu-button';
 import { useHeaderScroll } from '../model/use-header-scroll';
@@ -12,43 +13,59 @@ import { useHeaderScroll } from '../model/use-header-scroll';
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
+  const pendingTargetRef = useRef<string | null>(null);
   const pathname = usePathname();
   useHeaderScroll(navRef, pathname);
   const t = useTranslations();
+
+  const scrollToTarget = useCallback((targetId: string) => {
+    scrollToSection(targetId);
+    window.history.pushState(null, '', `#${targetId}`);
+  }, []);
 
   useEffect(() => {
     if (!isMenuOpen) return;
 
     const scrollYStart = window.scrollY;
-    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    const initialClientWidth = document.documentElement.clientWidth;
+
+    pauseSmoothScroll();
 
     document.body.style.position = 'fixed';
     document.body.style.top = `-${scrollYStart}px`;
     document.body.style.width = '100%';
-    document.body.style.paddingRight = `${scrollbarWidth}px`;
     document.body.style.overflowY = 'hidden';
 
-    return () => {
-      const scrollYEnd = document.body.style.top;
+    // scrollbar-gutter: stable уже резервирует место; компенсируем только реальную потерю.
+    const lockedClientWidth = document.documentElement.clientWidth;
+    const lostWidth = Math.max(0, lockedClientWidth - initialClientWidth);
+    document.body.style.paddingRight = lostWidth > 0 ? `${lostWidth}px` : '';
 
+    return () => {
       document.body.style.position = '';
       document.body.style.top = '';
       document.body.style.width = '';
       document.body.style.paddingRight = '';
       document.body.style.overflowY = '';
-      document.documentElement.style.scrollBehavior = 'auto';
 
       window.scrollTo({
-        top: parseInt(scrollYEnd || '0') * -1,
+        top: scrollYStart,
         left: 0,
         behavior: 'instant',
       });
 
-      setTimeout(() => {
-        document.documentElement.style.scrollBehavior = '';
-      }, 0);
+      resumeSmoothScroll(scrollYStart);
+
+      // Lenis возобновляем до перехода: пока меню открыто, scrollTo игнорируется.
+      // rAF нужен, чтобы scrollTo не перебил нативный scroll-event после снятия lock.
+      const targetId = pendingTargetRef.current;
+
+      if (targetId) {
+        pendingTargetRef.current = null;
+        requestAnimationFrame(() => scrollToTarget(targetId));
+      }
     };
-  }, [isMenuOpen]);
+  }, [isMenuOpen, scrollToTarget]);
 
   const handleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -57,23 +74,17 @@ export function Header() {
   const onLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault();
 
+    if (!isMenuOpen) {
+      scrollToTarget(targetId);
+      return;
+    }
+
+    pendingTargetRef.current = targetId;
     setIsMenuOpen(false);
-
-    setTimeout(() => {
-      const element = document.getElementById(targetId);
-      if (element) {
-        element.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start',
-        });
-
-        window.history.pushState(null, '', `#${targetId}`);
-      }
-    }, 100);
   };
 
   return (
-    <div ref={navRef} className={style.header}>
+    <div ref={navRef} className={style.header} data-header>
       <div className={style.header__wrapper + ' container'}>
         <a href="#" className={style.header__logo}>
           amp-r3

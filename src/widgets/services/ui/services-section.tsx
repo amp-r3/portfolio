@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 import { AnimatePresence, motion } from 'motion/react';
 import { Badge } from '@/shared/ui';
 import { usePrefersReducedMotion } from '@/shared/config';
+import { scrollToElement } from '@/shared/lib';
 import { SERVICES_LIST } from '../model/services-data';
 import type { ServiceId, ServiceItemConfig } from '../model/types';
 import style from './services-section.module.scss';
@@ -60,10 +61,7 @@ export function ServicesSection() {
         setTimeout(() => {
           const element = itemRefs.current[id];
           if (element) {
-            element.scrollIntoView({
-              behavior: prefersReduced ? 'auto' : 'smooth',
-              block: 'start',
-            });
+            scrollToElement(element);
           }
         }, 60);
       }
