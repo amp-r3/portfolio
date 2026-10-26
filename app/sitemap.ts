@@ -2,7 +2,7 @@ import type { MetadataRoute } from 'next';
 import { projectIds } from '@/entities/project';
 import { routing } from '@/shared/i18n';
 
-const siteUrl = 'https://amp3re.netlify.app';
+const siteUrl = 'https://amp-r3.is-a.dev';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes: MetadataRoute.Sitemap = [];

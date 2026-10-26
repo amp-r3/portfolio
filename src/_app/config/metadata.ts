@@ -2,8 +2,8 @@ import type { Metadata, Viewport } from 'next';
 
 const title = 'Amir Ergashev | Frontend Developer';
 const description = "I'm a Junior Web Developer specializing in Front-End technologies, enthusiastic about turning creative ideas into beautiful and functional code.";
-const url = 'https://amp3re.netlify.app/';
-const image = `${url}og-image.png`;
+const url = 'https://amp-r3.is-a.dev';
+const image = `${url}/og-image.png`;
 
 export const metadata: Metadata = {
   title: {

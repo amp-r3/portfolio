@@ -23,12 +23,13 @@ export async function generateMetadata({
 
   const title = project.title;
   const description = project.description;
+  const url = `https://amp-r3.is-a.dev/${locale}/project/${id}`;
 
   return {
     title,
     description,
     alternates: {
-      canonical: `/${locale}/project/${id}`,
+      canonical: url,
       languages: {
         en: `/en/project/${id}`,
         ru: `/ru/project/${id}`,
@@ -39,7 +40,7 @@ export async function generateMetadata({
       title: `${title} | Amir Ergashev`,
       description,
       type: 'article',
-      url: `https://amp3re.netlify.app/${locale}/project/${id}`,
+      url,
     },
     twitter: {
       card: 'summary_large_image',
