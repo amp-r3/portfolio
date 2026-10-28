@@ -3,21 +3,21 @@
 .accordions {
     display: flex;
     flex-direction: column;
-    gap: $spacing-section;
+    gap: $spacing-section-gap-mobile;
     min-width: 0;
+
+    @media (min-width: 1024px) {
+        gap: $spacing-section-gap;
+    }
 }
 
 .list {
     display: flex;
     flex-direction: column;
-    gap: $spacing-medium;
+    gap: $spacing-list-gap;
     margin: 0;
     padding: 0;
     list-style: none;
-}
-
-.block {
-    min-width: 0;
 }
 
 .card {
@@ -44,18 +44,77 @@
     @media (width < 576px) {
         border-radius: $border-radius-medium;
     }
+
+    .trigger {
+        min-height: 44px;
+    }
+
+    .icon {
+        width: 22px;
+        height: 22px;
+        background: none;
+        border: 0;
+        border-radius: 0;
+
+        img {
+            width: 22px;
+            height: 22px;
+        }
+    }
+
+    .indicator {
+        width: 20px;
+        height: 20px;
+
+        svg {
+            width: 16px;
+            height: 16px;
+        }
+    }
+
+    @media (width < 640px) {
+        .trigger {
+            padding: $spacing-small;
+            column-gap: $spacing-small;
+            row-gap: 6px;
+        }
+    }
 }
 
-.blockTitle {
+.iconPlaceholder {
+    display: block;
+    width: 22px;
+    height: 22px;
+}
+
+.title {
     display: block;
     font-family: $font-family-title;
-    font-size: $typography-font-size-large;
-    font-weight: $typography-font-weight-bold;
+    font-size: $typography-font-size-base;
+    font-weight: $typography-font-weight-semibold;
     line-height: $typography-line-height-tight;
-    letter-spacing: $typography-letter-spacing-tight;
+    hyphens: none;
+    overflow-wrap: break-word;
+    text-wrap: balance;
+}
 
-    @media (width < 576px) {
-        font-size: $typography-font-size-medium;
+.summary {
+    display: block;
+    margin: 0;
+    font-family: $font-family-base;
+    font-size: $typography-font-size-small;
+    line-height: 1.5;
+    color: var(--text-secondary);
+    hyphens: none;
+    overflow-wrap: break-word;
+    transition: color $transition-duration-theme $timing-function-theme;
+}
+
+.panel {
+    padding: 0 $spacing-large $spacing-large;
+
+    @media (width < 640px) {
+        padding: 0 $spacing-small $spacing-small;
     }
 }
 
@@ -64,13 +123,17 @@
     padding-top: $spacing-medium;
     border-top: 1px solid var(--border-primary);
     font-family: $font-family-base;
-    font-size: $typography-font-size-base;
-    line-height: 1.8;
+    font-size: $typography-font-size-body-mobile;
+    line-height: 1.5;
     color: var(--text-secondary);
     overflow-wrap: break-word;
     transition:
         color $transition-duration-theme $timing-function-theme,
         border-color $transition-duration-theme $timing-function-theme;
+
+    @media (min-width: 1024px) {
+        font-size: $typography-font-size-base;
+    }
 }
 
 .groups {
@@ -104,12 +167,18 @@
     flex-wrap: wrap;
     gap: $spacing-xsmall;
     min-width: 0;
+
+    > * {
+        max-width: 100%;
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
 }
 
 .limitations {
     display: flex;
     flex-direction: column;
-    gap: $spacing-small;
+    gap: $spacing-list-gap;
     margin: 0;
     padding: $spacing-medium 0 0 $spacing-large;
     border-top: 1px solid var(--border-primary);
@@ -119,10 +188,14 @@
 
 .limitation {
     font-family: $font-family-base;
-    font-size: $typography-font-size-base;
-    line-height: $typography-line-height-normal;
+    font-size: $typography-font-size-body-mobile;
+    line-height: 1.5;
     color: var(--text-secondary);
     overflow-wrap: break-word;
+
+    @media (min-width: 1024px) {
+        font-size: $typography-font-size-base;
+    }
 
     &::marker {
         color: var(--text-tertiary);

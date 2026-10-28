@@ -9,12 +9,24 @@
     padding: 0;
     list-style: none;
     min-width: 0;
+
+    @media (width < 640px) {
+        gap: 6px;
+    }
 }
 
 .item {
     display: flex;
     min-width: 0;
     max-width: 100%;
+}
+
+.badge {
+    @media (width < 640px) {
+        height: 1.75rem;
+        padding: 0 10px;
+        font-size: 0.75rem;
+    }
 }
 
 .badgeStatus {

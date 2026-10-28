@@ -3,13 +3,13 @@
 .section {
     display: flex;
     flex-direction: column;
-    gap: $spacing-large;
+    gap: $spacing-section-title-gap;
     min-width: 0;
 }
 
 .title {
     font-family: $font-family-title;
-    font-size: $typography-font-size-large;
+    font-size: $typography-font-size-big; // 22px
     font-weight: $typography-font-weight-bold;
     line-height: $typography-line-height-tight;
     color: var(--text-primary);
@@ -17,7 +17,7 @@
     overflow-wrap: break-word;
     transition: color $transition-duration-theme $timing-function-theme;
 
-    @media (width < 576px) {
-        font-size: $typography-font-size-medium;
+    @media (min-width: 1024px) {
+        font-size: $typography-font-size-section; // 28px
     }
 }

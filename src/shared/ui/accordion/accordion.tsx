@@ -9,6 +9,7 @@ type AccordionTriggerRole = 'button' | 'tab';
 type AccordionPanelPlacement = 'sibling' | 'inside';
 type AccordionPanelMode = 'persistent' | 'unmount';
 type AccordionHeadingLevel = 2 | 3 | 4;
+type AccordionSummaryPlacement = 'body' | 'below';
 
 interface IAccordionPanelProps {
   id: string;
@@ -105,8 +106,12 @@ export interface IAccordionItemProps {
   header: ReactNode;
   /** Optional one-line summary shown under the header in both states. */
   summary?: ReactNode;
+  /** Keeps the summary inside the title column (default) or moves it to a full-width row. */
+  summaryPlacement?: AccordionSummaryPlacement;
   icon?: ReactNode;
   indicator?: ReactNode;
+  iconClassName?: string;
+  indicatorClassName?: string;
   headingLevel?: AccordionHeadingLevel;
   /** `tab` preserves the Skills tablist semantics; `button` is a regular disclosure. */
   triggerRole?: AccordionTriggerRole;
@@ -133,8 +138,11 @@ export function AccordionItem({
   onToggle,
   header,
   summary,
+  summaryPlacement = 'body',
   icon,
   indicator,
+  iconClassName,
+  indicatorClassName,
   headingLevel = 2,
   triggerRole = 'button',
   selected,
@@ -183,6 +191,19 @@ export function AccordionItem({
 
   const resolvedSummaryClassName = summaryClassName ?? styles.summary;
   const SummaryTag = triggerRole === 'tab' ? 'p' : 'span';
+  const summaryNode =
+    summary !== undefined ? (
+      <SummaryTag
+        className={[
+          resolvedSummaryClassName,
+          summaryPlacement === 'below' ? styles.summaryBelow : '',
+        ]
+          .filter(Boolean)
+          .join(' ')}
+      >
+        {summary}
+      </SummaryTag>
+    ) : null;
 
   if (triggerRole === 'tab') {
     return (
@@ -200,7 +221,7 @@ export function AccordionItem({
         onMouseEnter={onTriggerMouseEnter}
       >
         {header}
-        {summary !== undefined && <SummaryTag className={resolvedSummaryClassName}>{summary}</SummaryTag>}
+        {summaryNode}
         {placement === 'inside' && panel}
       </div>
     );
@@ -212,23 +233,39 @@ export function AccordionItem({
         <button
           type="button"
           id={resolvedTriggerId}
-          className={[styles.trigger, triggerClassName].filter(Boolean).join(' ')}
+          className={[
+            styles.trigger,
+            summaryPlacement === 'below' ? styles.triggerStacked : '',
+            triggerClassName,
+          ]
+            .filter(Boolean)
+            .join(' ')}
           aria-expanded={open}
           aria-controls={resolvedControls}
           onClick={onToggle}
         >
           {icon !== undefined && (
-            <span className={styles.icon} aria-hidden="true">
+            <span className={[styles.icon, iconClassName].filter(Boolean).join(' ')} aria-hidden="true">
               {icon}
             </span>
           )}
           <span className={styles.body}>
             <span className={styles.header}>{header}</span>
-            {summary !== undefined && <SummaryTag className={resolvedSummaryClassName}>{summary}</SummaryTag>}
+            {summaryPlacement === 'body' && summaryNode}
           </span>
-          <span className={[styles.indicator, open ? styles.indicatorOpen : ''].filter(Boolean).join(' ')} aria-hidden="true">
+          <span
+            className={[
+              styles.indicator,
+              indicatorClassName,
+              open ? styles.indicatorOpen : '',
+            ]
+              .filter(Boolean)
+              .join(' ')}
+            aria-hidden="true"
+          >
             {indicator ?? <ChevronIcon />}
           </span>
+          {summaryPlacement === 'below' && summaryNode}
         </button>
       </Heading>
       {placement === 'sibling' && panel}

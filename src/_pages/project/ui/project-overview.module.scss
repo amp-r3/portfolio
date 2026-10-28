@@ -3,25 +3,30 @@
 .overview {
     display: flex;
     flex-direction: column;
-    gap: $spacing-section;
+    gap: $spacing-section-gap-mobile;
     min-width: 0;
+
+    @media (min-width: 1024px) {
+        gap: $spacing-section-gap;
+    }
 }
 
 .features {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    gap: $spacing-medium;
+    gap: $spacing-list-gap;
     margin: 0;
     padding: 0;
     list-style: none;
 
-    @media (min-width: 768px) {
+    @media (min-width: 480px) {
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: $spacing-large;
+        gap: $spacing-medium;
     }
 
     @media (min-width: 1024px) {
         grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: $spacing-large;
     }
 }
 
@@ -42,6 +47,12 @@
         border-color $transition-duration-theme $timing-function-theme,
         box-shadow $transition-duration-base $timing-function-ease-out-expo,
         transform $transition-duration-base $timing-function-ease-out-expo;
+
+    @media (width < 768px) {
+        align-items: center;
+        gap: $spacing-small;
+        padding: 12px 14px;
+    }
 
     @media (hover: hover) {
         &:hover {
@@ -68,19 +79,28 @@
         object-fit: contain;
         filter: var(--icon-filter);
     }
+
+    @media (width < 768px) {
+        width: $icon-size-medium;
+        height: $icon-size-medium;
+        background: none;
+        border: 0;
+        border-radius: 0;
+    }
 }
 
 .featureText {
     min-width: 0;
     font-family: $font-family-base;
     font-size: $typography-font-size-base;
-    line-height: $typography-line-height-normal;
+    line-height: 1.5;
     color: var(--text-primary);
     overflow-wrap: break-word;
     transition: color $transition-duration-theme $timing-function-theme;
 
-    @media (width < 380px) {
-        font-size: $typography-font-size-small;
+    @media (width < 768px) {
+        font-size: 0.875rem; // 14px
+        line-height: 1.45;
     }
 }
 
@@ -88,11 +108,18 @@
     counter-reset: try-item;
     display: flex;
     flex-direction: column;
-    gap: $spacing-small;
+    gap: $spacing-list-gap;
     max-width: 72ch;
     margin: 0;
     padding: 0;
     list-style: none;
+
+    @media (min-width: 992px) {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: $spacing-large;
+        max-width: none;
+    }
 }
 
 .tryItem {
@@ -102,10 +129,20 @@
     gap: $spacing-medium;
     min-width: 0;
     font-family: $font-family-base;
-    font-size: $typography-font-size-base;
-    line-height: $typography-line-height-normal;
+    font-size: $typography-font-size-body-mobile;
+    line-height: 1.5;
     color: var(--text-secondary);
     overflow-wrap: break-word;
+    transition: color $transition-duration-theme $timing-function-theme;
+
+    @media (min-width: 1024px) {
+        font-size: $typography-font-size-base;
+    }
+
+    @media (min-width: 992px) {
+        flex-direction: column;
+        gap: $spacing-xsmall;
+    }
 
     &::before {
         content: counter(try-item);
@@ -113,10 +150,11 @@
         align-items: center;
         justify-content: center;
         flex-shrink: 0;
-        width: 1.75rem;
-        height: 1.75rem;
-        font-size: $typography-font-size-small;
+        width: 1.5rem;
+        height: 1.5rem;
+        font-size: 0.75rem;
         font-weight: $typography-font-weight-semibold;
+        line-height: 1;
         color: var(--text-primary);
         background: var(--surface-glass);
         border: 1px solid var(--border-primary);
@@ -128,6 +166,7 @@
     display: inline-flex;
     align-items: center;
     align-self: flex-start;
+    justify-content: center;
     gap: $spacing-small;
     padding: $spacing-small $spacing-large;
     font-family: $font-family-base;
@@ -157,5 +196,22 @@
     &:focus-visible {
         outline: 2px solid var(--text-primary);
         outline-offset: 3px;
+    }
+
+    @media (width < 640px) {
+        align-self: stretch;
+        width: 100%;
+        height: 46px;
+        gap: 10px;
+        padding: 0 14px;
+        font-size: $typography-font-size-body-mobile;
+        color: var(--theme-color);
+        background: var(--text-primary);
+        border-color: transparent;
+        box-shadow: 0 4px 15px -3px rgba(0, 0, 0, 0.1);
+
+        img {
+            filter: var(--icon-filter-button);
+        }
     }
 }

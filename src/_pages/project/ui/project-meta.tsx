@@ -46,7 +46,7 @@ export function ProjectMeta({ project }: IProjectMetaProps) {
         <li key={item.key} className={style.item}>
           <Badge
             label={item.label}
-            className={item.status ? style.badgeStatus : undefined}
+            className={[style.badge, item.status ? style.badgeStatus : ''].filter(Boolean).join(' ')}
             leading={
               item.status ? (
                 <span className={style.dot} data-status={item.status} aria-hidden="true" />

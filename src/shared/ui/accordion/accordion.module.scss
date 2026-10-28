@@ -31,6 +31,35 @@
     }
 }
 
+.triggerStacked {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-areas:
+        'icon header indicator'
+        '. summary summary';
+    align-items: center;
+    column-gap: $spacing-medium;
+    row-gap: $spacing-xsmall;
+
+    .icon {
+        grid-area: icon;
+    }
+
+    .body {
+        grid-area: header;
+    }
+
+    .indicator {
+        grid-area: indicator;
+    }
+
+    @media (width < 640px) {
+        grid-template-areas:
+            'icon header indicator'
+            'summary summary summary';
+    }
+}
+
 .icon {
     display: inline-flex;
     align-items: center;
@@ -96,6 +125,10 @@
     color: var(--text-secondary);
     overflow-wrap: break-word;
     transition: color $transition-duration-theme $timing-function-theme;
+}
+
+.summaryBelow {
+    grid-area: summary;
 }
 
 .indicator {

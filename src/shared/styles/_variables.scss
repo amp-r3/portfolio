@@ -20,10 +20,12 @@ sans-serif !default;
 
 // --- Font Sizes ---
 $typography-font-size-small: 0.8125rem !default; // 13px
+$typography-font-size-body-mobile: 0.9375rem !default; // 15px
 $typography-font-size-base: 1rem !default; // 16px
 $typography-font-size-medium: 1.125rem !default; // 18px
 $typography-font-size-big: 1.375rem !default; // 22px
 $typography-font-size-large: 1.5rem !default; // 24px
+$typography-font-size-section: 1.75rem !default; // 28px
 $typography-font-size-xlarge: 2rem !default; // 32px
 $typography-font-size-xxlarge: 2.5rem !default; // 40px
 $typography-font-size-title: 4rem !default; // 64px
@@ -63,6 +65,12 @@ $spacing-xlarge: 2rem !default; // 32px
 $spacing-xxlarge: 3rem !default; // 48px
 $spacing-title: 3.75rem !default; // 60px
 $spacing-section: 5rem !default; // 80px
+
+// --- Project page rhythm ---
+$spacing-section-gap-mobile: 2.5rem !default; // 40px
+$spacing-section-gap: 3.5rem !default; // 56px
+$spacing-section-title-gap: 1rem !default; // 16px
+$spacing-list-gap: 0.5rem !default; // 8px
 
 
 // --- Border Radius ---
