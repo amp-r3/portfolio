@@ -99,6 +99,11 @@
     transition: color $transition-duration-theme $timing-function-theme;
 
     @media (width < 768px) {
+        font-size: $typography-font-size-body-mobile; // 15px
+        line-height: 1.5;
+    }
+
+    @media (width < 480px) {
         font-size: 0.875rem; // 14px
         line-height: 1.45;
     }
