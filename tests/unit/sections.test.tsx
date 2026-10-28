@@ -86,6 +86,33 @@ describe('Home Page Sections', () => {
       await user.click(archTitle);
       expect(screen.getAllByText(enMessages.services.items.architecture.title).length).toBeGreaterThanOrEqual(1);
     });
+
+    it('keeps only one service expanded in the mobile accordion', async () => {
+      const user = userEvent.setup();
+      const originalWidth = window.innerWidth;
+
+      Object.defineProperty(window, 'innerWidth', { configurable: true, value: 360 });
+      Object.defineProperty(Element.prototype, 'scrollIntoView', {
+        configurable: true,
+        value: vi.fn(),
+      });
+
+      try {
+        renderSection(<ServicesSection />);
+
+        const fullstack = screen.getByRole('tab', { name: /Web Apps with Next.js/ });
+        const architecture = screen.getByRole('tab', { name: /Application Structure/ });
+
+        await user.click(fullstack);
+        expect(fullstack).toHaveAttribute('aria-expanded', 'true');
+
+        await user.click(architecture);
+        expect(fullstack).toHaveAttribute('aria-expanded', 'false');
+        expect(architecture).toHaveAttribute('aria-expanded', 'true');
+      } finally {
+        Object.defineProperty(window, 'innerWidth', { configurable: true, value: originalWidth });
+      }
+    });
   });
 
   describe('ProjectsSection', () => {

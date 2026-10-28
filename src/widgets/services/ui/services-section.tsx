@@ -3,7 +3,7 @@
 import { useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { AnimatePresence, motion } from 'motion/react';
-import { Badge } from '@/shared/ui';
+import { AccordionItem, Badge } from '@/shared/ui';
 import { usePrefersReducedMotion } from '@/shared/config';
 import { scrollToElement } from '@/shared/lib';
 import { SERVICES_LIST } from '../model/services-data';
@@ -145,62 +145,42 @@ export function ServicesSection() {
                 .join(' ');
 
               return (
-                <div
+                <AccordionItem
                   key={item.id}
-                  ref={(el) => {
+                  id={item.id}
+                  triggerId={`service-tab-${item.id}`}
+                  panelId={`service-panel-mobile-${item.id}`}
+                  ariaControls={`service-panel-${item.id}`}
+                  open={isMobileExpanded}
+                  onToggle={() => handleItemClick(item.id)}
+                  triggerRole="tab"
+                  selected={isDesktopActive}
+                  triggerClassName={itemClasses}
+                  triggerRef={(el) => {
                     itemRefs.current[item.id] = el;
                   }}
-                  role="tab"
-                  id={`service-tab-${item.id}`}
-                  aria-selected={isDesktopActive}
-                  aria-expanded={isMobileExpanded}
-                  aria-controls={`service-panel-${item.id}`}
-                  tabIndex={0}
-                  className={itemClasses}
-                  onClick={() => handleItemClick(item.id)}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                      e.preventDefault();
-                      handleItemClick(item.id);
-                    }
-                  }}
-                  onMouseEnter={() => handleMouseEnter(item.id)}
-                >
-                  <div className={style.services__itemHeader}>
-                    <div className={style.services__itemLeft}>
-                      <span className={style.services__itemNumber}>{item.number}</span>
-                      <h3 className={style.services__itemTitle}>{title}</h3>
+                  triggerTabIndex={0}
+                  onTriggerMouseEnter={() => handleMouseEnter(item.id)}
+                  header={
+                    <div className={style.services__itemHeader}>
+                      <div className={style.services__itemLeft}>
+                        <span className={style.services__itemNumber}>{item.number}</span>
+                        <h3 className={style.services__itemTitle}>{title}</h3>
+                      </div>
+                      <span className={arrowClasses} aria-hidden="true">
+                        <ArrowIcon />
+                      </span>
                     </div>
-                    <span className={arrowClasses} aria-hidden="true">
-                      <ArrowIcon />
-                    </span>
-                  </div>
-
-                  <p className={style.services__itemShortDesc}>{shortDesc}</p>
-
-                  {/* Mobile-only animated expandable content */}
-                  <AnimatePresence initial={false}>
-                    {isMobileExpanded && (
-                      <motion.div
-                        key={`mobile-collapse-${item.id}`}
-                        initial={prefersReduced ? { opacity: 0 } : { height: 0, opacity: 0 }}
-                        animate={prefersReduced ? { opacity: 1 } : { height: 'auto', opacity: 1 }}
-                        exit={prefersReduced ? { opacity: 0 } : { height: 0, opacity: 0 }}
-                        transition={{
-                          height: { duration: 0.35, ease: [0.22, 1, 0.36, 1] },
-                          opacity: { duration: 0.25, ease: 'easeOut' },
-                        }}
-                        className={style.services__mobileCollapse}
-                        id={`service-panel-mobile-${item.id}`}
-                      >
-                        <div className={style.services__mobileContent}>
-                          {renderDeliverables(item)}
-                          {renderTags(item)}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
+                  }
+                  summary={shortDesc}
+                  summaryClassName={style.services__itemShortDesc}
+                  panelMode="unmount"
+                  panelClassName={style.services__mobileCollapse}
+                  panelInnerClassName={style.services__mobileContent}
+                >
+                  {renderDeliverables(item)}
+                  {renderTags(item)}
+                </AccordionItem>
               );
             })}
           </div>
