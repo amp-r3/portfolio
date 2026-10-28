@@ -6,7 +6,17 @@
     flex-direction: column;
     gap: $spacing-section-gap-mobile;
     min-height: 80vh;
+    max-width: $container-width;
+    width: 100%;
+    margin: 0 auto;
+    padding-left: $spacing-base;
+    padding-right: $spacing-base;
     isolation: isolate;
+
+    @media (min-width: 576px) {
+        padding-left: $container-padding;
+        padding-right: $container-padding;
+    }
 
     &::before {
         content: '';
@@ -20,13 +30,6 @@
         z-index: -1;
         opacity: 0.6;
         filter: blur(60px);
-    }
-
-    @media (width < 576px) {
-        &:global(.container) {
-            padding-left: $spacing-base;
-            padding-right: $spacing-base;
-        }
     }
 
     @media (min-width: 1024px) {

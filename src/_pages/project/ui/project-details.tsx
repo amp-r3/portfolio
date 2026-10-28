@@ -65,7 +65,7 @@ export const ProjectDetails: FC<IProjectDetailsProps> = ({ project }) => {
   }).props;
 
   return (
-    <article className={`${style['project-details']} container page-content`}>
+    <article className={`${style['project-details']} page-content`}>
       <header className={style['project-details__header']}>
         <BackButton ariaLabel={t('actions.back')} />
       </header>
