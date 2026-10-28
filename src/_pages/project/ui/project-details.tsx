@@ -1,10 +1,11 @@
 'use client';
 
-import type { FC } from 'react';
+import { type FC, useContext } from 'react';
 import Image, { getImageProps } from 'next/image';
 import { useTranslations } from 'next-intl';
 import type { Project } from '@/entities/project';
 import { externalLinkIcon, githubIcon } from '@/shared/assets';
+import { ThemeContext } from '@/shared/theme';
 import { BackButton, Badge } from '@/shared/ui';
 import { ProjectMeta } from './project-meta';
 import { ProjectOverview } from './project-overview';
@@ -31,36 +32,39 @@ export const ProjectDetails: FC<IProjectDetailsProps> = ({ project }) => {
   const primaryStack = stack.primary.slice(0, 5);
   const screenshotAlt = t('screenshotAlt', { title });
 
+  const themeContext = useContext(ThemeContext);
+  const isLight = themeContext?.theme === 'light';
+
   const lightDesktopImage = getImageProps({
     src: lightMain,
     alt: screenshotAlt,
     sizes: DESKTOP_IMAGE_SIZES,
-    loading: 'eager',
-    fetchPriority: 'high',
+    loading: isLight ? 'eager' : 'lazy',
+    ...(isLight ? { fetchPriority: 'high' as const } : {}),
     ...DESKTOP_IMAGE,
   }).props;
   const lightMobileImage = getImageProps({
     src: lightMobile,
     alt: screenshotAlt,
     sizes: MOBILE_IMAGE_SIZES,
-    loading: 'eager',
-    fetchPriority: 'high',
+    loading: isLight ? 'eager' : 'lazy',
+    ...(isLight ? { fetchPriority: 'high' as const } : {}),
     ...MOBILE_IMAGE,
   }).props;
   const darkDesktopImage = getImageProps({
     src: darkMain,
     alt: screenshotAlt,
     sizes: DESKTOP_IMAGE_SIZES,
-    loading: 'eager',
-    fetchPriority: 'high',
+    loading: !isLight ? 'eager' : 'lazy',
+    ...(!isLight ? { fetchPriority: 'high' as const } : {}),
     ...DESKTOP_IMAGE,
   }).props;
   const darkMobileImage = getImageProps({
     src: darkMobile,
     alt: screenshotAlt,
     sizes: MOBILE_IMAGE_SIZES,
-    loading: 'eager',
-    fetchPriority: 'high',
+    loading: !isLight ? 'eager' : 'lazy',
+    ...(!isLight ? { fetchPriority: 'high' as const } : {}),
     ...MOBILE_IMAGE,
   }).props;
 

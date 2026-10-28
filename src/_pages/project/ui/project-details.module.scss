@@ -261,6 +261,7 @@
 
         @media (min-width: 1024px) {
             grid-area: media;
+            align-self: stretch;
         }
 
         @media (width < 640px) {
