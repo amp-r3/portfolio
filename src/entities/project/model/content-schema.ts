@@ -93,9 +93,29 @@ export const projectDeepDiveContentSchema = z.object({
 
 export type ProjectDeepDiveContent = z.infer<typeof projectDeepDiveContentSchema>;
 
+export const projectTryItTitleSchema = z.object({
+  en: z
+    .string('English tryIt title is required')
+    .min(1, 'English tryIt title is required')
+    .max(32, 'English tryIt title must be at most 32 characters'),
+  ru: z
+    .string('Russian tryIt title is required')
+    .min(1, 'Russian tryIt title is required')
+    .max(32, 'Russian tryIt title must be at most 32 characters'),
+  uz: z
+    .string('Uzbek tryIt title is required')
+    .min(1, 'Uzbek tryIt title is required')
+    .max(32, 'Uzbek tryIt title must be at most 32 characters'),
+});
+
+export type ProjectTryItTitle = z.infer<typeof projectTryItTitleSchema>;
+
 export const projectTryItContentSchema = z.object({
+  title: projectTryItTitleSchema.optional(),
   text: localizedStringSchema,
 });
+
+export type ProjectTryItContent = z.infer<typeof projectTryItContentSchema>;
 
 export const projectLimitationContentSchema = z.object({
   text: localizedStringSchema,

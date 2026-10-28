@@ -104,4 +104,49 @@ describe('project content schema', () => {
     expect(paths).toContain('tryIt');
     expect(paths).toContain('limitations');
   });
+
+  it('validates tryIt step titles when present', () => {
+    const validWithTitle = createProject({
+      tryIt: [
+        {
+          title: localized('Filters and URL'),
+          text: localized('Search, pick a category and sort'),
+        },
+        {
+          text: localized('Step without title'),
+        },
+      ],
+    });
+    expect(projectContentSchema.safeParse(validWithTitle).success).toBe(true);
+
+    const tooLongTitle = createProject({
+      tryIt: [
+        {
+          title: localized('x'.repeat(33)),
+          text: localized('Text'),
+        },
+      ],
+    });
+    expect(issuePaths(tooLongTitle)).toContain('tryIt.0.title.en');
+
+    const missingLocaleTitle = createProject({
+      tryIt: [
+        {
+          title: { en: 'Title', ru: 'Заголовок' } as unknown as { en: string; ru: string; uz: string },
+          text: localized('Text'),
+        },
+      ],
+    });
+    expect(issuePaths(missingLocaleTitle)).toContain('tryIt.0.title.uz');
+
+    const emptyTitle = createProject({
+      tryIt: [
+        {
+          title: { en: '', ru: 'Заголовок', uz: 'Sarlavha' },
+          text: localized('Text'),
+        },
+      ],
+    });
+    expect(issuePaths(emptyTitle)).toContain('tryIt.0.title.en');
+  });
 });

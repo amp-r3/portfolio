@@ -74,6 +74,7 @@ test('project content preserves required order and fields', () => {
   assert.equal(weatherContent.deepDive.length, 3);
   assert.equal(storeContent.features.length, 6);
   assert.equal(storeContent.deepDive.length, 5);
+  assert.equal(storeContent.tryIt?.length, 3);
 
   assert.deepEqual(weatherContent.images, {
     desktop: { light: 'weatherLight', dark: 'weatherDark' },
@@ -115,5 +116,18 @@ for (const locale of locales) {
 
     const storeApiDetails = storeContent.deepDive[0].details[locale];
     assert.match(storeApiDetails, /\{ ids, items \}/, 'Literal store braces must be preserved');
+
+    if (storeContent.tryIt) {
+      for (const step of storeContent.tryIt) {
+        assert.ok(typeof step.text[locale] === 'string' && step.text[locale].length > 0);
+        if (step.title) {
+          assert.ok(typeof step.title[locale] === 'string' && step.title[locale].length > 0);
+          assert.ok(
+            step.title[locale].length <= 32,
+            `TryIt title too long for ${storeContent.id} (${locale}): "${step.title[locale]}"`
+          );
+        }
+      }
+    }
   });
 }

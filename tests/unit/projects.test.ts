@@ -47,7 +47,21 @@ describe('Project entity & data', () => {
             expect(entry.details).toBeTruthy();
             expect(entry.icon).toBeTruthy();
           }
+
+          if (project.tryIt) {
+            for (const step of project.tryIt) {
+              expect(step.text).toBeTruthy();
+              if (step.title) {
+                expect(step.title.length).toBeLessThanOrEqual(32);
+              }
+            }
+          }
         }
+
+        const store = projects.find((p) => p.id === 'store');
+        expect(store?.tryIt).toHaveLength(3);
+        const weather = projects.find((p) => p.id === 'weather');
+        expect(weather?.tryIt).toBeUndefined();
       }
     });
 

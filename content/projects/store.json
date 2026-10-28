@@ -226,13 +226,23 @@
   ],
   "tryIt": [
     {
+      "title": {
+        "en": "Filters and URL",
+        "ru": "Фильтры и URL",
+        "uz": "Filtrlar va URL"
+      },
       "text": {
-        "en": "Search, pick a category and change sorting: watch the URL update, then press Back.",
-        "ru": "Введи поиск, выбери категорию и сортировку: смотри, как меняется URL, затем нажми «назад».",
-        "uz": "Qidiruvni kiriting, toifani tanlang va saralashni o'zgartiring: URL qanday yangilanishini kuzating, so'ng «orqaga» tugmasini bosing."
+        "en": "Search, pick a category, change sorting. Watch the URL update, then press Back.",
+        "ru": "Введи поиск, выбери категорию и сортировку. Смотри, как меняется URL, затем нажми «назад».",
+        "uz": "Qidiruvni kiriting, toifani tanlang va saralashni o'zgartiring. URL qanday yangilanishini kuzating, so'ng «orqaga» tugmasini bosing."
       }
     },
     {
+      "title": {
+        "en": "From cart to order",
+        "ru": "От корзины до заказа",
+        "uz": "Savatdan buyurtmagacha"
+      },
       "text": {
         "en": "Add a product as a guest, sign up and go through the 3-step checkout. The order appears in your history.",
         "ru": "Добавь товар гостем, зарегистрируйся и пройди оформление в 3 шага. Заказ появится в истории.",
@@ -240,10 +250,15 @@
       }
     },
     {
+      "title": {
+        "en": "Product page",
+        "ru": "Страница товара",
+        "uz": "Mahsulot sahifasi"
+      },
       "text": {
-        "en": "Open a product page: gallery, sizes limited by stock, reviews.",
-        "ru": "Открой страницу товара: галерея, размеры с учётом остатка, отзывы.",
-        "uz": "Mahsulot sahifasini oching: galereya, zaxiraga qarab cheklangan o'lchamlar, sharhlar."
+        "en": "Gallery, sizes limited by stock, reviews.",
+        "ru": "Галерея, размеры с учётом остатка, отзывы.",
+        "uz": "Galereya, zaxiraga qarab cheklangan o'lchamlar, sharhlar."
       }
     }
   ],

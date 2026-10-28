@@ -39,13 +39,28 @@ export function ProjectOverview({ project, className }: IProjectOverviewProps) {
       )}
 
       {hasTryIt && tryIt && (
-        <ProjectSection title={t('labels.section.tryIt')}>
+        <section className={style.trySection}>
+          <h2 className={style.tryTitle}>{t('labels.section.tryIt')}</h2>
+
           <ol className={style.tryList}>
-            {tryIt.map((item) => (
-              <li key={item} className={style.tryItem}>
-                {item}
-              </li>
-            ))}
+            {tryIt.map((step, index) => {
+              const stepNumber = String(index + 1).padStart(2, '0');
+
+              return (
+                <li key={step.title ?? step.text} className={style.tryCard}>
+                  <div className={style.tryNumberCol}>
+                    <span className={style.tryNumber} aria-hidden="true">
+                      {stepNumber}
+                    </span>
+                    <span className={style.tryTimelineLine} aria-hidden="true" />
+                  </div>
+                  <div className={style.tryBody}>
+                    {step.title && <h3 className={style.tryStepTitle}>{step.title}</h3>}
+                    <p className={style.tryStepText}>{step.text}</p>
+                  </div>
+                </li>
+              );
+            })}
           </ol>
 
           {links.demo && (
@@ -59,7 +74,7 @@ export function ProjectOverview({ project, className }: IProjectOverviewProps) {
               <Image src={externalLinkIcon} alt="" width={14} height={14} unoptimized aria-hidden="true" />
             </a>
           )}
-        </ProjectSection>
+        </section>
       )}
     </div>
   );

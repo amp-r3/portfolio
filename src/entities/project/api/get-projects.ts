@@ -140,7 +140,10 @@ function mapContentToProject(raw: ProjectContentRaw, locale: Locale): Project {
         summary: entry.summary[locale],
         details: entry.details[locale],
       })),
-      tryIt: raw.tryIt?.map((item) => item.text[locale]),
+      tryIt: raw.tryIt?.map((item) => ({
+        title: item.title ? item.title[locale] : undefined,
+        text: item.text[locale],
+      })),
       limitations: raw.limitations?.map((item) => item.text[locale]),
     };
   } catch (error) {

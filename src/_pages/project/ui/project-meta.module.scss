@@ -40,6 +40,9 @@
     height: 0.5rem;
     border-radius: $border-radius-circle;
     background: var(--status-wip);
+    transition:
+        background-color $transition-duration-theme $timing-function-theme,
+        box-shadow $transition-duration-theme $timing-function-theme;
 
     &[data-status='live'] {
         background: var(--status-live);

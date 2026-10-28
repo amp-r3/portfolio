@@ -13,6 +13,7 @@ export type {
   ProjectStackGroup,
   ProjectStackGroupId,
   ProjectStatus,
+  ProjectTryItStep,
   ProjectType,
 } from './model/types';
 export { BenefitCard } from './ui/benefit-card';

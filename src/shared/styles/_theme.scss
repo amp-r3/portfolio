@@ -1,3 +1,15 @@
+@property --project-title-from {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #f8fafc;
+}
+
+@property --project-title-to {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #94a3b8;
+}
+
 :root {
   color-scheme: dark;
 
@@ -65,6 +77,9 @@
 
   // Modern Accents
   --accent-glow: rgba(56, 189, 248, 0.15);
+  --accent-step: #38bdf8;
+  --project-title-from: #f8fafc;
+  --project-title-to: #94a3b8;
   --surface-glass: rgba(15, 23, 42, 0.3);
   --text-tertiary: #64748b;
 
@@ -146,6 +161,9 @@
 
   // Modern Accents
   --accent-glow: rgba(14, 165, 233, 0.1);
+  --accent-step: #0369a1;
+  --project-title-from: #020617;
+  --project-title-to: #475569;
   --surface-glass: rgba(255, 255, 255, 0.6);
   --text-tertiary: #94a3b8;
 

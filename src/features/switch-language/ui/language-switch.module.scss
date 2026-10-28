@@ -80,7 +80,9 @@
     user-select: none;
     pointer-events: none;
     opacity: 0.9;
-    transition: opacity $transition-duration-fast ease;
+    transition:
+        opacity $transition-duration-fast ease,
+        color $transition-duration-theme $timing-function-theme;
     
     .Btn:hover & {
         opacity: 1;

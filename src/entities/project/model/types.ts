@@ -51,6 +51,11 @@ export interface ProjectDeepDive {
 /** @deprecated Use ProjectDeepDive. Kept as an alias for the public entity API. */
 export type ProjectBenefit = ProjectDeepDive;
 
+export interface ProjectTryItStep {
+  title?: string;
+  text: string;
+}
+
 export interface Project {
   id: ProjectId;
   order: number;
@@ -66,7 +71,7 @@ export interface Project {
   stack: ProjectStack;
   features: ProjectFeature[];
   deepDive: ProjectDeepDive[];
-  tryIt?: string[];
+  tryIt?: ProjectTryItStep[];
   limitations?: string[];
 }
 

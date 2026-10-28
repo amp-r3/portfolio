@@ -49,7 +49,9 @@ Uzbek copy written for the store content pass; needs a native-speaker review.
   - `deepDive[2].title.uz` ("FSD arxitekturasi"), `deepDive[2].summary.uz` ("ESLint qatlamlar yo'nalishini tekshiradi, mantiq hooklar va modellarda"), `deepDive[2].details.uz`
   - `deepDive[3].title.uz`, `deepDive[3].summary.uz`, `deepDive[3].details.uz`
   - `deepDive[4].title.uz`, `deepDive[4].summary.uz`, `deepDive[4].details.uz`
-  - `tryIt[0].text.uz` … `tryIt[2].text.uz`
+  - `tryIt[0].title.uz` ("Filtrlar va URL"), `tryIt[0].text.uz`
+  - `tryIt[1].title.uz` ("Savatdan buyurtmagacha"), `tryIt[1].text.uz`
+  - `tryIt[2].title.uz` ("Mahsulot sahifasi"), `tryIt[2].text.uz`
   - `limitations[0].text.uz` … `limitations[3].text.uz`
 - `messages/uz.json` → `projects.labels.*` — pre-existing UI labels; JSON cannot carry inline
   comments, so this note is the review marker.

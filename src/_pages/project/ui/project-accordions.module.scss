@@ -47,6 +47,20 @@
 
     .trigger {
         min-height: 44px;
+        transition: row-gap $transition-duration-base $timing-function-ease-out-expo;
+
+        @media (min-width: 1024px) {
+            &[aria-expanded="true"] {
+                row-gap: 0;
+
+                .summary {
+                    max-height: 0;
+                    opacity: 0;
+                    overflow: hidden;
+                    pointer-events: none;
+                }
+            }
+        }
     }
 
     .icon {
@@ -84,7 +98,7 @@
 .title {
     display: block;
     font-family: $font-family-title;
-    font-size: $typography-font-size-base;
+    font-size: 1.0625rem; // 17px
     font-weight: $typography-font-weight-semibold;
     line-height: $typography-line-height-tight;
     hyphens: none;
@@ -96,16 +110,21 @@
     display: block;
     margin: 0;
     font-family: $font-family-base;
-    font-size: 0.875rem;
+    font-size: 0.875rem; // 14px
     font-weight: $typography-font-weight-normal;
     line-height: 1.45;
     color: var(--text-secondary);
     hyphens: none;
     overflow-wrap: break-word;
-    transition: color $transition-duration-theme $timing-function-theme;
+    max-height: 120px;
+    opacity: 1;
+    transition:
+        color $transition-duration-theme $timing-function-theme,
+        opacity $transition-duration-base $timing-function-ease-out-expo,
+        max-height $transition-duration-base $timing-function-ease-out-expo;
 
-    @media (min-width: 1024px) {
-        font-size: $typography-font-size-body-mobile;
+    @media (prefers-reduced-motion: reduce) {
+        transition: color $transition-duration-theme $timing-function-theme;
     }
 }
 
@@ -119,20 +138,17 @@
 
 .details {
     margin: 0;
+    max-width: 72ch;
     padding-top: $spacing-medium;
     border-top: 1px solid var(--border-primary);
     font-family: $font-family-base;
-    font-size: $typography-font-size-body-mobile;
+    font-size: $typography-font-size-body-mobile; // 15px
     line-height: 1.5;
     color: var(--text-secondary);
     overflow-wrap: break-word;
     transition:
         color $transition-duration-theme $timing-function-theme,
         border-color $transition-duration-theme $timing-function-theme;
-
-    @media (min-width: 1024px) {
-        font-size: $typography-font-size-base;
-    }
 }
 
 .groups {

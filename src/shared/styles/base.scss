@@ -61,8 +61,6 @@ body {
     font-family: $font-family-base;
     background-color: transparent;
     color: var(--text-primary);
-
-    transition: color $transition-duration-theme $timing-function-theme;
 }
 
 .container {

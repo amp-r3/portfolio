@@ -53,12 +53,12 @@
     @media (min-width: 1024px) {
         &__hero {
             display: grid;
-            grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
+            grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
             grid-template-areas:
                 'text media'
                 'actions media'
                 'tools media';
-            column-gap: $spacing-section;
+            column-gap: $spacing-section-gap-mobile;
             row-gap: $spacing-large;
             align-items: start;
         }
@@ -82,10 +82,14 @@
         color: var(--text-primary);
         letter-spacing: $typography-letter-spacing-tight;
         overflow-wrap: break-word;
-        background: linear-gradient(to right, var(--text-primary) 20%, var(--text-secondary) 100%);
+        background: linear-gradient(to right, var(--project-title-from) 20%, var(--project-title-to) 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
+        transition:
+            --project-title-from $transition-duration-theme $timing-function-theme,
+            --project-title-to $transition-duration-theme $timing-function-theme,
+            color $transition-duration-theme $timing-function-theme;
 
         @media (width < 380px) {
             font-size: 10vw;
@@ -225,8 +229,13 @@
 
         @media (min-width: 1024px) {
             grid-area: tools;
+            gap: 6px;
             padding-left: $spacing-medium;
             border-left: 2px solid var(--border-primary);
+
+            > * {
+                padding: 3px 8px;
+            }
         }
 
         @media (width < 640px) {

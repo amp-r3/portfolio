@@ -147,8 +147,9 @@ describe('ProjectPage (async page component)', () => {
     expect(screen.getByText('Admin panel for orders, products and reviews')).toBeInTheDocument();
 
     expect(screen.getByRole('heading', { name: enMessages.projects.labels.section.tryIt })).toBeInTheDocument();
+    expect(screen.getByText('Filters and URL')).toBeInTheDocument();
     expect(
-      screen.getByText(/Search, pick a category and change sorting: watch the URL update/i)
+      screen.getByText(/Search, pick a category, change sorting\. Watch the URL update/i)
     ).toBeInTheDocument();
     expect(screen.getAllByRole('link', { name: enMessages.projects.actions.demo })).toHaveLength(2);
 
