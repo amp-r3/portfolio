@@ -83,7 +83,7 @@ describe('ProjectPage (async page component)', () => {
     expect(screen.getAllByAltText('Screenshot of the My Weather App project')).toHaveLength(2);
   });
 
-  it('renders only layer 1 and deep dive for weather (no metadata, features, try it, stack or limitations)', async () => {
+  it('renders only layer 1, deep dive and stack for weather (no metadata, features, try it or limitations)', async () => {
     const pageJsx = await ProjectPage({ id: 'weather', locale: 'en' });
     renderWithIntl(pageJsx);
 
@@ -99,8 +99,8 @@ describe('ProjectPage (async page component)', () => {
       screen.queryByRole('heading', { name: enMessages.projects.labels.section.tryIt })
     ).not.toBeInTheDocument();
     expect(
-      screen.queryByRole('heading', { name: enMessages.projects.labels.section.stack })
-    ).not.toBeInTheDocument();
+      screen.getByRole('heading', { name: enMessages.projects.labels.section.stack })
+    ).toBeInTheDocument();
     expect(
       screen.queryByRole('heading', { name: enMessages.projects.labels.section.limitations })
     ).not.toBeInTheDocument();
