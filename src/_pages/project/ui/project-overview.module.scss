@@ -98,7 +98,7 @@
     overflow-wrap: break-word;
     transition: color $transition-duration-theme $timing-function-theme;
 
-    @media (width < 768px) {
+    @media (width < 1024px) {
         font-size: $typography-font-size-body-mobile; // 15px
         line-height: 1.5;
     }
@@ -114,10 +114,13 @@
     display: flex;
     flex-direction: column;
     gap: $spacing-list-gap;
-    max-width: 72ch;
     margin: 0;
     padding: 0;
     list-style: none;
+
+    @media (min-width: 640px) and (max-width: 991px) {
+        max-width: 65ch;
+    }
 
     @media (min-width: 992px) {
         display: grid;

@@ -136,14 +136,14 @@
     {
       "icon": "server",
       "title": {
-        "en": "Data layer: RTK Query on top of Supabase",
-        "ru": "Слой данных: RTK Query поверх Supabase",
-        "uz": "Ma'lumotlar qatlami: Supabase ustida RTK Query"
+        "en": "Data layer: RTK Query + Supabase",
+        "ru": "Слой данных: RTK Query + Supabase",
+        "uz": "Ma'lumotlar qatlami: RTK Query + Supabase"
       },
       "summary": {
-        "en": "Queries run in Postgres, products cached as { ids, items }, optimistic updates",
-        "ru": "Запросы выполняются в Postgres, товары кэшируются как { ids, items }, оптимистичные обновления",
-        "uz": "So'rovlar Postgres'da bajariladi, mahsulotlar { ids, items } ko'rinishida keshlanadi, yangilanishlar optimistik"
+        "en": "Postgres queries, { ids, items } cache, optimistic updates",
+        "ru": "Запросы в Postgres, кэш { ids, items }, оптимистичные обновления",
+        "uz": "Postgres'dagi so'rovlar, { ids, items } keshi, optimistik yangilanishlar"
       },
       "details": {
         "en": "Catalog queries (ILIKE search, category filter, sorting, range pagination) run in Postgres through Supabase. The first render of /catalog happens on the server; afterwards RTK Query repeats the same query when the URL changes. The product list is cached as a normalized { ids, items } structure. Cart and wishlist mutations for signed-in users update the UI optimistically and roll back on error. Home and product pages use ISR (hourly, plus on-demand revalidation after admin changes).",
@@ -172,14 +172,14 @@
     {
       "icon": "puzzle",
       "title": {
-        "en": "Feature-Sliced Design, layer direction checked by ESLint",
-        "ru": "Feature-Sliced Design, направление слоёв проверяет ESLint",
-        "uz": "Feature-Sliced Design, qatlamlar yo'nalishini ESLint tekshiradi"
+        "en": "FSD architecture",
+        "ru": "Архитектура FSD",
+        "uz": "FSD arxitekturasi"
       },
       "summary": {
-        "en": "Thin UI components, logic in hooks and models",
-        "ru": "Тонкие UI-компоненты, логика в хуках и моделях",
-        "uz": "Yupqa UI-komponentlar, mantiq hooklar va modellarda"
+        "en": "ESLint checks layer direction, logic lives in hooks and models",
+        "ru": "ESLint проверяет направление слоёв, логика в хуках и моделях",
+        "uz": "ESLint qatlamlar yo'nalishini tekshiradi, mantiq hooklar va modellarda"
       },
       "details": {
         "en": "The code is organised by Feature-Sliced Design (app, views, widgets, features, entities, shared). ESLint's no-restricted-imports enforces the direction of dependencies between layers; public-API rules are documented and checked manually. Domain logic and router events live mostly in custom hooks and models, so UI components stay thin.",

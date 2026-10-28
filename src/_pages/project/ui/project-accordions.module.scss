@@ -81,12 +81,6 @@
     }
 }
 
-.iconPlaceholder {
-    display: block;
-    width: 22px;
-    height: 22px;
-}
-
 .title {
     display: block;
     font-family: $font-family-title;
@@ -102,12 +96,17 @@
     display: block;
     margin: 0;
     font-family: $font-family-base;
-    font-size: $typography-font-size-small;
-    line-height: 1.5;
+    font-size: 0.875rem;
+    font-weight: $typography-font-weight-normal;
+    line-height: 1.45;
     color: var(--text-secondary);
     hyphens: none;
     overflow-wrap: break-word;
     transition: color $transition-duration-theme $timing-function-theme;
+
+    @media (min-width: 1024px) {
+        font-size: $typography-font-size-body-mobile;
+    }
 }
 
 .panel {

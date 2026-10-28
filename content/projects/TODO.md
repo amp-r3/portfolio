@@ -43,10 +43,10 @@ Uzbek copy written for the store content pass; needs a native-speaker review.
   - `tagline.uz`
   - `seo.description.uz`
   - `features[0].text.uz` … `features[5].text.uz`
-  - `deepDive[0].title.uz`, `deepDive[0].summary.uz`, `deepDive[0].details.uz`
+  - `deepDive[0].title.uz` ("Ma'lumotlar qatlami: RTK Query + Supabase"), `deepDive[0].summary.uz` ("Postgres'dagi so'rovlar, { ids, items } keshi, optimistik yangilanishlar"), `deepDive[0].details.uz`
   - `deepDive[1].title.uz`, `deepDive[1].summary.uz`, `deepDive[1].details.uz` (legacy text plus
     one appended sentence)
-  - `deepDive[2].title.uz`, `deepDive[2].summary.uz`, `deepDive[2].details.uz`
+  - `deepDive[2].title.uz` ("FSD arxitekturasi"), `deepDive[2].summary.uz` ("ESLint qatlamlar yo'nalishini tekshiradi, mantiq hooklar va modellarda"), `deepDive[2].details.uz`
   - `deepDive[3].title.uz`, `deepDive[3].summary.uz`, `deepDive[3].details.uz`
   - `deepDive[4].title.uz`, `deepDive[4].summary.uz`, `deepDive[4].details.uz`
   - `tryIt[0].text.uz` … `tryIt[2].text.uz`

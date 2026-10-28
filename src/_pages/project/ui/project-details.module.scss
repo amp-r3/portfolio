@@ -94,8 +94,6 @@
 
     &__description {
         max-width: 55ch;
-        padding-left: $spacing-medium;
-        border-left: 2px solid var(--border-primary);
         font-family: $font-family-base;
         font-size: $typography-font-size-medium;
         line-height: 1.8;
@@ -105,14 +103,17 @@
             color $transition-duration-theme $timing-function-theme,
             border-color $transition-duration-theme $timing-function-theme;
 
+        @media (min-width: 1024px) {
+            padding-left: $spacing-medium;
+            border-left: 2px solid var(--border-primary);
+        }
+
         @media (width < 768px) {
             font-size: $typography-font-size-base;
         }
 
         @media (width < 640px) {
             max-width: none;
-            padding-left: 0;
-            border-left: 0;
             line-height: 1.6;
         }
     }
@@ -220,18 +221,16 @@
         gap: $spacing-small;
         align-items: center;
         min-width: 0;
-        padding-left: $spacing-medium;
-        border-left: 2px solid var(--border-primary);
         transition: border-color $transition-duration-theme $timing-function-theme;
-
-        @media (width < 640px) {
-            gap: $spacing-xsmall;
-            padding-left: 0;
-            border-left: 0;
-        }
 
         @media (min-width: 1024px) {
             grid-area: tools;
+            padding-left: $spacing-medium;
+            border-left: 2px solid var(--border-primary);
+        }
+
+        @media (width < 640px) {
+            gap: $spacing-xsmall;
         }
     }
 

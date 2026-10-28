@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import type { Project } from '@/entities/project';
-import { packageIcon } from '@/shared/assets';
+import { packageIcon, circleAlertIcon } from '@/shared/assets';
 import { AccordionItem, Badge } from '@/shared/ui';
 import { ProjectSection } from './project-section';
 import style from './project-accordions.module.scss';
@@ -118,7 +118,7 @@ export function ProjectAccordions({ project, className }: IProjectAccordionsProp
                 panelRole="region"
                 summaryPlacement="below"
                 header={<span className={style.title}>{t('labels.section.limitations')}</span>}
-                icon={<span className={style.iconPlaceholder} />}
+                icon={<Image src={circleAlertIcon} alt="" width={22} height={22} unoptimized />}
                 iconClassName={style.icon}
                 indicatorClassName={style.indicator}
                 triggerClassName={triggerClassName}
