@@ -64,7 +64,7 @@ describe('Home Page Sections', () => {
     it('renders hero title, greeting, and call to action links', () => {
       renderSection(<HeroSection />);
 
-      expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(/Software Engineer/i);
+      expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(/Frontend Developer/i);
       expect(screen.getByText(enMessages.hero.greeting)).toBeInTheDocument();
       expect(screen.getByRole('link', { name: enMessages.hero.primaryButton })).toHaveAttribute('href', '#projects');
       expect(screen.getByRole('link', { name: enMessages.hero.secondaryButton })).toHaveAttribute('href', '#contact');
@@ -108,7 +108,12 @@ describe('Home Page Sections', () => {
 
       expect(screen.getByRole('heading', { name: enMessages.contact.title })).toBeInTheDocument();
       expect(screen.getByText(enMessages.contact.info.location)).toBeInTheDocument();
-      expect(screen.getByRole('heading', { name: enMessages.contact.phone.title })).toBeInTheDocument();
+      expect(screen.getByRole('heading', { name: enMessages.contact.info.title })).toBeInTheDocument();
+      expect(screen.getByRole('link', { name: 'amp_r3@proton.me' })).toHaveAttribute(
+        'href',
+        'mailto:amp_r3@proton.me'
+      );
+      expect(screen.queryByRole('heading', { name: /phone/i })).not.toBeInTheDocument();
       expect(screen.getByRole('heading', { name: enMessages.contact.social.title })).toBeInTheDocument();
     });
   });

@@ -11,5 +11,4 @@ export const socialsData: { [key: string]: Social } = {
   linkedin: { link: 'https://www.linkedin.com/in/amir-ergashev-96718a396', icon: linkedinIcon },
   email: { link: 'amp_r3@proton.me', icon: emailIcon },
   email_secondary: { link: 'ergashevamir06@gmail.com', icon: emailIcon },
-  phone: { link: '+998200005369' },
 };

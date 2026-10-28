@@ -37,14 +37,14 @@ export async function generateMetadata({
       },
     },
     openGraph: {
-      title: `${title} | Amir Ergashev`,
+      title: `${title} | Amir`,
       description,
       type: 'article',
       url,
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${title} | Amir Ergashev`,
+      title: `${title} | Amir`,
       description,
     },
   };

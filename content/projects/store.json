@@ -7,7 +7,7 @@
     "uz": "Store App"
   },
   "description": {
-    "en": "A modern full-stack e-commerce platform built with Next.js 16, React 19, TypeScript, and Redux Toolkit. Powered by Supabase for PostgreSQL and authentication, it features a glassmorphism design, URL-synchronized catalog state, optimistic cart updates, ISR caching, haptic feedback, and a fully responsive mobile-first interface.",
+    "en": "A modern e-commerce platform built with Next.js 16, React 19, TypeScript, and Redux Toolkit. Powered by Supabase for PostgreSQL and authentication, it features a glassmorphism design, URL-synchronized catalog state, optimistic cart updates, ISR caching, haptic feedback, and a fully responsive mobile-first interface.",
     "ru": "Современная платформа электронной коммерции на стеке Next.js 16, React 19, TypeScript и Redux Toolkit с бэкендом на Supabase (PostgreSQL и Auth). Приложение включает адаптивный Glassmorphism-интерфейс, синхронизацию каталога с URL, оптимистичные обновления корзины, серверное ISR-кэширование, тактильный отклик и поддержку мобильных устройств.",
     "uz": "Next.js 16, React 19, TypeScript va Redux Toolkit asosida yaratilgan zamonaviy internet-do'kon platformasi. Supabase (PostgreSQL va Auth) bilan integratsiya qilingan ilova moslashuvchan Glassmorphism dizayni, URL bilan sinxronlashgan katalog, savatning optimistik yangilanishi, ISR keshlanishi, taktil aloqa va mobil moslashuvni ta'minlaydi."
   },

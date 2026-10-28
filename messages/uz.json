@@ -1,7 +1,7 @@
 {
     "header": {
         "nav": {
-            "services": "Xizmatlar",
+            "services": "Ko'nikmalar",
             "projects": "Loyihalar",
             "contact": "Bog'lanish"
         },
@@ -9,57 +9,57 @@
     },
     "hero": {
         "greeting": "Salom, men Amirman",
-        "titleRole": "Dasturchi-muhandis",
-        "titleTagline": "ishonchli veb-yechimlar yarataman.",
-        "description": "Toza va qulay interfeyslardan tortib, ishonchli bek-end arxitekturasigacha.",
+        "titleRole": "Frontend dasturchi",
+        "titleTagline": "React, Next.js va TypeScript bilan ishlaydi.",
+        "description": "Moslashuvchan interfeyslar yarataman, ularni real API-larga ulayman va kodni oson o'qiladigan holatda saqlayman. Hozirda junior frontend lavozimlariga ochiqman.",
         "primaryButton": "Loyihalar",
         "secondaryButton": "Bog'lanish"
     },
     "services": {
-        "tag": "01 / QANDAY YORDAM BERA OLAMAN",
-        "title": "Xizmatlar va ekspertiza",
-        "description": "G'oyadan to ishlab chiqarishgacha ishonchli va yuqori unumdor raqamli mahsulotlarni yaratish — kengaytiriladigan arxitektura va biznes natijalariga yo'naltirilgan.",
-        "deliverablesTitle": "Asosiy natijalar:",
-        "stackTitle": "Texnologiyalar va vositalar:",
+        "tag": "01 / NIMA BILAN ISHLAYMAN",
+        "title": "Ko'nikmalar va vositalar",
+        "description": "React va Next.js yordamida veb-interfeyslar yarataman, ularni API-larga ulayman va kodni o'zgartirish oson bo'lishiga e'tibor beraman.",
+        "deliverablesTitle": "Amalda:",
+        "stackTitle": "Vositalar:",
         "items": {
             "fullstack": {
                 "number": "01",
-                "title": "Noldan veb-ilovalar va SaaS yaratish",
-                "shortDesc": "Zamonaviy veb-xizmatlarni noldan ishlab chiqish: foydalanuvchi yo'lini loyihalashdan to bulutda ishga tushirishgacha.",
+                "title": "Next.js veb-ilovalar",
+                "shortDesc": "Next.js ilovalari: server render, routing va tiplashtirilgan ma'lumot yuklash.",
                 "deliverables": {
-                    "first": "Tezkor MVP yoki kengaytiriluvchi to'liq servis",
-                    "second": "Mobil, planshet va desktop uchun to'liq moslashuvchanlik",
-                    "third": "Ishlab chiqarishga tayyor (production-ready) infratuzilma"
+                    "first": "Server render va statik generatsiya bilan App Router",
+                    "second": "Mobil, planshet va desktop uchun moslashuvchan maketlar",
+                    "third": "TypeScript va Zod bilan tiplashtirilgan ma'lumot oqimi"
                 }
             },
             "architecture": {
                 "number": "02",
-                "title": "Kengaytiriladigan arxitektura (FSD)",
-                "shortDesc": "Spagetti-kod va texnik qarzlarsiz Feature-Sliced Design metodologiyasi asosida tushunarli modulli tuzilma.",
+                "title": "Ilova tuzilmasi (FSD)",
+                "shortDesc": "Feature-Sliced Design modullarni izolyatsiya qiladi va importlarni tartibli saqlaydi.",
                 "deliverables": {
-                    "first": "Izolatsiyalangan modullar va aniq mas'uliyat chegaralari",
-                    "second": "Jamoaga yangi dasturchilarning tez moslashishi",
-                    "third": "Yondosh funksiyalarni buzmasdan xavfsiz refaktoring"
+                    "first": "Bir yo'nalishli importlarga ega qatlamlar",
+                    "second": "Chuqur importlar o'rniga slice uchun public API",
+                    "third": "eslint-plugin-boundaries orqali chegaralarni avtomatik tekshirish"
                 }
             },
             "backend": {
                 "number": "03",
-                "title": "API integratsiyasi, backend va ma'lumotlar bazasi",
-                "shortDesc": "Frontendni ma'lumotlar bazalari, autentifikatsiya, tashqi xizmatlar va mustahkam API bilan bog'lash.",
+                "title": "API va ma'lumotlar",
+                "shortDesc": "Interfeysni REST API va Supabase bilan bog'layman: autentifikatsiya, so'rovlar va validatsiya.",
                 "deliverables": {
-                    "first": "Zod orqali qat'iy ma'lumotlar sxemalari va tekshiruvi",
-                    "second": "RTK Query orqali optimistik yangilanishlar va kesh boshqaruvi",
-                    "third": "PostgreSQL va Supabase bilan xavfsiz autentifikatsiya va tuzilma"
+                    "first": "Zod orqali tiplashtirilgan API va kontent shartnomalari",
+                    "second": "Supabase Auth va PostgreSQL so'rovlari",
+                    "third": "RTK Query kesh va optimistik yangilanishlar"
                 }
             },
             "performance": {
                 "number": "04",
-                "title": "Unumdorlik, testlar va Web Vitals",
-                "shortDesc": "Interfeys tezligi va barqarorligini yashil Lighthouse ko'rsatkichlariga yetkazish va avtotestlar bilan ta'minlash.",
+                "title": "Unumdorlik va testlar",
+                "shortDesc": "Maket siljishi va sekin yuklanishni tuzataman, zaif joylarni testlar bilan qoplayman.",
                 "deliverables": {
-                    "first": "Tezkor yuklanish va tartibsiz siljishlarsiz interfeys (CLS = 0)",
-                    "second": "60 FPS silliq harakat va prefers-reduced-motion qo'llab-quvvatlash",
-                    "third": "Xatolardan himoya qiluvchi Playwright Smoke va E2E testlari"
+                    "first": "Next.js rasmlari va shriftlarini maket siljishisiz yuklash",
+                    "second": "prefers-reduced-motionni hisobga oluvchi animatsiyalar",
+                    "third": "Vitest unit testlari va FSD chegaralarini tekshirish"
                 }
             }
         }
@@ -102,13 +102,10 @@
     },
     "contact": {
         "title": "Men bilan bog'laning",
-        "description": "Rejangizda biror loyiha bormi yoki shunchaki salomlashmoqchimisiz? Sizdan xabar olishdan xursand bo'laman.",
+        "description": "Loyiha yoki vakansiya bormi? Email yoki Telegram orqali yozing — bu eng tezkor aloqa usuli.",
         "info": {
             "title": "Email va joylashuv",
             "location": "O'zbekistondaman"
-        },
-        "phone": {
-            "title": "Telefon"
         },
         "social": {
             "title": "Ijtimoiy tarmoqlar"
@@ -116,7 +113,7 @@
     },
     "footer": {
         "title": "Keling, birga ishlaymiz",
-        "description": "O'rganish, o'sish va hissa qo'shish imkoniyatlarini qidirmoqdaman. Bog'lanishdan tortinmang!",
+        "description": "Junior frontend lavozimlari va frilans loyihalar uchun ochiqman. Taklifingiz bo'lsa, yozing.",
         "button": "Men bilan bog'lanish",
         "rights": "amp-r3. Barcha huquqlar himoyalangan."
     },

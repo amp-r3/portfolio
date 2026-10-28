@@ -4,12 +4,12 @@ export const SERVICES_LIST: ServiceItemConfig[] = [
   {
     id: 'fullstack',
     number: '01',
-    tags: ['Next.js 16', 'React 19', 'TypeScript', 'SSR / SSG', 'Full-stack'],
+    tags: ['Next.js 16', 'React 19', 'TypeScript', 'App Router', 'SCSS Modules'],
   },
   {
     id: 'architecture',
     number: '02',
-    tags: ['Feature-Sliced Design', 'Modular Architecture', 'Strict Boundaries', 'Clean Code'],
+    tags: ['Feature-Sliced Design', 'eslint-plugin-boundaries', 'TypeScript'],
   },
   {
     id: 'backend',
@@ -19,6 +19,6 @@ export const SERVICES_LIST: ServiceItemConfig[] = [
   {
     id: 'performance',
     number: '04',
-    tags: ['Playwright', 'Web Vitals', 'Motion', 'a11y', 'Locomotive Scroll'],
+    tags: ['Vitest', 'Motion', 'Lenis'],
   },
 ];

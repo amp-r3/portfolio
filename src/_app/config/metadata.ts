@@ -1,18 +1,20 @@
 import type { Metadata, Viewport } from 'next';
 
-const title = 'Amir Ergashev | Frontend Developer';
-const description = "I'm a Junior Web Developer specializing in Front-End technologies, enthusiastic about turning creative ideas into beautiful and functional code.";
+const title = 'Amir | Frontend Developer';
+const description =
+  'Frontend developer working with React, Next.js and TypeScript. I build responsive interfaces, connect them to APIs, and I am open to junior frontend roles.';
 const url = 'https://amp-r3.is-a.dev';
-const image = `${url}/og-image.png`;
 
 export const metadata: Metadata = {
+  metadataBase: new URL(url),
   title: {
     default: title,
-    template: '%s | Amir Ergashev',
+    template: '%s | Amir',
   },
   description,
-  keywords: 'Frontend, React, Next.js, TypeScript, Redux Toolkit, Web Development, Portfolio, Amir Ergashev, Uzbekistan',
-  authors: [{ name: 'Amir Ergashev' }],
+  keywords:
+    'Frontend, React, Next.js, TypeScript, Junior Frontend Developer, Portfolio, Amir, Uzbekistan',
+  authors: [{ name: 'Amir' }],
   alternates: {
     canonical: url,
     languages: {
@@ -29,8 +31,8 @@ export const metadata: Metadata = {
     ],
     apple: [{ url: '/apple-touch-icon.png', sizes: '180x180' }],
   },
-  openGraph: { type: 'website', url, title, description, images: [image] },
-  twitter: { card: 'summary_large_image', title, description, images: [image] },
+  openGraph: { type: 'website', url, title, description },
+  twitter: { card: 'summary_large_image', title, description },
   other: { title, 'twitter:url': url },
 };
 

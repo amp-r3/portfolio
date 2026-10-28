@@ -75,7 +75,6 @@
     }
 
     &__info,
-    &__phone,
     &__social {
         display: flex;
         flex-direction: column;
@@ -97,15 +96,13 @@
     }
 
     &__email,
-    &__number,
     &__location {
         font-size: $typography-font-size-base; // 16px
         color: var(--text-secondary);
         transition: color $transition-duration-theme $timing-function-theme;
     }
 
-    &__email,
-    &__number {
+    &__email {
         &:hover {
             text-decoration: underline;
         }

@@ -53,7 +53,7 @@ describe('Widgets and Pages', () => {
     it('renders navigation links and theme/language controls', () => {
       renderWithProviders(<Header />);
 
-      expect(screen.getByRole('link', { name: 'Services' })).toBeInTheDocument();
+      expect(screen.getByRole('link', { name: 'Skills' })).toBeInTheDocument();
       expect(screen.getByRole('link', { name: 'Projects' })).toBeInTheDocument();
       expect(screen.getByRole('link', { name: 'Contact' })).toBeInTheDocument();
       expect(screen.getByRole('checkbox', { name: /Switch to (light|dark) theme/i })).toBeInTheDocument();
@@ -65,7 +65,7 @@ describe('Widgets and Pages', () => {
       const user = userEvent.setup();
       renderWithProviders(<Header />);
 
-      const servicesLink = screen.getByRole('link', { name: 'Services' });
+      const servicesLink = screen.getByRole('link', { name: 'Skills' });
       expect(servicesLink).toHaveAttribute('href', '/en/#services');
 
       await user.click(servicesLink);

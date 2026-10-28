@@ -67,13 +67,6 @@ export function ContactSection() {
             <span className={style.contact__location}>{t('contact.info.location')}</span>
           </motion.div>
 
-          <motion.div variants={itemVariants} className={style.contact__phone}>
-            <h4 className={style.contact__subtitle}>{t('contact.phone.title')}</h4>
-            <a href={`tel:+${socialsData.phone.link}`} className={style.contact__number}>
-              + 998 20 000 53 69
-            </a>
-          </motion.div>
-
           <motion.div variants={itemVariants} className={style.contact__social}>
             <h4 className={style.contact__subtitle}>{t('contact.social.title')}</h4>
             <div className={style.contact__social_links}>

@@ -1,7 +1,7 @@
 {
     "header": {
         "nav": {
-            "services": "Services",
+            "services": "Skills",
             "projects": "Projects",
             "contact": "Contact"
         },
@@ -9,57 +9,57 @@
     },
     "hero": {
         "greeting": "Hi, I'm Amir",
-        "titleRole": "Software Engineer",
-        "titleTagline": "building modern web products.",
-        "description": "From clean, interactive UIs to reliable backend architecture.",
+        "titleRole": "Frontend Developer",
+        "titleTagline": "focused on React, Next.js and TypeScript.",
+        "description": "I build responsive interfaces, connect them to real APIs, and keep the code easy to maintain. Currently open to junior frontend roles.",
         "primaryButton": "View Projects",
         "secondaryButton": "Contact Me"
     },
     "services": {
-        "tag": "01 / WHAT I DO",
-        "title": "Services & Expertise",
-        "description": "Building reliable, high-performance web products from idea to production — with a strong focus on scalable architecture and business impact.",
-        "deliverablesTitle": "Key Deliverables:",
-        "stackTitle": "Tech Stack & Tools:",
+        "tag": "01 / WHAT I WORK WITH",
+        "title": "Skills & Tools",
+        "description": "I build web interfaces with React and Next.js, connect them to APIs, and keep the codebase easy to change.",
+        "deliverablesTitle": "In practice:",
+        "stackTitle": "Tools:",
         "items": {
             "fullstack": {
                 "number": "01",
-                "title": "Full-Cycle Web Apps & SaaS",
-                "shortDesc": "End-to-end development of modern web applications: from intuitive UI flows to reliable, scalable production systems.",
+                "title": "Web Apps with Next.js",
+                "shortDesc": "Next.js apps with server rendering, routing, and typed data loading.",
                 "deliverables": {
-                    "first": "Rapid MVP or scalable full-cycle web service",
-                    "second": "Flawless responsiveness across mobile, tablet, and desktop",
-                    "third": "Production-ready, maintainable architecture"
+                    "first": "App Router with server rendering and static generation",
+                    "second": "Responsive layouts for mobile, tablet, and desktop",
+                    "third": "Typed data flow with TypeScript and Zod"
                 }
             },
             "architecture": {
                 "number": "02",
-                "title": "Scalable Architecture (FSD)",
-                "shortDesc": "Clean modular codebase built on Feature-Sliced Design to prevent tech debt and spaghetti code.",
+                "title": "Application Structure (FSD)",
+                "shortDesc": "Feature-Sliced Design keeps modules isolated and imports predictable.",
                 "deliverables": {
-                    "first": "Strict module boundaries and unidirectional dependency flow",
-                    "second": "Fast developer onboarding with predictable structure",
-                    "third": "Safe refactoring with zero unintended side effects"
+                    "first": "Layers with one-way imports",
+                    "second": "Public API per slice instead of deep imports",
+                    "third": "Automated boundary checks via eslint-plugin-boundaries"
                 }
             },
             "backend": {
                 "number": "03",
-                "title": "API Integration, Backend & Databases",
-                "shortDesc": "Connecting responsive frontends with databases, authentication, third-party APIs, and cloud services.",
+                "title": "APIs & Data",
+                "shortDesc": "Connecting the UI to REST APIs and Supabase: auth, queries, and validation.",
                 "deliverables": {
-                    "first": "End-to-end type validation and schemas with Zod",
-                    "second": "Optimistic updates and normalized caching via RTK Query",
-                    "third": "Secure auth and database modeling with PostgreSQL & Supabase"
+                    "first": "Typed API and content contracts with Zod",
+                    "second": "Supabase Auth and PostgreSQL queries",
+                    "third": "RTK Query caching and optimistic updates"
                 }
             },
             "performance": {
                 "number": "04",
-                "title": "Performance, Testing & Web Vitals",
-                "shortDesc": "Optimizing speed and UI stability to green Lighthouse scores, backed by automated testing suites.",
+                "title": "Performance & Testing",
+                "shortDesc": "Fixing layout shifts and slow loads, with tests for the parts that break.",
                 "deliverables": {
-                    "first": "Instant page loads and zero cumulative layout shifts (CLS = 0)",
-                    "second": "Smooth 60 FPS motion with prefers-reduced-motion support",
-                    "third": "Automated Playwright smoke and end-to-end regression tests"
+                    "first": "Next.js image and font loading without layout shifts",
+                    "second": "Animations that respect prefers-reduced-motion",
+                    "third": "Vitest unit tests and FSD boundary checks"
                 }
             }
         }
@@ -102,13 +102,10 @@
     },
     "contact": {
         "title": "Get in touch",
-        "description": "Have a project in mind or just want to say hi? I’d love to hear from you.",
+        "description": "Have a project or a role in mind? Email or Telegram is the fastest way to reach me.",
         "info": {
             "title": "Email & Location",
             "location": "Based in Uzbekistan"
-        },
-        "phone": {
-            "title": "Phone"
         },
         "social": {
             "title": "Social Media"
@@ -116,7 +113,7 @@
     },
     "footer": {
         "title": "Let's work together",
-        "description": "Looking for opportunities to learn, grow, and contribute. Feel free to reach out!",
+        "description": "Open to junior frontend roles and freelance projects. If you have something in mind, send me a message.",
         "button": "Contact Me",
         "rights": "amp-r3. All rights reserved."
     },
