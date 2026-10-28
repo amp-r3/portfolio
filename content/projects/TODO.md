@@ -53,3 +53,6 @@ Uzbek copy written for the store content pass; needs a native-speaker review.
   - `limitations[0].text.uz` … `limitations[3].text.uz`
 - `messages/uz.json` → `projects.labels.*` — pre-existing UI labels; JSON cannot carry inline
   comments, so this note is the review marker.
+- `messages/uz.json` → `projects.labels.period.present`, `projects.actions.demo`,
+  `projects.actions.github`, `projects.actions.back`, `projects.screenshotAlt` — added with the
+  project page UI stage; need a native-speaker review.
