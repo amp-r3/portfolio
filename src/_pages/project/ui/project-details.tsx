@@ -10,13 +10,12 @@ interface IProjectDetailsProps {
 }
 
 export const ProjectDetails: FC<IProjectDetailsProps> = ({ project }) => {
-  const { title, description, tools, githubLink, demoLink, image, darkImage, mobileImage, mobileDarkImage, benefits } =
-    project;
+  const { title, tagline, stack, links, images, deepDive } = project;
 
-  const lightMain = image ?? null;
-  const darkMain = darkImage ?? image ?? null;
-  const lightMobile = mobileImage ?? image ?? null;
-  const darkMobile = mobileDarkImage ?? mobileImage ?? darkImage ?? image ?? null;
+  const lightMain = images.light;
+  const darkMain = images.dark ?? images.light;
+  const lightMobile = images.mobileLight ?? images.light;
+  const darkMobile = images.mobileDark ?? images.mobileLight ?? images.dark ?? images.light;
 
   return (
     <article className={`${style['project-details']} container page-content`}>
@@ -28,35 +27,41 @@ export const ProjectDetails: FC<IProjectDetailsProps> = ({ project }) => {
       <div className={style['project-details__content']}>
         <h1 className={style['project-details__title']}>{title}</h1>
         <div className={style['project-details__description-wrapper']}>
-          <p className={style['project-details__description']} data-lenis-prevent>{description}</p>
+          <p className={style['project-details__description']} data-lenis-prevent>{tagline}</p>
         </div>
 
         <div className={style['project-details__tools']}>
-          {tools.map((label) => (
+          {stack.primary.map((label) => (
             <Badge key={label} label={label} />
           ))}
         </div>
 
-        <div className={style['project-details__actions']}>
-          <a
-            href={demoLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`${style['project-details__action']} ${style['project-details__action--primary']}`}
-          >
-            <Image src={externalLinkIcon} alt="" width={16} height={16} unoptimized aria-hidden="true" />
-            <span>Live Demo</span>
-          </a>
-          <a
-            href={githubLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`${style['project-details__action']} ${style['project-details__action--secondary']}`}
-          >
-            <Image src={githubIcon} alt="" width={16} height={16} unoptimized aria-hidden="true" />
-            <span>GitHub Repo</span>
-          </a>
-        </div>
+        {(links.demo || links.github) && (
+          <div className={style['project-details__actions']}>
+            {links.demo && (
+              <a
+                href={links.demo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`${style['project-details__action']} ${style['project-details__action--primary']}`}
+              >
+                <Image src={externalLinkIcon} alt="" width={16} height={16} unoptimized aria-hidden="true" />
+                <span>Live Demo</span>
+              </a>
+            )}
+            {links.github && (
+              <a
+                href={links.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`${style['project-details__action']} ${style['project-details__action--secondary']}`}
+              >
+                <Image src={githubIcon} alt="" width={16} height={16} unoptimized aria-hidden="true" />
+                <span>GitHub Repo</span>
+              </a>
+            )}
+          </div>
+        )}
       </div>
 
       <div className={style['project-details__media']}>
@@ -83,15 +88,14 @@ export const ProjectDetails: FC<IProjectDetailsProps> = ({ project }) => {
 
       <section className={style['project-details__benefits']}>
         <div className={style['project-details__grid']}>
-          {benefits &&
-            benefits.map((item, index) => (
-              <BenefitCard
-                key={index}
-                title={item.title}
-                description={item.description}
-                iconSrc={item.icon}
-              />
-            ))}
+          {deepDive.map((item, index) => (
+            <BenefitCard
+              key={index}
+              title={item.title}
+              description={item.details}
+              iconSrc={item.icon}
+            />
+          ))}
         </div>
       </section>
     </article>

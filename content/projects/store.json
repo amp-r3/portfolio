@@ -1,78 +1,279 @@
 {
   "id": "store",
   "order": 2,
+  "type": "personal",
+  "status": "live",
+  "period": {
+    "start": 2025,
+    "end": 2026
+  },
+  "role": "solo",
   "title": {
     "en": "Store App",
     "ru": "Store App",
     "uz": "Store App"
   },
-  "description": {
-    "en": "A modern e-commerce platform built with Next.js 16, React 19, TypeScript, and Redux Toolkit. Powered by Supabase for PostgreSQL and authentication, it features a glassmorphism design, URL-synchronized catalog state, optimistic cart updates, ISR caching, haptic feedback, and a fully responsive mobile-first interface.",
-    "ru": "Современная платформа электронной коммерции на стеке Next.js 16, React 19, TypeScript и Redux Toolkit с бэкендом на Supabase (PostgreSQL и Auth). Приложение включает адаптивный Glassmorphism-интерфейс, синхронизацию каталога с URL, оптимистичные обновления корзины, серверное ISR-кэширование, тактильный отклик и поддержку мобильных устройств.",
-    "uz": "Next.js 16, React 19, TypeScript va Redux Toolkit asosida yaratilgan zamonaviy internet-do'kon platformasi. Supabase (PostgreSQL va Auth) bilan integratsiya qilingan ilova moslashuvchan Glassmorphism dizayni, URL bilan sinxronlashgan katalog, savatning optimistik yangilanishi, ISR keshlanishi, taktil aloqa va mobil moslashuvni ta'minlaydi."
+  "tagline": {
+    "en": "Full-stack e-commerce store: catalog with URL filters, cart, checkout, order history and an admin panel. Built on Next.js and Supabase.",
+    "ru": "Full-stack интернет-магазин: каталог с фильтрами в URL, корзина, оформление заказа, история заказов и админка. Next.js и Supabase.",
+    "uz": "Full-stack internet-do'kon: URL'dagi filtrli katalog, savat, buyurtmani rasmiylashtirish, buyurtmalar tarixi va admin panel. Next.js va Supabase asosida qurilgan."
   },
-  "technologies": [
-    "Next.js 16",
-    "React 19",
-    "TypeScript",
-    "Redux Toolkit",
-    "RTK Query",
-    "Supabase",
-    "PostgreSQL",
-    "SCSS Modules",
-    "React Hook Form",
-    "Zod",
-    "redux-persist",
-    "Playwright"
-  ],
+  "seo": {
+    "description": {
+      "en": "E-commerce on Next.js 16 and Supabase: catalog with URL filters, cart, checkout, orders, admin panel. Live demo and source code.",
+      "ru": "Интернет-магазин на Next.js 16 и Supabase: каталог с фильтрами в URL, корзина, заказы, админка. Демо и код.",
+      "uz": "Next.js 16 va Supabase'da internet-do'kon: URL'dagi filtrli katalog, savat, buyurtmalar, admin panel. Demo va manba kodi."
+    }
+  },
   "links": {
     "live": "https://store-mauve-nine.vercel.app/",
     "github": "https://github.com/amp-r3/store"
   },
   "images": {
-    "light": "storeLight",
-    "dark": "storeDark",
-    "mobileLight": "storeMobileLight",
-    "mobileDark": "storeMobileDark"
+    "desktop": "storeDark",
+    "mobile": "storeMobileDark"
   },
-  "benefits": [
+  "stack": {
+    "primary": [
+      "Next.js 16",
+      "React 19",
+      "TypeScript",
+      "Redux Toolkit",
+      "Supabase"
+    ],
+    "groups": [
+      {
+        "id": "core",
+        "items": [
+          "Next.js 16",
+          "React 19",
+          "TypeScript",
+          "SCSS Modules"
+        ]
+      },
+      {
+        "id": "data",
+        "items": [
+          "Redux Toolkit",
+          "RTK Query",
+          "redux-persist",
+          "Reselect",
+          "Supabase",
+          "PostgreSQL"
+        ]
+      },
+      {
+        "id": "forms",
+        "items": [
+          "React Hook Form",
+          "Zod"
+        ]
+      },
+      {
+        "id": "tooling",
+        "items": [
+          "Playwright",
+          "Vitest",
+          "Testing Library",
+          "ESLint",
+          "Stylelint",
+          "GitHub Actions"
+        ]
+      }
+    ]
+  },
+  "features": [
+    {
+      "icon": "search",
+      "text": {
+        "en": "Catalog with search, sorting, filters and pagination",
+        "ru": "Каталог с поиском, сортировкой, фильтрами и пагинацией",
+        "uz": "Qidiruv, saralash, filtrlar va paginatsiyaga ega katalog"
+      }
+    },
+    {
+      "icon": "link",
+      "text": {
+        "en": "Filters live in the URL: shareable, back button works",
+        "ru": "Фильтры в URL: можно делиться, кнопка «назад» работает",
+        "uz": "Filtrlar URL'da: havola orqali ulashish mumkin, «orqaga» tugmasi ishlaydi"
+      }
+    },
+    {
+      "icon": "cart",
+      "text": {
+        "en": "Cart and wishlist for guests and signed-in users",
+        "ru": "Корзина и избранное для гостей и авторизованных",
+        "uz": "Mehmonlar va avtorizatsiyadan o'tgan foydalanuvchilar uchun savat va sevimlilar"
+      }
+    },
+    {
+      "icon": "user",
+      "text": {
+        "en": "Email, Google and Telegram sign-in",
+        "ru": "Вход по email, через Google и Telegram",
+        "uz": "Email, Google va Telegram orqali kirish"
+      }
+    },
+    {
+      "icon": "package",
+      "text": {
+        "en": "3-step checkout, order history, profile",
+        "ru": "Оформление в 3 шага, история заказов, профиль",
+        "uz": "3 bosqichli buyurtma rasmiylashtirish, buyurtmalar tarixi, profil"
+      }
+    },
+    {
+      "icon": "shield",
+      "text": {
+        "en": "Admin panel for orders, products and reviews",
+        "ru": "Админка: заказы, товары и отзывы",
+        "uz": "Admin panel: buyurtmalar, mahsulotlar va sharhlar"
+      }
+    }
+  ],
+  "deepDive": [
     {
       "icon": "server",
       "title": {
-        "en": "Server-Side Filtering via RTK Query",
-        "ru": "Server-Side фильтрация через RTK Query",
-        "uz": "RTK Query orqali Server-Side filtratsiyalash"
+        "en": "Data layer: RTK Query on top of Supabase",
+        "ru": "Слой данных: RTK Query поверх Supabase",
+        "uz": "Ma'lumotlar qatlami: Supabase ustida RTK Query"
       },
-      "description": {
-        "en": "Product data fetching and catalog operations are built using RTK Query and Supabase. Responses are transformed into a normalized { ids, items } structure for O(1) lookups and efficient re-renders. Pagination, search, and category filtering are processed on the server.",
-        "ru": "Получение данных товаров и работа каталога построены на связке RTK Query и Supabase. Ответы нормализуются в структуру { ids, items } для O(1) доступа к элементам и снижения нагрузки на рендеринг. Пагинация, поиск и фильтрация по категориям выполняются на стороне сервера.",
-        "uz": "Mahsulot ma'lumotlarini yuklash va katalog amallari RTK Query hamda Supabase asosida tashkil etilgan. Javoblar elementlarga O(1) tezlikda kirish va samarali qayta render uchun { ids, items } ko'rinishida normallashtiriladi. Paginatsiya, qidiruv va toifalar bo'yicha saralash server tomonida amalga oshiriladi."
+      "summary": {
+        "en": "Queries run in Postgres, products cached as { ids, items }, optimistic updates",
+        "ru": "Запросы выполняются в Postgres, товары кэшируются как { ids, items }, оптимистичные обновления",
+        "uz": "So'rovlar Postgres'da bajariladi, mahsulotlar { ids, items } ko'rinishida keshlanadi, yangilanishlar optimistik"
+      },
+      "details": {
+        "en": "Catalog queries (ILIKE search, category filter, sorting, range pagination) run in Postgres through Supabase. The first render of /catalog happens on the server; afterwards RTK Query repeats the same query when the URL changes. The product list is cached as a normalized { ids, items } structure. Cart and wishlist mutations for signed-in users update the UI optimistically and roll back on error. Home and product pages use ISR (hourly, plus on-demand revalidation after admin changes).",
+        "ru": "Запросы каталога (поиск ILIKE, фильтр по категории, сортировка, пагинация по диапазону) выполняются в Postgres через Supabase. Первый рендер /catalog происходит на сервере, дальше RTK Query повторяет тот же запрос при смене URL. Список товаров кэшируется в нормализованной структуре { ids, items }. Изменения корзины и избранного у авторизованных пользователей сначала применяются в интерфейсе и откатываются при ошибке. Главная и страница товара используют ISR (раз в час и по запросу после изменений в админке).",
+        "uz": "Katalog so'rovlari (ILIKE qidiruv, toifa filtri, saralash, diapazon bo'yicha paginatsiya) Supabase orqali Postgres'da bajariladi. /catalog sahifasining birinchi renderi serverda amalga oshiriladi, keyin URL o'zgarganda RTK Query xuddi shu so'rovni takrorlaydi. Mahsulotlar ro'yxati normallashtirilgan { ids, items } strukturasida keshlanadi. Avtorizatsiyadan o'tgan foydalanuvchilar uchun savat va sevimlilar o'zgarishlari avval interfeysda qo'llaniladi, xatolik yuz berganda esa qaytariladi. Bosh sahifa va mahsulot sahifasi ISR'dan foydalanadi (har soatda va admin panelidagi o'zgarishlardan so'ng so'rov bo'yicha)."
       }
     },
     {
       "icon": "link",
       "title": {
-        "en": "URL as Catalog State Source",
-        "ru": "URL как источник состояния каталога",
-        "uz": "URL katalog holati manbai sifatida"
+        "en": "Catalog state lives in the URL",
+        "ru": "Состояние каталога живёт в URL",
+        "uz": "Katalog holati URL'da saqlanadi"
       },
-      "description": {
-        "en": "The entire catalog state is synchronized with query parameters: search (?q=), sorting (?sortBy=), and categories (?category=). This allows users to bookmark or share filtered views while preserving native browser back and forward navigation. The App Router handles search params seamlessly across client and server.",
-        "ru": "Полное состояние каталога синхронизируется с query-параметрами: поиском (?q=), сортировкой (?sortBy=) и категориями (?category=). Это позволяет сохранять фильтры в закладки и делиться ссылками с сохранением корректной навигации браузера. Next.js App Router обеспечивает бесшовную работу с параметрами на клиенте и сервере.",
-        "uz": "Katalogning to'liq holati URL query-parametrlari bilan sinxronlashtiriladi: qidiruv (?q=), saralash (?sortBy=) va toifalar (?category=). Bu foydalanuvchiga filtrlangan havolalarni xatcho'plarga saqlash va brauzer navigatsiyasini to'g'ri saqlab qolish imkonini beradi. Next.js App Router parametrlarni mijoz va server o'rtasida uzluksiz boshqaradi."
+      "summary": {
+        "en": "Shareable filtered views and native back/forward navigation",
+        "ru": "Ссылки на подборки и штатная навигация назад/вперёд",
+        "uz": "Filtrlangan ko'rinishlarga havolalar va brauzerning standart orqaga/oldinga navigatsiyasi"
+      },
+      "details": {
+        "en": "The entire catalog state is synchronized with query parameters: search (?q=), sorting (?sortBy=), and categories (?category=). This allows users to bookmark or share filtered views while preserving native browser back and forward navigation. The App Router handles search params seamlessly across client and server. Page number (?page=) and deals (?deals=true) are synced the same way.",
+        "ru": "Полное состояние каталога синхронизируется с query-параметрами: поиском (?q=), сортировкой (?sortBy=) и категориями (?category=). Это позволяет сохранять фильтры в закладки и делиться ссылками с сохранением корректной навигации браузера. Next.js App Router обеспечивает бесшовную работу с параметрами на клиенте и сервере. Номер страницы (?page=) и акции (?deals=true) синхронизируются так же.",
+        "uz": "Katalogning to'liq holati URL query-parametrlari bilan sinxronlashtiriladi: qidiruv (?q=), saralash (?sortBy=) va toifalar (?category=). Bu foydalanuvchiga filtrlangan havolalarni xatcho'plarga saqlash va brauzer navigatsiyasini to'g'ri saqlab qolish imkonini beradi. Next.js App Router parametrlarni mijoz va server o'rtasida uzluksiz boshqaradi. Sahifa raqami (?page=) va aksiyalar (?deals=true) ham xuddi shunday sinxronlashtiriladi."
       }
     },
     {
       "icon": "puzzle",
       "title": {
-        "en": "Feature-Sliced Design Modular Architecture",
-        "ru": "Чистая модульная архитектура FSD",
-        "uz": "FSD toza modulli arxitekturasi"
+        "en": "Feature-Sliced Design, layer direction checked by ESLint",
+        "ru": "Feature-Sliced Design, направление слоёв проверяет ESLint",
+        "uz": "Feature-Sliced Design, qatlamlar yo'nalishini ESLint tekshiradi"
       },
-      "description": {
-        "en": "The codebase strictly follows Feature-Sliced Design (FSD) methodology with unidirectional layer dependencies enforced by ESLint. UI components remain declarative and thin, delegating all domain logic and router events to dedicated custom hooks and models. Memoized selectors via Reselect prevent unnecessary component re-renders.",
-        "ru": "Кодовая база строго следует методологии Feature-Sliced Design (FSD) с однонаправленными зависимостями, контролируемыми через ESLint. UI-компоненты остаются декларативными и тонкими, делегируя бизнес-логику и роутинг кастомным хукам и моделям слайсов. Мемоизированные селекторы на базе Reselect предотвращают лишние повторные рендеры.",
-        "uz": "Loyiha kodi ESLint orqali tekshiriladigan bir tomonlama bog'liqliklarga ega Feature-Sliced Design (FSD) metodologiyasiga qat'iy asoslangan. UI-komponentlar deklarativ bo'lib, barcha biznes-mantiq va yo'naltirishlarni maxsus hooklar hamda modellarga yuklaydi. Reselect orqali memoizatsiya qilingan selektorlar ortiqcha qayta renderlarning oldini oladi."
+      "summary": {
+        "en": "Thin UI components, logic in hooks and models",
+        "ru": "Тонкие UI-компоненты, логика в хуках и моделях",
+        "uz": "Yupqa UI-komponentlar, mantiq hooklar va modellarda"
+      },
+      "details": {
+        "en": "The code is organised by Feature-Sliced Design (app, views, widgets, features, entities, shared). ESLint's no-restricted-imports enforces the direction of dependencies between layers; public-API rules are documented and checked manually. Domain logic and router events live mostly in custom hooks and models, so UI components stay thin.",
+        "ru": "Код организован по Feature-Sliced Design (app, views, widgets, features, entities, shared). Правило no-restricted-imports в ESLint контролирует направление зависимостей между слоями, правила публичного API описаны в документации и проверяются вручную. Доменная логика и работа с роутером в основном вынесены в кастомные хуки и модели, поэтому UI-компоненты остаются тонкими.",
+        "uz": "Kod Feature-Sliced Design (app, views, widgets, features, entities, shared) bo'yicha tashkil etilgan. ESLint'dagi no-restricted-imports qoidasi qatlamlar orasidagi bog'liqliklar yo'nalishini nazorat qiladi, public API qoidalari hujjatlashtirilgan va qo'lda tekshiriladi. Domen mantiq va router bilan ishlash asosan maxsus hooklar va modellarga chiqarilgan, shuning uchun UI-komponentlar yupqa bo'lib qoladi."
+      }
+    },
+    {
+      "icon": "shield",
+      "title": {
+        "en": "Security in the database: RLS and RPC",
+        "ru": "Безопасность в базе: RLS и RPC",
+        "uz": "Bazada xavfsizlik: RLS va RPC"
+      },
+      "summary": {
+        "en": "RLS on every table, orders created only through an RPC function",
+        "ru": "RLS на всех таблицах, заказы создаются только через RPC-функцию",
+        "uz": "Barcha jadvallarda RLS, buyurtmalar faqat RPC-funksiya orqali yaratiladi"
+      },
+      "details": {
+        "en": "Row Level Security is enabled on all 17 tables (32 policies). Orders and order items have no client write policies: they are created by the SECURITY DEFINER function create_order. Admin actions go through RPC functions that check the user's role inside the database. Sessions are stored in httpOnly cookies via @supabase/ssr.",
+        "ru": "Row Level Security включён на всех 17 таблицах (32 политики). У заказов и позиций заказа нет клиентских политик записи: они создаются функцией create_order с SECURITY DEFINER. Админские действия идут через RPC-функции, которые проверяют роль внутри базы. Сессии хранятся в httpOnly-куках через @supabase/ssr.",
+        "uz": "Row Level Security barcha 17 jadvalda yoqilgan (32 ta siyosat). Buyurtmalar va buyurtma pozitsiyalari uchun mijoz tomondan yozish siyosatlari yo'q: ular SECURITY DEFINER create_order funksiyasi orqali yaratiladi. Admin amallari bazaning ichida foydalanuvchi rolini tekshiruvchi RPC-funksiyalar orqali bajariladi. Sessiyalar @supabase/ssr orqali httpOnly cookie'larda saqlanadi."
+      }
+    },
+    {
+      "icon": "test",
+      "title": {
+        "en": "Tests and CI",
+        "ru": "Тесты и CI",
+        "uz": "Testlar va CI"
+      },
+      "summary": {
+        "en": "600+ unit and component tests, Playwright E2E, GitHub Actions",
+        "ru": "600+ unit- и компонентных тестов, Playwright E2E, GitHub Actions",
+        "uz": "600+ unit va komponent testlari, Playwright E2E, GitHub Actions"
+      },
+      "details": {
+        "en": "Vitest covers hooks, models and components (600+ tests). Playwright E2E checks the main storefront paths (catalog, cart, auth, checkout) on desktop and a mobile viewport against a live Supabase project. GitHub Actions runs typecheck, lint, formatting checks, unit tests and the E2E suite.",
+        "ru": "Vitest покрывает хуки, модели и компоненты (600+ тестов). Playwright E2E проверяет основные пути витрины (каталог, корзина, авторизация, оформление заказа) на десктопе и мобильном вьюпорте против живого проекта Supabase. GitHub Actions запускает typecheck, линтер, проверку форматирования, unit-тесты и E2E.",
+        "uz": "Vitest hooklar, modellar va komponentlarni qamrab oladi (600+ test). Playwright E2E jonli Supabase loyihasiga qarshi desktop va mobil ekranlarda vitrinaning asosiy yo'llarini (katalog, savat, avtorizatsiya, buyurtma rasmiylashtirish) tekshiradi. GitHub Actions typecheck, linter, formatlash tekshiruvi, unit-testlar va E2E to'plamini ishga tushiradi."
+      }
+    }
+  ],
+  "tryIt": [
+    {
+      "text": {
+        "en": "Search, pick a category and change sorting: watch the URL update, then press Back.",
+        "ru": "Введи поиск, выбери категорию и сортировку: смотри, как меняется URL, затем нажми «назад».",
+        "uz": "Qidiruvni kiriting, toifani tanlang va saralashni o'zgartiring: URL qanday yangilanishini kuzating, so'ng «orqaga» tugmasini bosing."
+      }
+    },
+    {
+      "text": {
+        "en": "Add a product as a guest, sign up and go through the 3-step checkout. The order appears in your history.",
+        "ru": "Добавь товар гостем, зарегистрируйся и пройди оформление в 3 шага. Заказ появится в истории.",
+        "uz": "Mahsulotni mehmon sifatida savatga qo'shing, ro'yxatdan o'ting va 3 bosqichli buyurtma rasmiylashtirishdan o'ting. Buyurtma tarixingizda paydo bo'ladi."
+      }
+    },
+    {
+      "text": {
+        "en": "Open a product page: gallery, sizes limited by stock, reviews.",
+        "ru": "Открой страницу товара: галерея, размеры с учётом остатка, отзывы.",
+        "uz": "Mahsulot sahifasini oching: galereya, zaxiraga qarab cheklangan o'lchamlar, sharhlar."
+      }
+    }
+  ],
+  "limitations": [
+    {
+      "text": {
+        "en": "No real payments: payment methods are a reference list, nothing is charged.",
+        "ru": "Нет реальных платежей: способы оплаты — справочник, деньги не списываются.",
+        "uz": "Haqiqiy to'lovlar yo'q: to'lov usullari — ma'lumotnoma ro'yxati, hech qanday pul yechilmaydi."
+      }
+    },
+    {
+      "text": {
+        "en": "The interface is English-only.",
+        "ru": "Интерфейс только на английском.",
+        "uz": "Interfeys faqat ingliz tilida."
+      }
+    },
+    {
+      "text": {
+        "en": "E2E covers the main storefront paths; the admin panel has no E2E tests.",
+        "ru": "E2E покрывает основные пути витрины, у админки E2E-тестов нет.",
+        "uz": "E2E vitrinaning asosiy yo'llarini qamrab oladi; admin panel uchun E2E testlari yo'q."
+      }
+    },
+    {
+      "text": {
+        "en": "Search uses ILIKE without a full-text index.",
+        "ru": "Поиск через ILIKE без полнотекстового индекса.",
+        "uz": "Qidiruv to'liq matnli indekssiz ILIKE orqali ishlaydi."
       }
     }
   ]

@@ -55,11 +55,4 @@ for (const locale of locales) {
       );
     }
   });
-
-  test(`${locale} preserves the literal store benefit braces`, () => {
-    const messages = messagesByLocale[locale];
-    const description = messages.projects.benefits.store.api.description;
-
-    assert.match(description, /\{ ids, items \}/);
-  });
 }

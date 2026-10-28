@@ -35,14 +35,17 @@ describe('Project entity & data', () => {
 
         for (const project of projects) {
           expect(project.title).toBeTruthy();
-          expect(project.description).toBeTruthy();
-          expect(project.tools.length).toBeGreaterThan(0);
+          expect(project.tagline).toBeTruthy();
+          expect(project.seoDescription.length).toBeLessThanOrEqual(160);
+          expect(project.stack.primary.length).toBeGreaterThan(0);
+          expect(project.stack.groups.length).toBeGreaterThan(0);
           expect(project.links.github).toMatch(/^https:\/\/github\.com\//);
-          expect(project.benefits.length).toBeGreaterThan(0);
-          for (const benefit of project.benefits) {
-            expect(benefit.title).toBeTruthy();
-            expect(benefit.description).toBeTruthy();
-            expect(benefit.icon).toBeTruthy();
+          expect(project.deepDive.length).toBeGreaterThan(0);
+          for (const entry of project.deepDive) {
+            expect(entry.title).toBeTruthy();
+            expect(entry.summary).toBeTruthy();
+            expect(entry.details).toBeTruthy();
+            expect(entry.icon).toBeTruthy();
           }
         }
       }
@@ -59,7 +62,32 @@ describe('Project entity & data', () => {
       expect(project).not.toBeNull();
       expect(project?.id).toBe('weather');
       expect(project?.title).toBe('My Weather App');
-      expect(project?.demoLink).toBe('https://my-pogoda.netlify.app/');
+      expect(project?.links.demo).toBe('https://my-pogoda.netlify.app/');
+    });
+
+    it('keeps theme-aware images for weather and single images for store', async () => {
+      const weather = await getProject('weather', 'en');
+      const store = await getProject('store', 'en');
+
+      expect(weather?.images.dark).toBeTruthy();
+      expect(weather?.images.mobileDark).toBeTruthy();
+      expect(store?.images.dark).toBeUndefined();
+      expect(store?.images.mobileDark).toBeUndefined();
+    });
+
+    it('fills known store metadata and leaves unknown weather metadata empty', async () => {
+      const weather = await getProject('weather', 'en');
+      const store = await getProject('store', 'en');
+
+      expect(store?.type).toBe('personal');
+      expect(store?.status).toBe('live');
+      expect(store?.period).toEqual({ start: 2025, end: 2026 });
+      expect(store?.role).toBe('solo');
+
+      expect(weather?.type).toBeUndefined();
+      expect(weather?.status).toBeUndefined();
+      expect(weather?.period).toBeUndefined();
+      expect(weather?.role).toBeUndefined();
     });
 
     it('returns null for non-existent project ID', async () => {
@@ -71,11 +99,11 @@ describe('Project entity & data', () => {
       await expect(getProject('weather', 'de')).rejects.toThrow(ProjectSourceError);
     });
 
-    it('preserves literal braces in store benefits and description', async () => {
+    it('preserves literal braces in store deep dive details', async () => {
       for (const locale of ['en', 'ru', 'uz'] as const) {
         const store = await getProject('store', locale);
         expect(store).not.toBeNull();
-        const hasBraces = store?.benefits.some((b) => b.description.includes('{ ids, items }'));
+        const hasBraces = store?.deepDive.some((entry) => entry.details.includes('{ ids, items }'));
         expect(hasBraces).toBe(true);
       }
     });

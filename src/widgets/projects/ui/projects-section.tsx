@@ -26,7 +26,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
                 title={elem.title}
                 image={elem.images.light}
                 darkImage={elem.images.dark}
-                description={elem.description}
+                description={elem.tagline}
               />
             </Link>
           ))}

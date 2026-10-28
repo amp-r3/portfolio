@@ -1,16 +1,40 @@
 import 'server-only';
 import { readdir, readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
+import type { ZodError } from 'zod';
 import { isLocale, type Locale } from '@/shared/i18n';
 import { isProjectId, type ProjectId } from '../model/project-id';
-import { projectContentSchema, type ProjectContentRaw } from '../model/content-schema';
+import {
+  projectContentSchema,
+  type ProjectContentRaw,
+  type ProjectImageValue,
+} from '../model/content-schema';
 import { resolveProjectIcon, resolveProjectImage } from '../model/asset-map';
-import type { Project, ProjectBenefit } from '../model/types';
+import type { Project } from '../model/types';
 import { ProjectSourceError } from './project-source-error';
 
 const CONTENT_DIR = resolve(process.cwd(), 'content', 'projects');
 
 let cachedProjects: ProjectContentRaw[] | null = null;
+
+function formatValidationError(fileName: string, error: ZodError, parsedJson?: unknown): string {
+  const projectId =
+    typeof parsedJson === 'object' &&
+    parsedJson !== null &&
+    'id' in parsedJson &&
+    typeof parsedJson.id === 'string'
+      ? parsedJson.id
+      : null;
+  const label = projectId ? `project "${projectId}" (${fileName})` : `project "${fileName}"`;
+  const details = error.issues
+    .map((issue) => {
+      const field = issue.path.length > 0 ? issue.path.join('.') : '(root)';
+      return `  - ${field}: ${issue.message}`;
+    })
+    .join('\n');
+
+  return `Validation failed for ${label}:\n${details}`;
+}
 
 async function loadAllProjectFiles(): Promise<ProjectContentRaw[]> {
   if (cachedProjects) {
@@ -47,9 +71,7 @@ async function loadAllProjectFiles(): Promise<ProjectContentRaw[]> {
 
       const parseResult = projectContentSchema.safeParse(parsedJson);
       if (!parseResult.success) {
-        throw new ProjectSourceError(
-          `Validation failed for "${fileName}": ${parseResult.error.message}`
-        );
+        throw new ProjectSourceError(formatValidationError(fileName, parseResult.error, parsedJson));
       }
 
       loaded.push(parseResult.data);
@@ -64,44 +86,62 @@ async function loadAllProjectFiles(): Promise<ProjectContentRaw[]> {
   }
 }
 
+function resolveImageValue(value: ProjectImageValue): { light: string; dark?: string } {
+  if (typeof value === 'string') {
+    // A single screenshot is used for both themes.
+    return { light: resolveProjectImage(value) };
+  }
+
+  return {
+    light: resolveProjectImage(value.light),
+    dark: resolveProjectImage(value.dark),
+  };
+}
+
 function mapContentToProject(raw: ProjectContentRaw, locale: Locale): Project {
   try {
-    const title = typeof raw.title === 'string' ? raw.title : raw.title[locale];
-    const description = raw.description[locale];
-
-    const benefits: ProjectBenefit[] = raw.benefits.map((b) => ({
-      title: b.title[locale],
-      description: b.description[locale],
-      icon: resolveProjectIcon(b.icon),
-    }));
-
-    const lightImage = resolveProjectImage(raw.images.light);
-    const darkImage = raw.images.dark ? resolveProjectImage(raw.images.dark) : undefined;
-    const mobileLightImage = raw.images.mobileLight ? resolveProjectImage(raw.images.mobileLight) : undefined;
-    const mobileDarkImage = raw.images.mobileDark ? resolveProjectImage(raw.images.mobileDark) : undefined;
+    const desktopImage = resolveImageValue(raw.images.desktop);
+    const mobileImage = raw.images.mobile ? resolveImageValue(raw.images.mobile) : undefined;
 
     return {
       id: raw.id as ProjectId,
-      title,
-      description,
-      tools: [...raw.technologies],
+      order: raw.order,
+      type: raw.type,
+      status: raw.status,
+      period: raw.period,
+      role: raw.role,
+      title: raw.title[locale],
+      tagline: raw.tagline[locale],
+      seoDescription: raw.seo.description[locale],
       links: {
         demo: raw.links.live,
         github: raw.links.github,
       },
       images: {
-        light: lightImage,
-        dark: darkImage,
-        mobileLight: mobileLightImage,
-        mobileDark: mobileDarkImage,
+        light: desktopImage.light,
+        dark: desktopImage.dark,
+        mobileLight: mobileImage?.light,
+        mobileDark: mobileImage?.dark,
       },
-      benefits,
-      demoLink: raw.links.live,
-      githubLink: raw.links.github,
-      image: lightImage,
-      darkImage,
-      mobileImage: mobileLightImage,
-      mobileDarkImage,
+      stack: {
+        primary: [...raw.stack.primary],
+        groups: raw.stack.groups.map((group) => ({
+          id: group.id,
+          items: [...group.items],
+        })),
+      },
+      features: raw.features.map((feature) => ({
+        icon: resolveProjectIcon(feature.icon),
+        text: feature.text[locale],
+      })),
+      deepDive: raw.deepDive.map((entry) => ({
+        icon: resolveProjectIcon(entry.icon),
+        title: entry.title[locale],
+        summary: entry.summary[locale],
+        details: entry.details[locale],
+      })),
+      tryIt: raw.tryIt?.map((item) => item.text[locale]),
+      limitations: raw.limitations?.map((item) => item.text[locale]),
     };
   } catch (error) {
     if (error instanceof ProjectSourceError) throw error;

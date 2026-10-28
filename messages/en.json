@@ -66,39 +66,35 @@
     },
     "projects": {
         "title": "My Projects",
-        "weatherDescription": "A dynamic weather forecast application built with React, Vite, and Redux Toolkit. This fully responsive app automatically detects user location via browser geolocation (with an IP-based fallback) or allows users to search for any city. It integrates OpenWeatherMap and Geoapify APIs to provide current conditions, hourly, and 7-day forecasts. Key features include robust asynchronous state management with Redux Thunk, a client-side localStorage cache to optimize API calls, and a persistent dark/light mode theme toggle.",
-        "storeDescription": "A modern, responsive e-commerce storefront built with React 19, Vite, and Redux Toolkit. This application features a dynamic product catalog, real-time search, advanced sorting, and a functional shopping cart, all powered by the dummyjson.com API. The project showcases a clean architecture using custom hooks for logic, React Router for navigation, and a design-token-based styling system with SASS/SCSS Modules.",
-        "details": "See Details",
-        "benefits": {
-            "weather": {
-                "geo": {
-                    "title": "Automatic Geolocation",
-                    "description": "The application automatically detects the user's location and loads an accurate weather forecast in real time."
-                },
-                "adaptive": {
-                    "title": "Responsiveness and Theming",
-                    "description": "The interface is fully responsive for mobile and desktop devices. Theme switching support (light/dark) is implemented."
-                },
-                "performance": {
-                    "title": "High Performance",
-                    "description": "The project is built on a modern React and Redux stack. This ensures instant interface response without page reloads and stable application performance even with a weak internet connection."
-                }
+        "labels": {
+            "type": {
+                "personal": "Personal",
+                "client": "Client",
+                "learning": "Learning"
             },
-            "store": {
-                "api": {
-                    "title": "Server-Side Filtering via RTK Query",
-                    "description": "Interaction with the DummyJSON API is built using RTK Query: pagination, sorting, search, and category filtering are performed on the server side. Responses are normalized in transformResponse into a '{ ids, items }' format for O(1) access to elements and efficient re-renders."
-                },
-                "url": {
-                    "title": "URL as the Single Source of Truth",
-                    "description": "The entire catalog state lives in the address bar: search (?q=), sorting (?sortBy=, ?order=), category (?category=), and page (?page=). Any set of filters can be bookmarked or shared via a link — back/forward navigation works correctly out of the box."
-                },
-                "architecture": {
-                    "title": "Isolated Business Logic in Hooks",
-                    "description": "UI components are responsible only for rendering. All logic is extracted into custom hooks: useProductCatalog orchestrates requests and pagination, useFilters manages URL parameters, and useTheme synchronizes the theme with the DOM. Memoized selectors via Reselect eliminate redundant calculations."
-                }
+            "status": {
+                "live": "Live",
+                "wip": "In progress"
+            },
+            "role": {
+                "solo": "Solo",
+                "team": "Team"
+            },
+            "stackGroup": {
+                "core": "Core",
+                "data": "Data & state",
+                "forms": "Forms",
+                "tooling": "Tooling & tests"
+            },
+            "section": {
+                "features": "Key features",
+                "deepDive": "Under the hood",
+                "stack": "Full tech stack",
+                "tryIt": "Try it",
+                "limitations": "Known limitations"
             }
-        }
+        },
+        "details": "See Details"
     },
     "contact": {
         "title": "Get in touch",

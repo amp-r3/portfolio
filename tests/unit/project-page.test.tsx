@@ -43,7 +43,7 @@ describe('ProjectPage (async page component)', () => {
     );
   });
 
-  it('renders store project with literal braces in benefit description', async () => {
+  it('renders store project with literal braces in deep dive details', async () => {
     const pageJsx = await ProjectPage({ id: 'store', locale: 'en' });
     render(pageJsx);
 

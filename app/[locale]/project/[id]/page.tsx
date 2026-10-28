@@ -22,7 +22,7 @@ export async function generateMetadata({
   if (!project) notFound();
 
   const title = project.title;
-  const description = project.description;
+  const description = project.seoDescription;
   const url = `https://amp-r3.is-a.dev/${locale}/project/${id}`;
 
   return {

@@ -53,21 +53,5 @@ describe('i18n Message catalogs', async () => {
         expect(() => t.rich(key, { code: (chunks) => chunks })).not.toThrow();
       }
     });
-
-    it(`${locale} preserves the literal store benefit braces`, () => {
-      const messages = messagesByLocale[locale] as {
-        projects: {
-          benefits: {
-            store: {
-              api: {
-                description: string;
-              };
-            };
-          };
-        };
-      };
-      const description = messages.projects.benefits.store.api.description;
-      expect(description).toMatch(/\{ ids, items \}/);
-    });
   }
 });
