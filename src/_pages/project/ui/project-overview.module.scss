@@ -1,0 +1,161 @@
+@use '@/shared/styles/index.scss' as *;
+
+.overview {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-section;
+    min-width: 0;
+}
+
+.features {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: $spacing-medium;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    @media (min-width: 768px) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: $spacing-large;
+    }
+
+    @media (min-width: 1024px) {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+.feature {
+    display: flex;
+    align-items: flex-start;
+    gap: $spacing-medium;
+    height: 100%;
+    min-width: 0;
+    padding: $spacing-medium;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: $border-radius-medium;
+    box-shadow: var(--card-shadow);
+    backdrop-filter: blur(var(--card-backdrop-blur, 12px));
+    transition:
+        background-color $transition-duration-theme $timing-function-theme,
+        border-color $transition-duration-theme $timing-function-theme,
+        box-shadow $transition-duration-base $timing-function-ease-out-expo,
+        transform $transition-duration-base $timing-function-ease-out-expo;
+
+    @media (hover: hover) {
+        &:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-glass-hover);
+        }
+    }
+}
+
+.featureIcon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: var(--surface-glass);
+    border: 1px solid var(--border-primary);
+    border-radius: $border-radius-small;
+
+    img {
+        width: $icon-size-medium;
+        height: $icon-size-medium;
+        object-fit: contain;
+        filter: var(--icon-filter);
+    }
+}
+
+.featureText {
+    min-width: 0;
+    font-family: $font-family-base;
+    font-size: $typography-font-size-base;
+    line-height: $typography-line-height-normal;
+    color: var(--text-primary);
+    overflow-wrap: break-word;
+    transition: color $transition-duration-theme $timing-function-theme;
+
+    @media (width < 380px) {
+        font-size: $typography-font-size-small;
+    }
+}
+
+.tryList {
+    counter-reset: try-item;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-small;
+    max-width: 72ch;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.tryItem {
+    counter-increment: try-item;
+    display: flex;
+    align-items: flex-start;
+    gap: $spacing-medium;
+    min-width: 0;
+    font-family: $font-family-base;
+    font-size: $typography-font-size-base;
+    line-height: $typography-line-height-normal;
+    color: var(--text-secondary);
+    overflow-wrap: break-word;
+
+    &::before {
+        content: counter(try-item);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        width: 1.75rem;
+        height: 1.75rem;
+        font-size: $typography-font-size-small;
+        font-weight: $typography-font-weight-semibold;
+        color: var(--text-primary);
+        background: var(--surface-glass);
+        border: 1px solid var(--border-primary);
+        border-radius: $border-radius-circle;
+    }
+}
+
+.demoLink {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    gap: $spacing-small;
+    padding: $spacing-small $spacing-large;
+    font-family: $font-family-base;
+    font-size: $typography-font-size-base;
+    font-weight: $typography-font-weight-semibold;
+    color: var(--text-primary);
+    text-decoration: none;
+    background: var(--button-secondary-background);
+    border: 1px solid var(--button-secondary-border);
+    border-radius: $border-radius-pill;
+    transition:
+        background-color $transition-duration-theme $timing-function-theme,
+        border-color $transition-duration-theme $timing-function-theme,
+        color $transition-duration-theme $timing-function-theme,
+        transform $transition-duration-base $timing-function-ease-out-expo,
+        box-shadow $transition-duration-base $timing-function-ease-out-expo;
+
+    img {
+        filter: var(--icon-filter);
+    }
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px -5px var(--accent-glow);
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--text-primary);
+        outline-offset: 3px;
+    }
+}

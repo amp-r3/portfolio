@@ -1,0 +1,36 @@
+@use '@/shared/styles/index.scss' as *;
+
+.meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: $spacing-xsmall $spacing-small;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    min-width: 0;
+}
+
+.item {
+    display: flex;
+    min-width: 0;
+    max-width: 100%;
+}
+
+.badgeStatus {
+    gap: $spacing-xsmall;
+}
+
+.dot {
+    display: inline-block;
+    flex-shrink: 0;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: $border-radius-circle;
+    background: var(--status-wip);
+
+    &[data-status='live'] {
+        background: var(--status-live);
+        box-shadow: 0 0 0 3px var(--accent-glow);
+    }
+}

@@ -80,6 +80,9 @@
                 "solo": "Соло",
                 "team": "Команда"
             },
+            "period": {
+                "present": "по настоящее время"
+            },
             "stackGroup": {
                 "core": "Основа",
                 "data": "Данные и состояние",
@@ -94,6 +97,12 @@
                 "limitations": "Известные ограничения"
             }
         },
+        "actions": {
+            "demo": "Демо",
+            "github": "Код на GitHub",
+            "back": "Назад"
+        },
+        "screenshotAlt": "Скриншот проекта {title}",
         "details": "Подробнее"
     },
     "contact": {

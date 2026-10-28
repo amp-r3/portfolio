@@ -1,0 +1,130 @@
+@use '@/shared/styles/index.scss' as *;
+
+.accordions {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-section;
+    min-width: 0;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-medium;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.block {
+    min-width: 0;
+}
+
+.card {
+    min-width: 0;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: $border-radius-large;
+    box-shadow: var(--card-shadow);
+    backdrop-filter: blur(var(--card-backdrop-blur, 12px));
+    overflow: hidden;
+    transition:
+        background-color $transition-duration-theme $timing-function-theme,
+        border-color $transition-duration-theme $timing-function-theme,
+        box-shadow $transition-duration-base $timing-function-ease-out-expo,
+        transform $transition-duration-base $timing-function-ease-out-expo;
+
+    @media (hover: hover) {
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-glass-hover);
+        }
+    }
+
+    @media (width < 576px) {
+        border-radius: $border-radius-medium;
+    }
+}
+
+.blockTitle {
+    display: block;
+    font-family: $font-family-title;
+    font-size: $typography-font-size-large;
+    font-weight: $typography-font-weight-bold;
+    line-height: $typography-line-height-tight;
+    letter-spacing: $typography-letter-spacing-tight;
+
+    @media (width < 576px) {
+        font-size: $typography-font-size-medium;
+    }
+}
+
+.details {
+    margin: 0;
+    padding-top: $spacing-medium;
+    border-top: 1px solid var(--border-primary);
+    font-family: $font-family-base;
+    font-size: $typography-font-size-base;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    overflow-wrap: break-word;
+    transition:
+        color $transition-duration-theme $timing-function-theme,
+        border-color $transition-duration-theme $timing-function-theme;
+}
+
+.groups {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-large;
+    padding-top: $spacing-medium;
+    border-top: 1px solid var(--border-primary);
+    transition: border-color $transition-duration-theme $timing-function-theme;
+}
+
+.group {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-small;
+    min-width: 0;
+}
+
+.groupTitle {
+    font-family: $font-family-base;
+    font-size: $typography-font-size-small;
+    font-weight: $typography-font-weight-semibold;
+    letter-spacing: $typography-letter-spacing-wider;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    transition: color $transition-duration-theme $timing-function-theme;
+}
+
+.chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-xsmall;
+    min-width: 0;
+}
+
+.limitations {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-small;
+    margin: 0;
+    padding: $spacing-medium 0 0 $spacing-large;
+    border-top: 1px solid var(--border-primary);
+    list-style: disc;
+    transition: border-color $transition-duration-theme $timing-function-theme;
+}
+
+.limitation {
+    font-family: $font-family-base;
+    font-size: $typography-font-size-base;
+    line-height: $typography-line-height-normal;
+    color: var(--text-secondary);
+    overflow-wrap: break-word;
+
+    &::marker {
+        color: var(--text-tertiary);
+    }
+}

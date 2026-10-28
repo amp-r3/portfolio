@@ -5,6 +5,26 @@ import { createTranslator } from 'next-intl';
 
 const locales = ['en', 'ru', 'uz'] as const;
 
+const requiredProjectLabels = [
+  'projects.labels.type.personal',
+  'projects.labels.type.client',
+  'projects.labels.type.learning',
+  'projects.labels.status.live',
+  'projects.labels.status.wip',
+  'projects.labels.role.solo',
+  'projects.labels.role.team',
+  'projects.labels.period.present',
+  'projects.labels.stackGroup.core',
+  'projects.labels.stackGroup.data',
+  'projects.labels.stackGroup.forms',
+  'projects.labels.stackGroup.tooling',
+  'projects.labels.section.features',
+  'projects.labels.section.deepDive',
+  'projects.labels.section.stack',
+  'projects.labels.section.tryIt',
+  'projects.labels.section.limitations',
+];
+
 function flattenMessages(value: unknown, prefix = ''): Record<string, unknown> {
   if (typeof value !== 'object' || value === null) return { [prefix]: value };
 
@@ -38,6 +58,16 @@ describe('i18n Message catalogs', async () => {
   });
 
   for (const locale of locales) {
+    it(`all project labels are present for ${locale}`, () => {
+      const keys = new Set(keysByLocale[locale]);
+
+      for (const key of requiredProjectLabels) {
+        expect(keys.has(key), `Missing message key: ${key} (${locale})`).toBe(true);
+      }
+    });
+  }
+
+  for (const locale of locales) {
     it(`all ${locale} messages are valid ICU`, () => {
       const messages = messagesByLocale[locale];
       const t = createTranslator({
@@ -50,7 +80,7 @@ describe('i18n Message catalogs', async () => {
 
       const keys = keysByLocale[locale];
       for (const key of keys) {
-        expect(() => t.rich(key, { code: (chunks) => chunks })).not.toThrow();
+        expect(() => t.rich(key, { code: (chunks) => chunks, title: 'Project' })).not.toThrow();
       }
     });
   }

@@ -1,0 +1,23 @@
+@use '@/shared/styles/index.scss' as *;
+
+.section {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-large;
+    min-width: 0;
+}
+
+.title {
+    font-family: $font-family-title;
+    font-size: $typography-font-size-large;
+    font-weight: $typography-font-weight-bold;
+    line-height: $typography-line-height-tight;
+    color: var(--text-primary);
+    letter-spacing: $typography-letter-spacing-tight;
+    overflow-wrap: break-word;
+    transition: color $transition-duration-theme $timing-function-theme;
+
+    @media (width < 576px) {
+        font-size: $typography-font-size-medium;
+    }
+}

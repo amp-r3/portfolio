@@ -80,6 +80,9 @@
                 "solo": "Solo",
                 "team": "Team"
             },
+            "period": {
+                "present": "Present"
+            },
             "stackGroup": {
                 "core": "Core",
                 "data": "Data & state",
@@ -94,6 +97,12 @@
                 "limitations": "Known limitations"
             }
         },
+        "actions": {
+            "demo": "Live Demo",
+            "github": "GitHub Repo",
+            "back": "Go back"
+        },
+        "screenshotAlt": "Screenshot of the {title} project",
         "details": "See Details"
     },
     "contact": {

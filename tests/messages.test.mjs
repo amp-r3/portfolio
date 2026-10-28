@@ -6,6 +6,26 @@ import { createTranslator } from 'next-intl';
 
 const locales = ['en', 'ru', 'uz'];
 
+const requiredProjectLabels = [
+  'projects.labels.type.personal',
+  'projects.labels.type.client',
+  'projects.labels.type.learning',
+  'projects.labels.status.live',
+  'projects.labels.status.wip',
+  'projects.labels.role.solo',
+  'projects.labels.role.team',
+  'projects.labels.period.present',
+  'projects.labels.stackGroup.core',
+  'projects.labels.stackGroup.data',
+  'projects.labels.stackGroup.forms',
+  'projects.labels.stackGroup.tooling',
+  'projects.labels.section.features',
+  'projects.labels.section.deepDive',
+  'projects.labels.section.stack',
+  'projects.labels.section.tryIt',
+  'projects.labels.section.limitations',
+];
+
 function flattenMessages(value, prefix = '') {
   if (typeof value !== 'object' || value === null) return { [prefix]: value };
 
@@ -38,6 +58,16 @@ test('all locales contain the same message keys', () => {
 });
 
 for (const locale of locales) {
+  test(`all project labels are present for ${locale}`, () => {
+    const keys = new Set(keysByLocale[locale]);
+
+    for (const key of requiredProjectLabels) {
+      assert.ok(keys.has(key), `Missing message key: ${key} (${locale})`);
+    }
+  });
+}
+
+for (const locale of locales) {
   test(`all ${locale} messages are valid ICU`, () => {
     const messages = messagesByLocale[locale];
     const t = createTranslator({
@@ -50,7 +80,7 @@ for (const locale of locales) {
 
     for (const key of keysByLocale[locale]) {
       assert.doesNotThrow(
-        () => t.rich(key, { code: (chunks) => chunks }),
+        () => t.rich(key, { code: (chunks) => chunks, title: 'Project' }),
         `${locale}: ${key}`
       );
     }

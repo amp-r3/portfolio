@@ -80,6 +80,9 @@
                 "solo": "Yakka",
                 "team": "Jamoa"
             },
+            "period": {
+                "present": "hozirgacha"
+            },
             "stackGroup": {
                 "core": "Asosiy",
                 "data": "Ma'lumotlar va holat",
@@ -94,6 +97,12 @@
                 "limitations": "Ma'lum cheklovlar"
             }
         },
+        "actions": {
+            "demo": "Demo",
+            "github": "GitHub kodi",
+            "back": "Orqaga"
+        },
+        "screenshotAlt": "{title} loyihasining skrinshoti",
         "details": "Batafsil"
     },
     "contact": {
