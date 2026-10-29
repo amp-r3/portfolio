@@ -16,7 +16,7 @@ import {
   ThemeContext,
   parseTheme,
   type Theme,
-} from '@/shared/theme';
+} from '@/shared/lib';
 
 const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect;
 const listeners = new Set<() => void>();

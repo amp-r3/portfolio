@@ -6,7 +6,7 @@ import {
   weatherLight,
   weatherLightMobile,
 } from '@/shared/assets';
-import { ProjectSourceError } from '../api/project-source-error';
+import { ProjectSourceError } from './project-source-error';
 import type { ProjectIconKey } from './icon-keys';
 
 export const PROJECT_IMAGES: Record<string, string> = {

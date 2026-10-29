@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import type { AbstractIntlMessages } from 'next-intl';
 import { fontInter, fontExo2, fontAzonix } from '@/shared/styles';
 import { I18nProvider, type Locale } from '@/shared/i18n';
-import { ThemeScript } from '@/shared/theme';
+import { ThemeScript } from '@/shared/ui';
 import { Header } from '@/widgets/header';
 import { ThemeProvider } from '../providers';
 import { ReloadHashScript } from './reload-hash-script';

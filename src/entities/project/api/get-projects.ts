@@ -11,7 +11,7 @@ import {
 } from '../model/content-schema';
 import { resolveProjectIcon, resolveProjectImage } from '../model/asset-map';
 import type { Project } from '../model/types';
-import { ProjectSourceError } from './project-source-error';
+import { ProjectSourceError } from '../model/project-source-error';
 
 const CONTENT_DIR = resolve(process.cwd(), 'content', 'projects');
 

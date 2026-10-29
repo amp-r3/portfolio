@@ -39,6 +39,9 @@ Strict hierarchy under `src/` (highest → lowest):
    - Client components and client barrels (`index.ts`) must NEVER import `index.server.ts` or
      server functions (`getProjects`, `getProject`).
    - Server Components (`app/**/page.tsx`) fetch data and pass plain serializable props down.
+5. **Shared layer purity**:
+   - `shared` contains no slices; only technical segments (`ui`, `lib`, `config`, `assets`,
+     `styles`, `i18n`).
 
 ## Forbidden → Use Instead
 

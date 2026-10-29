@@ -1,7 +1,7 @@
 import 'server-only';
 
 export { getProject, getProjects } from './api/get-projects';
-export { ProjectSourceError } from './api/project-source-error';
+export { ProjectSourceError } from './model/project-source-error';
 export type {
   Project,
   ProjectBenefit,

@@ -4,7 +4,7 @@ import { useContext, useState } from 'react';
 import { getImageProps } from 'next/image';
 import { useTranslations } from 'next-intl';
 import type { ProjectImages } from '@/entities/project';
-import { ThemeContext } from '@/shared/theme';
+import { ThemeContext } from '@/shared/lib';
 import { ImageViewer, type IImageViewerSlide, type IImageViewerTab } from '@/shared/ui';
 import { DesktopIcon, ExpandIcon, MobileIcon } from './gallery-icons';
 import style from './project-gallery.module.scss';

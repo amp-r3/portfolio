@@ -2,7 +2,8 @@ import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ThemeProvider } from '@/_app';
-import { useTheme, ThemeScript } from '@/shared/theme';
+import { useTheme } from '@/shared/lib';
+import { ThemeScript } from '@/shared/ui';
 import { ThemeSwitch } from '@/features/switch-theme';
 
 function TestConsumer() {

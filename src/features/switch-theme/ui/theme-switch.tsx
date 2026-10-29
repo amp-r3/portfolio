@@ -1,7 +1,7 @@
 'use client';
 
 import { Moon, Sun } from 'lucide-react';
-import { useTheme } from '@/shared/theme';
+import { useTheme } from '@/shared/lib';
 import style from './theme-switch.module.scss';
 
 export function ThemeSwitch() {
