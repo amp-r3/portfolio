@@ -7,9 +7,9 @@
     "uz": "My Weather App"
   },
   "tagline": {
-    "en": "A dynamic weather forecast application built with React, Vite, and Redux Toolkit. This fully responsive app automatically detects user location via browser geolocation (with an IP-based fallback) or allows users to search for any city. It integrates OpenWeatherMap and Geoapify APIs to provide current conditions, hourly, and 7-day forecasts. Key features include robust asynchronous state management with Redux Thunk, a client-side localStorage cache to optimize API calls, and a persistent dark/light mode theme toggle.",
-    "ru": "Динамическое приложение прогноза погоды, созданное с использованием React, Vite и Redux Toolkit. Это полностью адаптивное приложение автоматически определяет местоположение пользователя через геолокацию браузера (с резервным определением по IP) или позволяет найти любой город через поиск. Интегрирует API OpenWeatherMap и Geoapify для предоставления текущих условий, почасового и 7-дневного прогноза. Ключевые особенности включают надежное управление асинхронным состоянием с Redux Thunk, клиентское кеширование в localStorage для оптимизации запросов и переключение темной/светлой темы.",
-    "uz": "React, Vite va Redux Toolkit yordamida yaratilgan dinamik ob-havo ilovasi. Bu to'liq moslashuvchan (adaptiv) ilova foydalanuvchi joylashuvini brauzer geolokatsiyasi orqali avtomatik aniqlaydi (IP orqali zaxira varianti bilan) yoki istalgan shaharni qidirish imkonini beradi. Joriy sharoitlar, soatlik va 7 kunlik prognozni taqdim etish uchun OpenWeatherMap va Geoapify API-larini integratsiya qiladi. Asosiy xususiyatlarga Redux Thunk bilan ishonchli asinxron holat boshqaruvi, API so'rovlarini optimallashtirish uchun localStorage mijoz keshi va tungi/yorug' mavzularni doimiy o'zgartirish kiradi."
+    "en": "Weather app: geolocation or city search, current, hourly and 7-day forecasts, dark/light theme. Built with React, Redux Toolkit and Vite.",
+    "ru": "Приложение погоды: геолокация или поиск города, текущий, почасовой и 7-дневный прогноз, тёмная/светлая тема. React, Redux Toolkit и Vite.",
+    "uz": "Ob-havo ilovasi: geolokatsiya yoki shahar qidiruvi, joriy, soatlik va 7 kunlik prognoz, tungi/yorug' mavzu. React, Redux Toolkit va Vite asosida."
   },
   "seo": {
     "description": {
