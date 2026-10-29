@@ -4,8 +4,7 @@ import userEvent from '@testing-library/user-event';
 import { NextIntlClientProvider } from 'next-intl';
 import enMessages from '../../messages/en.json';
 import type { Project } from '@/entities/project';
-import { ProjectPage } from '@/_pages/project';
-import { ProjectDetails } from '@/_pages/project/ui/project-details';
+import { ProjectDetails, ProjectPage } from '@/_pages/project';
 
 const mockNotFound = vi.fn();
 

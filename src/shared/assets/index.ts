@@ -1,3 +1,2 @@
 export * from './images';
-export * from './images/SkillIcon';
-export * from './images/ProjectImages';
+export * from './images/projects';

@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { ThemeProvider } from '@/_app/providers/theme-provider';
+import { ThemeProvider } from '@/_app';
 import { useTheme, ThemeScript } from '@/shared/theme';
 import { ThemeSwitch } from '@/features/switch-theme';
 

@@ -7,7 +7,7 @@ import {
   MAX_ZOOM,
   MIN_ZOOM,
   zoomAtPoint,
-} from '@/shared/ui/image-viewer/zoom';
+} from '@/shared/ui';
 
 describe('image viewer zoom math', () => {
   it('clamps zoom to the supported range', () => {

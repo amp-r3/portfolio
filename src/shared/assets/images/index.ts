@@ -6,7 +6,7 @@ const toSrc = (image: string | StaticImageData): string =>
 import telegramSvg from './telegram.svg';
 import githubSvg from './github.svg';
 import linkedinSvg from './linkedin.svg';
-import emailSvg from './emailIcon.svg';
+import emailSvg from './email.svg';
 import logoSvg from './logo.svg';
 
 export const telegramIcon = toSrc(telegramSvg);

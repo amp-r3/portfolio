@@ -133,7 +133,6 @@ describe('Project entity & data', () => {
       expect(content.includes('isProjectId')).toBe(true);
       expect(content.includes('projectIds')).toBe(true);
       expect(content.includes('ProjectCard')).toBe(true);
-      expect(content.includes('BenefitCard')).toBe(true);
     });
 
     it('server index.server.ts and get-projects.ts declare server-only protection', async () => {

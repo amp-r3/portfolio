@@ -3,7 +3,7 @@ import { render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { NextIntlClientProvider } from 'next-intl';
 import type { ProjectImages } from '@/entities/project';
-import { ProjectGallery } from '@/features/project-gallery/ui/project-gallery';
+import { ProjectGallery } from '@/features/project-gallery';
 import enMessages from '../../messages/en.json';
 
 const images: ProjectImages = {

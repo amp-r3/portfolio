@@ -7,7 +7,7 @@ export const fontInter = localFont({
 });
 
 export const fontExo2 = localFont({
-  src: '../assets/fonts/Exo_2/Exo2-VariableFont_wght.ttf',
+  src: '../assets/fonts/Exo2/Exo2-VariableFont_wght.ttf',
   variable: '--font-exo2',
   display: 'swap',
 });

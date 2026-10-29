@@ -18,7 +18,6 @@ test('client barrel index.ts does not export server-only data functions', async 
   assert.ok(content.includes('isProjectId'), 'index.ts must export isProjectId');
   assert.ok(content.includes('projectIds'), 'index.ts must export projectIds');
   assert.ok(content.includes('ProjectCard'), 'index.ts must export ProjectCard');
-  assert.ok(content.includes('BenefitCard'), 'index.ts must export BenefitCard');
 });
 
 test('server modules declare server-only protection', async () => {

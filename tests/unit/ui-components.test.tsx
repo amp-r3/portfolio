@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { NextIntlClientProvider } from 'next-intl';
 import { BackButton, Badge, Loader } from '@/shared/ui';
-import { BenefitCard, ProjectCard } from '@/entities/project';
+import { ProjectCard } from '@/entities/project';
 
 const mockBack = vi.fn();
 
@@ -79,23 +79,6 @@ describe('Shared UI and Project components', () => {
     });
   });
 
-  describe('BenefitCard', () => {
-    it('renders title, description and icon', () => {
-      const { container } = render(
-        <BenefitCard
-          title="Performance"
-          description="Optimized bundle size"
-          iconSrc="/images/lightning.svg"
-        />
-      );
-
-      expect(screen.getByRole('heading', { level: 3, name: 'Performance' })).toBeInTheDocument();
-      expect(screen.getByText('Optimized bundle size')).toBeInTheDocument();
-      const img = container.querySelector('img');
-      expect(img).toBeInTheDocument();
-      expect(img).toHaveAttribute('src', '/images/lightning.svg');
-    });
-  });
 
   describe('ProjectCard', () => {
     it('renders project card title, description and images', () => {

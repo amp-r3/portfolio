@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { NextIntlClientProvider } from 'next-intl';
-import { ThemeProvider } from '@/_app/providers/theme-provider';
+import { ThemeProvider } from '@/_app';
 import { Header } from '@/widgets/header';
 import { NotFoundPage } from '@/_pages/not-found';
 import { ErrorPage } from '@/_pages/error';

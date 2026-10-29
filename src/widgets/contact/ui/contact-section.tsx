@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl';
 import { motion } from 'motion/react';
 import type { Variants } from 'motion/react';
 import { socialsData } from '@/shared/config';
-import style from './contact.module.scss';
+import style from './contact-section.module.scss';
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { render } from '@testing-library/react';
-import { ReloadHashScript } from '@/_app/ui/reload-hash-script';
+import { ReloadHashScript } from '@/_app';
 
 describe('ReloadHashScript', () => {
   it('renders a script that strips the hash only on reload', () => {
