@@ -115,9 +115,8 @@
             "resetZoom": "Reset zoom"
         },
         "card": {
-            "open": "View project",
-            "demo": "View demo",
-            "github": "GitHub code"
+            "details": "Details",
+            "demo": "View demo"
         }
     },
     "contact": {

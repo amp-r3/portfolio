@@ -28,7 +28,6 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
               darkImage={elem.images.dark}
               description={elem.tagline}
               demo={elem.links.demo}
-              github={elem.links.github}
             />
           ))}
         </div>

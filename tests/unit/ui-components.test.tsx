@@ -23,9 +23,8 @@ vi.mock('@/shared/i18n', () => ({
 const messages = {
   projects: {
     card: {
-      open: 'View project',
+      details: 'Details',
       demo: 'View demo',
-      github: 'GitHub code',
     },
   },
 };
@@ -98,7 +97,7 @@ describe('Shared UI and Project components', () => {
       expect(screen.getByAltText('Screenshot of Weather App (dark)')).toBeInTheDocument();
     });
 
-    it('links only the image to the project page', () => {
+    it('links the image, title, and details button to the project page', () => {
       renderWithIntl(
         <ProjectCard
           href="/project/weather"
@@ -108,14 +107,19 @@ describe('Shared UI and Project components', () => {
         />
       );
 
-      const imageLink = screen.getByRole('link', { name: 'View project' });
-      expect(imageLink).toHaveAttribute('href', '/project/weather');
-      expect(imageLink.querySelector('img')?.getAttribute('src')).toContain('weather-light.png');
+      const titleLink = screen.getByRole('link', { name: 'Weather App' });
+      expect(titleLink).toHaveAttribute('href', '/project/weather');
 
-      expect(screen.getAllByRole('link')).toHaveLength(1);
+      const detailsLink = screen.getByRole('link', { name: 'Details' });
+      expect(detailsLink).toHaveAttribute('href', '/project/weather');
+
+      const imageLink = screen.getByAltText('Screenshot of Weather App').closest('a');
+      expect(imageLink).toHaveAttribute('href', '/project/weather');
+
+      expect(screen.getAllByRole('link')).toHaveLength(3);
     });
 
-    it('renders demo and GitHub actions as external links', () => {
+    it('renders demo action as external link without github action', () => {
       renderWithIntl(
         <ProjectCard
           href="/project/weather"
@@ -123,7 +127,6 @@ describe('Shared UI and Project components', () => {
           description="Real-time forecasts"
           image="/images/weather-light.png"
           demo="https://demo.example.com"
-          github="https://github.com/example/weather"
         />
       );
 
@@ -132,10 +135,7 @@ describe('Shared UI and Project components', () => {
       expect(demoLink).toHaveAttribute('target', '_blank');
       expect(demoLink).toHaveAttribute('rel', 'noopener noreferrer');
 
-      const githubLink = screen.getByRole('link', { name: 'GitHub code' });
-      expect(githubLink).toHaveAttribute('href', 'https://github.com/example/weather');
-      expect(githubLink).toHaveAttribute('target', '_blank');
-      expect(githubLink).toHaveAttribute('rel', 'noopener noreferrer');
+      expect(screen.queryByText('GitHub code')).not.toBeInTheDocument();
     });
   });
 });

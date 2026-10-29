@@ -115,9 +115,8 @@
             "resetZoom": "Masshtabni tiklash"
         },
         "card": {
-            "open": "Loyihani ko'rish",
-            "demo": "Demonni ko'rish",
-            "github": "GitHub kodi"
+            "details": "Batafsil",
+            "demo": "Demonni ko'rish"
         }
     },
     "contact": {
