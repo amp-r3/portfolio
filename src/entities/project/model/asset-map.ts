@@ -1,4 +1,8 @@
 import {
+  clockDark,
+  clockLight,
+  clockMobileDark,
+  clockMobileLight,
   palmaDark,
   palmaMobileDark,
   storeDark,
@@ -12,6 +16,10 @@ import { ProjectSourceError } from './project-source-error';
 import type { ProjectIconKey } from './icon-keys';
 
 export const PROJECT_IMAGES: Record<string, string> = {
+  clockDark,
+  clockLight,
+  clockMobileDark,
+  clockMobileLight,
   palmaDark,
   palmaMobileDark,
   weatherLight,

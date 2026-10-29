@@ -1,0 +1,302 @@
+{
+  "id": "clock",
+  "order": 3,
+  "type": "personal",
+  "status": "live",
+  "period": {
+    "start": 2026
+  },
+  "role": "solo",
+  "title": {
+    "en": "Clock",
+    "ru": "Clock",
+    "uz": "Clock"
+  },
+  "tagline": {
+    "en": "Google Clock replica on React Native: multi-mode alarms, world time, countdown timer, stopwatch, and an offline-first native Android engine.",
+    "ru": "Реплика системных часов Google Clock на React Native: многорежимные будильники, мировое время, таймер, секундомер и автономный Android-движок.",
+    "uz": "Google Clock'ning React Native'dagi nusxasi: ko'p rejimli budilniklar, dunyo vaqti, taymer, soniyasanagich va avtonom Android mexanizmi."
+  },
+  "seo": {
+    "description": {
+      "en": "Google Clock replica with React Native, Expo, Redux Toolkit, and a standalone Kotlin native module for 100% reliable alarms on Android Doze Mode.",
+      "ru": "Реплика Google Clock на React Native, Expo и Redux с модулем на Kotlin: надёжный будильник в Android Doze Mode, мировое время и таймер.",
+      "uz": "React Native, Expo va Kotlin modulida Google Clock nusxasi: Android Doze Mode'da ishonchli budilnik, dunyo vaqti, taymer va soniyasanagich."
+    }
+  },
+  "links": {
+    "live": "https://github.com/amp-r3/react-native-google-clock/releases/latest",
+    "github": "https://github.com/amp-r3/react-native-google-clock"
+  },
+  "images": {
+    "desktop": {
+      "light": "clockLight",
+      "dark": "clockDark"
+    },
+    "mobile": {
+      "light": "clockMobileLight",
+      "dark": "clockMobileDark"
+    }
+  },
+  "stack": {
+    "primary": [
+      "React Native",
+      "Expo",
+      "TypeScript",
+      "Redux Toolkit",
+      "Kotlin"
+    ],
+    "groups": [
+      {
+        "id": "core",
+        "items": [
+          "React 19",
+          "React Native",
+          "Expo",
+          "Expo Router",
+          "TypeScript",
+          "Material You"
+        ]
+      },
+      {
+        "id": "data",
+        "items": [
+          "Redux Toolkit",
+          "redux-persist",
+          "AsyncStorage",
+          "SharedPreferences",
+          "city-timezones"
+        ]
+      },
+      {
+        "id": "forms",
+        "items": [
+          "useAlarmForm",
+          "useExistingAlarm",
+          "DateTime Picker",
+          "Intl.DateTimeFormat"
+        ]
+      },
+      {
+        "id": "tooling",
+        "items": [
+          "Kotlin",
+          "Android AlarmManager",
+          "Reanimated",
+          "Jest",
+          "EAS Build"
+        ]
+      }
+    ]
+  },
+  "features": [
+    {
+      "icon": "shield",
+      "text": {
+        "en": "Multi-mode alarms with guaranteed wakeup in Android Doze Mode and Direct Boot support",
+        "ru": "Многорежимные будильники с гарантированным звонком в Doze Mode и поддержкой Direct Boot",
+        "uz": "Doze Mode'da kafolatlangan uyg'onish va Direct Boot bilan ko'p rejimli budilniklar"
+      }
+    },
+    {
+      "icon": "geo",
+      "text": {
+        "en": "Offline world clock with instant timezone delta calculation and city lookup",
+        "ru": "Мировое время с расчётом относительного смещения и быстрым офлайн-поиском городов",
+        "uz": "Nisbiy vaqt farqini hisoblash va tezkor oflayn shahar qidiruvi bilan dunyo vaqti"
+      }
+    },
+    {
+      "icon": "puzzle",
+      "text": {
+        "en": "Digit-shift keypad timer with circular SVG progress indicator and +1:00 quick increment",
+        "ru": "Таймер со сдвигом разрядов на цифровой клавиатуре, круговым SVG-прогрессом и кнопкой +1:00",
+        "uz": "Raqamli klaviatura surilishi, aylanma SVG progress va +1:00 tezkor qo'shish bilan taymer"
+      }
+    },
+    {
+      "icon": "performance",
+      "text": {
+        "en": "High-precision 30ms lap stopwatch with an auto-scrolling horizontal laps list",
+        "ru": "Высокоточный секундомер с шагом 30 мс, фиксацией кругов и автоскроллом к активному кругу",
+        "uz": "30 ms aniqlikdagi soniyasanagich, aylanalar qaydi va faol aylanaga avtomatik skroll"
+      }
+    },
+    {
+      "icon": "mobile",
+      "text": {
+        "en": "Full-screen alarm ringing interface over device Lock Screen via USE_FULL_SCREEN_INTENT",
+        "ru": "Полноэкранный вызов над экраном блокировки устройства через USE_FULL_SCREEN_INTENT",
+        "uz": "USE_FULL_SCREEN_INTENT orqali bloklangan ekran ustida to'liq ekranli signal chaqiruvi"
+      }
+    },
+    {
+      "icon": "palette",
+      "text": {
+        "en": "Material You design, sliding pill navigation tab bar, and swipe-to-delete with Undo",
+        "ru": "Дизайн Material You, скользящий индикатор таб-бара и смахивание жестом с отменой удаления",
+        "uz": "Material You dizayni, siljuvchi tab-bar indikatori va bekor qilish imkoni bilan surib o'chirish"
+      }
+    }
+  ],
+  "deepDive": [
+    {
+      "icon": "puzzle",
+      "title": {
+        "en": "State-to-Native Alarm Reconciler & Operation Queue",
+        "ru": "Согласование расписаний и очередь операций",
+        "uz": "Jadvallarni muvofiqlashtirish va amallar navbati"
+      },
+      "summary": {
+        "en": "Reactive Redux state synchronization with Android AlarmManager using payload hashing and serialized queues",
+        "ru": "Синхронизация Redux с Android AlarmManager через хэширование расписаний и изолированную очередь",
+        "uz": "Redux holatini Android AlarmManager bilan xeshlar va ajratilgan navbat orqali sinxronlash"
+      },
+      "details": {
+        "en": "To prevent state desynchronization when the app is backgrounded or killed, a custom reconciler coordinates Redux updates, AppState changes, and native events (dismiss, snooze, miss). Each pass computes schedule diffs by comparing payload hashes against registered alarms. A serialized promise queue (withAlarmOperation) eliminates race conditions between user mutations and background schedule updates.",
+        "ru": "Для предотвращения рассинхронизации стейта и системного планировщика при выгрузке JS спроектирован реконсилер, связывающий Redux, события жизненного цикла AppState и нативные ивенты модуля. При каждом изменении вычисляется разница состояний сопоставлением стабильных хэшей payloadHash. Сериализованная очередь withAlarmOperation исключает состояния гонки между пользовательскими действиями и фоновыми проходами.",
+        "uz": "JS xotiradan chiqarilganda holat sinxronligini saqlash uchun Redux, AppState hayotiy sikli va nativ hodisalarni bog'lovchi rekonsiler ishlab chiqilgan. Har bir o'zgarishda payloadHash xeshlarini solishtirish orqali farqlar hisoblanadi. withAlarmOperation navbati esa foydalanuvchi amallari va foniy jarayonlar o'rtasida poyga holatlarini bartaraf etadi."
+      }
+    },
+    {
+      "icon": "server",
+      "title": {
+        "en": "Autonomous Kotlin Module with Foreground Service & Direct Boot",
+        "ru": "Автономный Kotlin-модуль с Foreground Service и Direct Boot",
+        "uz": "Foreground Service va Direct Boot bilan avtonom Kotlin moduli"
+      },
+      "summary": {
+        "en": "Zero-JS CPU wakeup, AlarmVolumeRamp, AudioAttributes USAGE_ALARM, and reboot restoration",
+        "ru": "Пробуждение без JS, плавное нарастание громкости, USAGE_ALARM и восстановление расписания после перезагрузки",
+        "uz": "JS'siz uyg'onish, ovozni bosqichma-bosqich oshirish, USAGE_ALARM va qayta yuklangandan so'ng tiklash"
+      },
+      "details": {
+        "en": "Expo notifications cannot reliably pierce Android Doze Mode. A custom Kotlin module registers firmware-level alarms via AlarmManager.setAlarmClock(). When triggered, AlarmReceiver acquires a WakeLock and spawns a directBootAware Foreground Service with USAGE_ALARM audio focus, gradual volume ramp, vibration, and auto-silence. Overriding onTaskRemoved ensures ringing persists if swiped from recent tasks, while BootReceiver restores schedules upon device restart.",
+        "ru": "Стандартные уведомления Expo не пробивают Android Doze Mode. Написанный модуль на Kotlin регистрирует будильники через AlarmManager.setAlarmClock(). При срабатывании AlarmReceiver захватывает WakeLock и запускает directBootAware Foreground Service с аудиофокусом USAGE_ALARM, плавным нарастанием звука и циклической вибрацией. Метод onTaskRemoved сохраняет звонок при смахивании из недавних задач, а BootReceiver восстанавливает расписания после перезагрузки.",
+        "uz": "Standart Expo bildirishnomalari Android Doze Mode'dan uyg'ota olmaydi. Kotlin'dagi modul signallarni AlarmManager.setAlarmClock() orqali ro'yxatga oladi. Ishga tushganda AlarmReceiver WakeLock oladi va USAGE_ALARM audiofokusi, ovozning asta ko'tarilishi va tebranish bilan directBootAware Foreground Service'ni ishga tushiradi. onTaskRemoved ilova yopilganda ham signalni to'xtatmaydi, BootReceiver esa qayta yuklashdan so'ng jadvallarni tiklaydi."
+      }
+    },
+    {
+      "icon": "mobile",
+      "title": {
+        "en": "Full-Screen Lock Screen Ringing with Least Privilege",
+        "ru": "Полноэкранный вызов поверх Lock Screen без избыточных прав",
+        "uz": "Ortiqcha ruxsatlarsiz Lock Screen ustida to'liq ekranli chaqiruv"
+      },
+      "summary": {
+        "en": "USE_FULL_SCREEN_INTENT activity launch without invasive SYSTEM_ALERT_WINDOW overlays",
+        "ru": "Запуск через USE_FULL_SCREEN_INTENT без инвазивного разрешения SYSTEM_ALERT_WINDOW",
+        "uz": "Xavfli SYSTEM_ALERT_WINDOW ruxsatisiz USE_FULL_SCREEN_INTENT orqali ishga tushirish"
+      },
+      "details": {
+        "en": "To avoid invasive permissions like SYSTEM_ALERT_WINDOW (which requires manual user granting and is restricted by app stores), the project blocks it entirely. Instead, a native lifecycle listener binds to notifications via fullScreenIntent, setting setShowWhenLocked and setTurnScreenOn on the Android Activity. The useAlarmRingNavigation hook in React Native detects root router readiness and presents the alarm modal without transition flicker.",
+        "ru": "Вместо инвазивного разрешения SYSTEM_ALERT_WINDOW, требующего ручной настройки в системе и часто блокируемого сторами, проект полностью запрещает его в app.json. При срабатывании будильника нативное уведомление отправляет fullScreenIntent, а активность вызывает setShowWhenLocked и setTurnScreenOn. Хук useAlarmRingNavigation дожидается готовности Expo Router и бесшовно монтирует модальный экран звонка.",
+        "uz": "Tizim sozlamalarida qo'lda yoqishni talab qiluvchi xavfli SYSTEM_ALERT_WINDOW o'rniga loyiha undan to'liq voz kechgan. Signal vaqtida nativ bildirishnoma fullScreenIntent yuboradi, faoliyat esa setShowWhenLocked va setTurnScreenOn chaqiradi. React Native tomonidagi useAlarmRingNavigation guki Expo Router tayyorligini tekshirib, signal ekranini silliq ochib beradi."
+      }
+    },
+    {
+      "icon": "test",
+      "title": {
+        "en": "Deterministic Time Math & Domain Logic Isolation",
+        "ru": "Детерминированная математика времени и изоляция логики",
+        "uz": "Vaqtning deterministik matematikasi va mantiq izolyatsiyasi"
+      },
+      "summary": {
+        "en": "Zero external time libraries, DST edge case coverage, and cross-platform TZ-locked Jest test harness",
+        "ru": "Без внешних библиотек времени, покрытие краевых случаев DST и кроссплатформенный Jest-лаунчер с фиксацией TZ",
+        "uz": "Tashqi kutubxonalarsiz, DST holatlarini qamrab olish va TZ biriktirilgan cross-platform Jest sinovlari"
+      },
+      "details": {
+        "en": "All temporal operations rely solely on native Intl.DateTimeFormat and pure mathematical utilities, eliminating bulky libraries like Moment or Day.js. The getNextAlarmDay utility calculates millisecond timestamps across midnight, weekend exclusions, and timezones. A custom test.cjs harness enforces TZ=America/New_York across Windows, macOS, and Linux, validating spring-forward and fall-back DST gaps with 100% test pass rates.",
+        "ru": "Все манипуляции со временем построены на нативном API Intl.DateTimeFormat и чистых математических функциях без Moment или Day.js. Утилита getNextAlarmDay вычисляет миллисекундные штампы с учётом переходов через полночь и пропуска выходных. Кастомный лаунчер test.cjs принудительно фиксирует TZ=America/New_York на любой ОС, тестируя краевые кейсы перевода стрелок часов (DST gaps) со 100% прохождением 98 тестов.",
+        "uz": "Vaqt bilan bog'liq barcha hisob-kitoblar Moment yoki Day.js'siz, faqat nativ Intl.DateTimeFormat va toza matematik funksiyalarga tayangan. getNextAlarmDay yarim kechasi va dam olish kunlarini hisobga olib aniq millisekundlarni hisoblaydi. test.cjs skripti esa har qanday operatsion tizimda TZ=America/New_York vaqt mintaqasini belgilab, yozgi/qishki vaqtga o'tish holatlarini 98 ta test orqali 100% tekshiradi."
+      }
+    },
+    {
+      "icon": "adaptive",
+      "title": {
+        "en": "Reanimated 4 Gestures, Worklets & Semantic Haptics",
+        "ru": "Жестовые анимации на Reanimated 4, Worklets и тактильный отклик",
+        "uz": "Reanimated 4'da imo-ishora animatsiyalari, Worklets va taktil aloqa"
+      },
+      "summary": {
+        "en": "Card swipe physics with height collapse, worklet-to-JS bridges, and four-tier vibration feedback",
+        "ru": "Физика свайпа карточек с автосхлопыванием, ворклет-бриджи и 4-уровневая семантическая тактильная отдача",
+        "uz": "Kartochkalarni surish fizikasi, vorklet ko'priklari va 4 darajali semantik taktil aloqa"
+      },
+      "details": {
+        "en": "List items utilize a custom SwipeableRow built on Gesture.Pan() and Reanimated shared values. Dragging interpolates trash icon scale; exceeding the 110px threshold triggers a horizontal fling, height collapse to zero, and opacity fade. The runOnJS worklet bridge commits the Redux removal and triggers a transient Undo toast. The useHaptics facade delivers targeted haptic patterns for switches, taps, warnings, and confirmations.",
+        "ru": "Строки списков используют SwipeableRow на базе Gesture.Pan() и useSharedValue из Reanimated. Смещение интерполирует размер иконки корзины, а преодоление порога в 110px запускает каскадный вылет, схлопывание высоты до нуля и затухание. Ворклет-бридж runOnJS обновляет стор и отображает всплывающий Toast с кнопкой Undo. Фасад useHaptics распределяет 4 типа тактильного отклика: лёгкий, средний, предупреждающий и подтверждающий.",
+        "uz": "Ro'yxat elementlari Gesture.Pan() va Reanimated asosidagi SwipeableRow komponentidan foydalanadi. Surish savatcha belgisi masshtabini o'zgartiradi, 110px chegarasidan o'tish esa elementni gorizontal chiqarib, balandligini nolga tushiradi. runOnJS ko'prigi Redux'ni yangilaydi va Undo tugmali Toast chiqaradi. useHaptics fasadi esa amallar uchun 4 darajali tebranish qaytishini ta'minlaydi."
+      }
+    }
+  ],
+  "tryIt": [
+    {
+      "title": {
+        "en": "Alarms & Undo",
+        "ru": "Будильники и отмена",
+        "uz": "Budilniklar va bekor qilish"
+      },
+      "text": {
+        "en": "Create a weekend alarm, enable 'Silence alarms on weekend' in Settings, swipe the card left to delete with a haptic click, and tap Undo to restore it.",
+        "ru": "Создай будильник на выходные, включи пропуск выходных в настройках, смахни карточку влево для удаления и нажми Undo для мгновенного восстановления.",
+        "uz": "Dam olish kunlariga budilnik o'rnating, sozlamalarda dam olish kunlari o'chirishni yoqing, surib o'chiring va Undo orqali darhol qaytaring."
+      }
+    },
+    {
+      "title": {
+        "en": "World Clock & Offsets",
+        "ru": "Мировое время и смещение",
+        "uz": "Dunyo vaqti va farq"
+      },
+      "text": {
+        "en": "Open Clocks tab, search for Tokyo or London, and see the saved city card with exact local time and dynamic delta relative to your timezone.",
+        "ru": "Открой вкладку Clocks, найди Токио или Лондон и посмотри карточку города с точным местным временем и динамическим смещением относительно твоего пояса.",
+        "uz": "Clocks bo'limini oching, Tokio yoki Londonni qidiring va o'z vaqt mintaqangizga nisbatan aniq vaqt hamda farqni ko'rsatuvchi kartani ko'ring."
+      }
+    },
+    {
+      "title": {
+        "en": "Timer & Shift Keypad",
+        "ru": "Таймер со сдвигом",
+        "uz": "Suriluvchi taymer"
+      },
+      "text": {
+        "en": "Type 1-3-0 on the digital keypad to format 00:01:30, start the circular countdown animation, and tap +1:00 to extend the remaining duration seamlessly.",
+        "ru": "Набери 1, 3, 0 на цифровой клавиатуре для установки 00:01:30, запусти круговой отсчёт и нажми +1:00 для плавного добавления 60 секунд на лету.",
+        "uz": "00:01:30 vaqtini o'rnatish uchun raqamli klaviaturada 1, 3, 0 bosing, aylanma taymerni yoqing va vaqtni 60 soniyaga uzaytirish uchun +1:00 bosing."
+      }
+    }
+  ],
+  "limitations": [
+    {
+      "text": {
+        "en": "Native alarm scheduling, foreground services, and lock screen ringing are implemented exclusively for Android in Kotlin.",
+        "ru": "Нативная интеграция будильников (AlarmManager, Foreground Service, экран блокировки) реализована исключительно для Android на Kotlin.",
+        "uz": "Budilniklarning nativ integratsiyasi (AlarmManager, Foreground Service, bloklangan ekran) faqat Android uchun Kotlin'da yaratilgan."
+      }
+    },
+    {
+      "text": {
+        "en": "The application is completely local-first and offline; alarms, cities, and settings do not synchronize across multiple devices.",
+        "ru": "Приложение полностью автономно: расписания, города и настройки хранятся локально без облачной синхронизации между устройствами.",
+        "uz": "Ilova to'liq avtonom: jadvallar, shaharlar va sozlamalar qurilmalar o'rtasida bulutli sinxronlashsiz faqat lokal saqlanadi."
+      }
+    },
+    {
+      "text": {
+        "en": "The countdown timer runs as a client React component without a dedicated Android foreground service, so long timers may drift during deep sleep.",
+        "ru": "Таймер обратного отсчёта реализован на клиенте без отдельного Foreground Service, поэтому длительный отсчёт может замедляться в глубоком сне.",
+        "uz": "Ortga hisoblash taymeri alohida Foreground Service'siz mijozda ishlaydi, shuning uchun chuqur uyqu rejimida uzoq taymer sekinlashishi mumkin."
+      }
+    },
+    {
+      "text": {
+        "en": "While documentation is bilingual, the mobile application user interface is currently available in English only.",
+        "ru": "Хотя документация репозитория двуязычна, пользовательский интерфейс самого мобильного приложения зафиксирован на английском языке.",
+        "uz": "Hujjatlar ikki tilda bo'lsa-da, mobil ilovaning foydalanuvchi interfeysi hozircha faqat ingliz tilida taqdim etilgan."
+      }
+    }
+  ]
+}

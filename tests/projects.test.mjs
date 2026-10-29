@@ -7,7 +7,8 @@ const locales = ['en', 'ru', 'uz'];
 
 const palmaContent = JSON.parse(await readFile(resolve('content/projects/palma.json'), 'utf8'));
 const storeContent = JSON.parse(await readFile(resolve('content/projects/store.json'), 'utf8'));
-const projects = [palmaContent, storeContent].sort((a, b) => a.order - b.order);
+const clockContent = JSON.parse(await readFile(resolve('content/projects/clock.json'), 'utf8'));
+const projects = [palmaContent, storeContent, clockContent].sort((a, b) => a.order - b.order);
 
 test('client barrel index.ts does not export server-only data functions', async () => {
   const content = await readFile(resolve('src/entities/project/index.ts'), 'utf8');
@@ -42,16 +43,21 @@ test('legacy raw-projects.ts file is deleted', async () => {
 test('project content preserves required order and fields', () => {
   assert.equal(projects[0].id, 'palma', 'Order must be palma first');
   assert.equal(projects[1].id, 'store', 'Order must be store second');
+  assert.equal(projects[2].id, 'clock', 'Order must be clock third');
   assert.equal(projects[0].order, 1);
   assert.equal(projects[1].order, 2);
+  assert.equal(projects[2].order, 3);
 
   assert.equal(palmaContent.title.en, 'Palma UC');
   assert.equal(storeContent.title.en, 'Store App');
+  assert.equal(clockContent.title.en, 'Clock');
 
   assert.equal(palmaContent.links.live, 'https://palma-uc.store/');
   assert.equal(storeContent.links.live, 'https://store-mauve-nine.vercel.app/');
+  assert.equal(clockContent.links.live, 'https://github.com/amp-r3/react-native-google-clock/releases/latest');
   assert.equal(palmaContent.links.github, undefined);
   assert.equal(storeContent.links.github, 'https://github.com/amp-r3/store');
+  assert.equal(clockContent.links.github, 'https://github.com/amp-r3/react-native-google-clock');
 
   for (const project of projects) {
     assert.ok(Array.isArray(project.stack.primary) && project.stack.primary.length === 5);
@@ -78,6 +84,11 @@ test('project content preserves required order and fields', () => {
   assert.equal(storeContent.deepDive.length, 5);
   assert.equal(storeContent.tryIt?.length, 3);
 
+  assert.equal(clockContent.features.length, 6);
+  assert.equal(clockContent.deepDive.length, 5);
+  assert.equal(clockContent.tryIt?.length, 3);
+  assert.equal(clockContent.limitations?.length, 4);
+
   assert.deepEqual(palmaContent.images, {
     desktop: 'palmaDark',
     mobile: 'palmaMobileDark',
@@ -85,6 +96,10 @@ test('project content preserves required order and fields', () => {
   assert.deepEqual(storeContent.images, {
     desktop: 'storeDark',
     mobile: 'storeMobileDark',
+  });
+  assert.deepEqual(clockContent.images, {
+    desktop: { light: 'clockLight', dark: 'clockDark' },
+    mobile: { light: 'clockMobileLight', dark: 'clockMobileDark' },
   });
 
   assert.equal(palmaContent.type, 'personal');
@@ -96,6 +111,11 @@ test('project content preserves required order and fields', () => {
   assert.equal(storeContent.status, 'live');
   assert.deepEqual(storeContent.period, { start: 2025, end: 2026 });
   assert.equal(storeContent.role, 'solo');
+
+  assert.equal(clockContent.type, 'personal');
+  assert.equal(clockContent.status, 'live');
+  assert.deepEqual(clockContent.period, { start: 2026 });
+  assert.equal(clockContent.role, 'solo');
 });
 
 for (const locale of locales) {
@@ -119,7 +139,7 @@ for (const locale of locales) {
     const storeApiDetails = storeContent.deepDive[0].details[locale];
     assert.match(storeApiDetails, /\{ ids, items \}/, 'Literal store braces must be preserved');
 
-    for (const project of [palmaContent, storeContent]) {
+    for (const project of [palmaContent, storeContent, clockContent]) {
       if (project.tryIt) {
         for (const step of project.tryIt) {
           assert.ok(typeof step.text[locale] === 'string' && step.text[locale].length > 0);

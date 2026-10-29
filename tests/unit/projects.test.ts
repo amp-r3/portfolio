@@ -7,12 +7,13 @@ import { getProjects, getProject, ProjectSourceError } from '@/entities/project/
 describe('Project entity & data', () => {
   describe('project IDs', () => {
     it('defines projectIds list', () => {
-      expect(projectIds).toEqual(['palma', 'store']);
+      expect(projectIds).toEqual(['palma', 'store', 'clock']);
     });
 
     it('validates project IDs with isProjectId', () => {
       expect(isProjectId('palma')).toBe(true);
       expect(isProjectId('store')).toBe(true);
+      expect(isProjectId('clock')).toBe(true);
       expect(isProjectId('unknown')).toBe(false);
       expect(isProjectId('')).toBe(false);
       expect(isProjectId(null as unknown as string)).toBe(false);
@@ -21,17 +22,18 @@ describe('Project entity & data', () => {
   });
 
   describe('getProjects', () => {
-    it('returns projects in required order (palma first, store second)', async () => {
+    it('returns projects in required order (palma first, store second, clock third)', async () => {
       const projects = await getProjects('en');
-      expect(projects).toHaveLength(2);
+      expect(projects).toHaveLength(3);
       expect(projects[0].id).toBe('palma');
       expect(projects[1].id).toBe('store');
+      expect(projects[2].id).toBe('clock');
     });
 
     it('returns localized content for en, ru, uz', async () => {
       for (const locale of ['en', 'ru', 'uz'] as const) {
         const projects = await getProjects(locale);
-        expect(projects).toHaveLength(2);
+        expect(projects).toHaveLength(3);
 
         for (const project of projects) {
           expect(project.title).toBeTruthy();
@@ -64,6 +66,8 @@ describe('Project entity & data', () => {
         expect(store?.tryIt).toHaveLength(3);
         const palma = projects.find((p) => p.id === 'palma');
         expect(palma?.tryIt).toHaveLength(3);
+        const clock = projects.find((p) => p.id === 'clock');
+        expect(clock?.tryIt).toHaveLength(3);
       }
     });
 
@@ -79,22 +83,36 @@ describe('Project entity & data', () => {
       expect(project?.id).toBe('palma');
       expect(project?.title).toBe('Palma UC');
       expect(project?.links.demo).toBe('https://palma-uc.store/');
+
+      const clock = await getProject('clock', 'en');
+      expect(clock).not.toBeNull();
+      expect(clock?.id).toBe('clock');
+      expect(clock?.title).toBe('Clock');
+      expect(clock?.links.demo).toBe('https://github.com/amp-r3/react-native-google-clock/releases/latest');
+      expect(clock?.links.github).toBe('https://github.com/amp-r3/react-native-google-clock');
     });
 
-    it('uses single images for palma and store', async () => {
+    it('resolves project image pairs and fallbacks', async () => {
       const palma = await getProject('palma', 'en');
       const store = await getProject('store', 'en');
+      const clock = await getProject('clock', 'en');
 
       expect(palma?.images.light).toBeTruthy();
       expect(palma?.images.dark).toBeUndefined();
       expect(palma?.images.mobileDark).toBeUndefined();
       expect(store?.images.dark).toBeUndefined();
       expect(store?.images.mobileDark).toBeUndefined();
+
+      expect(clock?.images.light).toBeTruthy();
+      expect(clock?.images.dark).toBeTruthy();
+      expect(clock?.images.mobileLight).toBeTruthy();
+      expect(clock?.images.mobileDark).toBeTruthy();
     });
 
-    it('fills known palma and store metadata', async () => {
+    it('fills known palma, store, and clock metadata', async () => {
       const palma = await getProject('palma', 'en');
       const store = await getProject('store', 'en');
+      const clock = await getProject('clock', 'en');
 
       expect(palma?.type).toBe('personal');
       expect(palma?.status).toBe('live');
@@ -105,6 +123,11 @@ describe('Project entity & data', () => {
       expect(store?.status).toBe('live');
       expect(store?.period).toEqual({ start: 2025, end: 2026 });
       expect(store?.role).toBe('solo');
+
+      expect(clock?.type).toBe('personal');
+      expect(clock?.status).toBe('live');
+      expect(clock?.period).toEqual({ start: 2026 });
+      expect(clock?.role).toBe('solo');
     });
 
     it('returns null for non-existent project ID', async () => {
