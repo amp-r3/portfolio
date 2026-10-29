@@ -78,6 +78,15 @@ Strict hierarchy under `src/` (highest → lowest):
 - `HERO_SCROLL` (`shared/config/motion.ts`) is the source of truth; at `minScale 0.75`,
   keep `offsetEnd ≤ 12.5%`.
 
+## Project Screenshots
+
+- **Unified style**: all projects must use the same above-the-fold hero landing screen in dark mode
+  with visible branding/header, hero kicker/badge, title, and primary CTA buttons.
+- **Fixed viewport dimensions**: Desktop is strictly `1920x1080` (16:9); Mobile is strictly
+  `390x844` (9:19.5, iPhone standard). Always use non-interlaced RGB PNGs.
+- **No arbitrary crops**: never screenshot scrolled mid-page sections or cut cards in half; mobile
+  viewer requires the complete viewport. Keep `DESKTOP_IMAGE` and `MOBILE_IMAGE` in sync.
+
 ## Verification Checklist Before Completion
 
 1. `pnpm check:agents` (if AGENTS.md was edited)

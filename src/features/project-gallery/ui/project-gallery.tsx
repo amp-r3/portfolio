@@ -17,7 +17,7 @@ interface IProjectGalleryProps {
 }
 
 const DESKTOP_IMAGE = { width: 1920, height: 1080 };
-const MOBILE_IMAGE = { width: 1080, height: 2400 };
+const MOBILE_IMAGE = { width: 390, height: 844 };
 const DESKTOP_IMAGE_SIZES = '(min-width: 1024px) 55vw, 100vw';
 const MOBILE_IMAGE_SIZES = '100vw';
 
