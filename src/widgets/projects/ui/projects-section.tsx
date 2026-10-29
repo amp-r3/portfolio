@@ -3,7 +3,6 @@
 import { useTranslations } from 'next-intl';
 import type { Project } from '@/entities/project';
 import { ProjectCard } from '@/entities/project';
-import { Link } from '@/shared/i18n';
 import style from './projects-section.module.scss';
 
 interface ProjectsSectionProps {
@@ -21,14 +20,16 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
         </div>
         <div className={style.projects__cards}>
           {projects.map((elem) => (
-            <Link href={`/project/${elem.id}`} key={elem.id} className={style.projects__card_wrapper}>
-              <ProjectCard
-                title={elem.title}
-                image={elem.images.light}
-                darkImage={elem.images.dark}
-                description={elem.tagline}
-              />
-            </Link>
+            <ProjectCard
+              key={elem.id}
+              href={`/project/${elem.id}`}
+              title={elem.title}
+              image={elem.images.light}
+              darkImage={elem.images.dark}
+              description={elem.tagline}
+              demo={elem.links.demo}
+              github={elem.links.github}
+            />
           ))}
         </div>
       </div>

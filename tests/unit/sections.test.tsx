@@ -126,6 +126,10 @@ describe('Home Page Sections', () => {
       const links = screen.getAllByRole('link');
       expect(links.some((link) => link.getAttribute('href') === '/project/weather')).toBe(true);
       expect(links.some((link) => link.getAttribute('href') === '/project/store')).toBe(true);
+      expect(links.some((link) => link.getAttribute('href') === 'https://demo.com')).toBe(true);
+      expect(links.some((link) => link.getAttribute('href') === 'https://github.com')).toBe(true);
+      expect(screen.getAllByRole('link', { name: enMessages.projects.card.demo })).toHaveLength(2);
+      expect(screen.getAllByRole('link', { name: enMessages.projects.card.github })).toHaveLength(2);
     });
   });
 

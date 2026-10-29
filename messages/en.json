@@ -114,7 +114,11 @@
             "zoomOut": "Zoom out",
             "resetZoom": "Reset zoom"
         },
-        "details": "See Details"
+        "card": {
+            "open": "View project",
+            "demo": "View demo",
+            "github": "GitHub code"
+        }
     },
     "contact": {
         "title": "Get in touch",

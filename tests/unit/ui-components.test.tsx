@@ -13,11 +13,20 @@ vi.mock('@/shared/i18n', () => ({
     push: vi.fn(),
     replace: vi.fn(),
   }),
+  Link: ({ children, href, ...rest }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
+    <a href={href} {...rest}>
+      {children}
+    </a>
+  ),
 }));
 
 const messages = {
   projects: {
-    details: 'View details',
+    card: {
+      open: 'View project',
+      demo: 'View demo',
+      github: 'GitHub code',
+    },
   },
 };
 
@@ -92,6 +101,7 @@ describe('Shared UI and Project components', () => {
     it('renders project card title, description and images', () => {
       renderWithIntl(
         <ProjectCard
+          href="/project/weather"
           title="Weather App"
           description="Real-time forecasts"
           image="/images/weather-light.png"
@@ -103,7 +113,46 @@ describe('Shared UI and Project components', () => {
       expect(screen.getByText('Real-time forecasts')).toBeInTheDocument();
       expect(screen.getByAltText('Screenshot of Weather App')).toBeInTheDocument();
       expect(screen.getByAltText('Screenshot of Weather App (dark)')).toBeInTheDocument();
-      expect(screen.getByText('View details')).toBeInTheDocument();
+    });
+
+    it('links only the image to the project page', () => {
+      renderWithIntl(
+        <ProjectCard
+          href="/project/weather"
+          title="Weather App"
+          description="Real-time forecasts"
+          image="/images/weather-light.png"
+        />
+      );
+
+      const imageLink = screen.getByRole('link', { name: 'View project' });
+      expect(imageLink).toHaveAttribute('href', '/project/weather');
+      expect(imageLink.querySelector('img')?.getAttribute('src')).toContain('weather-light.png');
+
+      expect(screen.getAllByRole('link')).toHaveLength(1);
+    });
+
+    it('renders demo and GitHub actions as external links', () => {
+      renderWithIntl(
+        <ProjectCard
+          href="/project/weather"
+          title="Weather App"
+          description="Real-time forecasts"
+          image="/images/weather-light.png"
+          demo="https://demo.example.com"
+          github="https://github.com/example/weather"
+        />
+      );
+
+      const demoLink = screen.getByRole('link', { name: 'View demo' });
+      expect(demoLink).toHaveAttribute('href', 'https://demo.example.com');
+      expect(demoLink).toHaveAttribute('target', '_blank');
+      expect(demoLink).toHaveAttribute('rel', 'noopener noreferrer');
+
+      const githubLink = screen.getByRole('link', { name: 'GitHub code' });
+      expect(githubLink).toHaveAttribute('href', 'https://github.com/example/weather');
+      expect(githubLink).toHaveAttribute('target', '_blank');
+      expect(githubLink).toHaveAttribute('rel', 'noopener noreferrer');
     });
   });
 });

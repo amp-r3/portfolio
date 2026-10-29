@@ -114,7 +114,11 @@
             "zoomOut": "Uzoqlashtirish",
             "resetZoom": "Masshtabni tiklash"
         },
-        "details": "Batafsil"
+        "card": {
+            "open": "Loyihani ko'rish",
+            "demo": "Demonni ko'rish",
+            "github": "GitHub kodi"
+        }
     },
     "contact": {
         "title": "Men bilan bog'laning",
