@@ -92,6 +92,20 @@
   --scrollbar-thumb: rgba(148, 163, 184, 0.2);
   --scrollbar-thumb-hover: rgba(148, 163, 184, 0.35);
   --scrollbar-thumb-active: rgba(241, 245, 249, 0.5);
+
+  // Fullscreen image viewer. Deliberately theme-independent: a dark canvas
+  // gives light and dark screenshots the same contrast and avoids the 1.5s
+  // theme transition fighting the zoom gestures.
+  --viewer-backdrop: #020617;
+  --viewer-topbar-fade: rgba(2, 6, 23, 0.72);
+  --viewer-surface: rgba(15, 23, 42, 0.82);
+  --viewer-surface-hover: rgba(30, 41, 59, 0.92);
+  --viewer-border: rgba(148, 163, 184, 0.28);
+  --viewer-text: #f8fafc;
+  --viewer-text-muted: #94a3b8;
+  --viewer-active-bg: #f8fafc;
+  --viewer-active-text: #020617;
+  --viewer-focus: #38bdf8;
 }
 
 [data-theme="light"] {

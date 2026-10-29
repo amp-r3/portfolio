@@ -295,48 +295,7 @@
         }
     }
 
-    &__image {
-        display: block;
-        width: 100%;
-        height: auto;
-        object-fit: contain;
-
-        @media (width < 640px) {
-            height: 100%;
-            border-radius: $border-radius-small;
-            object-fit: cover;
-            object-position: top;
-        }
-    }
-
     &__layer {
         min-width: 0;
-    }
-
-    &__picture {
-        display: block;
-        width: 100%;
-
-        &--light {
-            display: none;
-        }
-
-        &--dark {
-            display: block;
-        }
-
-        @media (width < 640px) {
-            height: 100%;
-        }
-    }
-}
-
-/* Dark is the default so the server-rendered HTML is correct without JS. */
-:global([data-theme='light']) {
-    .project-details__picture--light {
-        display: block !important;
-    }
-    .project-details__picture--dark {
-        display: none !important;
     }
 }

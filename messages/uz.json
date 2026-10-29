@@ -103,6 +103,17 @@
             "back": "Orqaga"
         },
         "screenshotAlt": "{title} loyihasining skrinshoti",
+        "viewer": {
+            "open": "Skrinshotni to'liq ekranda ochish",
+            "close": "To'liq ekrandan yopish",
+            "dialog": "{title} skrinshotlari",
+            "tabs": "Skrinshot versiyasi",
+            "desktop": "Desktop",
+            "mobile": "Mobil",
+            "zoomIn": "Yaqinlashtirish",
+            "zoomOut": "Uzoqlashtirish",
+            "resetZoom": "Masshtabni tiklash"
+        },
         "details": "Batafsil"
     },
     "contact": {

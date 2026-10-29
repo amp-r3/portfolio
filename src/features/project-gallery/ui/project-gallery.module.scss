@@ -1,0 +1,124 @@
+@use '@/shared/styles/index.scss' as *;
+
+.gallery {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.picture {
+    display: block;
+    width: 100%;
+
+    &Light {
+        display: none;
+    }
+
+    &Dark {
+        display: block;
+    }
+
+    @media (width < 640px) {
+        height: 100%;
+    }
+}
+
+.image {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+
+    @media (width < 640px) {
+        height: 100%;
+        border-radius: $border-radius-small;
+        object-fit: cover;
+        object-position: top;
+    }
+}
+
+.open {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    display: block;
+    padding: 0;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    border-radius: inherit;
+    -webkit-tap-highlight-color: transparent;
+
+    &:focus-visible {
+        outline: 2px solid var(--accent-step);
+        outline-offset: -3px;
+    }
+}
+
+.openBadge {
+    position: absolute;
+    top: $spacing-small;
+    right: $spacing-small;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    color: var(--text-primary);
+    background: var(--surface-glass);
+    border: 1px solid var(--border-primary);
+    border-radius: $border-radius-circle;
+    box-shadow: var(--shadow-default);
+    backdrop-filter: $filter-backdrop-blur-small;
+    transition:
+        background-color $transition-duration-theme $timing-function-theme,
+        border-color $transition-duration-theme $timing-function-theme,
+        color $transition-duration-theme $timing-function-theme,
+        transform $transition-duration-fast $timing-function-ease-out-expo;
+
+    svg {
+        display: block;
+        width: $icon-size-medium;
+        height: $icon-size-medium;
+    }
+
+    @media (width < 640px) {
+        top: $spacing-xsmall;
+        right: $spacing-xsmall;
+        width: 36px;
+        height: 36px;
+    }
+}
+
+.open:focus-visible .openBadge {
+    transform: scale(1.06);
+}
+
+@media (hover: hover) {
+    .open:hover .openBadge {
+        transform: scale(1.06);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .openBadge {
+        transition: none;
+    }
+
+    .open:focus-visible .openBadge,
+    .open:hover .openBadge {
+        transform: none;
+    }
+}
+
+/* Dark is the default so the server-rendered HTML is correct without JS. */
+:global([data-theme='light']) {
+    .pictureLight {
+        display: block !important;
+    }
+
+    .pictureDark {
+        display: none !important;
+    }
+}

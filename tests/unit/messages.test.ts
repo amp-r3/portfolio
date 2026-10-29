@@ -23,6 +23,15 @@ const requiredProjectLabels = [
   'projects.labels.section.stack',
   'projects.labels.section.tryIt',
   'projects.labels.section.limitations',
+  'projects.viewer.open',
+  'projects.viewer.close',
+  'projects.viewer.dialog',
+  'projects.viewer.tabs',
+  'projects.viewer.desktop',
+  'projects.viewer.mobile',
+  'projects.viewer.zoomIn',
+  'projects.viewer.zoomOut',
+  'projects.viewer.resetZoom',
 ];
 
 function flattenMessages(value: unknown, prefix = ''): Record<string, unknown> {

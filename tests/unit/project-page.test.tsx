@@ -80,6 +80,9 @@ describe('ProjectPage (async page component)', () => {
       'https://github.com/amp-r3/weather'
     );
     expect(screen.getByRole('button', { name: enMessages.projects.actions.back })).toBeInTheDocument();
+    expect(
+      screen.getByRole('button', { name: enMessages.projects.viewer.open })
+    ).toBeInTheDocument();
     expect(screen.getAllByAltText('Screenshot of the My Weather App project')).toHaveLength(2);
   });
 

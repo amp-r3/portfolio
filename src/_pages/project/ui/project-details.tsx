@@ -1,11 +1,11 @@
 'use client';
 
-import { type FC, useContext } from 'react';
-import Image, { getImageProps } from 'next/image';
+import { type FC } from 'react';
+import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import type { Project } from '@/entities/project';
+import { ProjectGallery } from '@/features/project-gallery';
 import { externalLinkIcon, githubIcon } from '@/shared/assets';
-import { ThemeContext } from '@/shared/theme';
 import { BackButton, Badge } from '@/shared/ui';
 import { ProjectMeta } from './project-meta';
 import { ProjectOverview } from './project-overview';
@@ -16,57 +16,11 @@ interface IProjectDetailsProps {
   project: Project;
 }
 
-const DESKTOP_IMAGE = { width: 1920, height: 1080 };
-const MOBILE_IMAGE = { width: 1080, height: 2400 };
-const DESKTOP_IMAGE_SIZES = '(min-width: 1024px) 55vw, 100vw';
-const MOBILE_IMAGE_SIZES = '100vw';
-
 export const ProjectDetails: FC<IProjectDetailsProps> = ({ project }) => {
   const t = useTranslations('projects');
   const { title, tagline, stack, links, images } = project;
 
-  const lightMain = images.light;
-  const darkMain = images.dark ?? images.light;
-  const lightMobile = images.mobileLight ?? images.light;
-  const darkMobile = images.mobileDark ?? images.mobileLight ?? images.dark ?? images.light;
   const primaryStack = stack.primary.slice(0, 5);
-  const screenshotAlt = t('screenshotAlt', { title });
-
-  const themeContext = useContext(ThemeContext);
-  const isLight = themeContext?.theme === 'light';
-
-  const lightDesktopImage = getImageProps({
-    src: lightMain,
-    alt: screenshotAlt,
-    sizes: DESKTOP_IMAGE_SIZES,
-    loading: isLight ? 'eager' : 'lazy',
-    ...(isLight ? { fetchPriority: 'high' as const } : {}),
-    ...DESKTOP_IMAGE,
-  }).props;
-  const lightMobileImage = getImageProps({
-    src: lightMobile,
-    alt: screenshotAlt,
-    sizes: MOBILE_IMAGE_SIZES,
-    loading: isLight ? 'eager' : 'lazy',
-    ...(isLight ? { fetchPriority: 'high' as const } : {}),
-    ...MOBILE_IMAGE,
-  }).props;
-  const darkDesktopImage = getImageProps({
-    src: darkMain,
-    alt: screenshotAlt,
-    sizes: DESKTOP_IMAGE_SIZES,
-    loading: !isLight ? 'eager' : 'lazy',
-    ...(!isLight ? { fetchPriority: 'high' as const } : {}),
-    ...DESKTOP_IMAGE,
-  }).props;
-  const darkMobileImage = getImageProps({
-    src: darkMobile,
-    alt: screenshotAlt,
-    sizes: MOBILE_IMAGE_SIZES,
-    loading: !isLight ? 'eager' : 'lazy',
-    ...(!isLight ? { fetchPriority: 'high' as const } : {}),
-    ...MOBILE_IMAGE,
-  }).props;
 
   return (
     <article className={`${style['project-details']} page-content`}>
@@ -110,25 +64,7 @@ export const ProjectDetails: FC<IProjectDetailsProps> = ({ project }) => {
         )}
 
         <div className={style['project-details__media']}>
-          {/* Light theme picture */}
-          <picture className={`${style['project-details__picture']} ${style['project-details__picture--light']}`}>
-            <source
-              media="(max-width: 639px)"
-              srcSet={lightMobileImage.srcSet}
-              sizes={lightMobileImage.sizes}
-            />
-            <img {...lightDesktopImage} alt={screenshotAlt} className={style['project-details__image']} />
-          </picture>
-
-          {/* Dark theme picture */}
-          <picture className={`${style['project-details__picture']} ${style['project-details__picture--dark']}`}>
-            <source
-              media="(max-width: 639px)"
-              srcSet={darkMobileImage.srcSet}
-              sizes={darkMobileImage.sizes}
-            />
-            <img {...darkDesktopImage} alt={screenshotAlt} className={style['project-details__image']} />
-          </picture>
+          <ProjectGallery images={images} title={title} />
         </div>
 
         {primaryStack.length > 0 && (

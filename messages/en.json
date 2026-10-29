@@ -103,6 +103,17 @@
             "back": "Go back"
         },
         "screenshotAlt": "Screenshot of the {title} project",
+        "viewer": {
+            "open": "Open screenshot in fullscreen",
+            "close": "Close fullscreen view",
+            "dialog": "{title} screenshots",
+            "tabs": "Screenshot version",
+            "desktop": "Desktop",
+            "mobile": "Mobile",
+            "zoomIn": "Zoom in",
+            "zoomOut": "Zoom out",
+            "resetZoom": "Reset zoom"
+        },
         "details": "See Details"
     },
     "contact": {
