@@ -9,7 +9,7 @@ const mockPush = vi.fn();
 const mockReplace = vi.fn();
 
 vi.mock('@/shared/i18n/navigation', () => ({
-  usePathname: () => '/project/weather',
+  usePathname: () => '/project/palma',
   useRouter: () => ({
     push: mockPush,
     replace: mockReplace,
@@ -76,14 +76,14 @@ describe('Language & Routing', () => {
       const button = screen.getByRole('button', { name: 'Change language' });
       await user.click(button);
 
-      expect(mockReplace).toHaveBeenCalledWith('/project/weather', {
+      expect(mockReplace).toHaveBeenCalledWith('/project/palma', {
         locale: 'ru',
         scroll: false,
       });
     });
 
     it('keeps search params but drops the hash on locale change', async () => {
-      window.history.replaceState(null, '', '/en/project/weather?source=legacy#services');
+      window.history.replaceState(null, '', '/en/project/palma?source=legacy#services');
 
       const user = userEvent.setup();
       render(
@@ -95,7 +95,7 @@ describe('Language & Routing', () => {
       const button = screen.getByRole('button', { name: 'Change language' });
       await user.click(button);
 
-      expect(mockReplace).toHaveBeenCalledWith('/project/weather?source=legacy', {
+      expect(mockReplace).toHaveBeenCalledWith('/project/palma?source=legacy', {
         locale: 'ru',
         scroll: false,
       });
@@ -112,7 +112,7 @@ describe('Language & Routing', () => {
       const button = screen.getByRole('button', { name: 'Change language' });
       await user.click(button);
 
-      expect(mockReplace).toHaveBeenCalledWith('/project/weather', {
+      expect(mockReplace).toHaveBeenCalledWith('/project/palma', {
         locale: 'uz',
         scroll: false,
       });
@@ -129,7 +129,7 @@ describe('Language & Routing', () => {
       const button = screen.getByRole('button', { name: 'Change language' });
       await user.click(button);
 
-      expect(mockReplace).toHaveBeenCalledWith('/project/weather', {
+      expect(mockReplace).toHaveBeenCalledWith('/project/palma', {
         locale: 'en',
         scroll: false,
       });

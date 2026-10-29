@@ -7,11 +7,11 @@ import { getProjects, getProject, ProjectSourceError } from '@/entities/project/
 describe('Project entity & data', () => {
   describe('project IDs', () => {
     it('defines projectIds list', () => {
-      expect(projectIds).toEqual(['weather', 'store']);
+      expect(projectIds).toEqual(['palma', 'store']);
     });
 
     it('validates project IDs with isProjectId', () => {
-      expect(isProjectId('weather')).toBe(true);
+      expect(isProjectId('palma')).toBe(true);
       expect(isProjectId('store')).toBe(true);
       expect(isProjectId('unknown')).toBe(false);
       expect(isProjectId('')).toBe(false);
@@ -21,10 +21,10 @@ describe('Project entity & data', () => {
   });
 
   describe('getProjects', () => {
-    it('returns projects in required order (weather first, store second)', async () => {
+    it('returns projects in required order (palma first, store second)', async () => {
       const projects = await getProjects('en');
       expect(projects).toHaveLength(2);
-      expect(projects[0].id).toBe('weather');
+      expect(projects[0].id).toBe('palma');
       expect(projects[1].id).toBe('store');
     });
 
@@ -39,7 +39,9 @@ describe('Project entity & data', () => {
           expect(project.seoDescription.length).toBeLessThanOrEqual(160);
           expect(project.stack.primary.length).toBeGreaterThan(0);
           expect(project.stack.groups.length).toBeGreaterThan(0);
-          expect(project.links.github).toMatch(/^https:\/\/github\.com\//);
+          if (project.links.github) {
+            expect(project.links.github).toMatch(/^https:\/\/github\.com\//);
+          }
           expect(project.deepDive.length).toBeGreaterThan(0);
           for (const entry of project.deepDive) {
             expect(entry.title).toBeTruthy();
@@ -60,8 +62,8 @@ describe('Project entity & data', () => {
 
         const store = projects.find((p) => p.id === 'store');
         expect(store?.tryIt).toHaveLength(3);
-        const weather = projects.find((p) => p.id === 'weather');
-        expect(weather?.tryIt).toBeUndefined();
+        const palma = projects.find((p) => p.id === 'palma');
+        expect(palma?.tryIt).toHaveLength(3);
       }
     });
 
@@ -72,36 +74,37 @@ describe('Project entity & data', () => {
 
   describe('getProject', () => {
     it('returns project details for valid ID', async () => {
-      const project = await getProject('weather', 'en');
+      const project = await getProject('palma', 'en');
       expect(project).not.toBeNull();
-      expect(project?.id).toBe('weather');
-      expect(project?.title).toBe('My Weather App');
-      expect(project?.links.demo).toBe('https://my-pogoda.netlify.app/');
+      expect(project?.id).toBe('palma');
+      expect(project?.title).toBe('Palma UC');
+      expect(project?.links.demo).toBe('https://palma-uc.store/');
     });
 
-    it('keeps theme-aware images for weather and single images for store', async () => {
-      const weather = await getProject('weather', 'en');
+    it('uses single images for palma and store', async () => {
+      const palma = await getProject('palma', 'en');
       const store = await getProject('store', 'en');
 
-      expect(weather?.images.dark).toBeTruthy();
-      expect(weather?.images.mobileDark).toBeTruthy();
+      expect(palma?.images.light).toBeTruthy();
+      expect(palma?.images.dark).toBeUndefined();
+      expect(palma?.images.mobileDark).toBeUndefined();
       expect(store?.images.dark).toBeUndefined();
       expect(store?.images.mobileDark).toBeUndefined();
     });
 
-    it('fills known store metadata and leaves unknown weather metadata empty', async () => {
-      const weather = await getProject('weather', 'en');
+    it('fills known palma and store metadata', async () => {
+      const palma = await getProject('palma', 'en');
       const store = await getProject('store', 'en');
+
+      expect(palma?.type).toBe('personal');
+      expect(palma?.status).toBe('live');
+      expect(palma?.period).toEqual({ start: 2026 });
+      expect(palma?.role).toBe('solo');
 
       expect(store?.type).toBe('personal');
       expect(store?.status).toBe('live');
       expect(store?.period).toEqual({ start: 2025, end: 2026 });
       expect(store?.role).toBe('solo');
-
-      expect(weather?.type).toBeUndefined();
-      expect(weather?.status).toBeUndefined();
-      expect(weather?.period).toBeUndefined();
-      expect(weather?.role).toBeUndefined();
     });
 
     it('returns null for non-existent project ID', async () => {
@@ -110,7 +113,7 @@ describe('Project entity & data', () => {
     });
 
     it('throws ProjectSourceError for invalid locale', async () => {
-      await expect(getProject('weather', 'de')).rejects.toThrow(ProjectSourceError);
+      await expect(getProject('palma', 'de')).rejects.toThrow(ProjectSourceError);
     });
 
     it('preserves literal braces in store deep dive details', async () => {

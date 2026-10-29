@@ -12,49 +12,22 @@ project files. Remove entries as the content is rewritten.
 - [x] `features` — six key features added.
 - [x] `tryIt` / `limitations` — filled.
 
-## Weather (`weather`)
+## Palma (`palma`)
 
-- `tagline` — TODO shorten: currently the full legacy `description` (all three locales).
-- `seo.description` — TODO rewrite: mechanically derived from the first sentence of the legacy
-  `description`; not editorially reviewed yet.
-- `stack.primary` / `stack.groups` — TODO regroup: `primary` is the first five legacy
-  `technologies`, and `core` contains the complete legacy list.
-- `deepDive[].summary` — TODO rewrite: mechanically derived from the first sentence of the legacy
-  `benefits[].description`, which is also copied unchanged into `deepDive[].details`.
-- `features` — empty for now; content will be added in the next pass.
-- `tryIt` / `limitations` — not filled yet.
-
-## Missing required metadata (fields are optional until data is available)
-
-- `weather`: `type`, `status`, `period`, `role` are not filled in. TODO: add once known.
-- `store`: filled (`personal`, `live`, 2025–2026, `solo`).
+- [x] Replaced legacy `weather` project with `palma` (Palma UC).
+- [x] Metadata filled (`personal`, `live`, 2026, `solo`).
+- [x] `tagline` and `seo.description` written and checked within 160 chars for all 3 locales.
+- [x] `stack.primary` / `stack.groups` grouped into core, data, forms, and tooling.
+- [x] `features` (6 items) with valid icons added.
+- [x] `deepDive` (5 technical topics) with titles, summaries, and details added.
+- [x] `tryIt` (3 steps) and `limitations` (4 items) filled.
+- [x] Single theme-aware images (`palmaDark`, `palmaMobileDark`) generated and wired.
 
 ## Images
 
-- `store`: `desktop` and `mobile` are single strings (`storeDark`, `storeMobileDark`), so the same
-  dark screenshot is shown in both themes, as requested in the migration brief.
-- `weather`: both desktop and mobile keep `{ light, dark }` pairs.
+- `store`: `desktop` and `mobile` are single strings (`storeDark`, `storeMobileDark`).
+- `palma`: `desktop` and `mobile` are single strings (`palmaDark`, `palmaMobileDark`).
 
 ## Uzbek review
 
-Uzbek copy written for the store content pass; needs a native-speaker review.
-
-- `content/projects/store.json`:
-  - `tagline.uz`
-  - `seo.description.uz`
-  - `features[0].text.uz` … `features[5].text.uz`
-  - `deepDive[0].title.uz` ("Ma'lumotlar qatlami: RTK Query + Supabase"), `deepDive[0].summary.uz` ("Postgres'dagi so'rovlar, { ids, items } keshi, optimistik yangilanishlar"), `deepDive[0].details.uz`
-  - `deepDive[1].title.uz`, `deepDive[1].summary.uz`, `deepDive[1].details.uz` (legacy text plus
-    one appended sentence)
-  - `deepDive[2].title.uz` ("FSD arxitekturasi"), `deepDive[2].summary.uz` ("ESLint qatlamlar yo'nalishini tekshiradi, mantiq hooklar va modellarda"), `deepDive[2].details.uz`
-  - `deepDive[3].title.uz`, `deepDive[3].summary.uz`, `deepDive[3].details.uz`
-  - `deepDive[4].title.uz`, `deepDive[4].summary.uz`, `deepDive[4].details.uz`
-  - `tryIt[0].title.uz` ("Filtrlar va URL"), `tryIt[0].text.uz`
-  - `tryIt[1].title.uz` ("Savatdan buyurtmagacha"), `tryIt[1].text.uz`
-  - `tryIt[2].title.uz` ("Mahsulot sahifasi"), `tryIt[2].text.uz`
-  - `limitations[0].text.uz` … `limitations[3].text.uz`
-- `messages/uz.json` → `projects.labels.*` — pre-existing UI labels; JSON cannot carry inline
-  comments, so this note is the review marker.
-- `messages/uz.json` → `projects.labels.period.present`, `projects.actions.demo`,
-  `projects.actions.github`, `projects.actions.back`, `projects.screenshotAlt` — added with the
-  project page UI stage; need a native-speaker review.
+Uzbek copy written for store and palma content; needs a native-speaker review.

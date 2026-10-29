@@ -5,9 +5,9 @@ import { resolve } from 'node:path';
 
 const locales = ['en', 'ru', 'uz'];
 
-const weatherContent = JSON.parse(await readFile(resolve('content/projects/weather.json'), 'utf8'));
+const palmaContent = JSON.parse(await readFile(resolve('content/projects/palma.json'), 'utf8'));
 const storeContent = JSON.parse(await readFile(resolve('content/projects/store.json'), 'utf8'));
-const projects = [weatherContent, storeContent].sort((a, b) => a.order - b.order);
+const projects = [palmaContent, storeContent].sort((a, b) => a.order - b.order);
 
 test('client barrel index.ts does not export server-only data functions', async () => {
   const content = await readFile(resolve('src/entities/project/index.ts'), 'utf8');
@@ -40,17 +40,17 @@ test('legacy raw-projects.ts file is deleted', async () => {
 });
 
 test('project content preserves required order and fields', () => {
-  assert.equal(projects[0].id, 'weather', 'Order must be weather first');
+  assert.equal(projects[0].id, 'palma', 'Order must be palma first');
   assert.equal(projects[1].id, 'store', 'Order must be store second');
   assert.equal(projects[0].order, 1);
   assert.equal(projects[1].order, 2);
 
-  assert.equal(weatherContent.title.en, 'My Weather App');
+  assert.equal(palmaContent.title.en, 'Palma UC');
   assert.equal(storeContent.title.en, 'Store App');
 
-  assert.equal(weatherContent.links.live, 'https://my-pogoda.netlify.app/');
+  assert.equal(palmaContent.links.live, 'https://palma-uc.store/');
   assert.equal(storeContent.links.live, 'https://store-mauve-nine.vercel.app/');
-  assert.equal(weatherContent.links.github, 'https://github.com/amp-r3/weather');
+  assert.equal(palmaContent.links.github, undefined);
   assert.equal(storeContent.links.github, 'https://github.com/amp-r3/store');
 
   for (const project of projects) {
@@ -69,30 +69,33 @@ test('project content preserves required order and fields', () => {
     assert.equal('benefits' in project, false, 'Legacy benefits key must be removed');
   }
 
-  assert.equal(weatherContent.features.length, 0);
-  assert.equal(weatherContent.deepDive.length, 3);
+  assert.equal(palmaContent.features.length, 6);
+  assert.equal(palmaContent.deepDive.length, 5);
+  assert.equal(palmaContent.tryIt?.length, 3);
+  assert.equal(palmaContent.limitations?.length, 4);
+
   assert.equal(storeContent.features.length, 6);
   assert.equal(storeContent.deepDive.length, 5);
   assert.equal(storeContent.tryIt?.length, 3);
 
-  assert.deepEqual(weatherContent.images, {
-    desktop: { light: 'weatherLight', dark: 'weatherDark' },
-    mobile: { light: 'weatherLightMobile', dark: 'weatherDarkMobile' },
+  assert.deepEqual(palmaContent.images, {
+    desktop: 'palmaDark',
+    mobile: 'palmaMobileDark',
   });
   assert.deepEqual(storeContent.images, {
     desktop: 'storeDark',
     mobile: 'storeMobileDark',
   });
 
+  assert.equal(palmaContent.type, 'personal');
+  assert.equal(palmaContent.status, 'live');
+  assert.deepEqual(palmaContent.period, { start: 2026 });
+  assert.equal(palmaContent.role, 'solo');
+
   assert.equal(storeContent.type, 'personal');
   assert.equal(storeContent.status, 'live');
   assert.deepEqual(storeContent.period, { start: 2025, end: 2026 });
   assert.equal(storeContent.role, 'solo');
-
-  assert.equal('type' in weatherContent, false, 'Weather metadata is not known yet');
-  assert.equal('status' in weatherContent, false, 'Weather metadata is not known yet');
-  assert.equal('period' in weatherContent, false, 'Weather metadata is not known yet');
-  assert.equal('role' in weatherContent, false, 'Weather metadata is not known yet');
 });
 
 for (const locale of locales) {
@@ -116,15 +119,17 @@ for (const locale of locales) {
     const storeApiDetails = storeContent.deepDive[0].details[locale];
     assert.match(storeApiDetails, /\{ ids, items \}/, 'Literal store braces must be preserved');
 
-    if (storeContent.tryIt) {
-      for (const step of storeContent.tryIt) {
-        assert.ok(typeof step.text[locale] === 'string' && step.text[locale].length > 0);
-        if (step.title) {
-          assert.ok(typeof step.title[locale] === 'string' && step.title[locale].length > 0);
-          assert.ok(
-            step.title[locale].length <= 32,
-            `TryIt title too long for ${storeContent.id} (${locale}): "${step.title[locale]}"`
-          );
+    for (const project of [palmaContent, storeContent]) {
+      if (project.tryIt) {
+        for (const step of project.tryIt) {
+          assert.ok(typeof step.text[locale] === 'string' && step.text[locale].length > 0);
+          if (step.title) {
+            assert.ok(typeof step.title[locale] === 'string' && step.title[locale].length > 0);
+            assert.ok(
+              step.title[locale].length <= 32,
+              `TryIt title too long for ${project.id} (${locale}): "${step.title[locale]}"`
+            );
+          }
         }
       }
     }

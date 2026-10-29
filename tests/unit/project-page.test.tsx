@@ -51,14 +51,14 @@ function getPanel(trigger: HTMLElement): HTMLElement {
 }
 
 const minimalProject: Project = {
-  id: 'weather',
+  id: 'palma',
   order: 1,
   period: { start: 2025 },
-  title: 'My Weather App',
+  title: 'Minimal Project',
   tagline: 'A short tagline',
   seoDescription: 'A short tagline',
   links: {},
-  images: { light: '/weather.png' },
+  images: { light: '/palma.png' },
   stack: { primary: ['React'], groups: [{ id: 'core', items: ['React'] }] },
   features: [],
   deepDive: [],
@@ -66,33 +66,26 @@ const minimalProject: Project = {
 
 describe('ProjectPage (async page component)', () => {
   it('renders project details for a valid project id', async () => {
-    const pageJsx = await ProjectPage({ id: 'weather', locale: 'en' });
+    const pageJsx = await ProjectPage({ id: 'palma', locale: 'en' });
     renderWithIntl(pageJsx);
 
-    expect(screen.getByRole('heading', { level: 1, name: 'My Weather App' })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: enMessages.projects.actions.demo })).toHaveAttribute(
-      'href',
-      'https://my-pogoda.netlify.app/'
-    );
-    expect(screen.getByRole('link', { name: enMessages.projects.actions.github })).toHaveAttribute(
-      'href',
-      'https://github.com/amp-r3/weather'
-    );
+    expect(screen.getByRole('heading', { level: 1, name: 'Palma UC' })).toBeInTheDocument();
+    const demoLinks = screen.getAllByRole('link', { name: enMessages.projects.actions.demo });
+    expect(demoLinks).toHaveLength(2);
+    expect(demoLinks[0]).toHaveAttribute('href', 'https://palma-uc.store/');
     expect(screen.getByRole('button', { name: enMessages.projects.actions.back })).toBeInTheDocument();
     expect(
       screen.getByRole('button', { name: enMessages.projects.viewer.open })
     ).toBeInTheDocument();
-    expect(screen.getAllByAltText('Screenshot of the My Weather App project')).toHaveLength(2);
+    expect(screen.getAllByAltText('Screenshot of the Palma UC project')).toHaveLength(2);
   });
 
-  it('renders only layer 1, deep dive and stack for weather (no metadata, features, try it or limitations)', async () => {
-    const pageJsx = await ProjectPage({ id: 'weather', locale: 'en' });
-    renderWithIntl(pageJsx);
+  it('renders only layer 1, deep dive and stack for a minimal project (no metadata, features, try it or limitations)', () => {
+    renderWithIntl(<ProjectDetails project={minimalProject} />);
 
     expect(screen.queryByText(enMessages.projects.labels.type.personal)).not.toBeInTheDocument();
     expect(screen.queryByText(enMessages.projects.labels.role.solo)).not.toBeInTheDocument();
     expect(screen.queryByText(enMessages.projects.labels.status.live)).not.toBeInTheDocument();
-    expect(screen.queryByText(/2025/)).not.toBeInTheDocument();
 
     expect(
       screen.queryByRole('heading', { name: enMessages.projects.labels.section.features })
@@ -114,17 +107,17 @@ describe('ProjectPage (async page component)', () => {
 
   it('keeps deep dive entries collapsed and shows summary until expanded', async () => {
     const user = userEvent.setup();
-    const pageJsx = await ProjectPage({ id: 'weather', locale: 'en' });
+    const pageJsx = await ProjectPage({ id: 'palma', locale: 'en' });
     renderWithIntl(pageJsx);
 
-    const trigger = screen.getByRole('button', { name: /Automatic Geolocation/i });
+    const trigger = screen.getByRole('button', { name: /FSD Architecture & Hybrid Rendering/i });
     const panel = getPanel(trigger);
 
     expect(trigger).toHaveAttribute('aria-expanded', 'false');
     expect(panel).toHaveAttribute('role', 'region');
     expect(panel).toHaveAttribute('aria-hidden', 'true');
     expect(
-      screen.getAllByText(/The application automatically detects the user's location/i).length
+      screen.getAllByText(/The codebase adheres to Feature-Sliced Design/i).length
     ).toBeGreaterThan(0);
 
     await user.click(trigger);

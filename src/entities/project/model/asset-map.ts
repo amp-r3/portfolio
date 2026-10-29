@@ -1,4 +1,6 @@
 import {
+  palmaDark,
+  palmaMobileDark,
   storeDark,
   storeMobileDark,
   weatherDark,
@@ -10,6 +12,8 @@ import { ProjectSourceError } from './project-source-error';
 import type { ProjectIconKey } from './icon-keys';
 
 export const PROJECT_IMAGES: Record<string, string> = {
+  palmaDark,
+  palmaMobileDark,
   weatherLight,
   weatherDark,
   weatherLightMobile,

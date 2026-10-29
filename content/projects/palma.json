@@ -1,0 +1,293 @@
+{
+  "id": "palma",
+  "order": 1,
+  "type": "personal",
+  "status": "live",
+  "period": {
+    "start": 2026
+  },
+  "role": "solo",
+  "title": {
+    "en": "Palma UC",
+    "ru": "Palma UC",
+    "uz": "Palma UC"
+  },
+  "tagline": {
+    "en": "Storefront for PUBG Mobile UC top-ups: multi-currency adaptive pricing, P2P payments, automated Player ID verification, and loyalty leveling.",
+    "ru": "Витрина покупки PUBG Mobile UC: мультивалютные адаптивные цены, P2P-оплата, автопроверка Player ID и геймификация с уровнями лояльности.",
+    "uz": "PUBG Mobile UC xarid qilish do'koni: ko'p valyutali moslashuvchan narxlar, P2P to'lov, Player ID avtotekshiruvi va sodiqlik darajalari."
+  },
+  "seo": {
+    "description": {
+      "en": "E-commerce storefront for PUBG Mobile UC with adaptive multi-currency pricing, automated Player ID verification, loyalty levels, and Telegram outbox delivery.",
+      "ru": "Витрина PUBG Mobile UC: адаптивные мультивалютные цены, автопроверка Player ID, система уровней лояльности и гарантированная доставка квитанций в Telegram.",
+      "uz": "PUBG Mobile UC do'koni: moslashuvchan narxlar, Player ID avtotekshiruvi, sodiqlik tizimi va Telegram'ga cheklarni kafolatlangan yetkazish."
+    }
+  },
+  "links": {
+    "live": "https://palma-uc.store/"
+  },
+  "images": {
+    "desktop": "palmaDark",
+    "mobile": "palmaMobileDark"
+  },
+  "stack": {
+    "primary": [
+      "Next.js 16",
+      "React 19",
+      "TypeScript",
+      "Supabase",
+      "Redux Toolkit"
+    ],
+    "groups": [
+      {
+        "id": "core",
+        "items": [
+          "Next.js 16",
+          "React 19",
+          "TypeScript",
+          "SCSS Modules",
+          "next-intl",
+          "Radix UI"
+        ]
+      },
+      {
+        "id": "data",
+        "items": [
+          "Supabase",
+          "PostgreSQL",
+          "Redux Toolkit",
+          "RTK Query",
+          "redux-persist",
+          "Edge Functions (Deno)"
+        ]
+      },
+      {
+        "id": "forms",
+        "items": [
+          "React Hook Form",
+          "Zod"
+        ]
+      },
+      {
+        "id": "tooling",
+        "items": [
+          "Playwright",
+          "Vitest",
+          "ESLint",
+          "Stylelint"
+        ]
+      }
+    ]
+  },
+  "features": [
+    {
+      "icon": "adaptive",
+      "text": {
+        "en": "Adaptive multi-currency pricing synchronized with central bank rates",
+        "ru": "Адаптивное мультивалютное ценообразование по курсам центробанка",
+        "uz": "Markaziy bank kurslari bilan sinxronlashgan moslashuvchan narxlar"
+      }
+    },
+    {
+      "icon": "user",
+      "text": {
+        "en": "Instant PUBG Player ID verification and cached in-game nickname lookup",
+        "ru": "Мгновенная верификация PUBG Player ID и определение никнейма из кэша",
+        "uz": "PUBG Player ID'ni tezkor tekshirish va keshdan o'yin taxallusini aniqlash"
+      }
+    },
+    {
+      "icon": "shield",
+      "text": {
+        "en": "P2P card payments with receipt delivery via transactional Telegram outbox",
+        "ru": "P2P-оплата по картам с гарантированной доставкой чеков в Telegram через Outbox",
+        "uz": "Kartalar orqali P2P to'lov va Telegram Outbox orqali cheklarni kafolatli yetkazish"
+      }
+    },
+    {
+      "icon": "package",
+      "text": {
+        "en": "3-step streamlined checkout for single packs with 1–5 quantity stepper",
+        "ru": "Быстрый чекаут в 3 шага с выбором количества пака от 1 до 5 единиц",
+        "uz": "1 tadan 5 tagacha miqdorni tanlash imkoniga ega 3 bosqichli tezkor xarid"
+      }
+    },
+    {
+      "icon": "palette",
+      "text": {
+        "en": "PalmaCoins loyalty cashback and level XP unlocking the seasonal Autumn theme",
+        "ru": "Кэшбэк PalmaCoins и уровни опыта, открывающие осеннюю тему оформления",
+        "uz": "PalmaCoins keshbeki va kuzgi mavzuni ochuvchi tajriba (XP) darajalari"
+      }
+    },
+    {
+      "icon": "server",
+      "text": {
+        "en": "Full admin back-office with two-axis order tracking and financial controls",
+        "ru": "Админ-панель с двухкоординатным контролем статусов заказов и финансов",
+        "uz": "Buyurtmalar holatini ikki o'qli nazorat qilish va moliyaviy admin panel"
+      }
+    }
+  ],
+  "deepDive": [
+    {
+      "icon": "puzzle",
+      "title": {
+        "en": "FSD Architecture & Hybrid Rendering",
+        "ru": "Архитектура FSD и гибридный рендеринг",
+        "uz": "FSD arxitekturasi va gibrid render"
+      },
+      "summary": {
+        "en": "Strict 6-layer FSD with ESLint boundaries, ISR storefront, and CSR admin",
+        "ru": "Строгие 6 слоёв FSD с ESLint-контролем, витрина на ISR и защищённый CSR",
+        "uz": "ESLint nazoratidagi 6 qatlamli FSD, ISR vitrina va himoyalangan CSR"
+      },
+      "details": {
+        "en": "The codebase adheres to Feature-Sliced Design with ESLint boundary guards enforcing downward-only imports. The storefront runs on ISR with on-demand revalidation on price changes, achieving near-instant paint. Private checkout, user account, and admin views use CSR protected by Next.js 16 proxy middleware, avoiding data leaks and session desync.",
+        "ru": "Код организован по методологии FSD со строгими правилами no-restricted-imports в ESLint. Главная страница витрины работает на ISR с on-demand инвалидацией при обновлении каталога, обеспечивая мгновенный первый рендер. Защищённые разделы чекаута, профиля и админки используют CSR за барьерами middleware, исключая утечки персональных данных.",
+        "uz": "Kod ESLint no-restricted-imports qoidasi bilan qat'iy FSD bo'yicha tuzilgan. Vitrinaning bosh sahifasi katalog yangilanganda on-demand tozalanishi bilan ISR rejimida ishlaydi va tezkor birinchi render beradi. Chekout, profil va admin panelning himoyalangan qismlari esa shaxsiy ma'lumotlar xavfsizligini ta'minlab, middleware ostida CSR rejimida ishlaydi."
+      }
+    },
+    {
+      "icon": "adaptive",
+      "title": {
+        "en": "Adaptive Pricing & Currency Isolation",
+        "ru": "Адаптивное ценообразование и изоляция валют",
+        "uz": "Moslashuvchan narxlar va valyuta izolyatsiyasi"
+      },
+      "summary": {
+        "en": "Hourly CBU rate materialization, currency rounding, and revision guards",
+        "ru": "Почасовая синхронизация с ЦБ, округление валют и защита ревизий офферов",
+        "uz": "Markaziy bank kurslari bilan soatlik yangilanish, yaxlitlash va reviziya nazorati"
+      },
+      "details": {
+        "en": "USD serves as the currency of record while buyers pay in local currencies (UZS/RUB). Prices are materialized in PostgreSQL through an hourly Deno Edge Function fetching Central Bank of Uzbekistan rates. The engine rounds sums to thousands and rubles to integers. Order creation verifies offer_revision to reject purchases against stale rates during price updates.",
+        "ru": "Доллар США является валютой учёта, а покупатели платят в UZS или RUB. Цены материализуются в PostgreSQL почасовым Edge Worker по курсам ЦБ Узбекистана с валютным округлением (сумы — до 1 000, рубли — до целых). Процедура создания заказа валидирует offer_revision, блокируя оформление по устаревшим тарифам при смене цен.",
+        "uz": "AQSH dollari hisob valyutasi bo'lib, xaridorlar UZS yoki RUB'da to'laydi. Narxlar O'zbekiston Markaziy banki kurslari bo'yicha soatlik Edge Worker orqali PostgreSQL'da yaxlitlash bilan (so'm 1 000 gacha, rubl butun songacha) qayd etiladi. Buyurtma yaratishda eskirgan narxlar bo'yicha xarid qilishning oldini olish uchun offer_revision tekshiriladi."
+      }
+    },
+    {
+      "icon": "server",
+      "title": {
+        "en": "Transactional Outbox & Edge Delivery",
+        "ru": "Transactional Outbox и доставка через Edge",
+        "uz": "Transactional Outbox va Edge orqali yetkazish"
+      },
+      "summary": {
+        "en": "Postgres queue, pg_net triggers, channel pacing, and zero-loss Telegram alerts",
+        "ru": "Очередь в Postgres, триггеры pg_net, пейсинг каналов и надёжные алерты в Telegram",
+        "uz": "Postgres navbati, pg_net triggerlari, kanal peysingi va xavfsiz Telegram xabarlari"
+      },
+      "details": {
+        "en": "Payment receipt submissions write notification jobs inside the same PostgreSQL transaction as the order status update. An isolated Supabase Edge Function worker wakes up via pg_net and cron, applying rate limiting and exponential backoff to deliver photo receipts to Telegram. This decouples user checkout from third-party network outages.",
+        "ru": "Загрузка квитанции об оплате атомарно создаёт задачу уведомления в той же транзакции PostgreSQL, что и смену статуса заказа. Воркер на Supabase Edge Function пробуждается через pg_net и cron, соблюдает rate limiting Telegram API и экспоненциальные ретраи. Это гарантирует доставку чеков администратору без риска потери данных при сетевых сбоях.",
+        "uz": "To'lov chekini yuklash bildirishnoma vazifasini buyurtma holatini o'zgartirish bilan birgalikda yagona PostgreSQL tranzaksiyasida yaratadi. Supabase Edge Function'dagi vorker pg_net va cron orqali ishga tushadi, Telegram API tezlik cheklovlariga rioya qilib, cheklarni ma'lumotlar yo'qolish xavfisiz xavfsiz yetkazadi."
+      }
+    },
+    {
+      "icon": "shield",
+      "title": {
+        "en": "Database Security & Two-Axis Statuses",
+        "ru": "Безопасность БД и двухкоординатные статусы",
+        "uz": "Baza xavfsizligi va ikki o'qli holatlar"
+      },
+      "summary": {
+        "en": "SECURITY DEFINER RPCs, row-level locks, and synchronized payment/delivery axes",
+        "ru": "SECURITY DEFINER RPC, блокировки строк и синхронизация осей оплаты и выдачи",
+        "uz": "SECURITY DEFINER RPC, qatorlarni bloklash va to'lov/yetkazish o'qlari sinxronligi"
+      },
+      "details": {
+        "en": "No client has direct write permissions on orders. Financial transactions run through SECURITY DEFINER RPCs with row locking. Order lifecycles track two distinct axes: payment_status and fulfillment_status, synchronized via database triggers. Refunds are blocked once in-game currency is credited, preventing fraud.",
+        "ru": "Клиенты не имеют прямых прав на запись в таблицы заказов. Финансовые операции выполняются через SECURITY DEFINER RPC с блокировкой строк SELECT FOR UPDATE. Жизненный цикл заказа управляется двумя независимыми осями: payment_status и fulfillment_status с каскадными триггерами. Возврат средств блокируется на уровне БД, если валюта уже выдана.",
+        "uz": "Mijozlar buyurtma jadvallariga to'g'ridan-to'g'ri yozish huquqiga ega emas. Moliyaviy operatsiyalar qatorlarni bloklagan holda SECURITY DEFINER RPC orqali amalga oshiriladi. Buyurtma hayotiy sikli payment_status va fulfillment_status o'qlari orqali boshqariladi. O'yin valyutasi berilgandan so'ng qaytarib berish baza darajasida taqiqlanadi."
+      }
+    },
+    {
+      "icon": "palette",
+      "title": {
+        "en": "Loyalty Engine & Dynamic Theming",
+        "ru": "Движок лояльности и динамические темы",
+        "uz": "Sodiqlik tizimi va dinamik mavzular"
+      },
+      "summary": {
+        "en": "PalmaCoins cashback cap, XP progression, and zero-FOUC theme switching",
+        "ru": "Лимиты PalmaCoins, система опыта XP и мгновенное переключение тем без FOUC",
+        "uz": "PalmaCoins cheklovlari, XP tizimi va FOUC'siz mavzularni bir zumda almashtirish"
+      },
+      "details": {
+        "en": "Orders award XP (100x USD total) upon completion. Level 5 unlocks the Autumn theme with warm charcoal and pumpkin orange accents. The active theme syncs across devices via the profile and hydrates without FOUC via a pre-paint script. PalmaCoins redemption enforces a strict two-basis cap formula in PostgreSQL, preventing negative balance discrepancies.",
+        "ru": "Завершенные заказы начисляют очки XP (100x от суммы в USD). 5-й уровень лояльности разблокирует осеннюю тему с угольно-оранжевой палитрой. Выбранная тема синхронизируется в профиле и применяется до гидратации через pre-paint скрипт без мигания. Списание PalmaCoins защищено двухфакторным лимитом в PostgreSQL, исключающим отрицательные балансы.",
+        "uz": "Yakunlangan buyurtmalar uchun XP (USD summasining 100 barobari) beriladi. 5-daraja to'q rangli va to'q sariq aksentli kuzgi mavzuni ochadi. Tanlangan mavzu profil orqali sinxronlashadi va pre-paint skripti orqali sahifa miltillashisiz qo'llaniladi. PalmaCoins sarflash esa salbiy qoldiqlarni oldini oluvchi qat'iy formula bilan himoyalangan."
+      }
+    }
+  ],
+  "tryIt": [
+    {
+      "title": {
+        "en": "Currency & Player ID",
+        "ru": "Валюта и Player ID",
+        "uz": "Valyuta va Player ID"
+      },
+      "text": {
+        "en": "Switch between UZS and RUB to see adaptive prices, pick a pack, enter your PUBG ID, and verify the resolved in-game nickname.",
+        "ru": "Переключи валюту (UZS/RUB), выбери пак UC, введи Player ID и убедись, что система автоматически подтянула правильный никнейм.",
+        "uz": "Valyutani (UZS/RUB) almashtirib moslashuvchan narxlarni ko'ring, paketni tanlang, Player ID kiriting va taxallusni tekshiring."
+      }
+    },
+    {
+      "title": {
+        "en": "Quantity & Stepper",
+        "ru": "Количество и степпер",
+        "uz": "Miqdor va stepper"
+      },
+      "text": {
+        "en": "Change pack quantity from 1 to 5. Watch the URL update with ?qty= while totals and coin redemption caps instantly recalculate.",
+        "ru": "Измени количество паков от 1 до 5: параметр ?qty= обновится в URL без перезагрузки, а итоги и скидки мгновенно пересчитаются.",
+        "uz": "Paketlar sonini 1 dan 5 gacha o'zgartiring: ?qty= parametri URL'da yangilanadi, jami summa va chegirmalar bir zumda qayta hisoblanadi."
+      }
+    },
+    {
+      "title": {
+        "en": "Loyalty & Autumn Theme",
+        "ru": "Лояльность и тема",
+        "uz": "Sodiqlik va mavzu"
+      },
+      "text": {
+        "en": "Check user progress at /user/levels. Reach Level 5 (5,000 XP) to switch to the Autumn theme and observe instant palette updates.",
+        "ru": "Открой раздел /user/levels. Набери 5 000 XP (5-й уровень), чтобы активировать осеннюю тему и увидеть мгновенную смену палитры.",
+        "uz": "/user/levels bo'limiga kiring. Kuzgi mavzuni faollashtirish va yangi ranglar palitrasini ko'rish uchun 5 000 XP (5-daraja) to'plang."
+      }
+    }
+  ],
+  "limitations": [
+    {
+      "text": {
+        "en": "Checkout draft state is preserved in device localStorage without per-user isolation until an order is created.",
+        "ru": "Черновик чекаута сохраняется в локальном хранилище устройства без изоляции по аккаунтам до оформления заказа.",
+        "uz": "Buyurtma rasmiylashtirilgunga qadar chekout qoralamasi qurilmaning lokal xotirasida foydalanuvchi ajratilmasdan saqlanadi."
+      }
+    },
+    {
+      "text": {
+        "en": "Database cron tasks (stale order cleanup) and edge webhooks lack a unified client APM sink, logging to platform journals only.",
+        "ru": "Фоновые задачи базы данных (очистка неоплаченных заказов) и Edge-вебхуки логируются в системные журналы Supabase без APM-синка.",
+        "uz": "Baza foniy vazifalari va Edge vebxuklari umumiy APM tizimisiz faqat Supabase tizim jurnallarida qayd etiladi."
+      }
+    },
+    {
+      "text": {
+        "en": "Form unsaved-changes protection intercepts link clicks and window close events, but App Router lacks popstate history interception.",
+        "ru": "Защита несохранённых форм перехватывает клики и закрытие вкладки, но не может перехватить аппаратную кнопку «Назад» в App Router.",
+        "uz": "Saqlanmagan formalar himoyasi havolalarni bosish va oynani yopishni ushlaydi, lekin App Router'da brauzer 'orqaga' tugmasini ushlay olmaydi."
+      }
+    },
+    {
+      "text": {
+        "en": "Player ID verification enforces a strict 3 uncached lookups per day limit per user due to upstream headless browser quotas.",
+        "ru": "Автопроверка Player ID ограничена 3 некэшированными запросами в сутки на пользователя из-за квот внешнего сервиса.",
+        "uz": "Player ID tekshiruvi tashqi servis cheklovlari tufayli foydalanuvchi uchun kuniga 3 ta keshlanmagan so'rov bilan cheklangan."
+      }
+    }
+  ]
+}

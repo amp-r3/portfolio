@@ -1,4 +1,4 @@
-export const projectIds = ['weather', 'store'] as const;
+export const projectIds = ['palma', 'store'] as const;
 export type ProjectId = typeof projectIds[number];
 
 export function isProjectId(id: string): id is ProjectId {

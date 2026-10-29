@@ -61,7 +61,7 @@ describe('Widgets and Pages', () => {
     });
 
     it('links to home anchors from project pages', async () => {
-      mockPathname = '/project/weather';
+      mockPathname = '/project/palma';
       const user = userEvent.setup();
       renderWithProviders(<Header />);
 
