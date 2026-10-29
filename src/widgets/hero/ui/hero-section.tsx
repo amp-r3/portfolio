@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { Mail } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { motion, useScroll, useTransform } from 'motion/react';
 import type { Variants } from 'motion/react';
@@ -143,8 +144,9 @@ export function HeroSection() {
               variants={textRevealVariants}
               href={`mailto:${socialsData.email.link}`}
               className={style.hero__links}
+              aria-label="Email"
             >
-              <img src={socialsData.email.icon} alt="Email" />
+              <Mail aria-hidden="true" />
             </motion.a>
           </motion.div>
         </div>

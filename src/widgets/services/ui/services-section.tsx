@@ -3,6 +3,7 @@
 import { useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { AnimatePresence, motion } from 'motion/react';
+import { Check, ChevronRight } from 'lucide-react';
 import { AccordionItem, Badge } from '@/shared/ui';
 import { usePrefersReducedMotion } from '@/shared/config';
 import { scrollToElement } from '@/shared/lib';
@@ -11,31 +12,11 @@ import type { ServiceId, ServiceItemConfig } from '../model/types';
 import style from './services-section.module.scss';
 
 function CheckIcon() {
-  return (
-    <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <path
-        d="M13.3334 4L6.00008 11.3333L2.66675 8"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
+  return <Check aria-hidden="true" />;
 }
 
 function ArrowIcon() {
-  return (
-    <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <path
-        d="M6 3L11 8L6 13"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
+  return <ChevronRight aria-hidden="true" />;
 }
 
 export function ServicesSection() {

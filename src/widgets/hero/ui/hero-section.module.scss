@@ -268,22 +268,30 @@
             transform: translateY(-1px) scale(1.02);
         }
 
-        img {
+        img,
+        svg {
             width: $icon-size-large;
             height: $icon-size-large;
             transition: transform $transition-duration-base ease;
+            color: var(--text-primary);
+        }
+
+        img {
             filter: var(--icon-filter);
         }
 
-        &:hover img {
+        &:hover img,
+        &:hover svg {
             transform: rotate(5deg);
         }
 
         @media (max-width: 576px) {
             padding: $spacing-xsmall;
 
-            img {
+            img,
+            svg {
                 width: $icon-size-medium;
+                height: $icon-size-medium;
             }
         }
     }

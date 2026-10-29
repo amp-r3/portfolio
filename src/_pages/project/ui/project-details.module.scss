@@ -166,7 +166,8 @@
             transform $transition-duration-base $timing-function-ease-out-expo,
             box-shadow $transition-duration-base $timing-function-ease-out-expo;
 
-        img {
+        img,
+        svg {
             flex-shrink: 0;
             width: $icon-size-medium;
             height: $icon-size-medium;

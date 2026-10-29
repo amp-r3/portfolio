@@ -1,10 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import Image from 'next/image';
+import { CircleAlert, Package } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import type { Project } from '@/entities/project';
-import { packageIcon, circleAlertIcon } from '@/shared/assets';
+import { ProjectIcon, type Project } from '@/entities/project';
 import { AccordionItem, Badge } from '@/shared/ui';
 import { ProjectSection } from './project-section';
 import style from './project-accordions.module.scss';
@@ -63,7 +62,7 @@ export function ProjectAccordions({ project, className }: IProjectAccordionsProp
                   summaryPlacement="below"
                   header={<span className={style.title}>{item.title}</span>}
                   summary={item.summary}
-                  icon={<Image src={item.icon} alt="" width={22} height={22} unoptimized />}
+                  icon={<ProjectIcon name={item.icon} size={22} />}
                   iconClassName={style.icon}
                   indicatorClassName={style.indicator}
                   triggerClassName={triggerClassName}
@@ -86,7 +85,7 @@ export function ProjectAccordions({ project, className }: IProjectAccordionsProp
                 panelRole="region"
                 summaryPlacement="below"
                 header={<span className={style.title}>{t('labels.section.stack')}</span>}
-                icon={<Image src={packageIcon} alt="" width={22} height={22} unoptimized />}
+                icon={<Package size={22} aria-hidden="true" />}
                 iconClassName={style.icon}
                 indicatorClassName={style.indicator}
                 triggerClassName={triggerClassName}
@@ -118,7 +117,7 @@ export function ProjectAccordions({ project, className }: IProjectAccordionsProp
                 panelRole="region"
                 summaryPlacement="below"
                 header={<span className={style.title}>{t('labels.section.limitations')}</span>}
-                icon={<Image src={circleAlertIcon} alt="" width={22} height={22} unoptimized />}
+                icon={<CircleAlert size={22} aria-hidden="true" />}
                 iconClassName={style.icon}
                 indicatorClassName={style.indicator}
                 triggerClassName={triggerClassName}

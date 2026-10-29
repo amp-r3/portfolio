@@ -1,7 +1,6 @@
-import Image from 'next/image';
+import { ExternalLink } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import type { Project } from '@/entities/project';
-import { externalLinkIcon } from '@/shared/assets';
+import { ProjectIcon, type Project } from '@/entities/project';
 import { ProjectSection } from './project-section';
 import style from './project-overview.module.scss';
 
@@ -29,7 +28,7 @@ export function ProjectOverview({ project, className }: IProjectOverviewProps) {
             {features.map((feature) => (
               <li key={feature.text} className={style.feature}>
                 <span className={style.featureIcon} aria-hidden="true">
-                  <Image src={feature.icon} alt="" width={22} height={22} unoptimized />
+                  <ProjectIcon name={feature.icon} size={22} />
                 </span>
                 <span className={style.featureText}>{feature.text}</span>
               </li>
@@ -71,7 +70,7 @@ export function ProjectOverview({ project, className }: IProjectOverviewProps) {
               className={style.demoLink}
             >
               <span>{t('actions.demo')}</span>
-              <Image src={externalLinkIcon} alt="" width={14} height={14} unoptimized aria-hidden="true" />
+              <ExternalLink size={14} aria-hidden="true" />
             </a>
           )}
         </section>

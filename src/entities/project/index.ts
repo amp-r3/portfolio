@@ -18,3 +18,5 @@ export type {
 } from './model/types';
 export { BenefitCard } from './ui/benefit-card';
 export { ProjectCard } from './ui/project-card';
+export { ProjectIcon } from './ui/project-icon';
+export type { IProjectIconProps } from './ui/project-icon';

@@ -139,11 +139,11 @@ input:active+.slider:before {
     pointer-events: none;
     z-index: 1;
 
-    filter: var(--icon-filter);
+    color: var(--text-primary);
     opacity: 0.4;
 
     transition:
-        filter $transition-duration-layout $timing-function-ease-in-out-smooth,
+        color $transition-duration-theme $timing-function-theme,
         opacity $transition-duration-base $timing-function-ease-in-out-smooth,
         transform $transition-duration-layout $timing-function-ease-spring;
 }

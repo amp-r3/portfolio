@@ -1,20 +1,23 @@
-import type { FC } from 'react';
+import type { FC, ReactNode } from 'react';
 import Image from 'next/image';
 import styles from './benefit-card.module.scss';
 
 interface IBenefitCardProps {
   title: string;
   description: string;
-  iconSrc: string;
+  iconSrc?: string;
+  icon?: ReactNode;
   className?: string;
 }
 
-export const BenefitCard: FC<IBenefitCardProps> = ({ title, description, iconSrc, className = '' }) => {
+export const BenefitCard: FC<IBenefitCardProps> = ({ title, description, iconSrc, icon, className = '' }) => {
   return (
     <article className={`${styles.card} ${className}`}>
       <div className={styles.card__header}>
         <div className={styles.card__iconWrapper}>
-          <Image src={iconSrc} alt="" width={24} height={24} unoptimized aria-hidden="true" className={styles.card__icon} />
+          {icon ?? (iconSrc ? (
+            <Image src={iconSrc} alt="" width={24} height={24} unoptimized aria-hidden="true" className={styles.card__icon} />
+          ) : null)}
         </div>
       </div>
 

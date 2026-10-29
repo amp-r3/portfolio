@@ -167,8 +167,8 @@ describe('Theme management', () => {
         </ThemeProvider>
       );
 
-      expect(screen.getByAltText('Sun')).toBeInTheDocument();
-      expect(screen.getByAltText('Moon')).toBeInTheDocument();
+      expect(screen.getByRole('img', { name: 'Sun' })).toBeInTheDocument();
+      expect(screen.getByRole('img', { name: 'Moon' })).toBeInTheDocument();
     });
   });
 });

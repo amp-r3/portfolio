@@ -2,10 +2,11 @@
 
 import { type FC } from 'react';
 import Image from 'next/image';
+import { ExternalLink } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import type { Project } from '@/entities/project';
 import { ProjectGallery } from '@/features/project-gallery';
-import { externalLinkIcon, githubIcon } from '@/shared/assets';
+import { githubIcon } from '@/shared/assets';
 import { BackButton, Badge } from '@/shared/ui';
 import { ProjectMeta } from './project-meta';
 import { ProjectOverview } from './project-overview';
@@ -45,7 +46,7 @@ export const ProjectDetails: FC<IProjectDetailsProps> = ({ project }) => {
                 rel="noopener noreferrer"
                 className={`${style['project-details__action']} ${style['project-details__action--primary']}`}
               >
-                <Image src={externalLinkIcon} alt="" width={16} height={16} unoptimized aria-hidden="true" />
+                <ExternalLink size={16} aria-hidden="true" />
                 <span>{t('actions.demo')}</span>
               </a>
             )}

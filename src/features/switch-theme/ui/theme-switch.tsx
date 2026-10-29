@@ -1,7 +1,7 @@
 'use client';
 
+import { Moon, Sun } from 'lucide-react';
 import { useTheme } from '@/shared/theme';
-import { moonIcon, sunIcon } from '@/shared/assets';
 import style from './theme-switch.module.scss';
 
 export function ThemeSwitch() {
@@ -18,14 +18,14 @@ export function ThemeSwitch() {
           aria-label={isLight ? 'Switch to dark theme' : 'Switch to light theme'}
         />
         <span className={style.slider} />
-        <img
-          src={sunIcon}
-          alt="Sun"
+        <Sun
+          role="img"
+          aria-label="Sun"
           className={`${style.icon} ${style.sunIcon}`}
         />
-        <img
-          src={moonIcon}
-          alt="Moon"
+        <Moon
+          role="img"
+          aria-label="Moon"
           className={`${style.icon} ${style.moonIcon}`}
         />
       </label>

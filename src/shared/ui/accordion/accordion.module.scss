@@ -74,16 +74,21 @@
         background-color $transition-duration-theme $timing-function-theme,
         border-color $transition-duration-theme $timing-function-theme;
 
-    img {
+    img,
+    svg {
         width: $icon-size-large;
         height: $icon-size-large;
         object-fit: contain;
-        filter: var(--icon-filter);
+        color: var(--text-primary);
 
         @media (width < 576px) {
             width: $icon-size-medium;
             height: $icon-size-medium;
         }
+    }
+
+    img {
+        filter: var(--icon-filter);
     }
 
     @media (width < 576px) {
